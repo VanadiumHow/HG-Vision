@@ -1082,7 +1082,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     //VP或者Halcon存图
                     e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
                     e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
-                    e.imageName = (e.Index + 1).ToString() + "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();
+                    e.imageName = "1" + "-" + _jiajuhao.ToString() + "_" + _code1.ToString();
                     e.results = isOk;
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
                     #endregion
@@ -1233,7 +1233,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     //VP或者Halcon存图
                     e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
                     e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
-                    e.imageName = (e.Index + 1).ToString() + "2" + _jiajuhao.ToString() + _code2.ToString();
+                    e.imageName = "2" + "-" + _jiajuhao.ToString() + "_" + _code2.ToString();
                     e.results = isOk;
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
 
