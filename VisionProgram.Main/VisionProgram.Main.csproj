@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{774DB7F5-51C8-464B-B5FD-FE4BC1EB711D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VisionProgram.Main</RootNamespace>
+    <AssemblyName>VisionProgram.Main</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CIPCompolet, Version=1.7.1.0, Culture=neutral, PublicKeyToken=f3505d5782c23c5d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\omron\CIPCompolet.dll</HintPath>
+    </Reference>
+    <Reference Include="CIPCompolet64, Version=1.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\omron\CIPCompolet64.dll</HintPath>
+    </Reference>
+    <Reference Include="CIPCompoletProxyLib, Version=1.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\omron\CIPCompoletProxyLib.dll</HintPath>
+    </Reference>
+    <Reference Include="CIPCoreDotNet, Version=1.7.1.0, Culture=neutral, PublicKeyToken=f3505d5782c23c5d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\omron\CIPCoreDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="CIPMessaging, Version=1.7.1.0, Culture=neutral, PublicKeyToken=f3505d5782c23c5d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\omron\CIPMessaging.dll</HintPath>
+    </Reference>
+    <Reference Include="CIPObjectLibrary, Version=1.7.1.0, Culture=neutral, PublicKeyToken=f3505d5782c23c5d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\omron\CIPObjectLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.FieldCalibrationApplication.Plugin, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.FieldCalibrationApplication.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ApplicationWizard.Core, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ApplicationWizard.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.AutoSelect, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.AutoSelect.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Barcode, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Barcode.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Barcode.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Blob, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Blob.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Blob.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Blob.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CalibFix, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFix.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CalibFix.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFix.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CalibFixPlus, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFixPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Caliper, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Caliper.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Caliper.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Caliper.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CNLSearch, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CNLSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CNLSearch.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CNLSearch.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Comm, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Comm.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Comm.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Comm.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CompositeColorMatch, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CompositeColorMatch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CompositeColorMatch.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CompositeColorMatch.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Core, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CorePlus, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CorePlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Database, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Display.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Display.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ID, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ID.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ID.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ID.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageFile, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageFile.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageProcessing, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageProcessing.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageProcessing.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageProcessing.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImagingDevice, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImagingDevice.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Interop.Core, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Interop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PMAlign, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMAlign.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PMAlign.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMAlign.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PMRedLine, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMRedLine.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PMRedLine.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMRedLine.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PointMatcher, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PointMatcher.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.QuickBuild.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.QuickBuild.Core, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.QuickBuild.IO, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.SearchMax, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.SearchMax.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.SearchMax.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.SearchMax.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ToolGroup, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ToolGroup.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ToolGroup.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ToolGroup.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="HslCommunication, Version=7.0.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\测试代码\QHMN\QHMN_满焊三通道20240507\MainVision\bin\Debug\HslCommunication.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QWhale.Common, Version=1.62.4104.36375, Culture=neutral, PublicKeyToken=da632fd1713dff10" />
+    <Reference Include="QWhale.Editor, Version=1.62.4104.36377, Culture=neutral, PublicKeyToken=da632fd1713dff10" />
+    <Reference Include="QWhale.Syntax, Version=1.62.4104.36376, Culture=neutral, PublicKeyToken=da632fd1713dff10" />
+    <Reference Include="QWhale.Syntax.Parsers, Version=1.62.4104.36376, Culture=neutral, PublicKeyToken=da632fd1713dff10" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TwinCAT.Ads, Version=4.3.0.0, Culture=neutral, PublicKeyToken=180016cd49e5e8c3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\twincat\TwinCAT.Ads.dll</HintPath>
+    </Reference>
+    <Reference Include="VisionProgram.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VisionProgram.Common\bin\x64\Debug\VisionProgram.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="VisionProgram.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VisionProgram.Models\bin\x64\Debug\VisionProgram.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\CCDDataBll.cs" />
+    <Compile Include="DAL\CCDDataDal.cs" />
+    <Compile Include="ProjectClass\DataCheck\DataCheckConfiguration.cs" />
+    <Compile Include="ProjectClass\DataCheck\DataCheckManager.cs" />
+    <Compile Include="ProjectClass\PLC\HSLPLCOmron.cs" />
+    <Compile Include="ProjectClass\PLC\PLCVar.cs" />
+    <Compile Include="ProjectClass\Robot\CClientSocket.cs" />
+    <Compile Include="ProjectClass\Robot\CServerSocket.cs" />
+    <Compile Include="ProjectClass\Robot\LeaserClientConfiguration.cs" />
+    <Compile Include="ProjectClass\Robot\LeaserManager.cs" />
+    <Compile Include="ProjectClass\Robot\LeaserObj.cs" />
+    <Compile Include="ProjectClass\Robot\RobotManager.cs" />
+    <Compile Include="ProjectClass\Robot\RobotObj.cs" />
+    <Compile Include="ProjectClass\Robot\RobotSeverConfiguration.cs" />
+    <Compile Include="ProjectClass\Robot\RobotSignals.cs" />
+    <Compile Include="ProjectClass\SqlDB\SqlInfoConfiguration.cs" />
+    <Compile Include="ProjectClass\Vision\Camera\CameraConfiguration.cs" />
+    <Compile Include="ProjectClass\Vision\Camera\CameraManager.cs" />
+    <Compile Include="ProjectClass\Vision\Camera\CameraParamsConfiguration.cs" />
+    <Compile Include="ProjectClass\Vision\Camera\CameraParamsManager.cs" />
+    <Compile Include="ProjectClass\Vision\Global\GlobalCameraParams.cs" />
+    <Compile Include="ProjectClass\Vision\Image\ImageConfiguration.cs" />
+    <Compile Include="ProjectClass\Vision\Image\ImageManager.cs" />
+    <Compile Include="ProjectClass\Vision\Image\ImageStoreHelper.cs" />
+    <Compile Include="ProjectClass\Vision\VisionManager.cs" />
+    <Compile Include="ProjectClass\PLC\PLCConfiguration.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\x64\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\x64\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\x64\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\x64\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\x64\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\x64\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="ProjectClass\GlobalConfig\GlobalManager.cs" />
+    <Compile Include="ProjectClass\HardWareState\HardWareStateManager.cs" />
+    <Compile Include="ProjectClass\ProductionData\ProductionDataManager.cs" />
+    <Compile Include="DAL\BaseDal.cs" />
+    <Compile Include="DAL\BQuery.cs" />
+    <Compile Include="ProjectClass\SqlDB\SqlInfoManager.cs" />
+    <Compile Include="ProjectClass\ScheduledTask\ScheduledTaskManager.cs" />
+    <Compile Include="ProjectClass\User\UserConfiguration.cs" />
+    <Compile Include="ProjectClass\User\UserInfoManager.cs" />
+    <Compile Include="ProjectClass\PLC\BasePLC.cs" />
+    <Compile Include="ProjectClass\PLC\PLCOmron.cs" />
+    <Compile Include="ProjectClass\PLC\PLCManager.cs" />
+    <Compile Include="ProjectClass\PLC\PlcSignals.cs" />
+    <Compile Include="ProjectClass\PLC\PLCTwinCATAds.cs" />
+    <Compile Include="BLL\OperationLogDataBll.cs" />
+    <Compile Include="DAL\OperationLogDataDal.cs" />
+    <Compile Include="ProjectClass\SqlDB\CommandInfo.cs" />
+    <Compile Include="ProjectClass\SqlDB\SqlHelper.cs" />
+    <Compile Include="ProjectClass\GlobalConfig\GlobalConfiguration.cs" />
+    <Compile Include="ProjectClass\Project.cs" />
+    <Compile Include="ProjectClass\Vision\WorkFlow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="obj\Debug\TemplateProgram.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmCameraParamsSettings.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmDataSettings.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmGeneralSettings.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmHalconChooseImages.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmHalconVisionControl.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmHalconWindow.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmHardWareState.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmHome.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmImageStoreSettings.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmLock.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmMainScan.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmMainVision.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmOutput.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmPlcCommSettings.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmProductionCCDCapacity.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmProductionData.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmProductionScanCapacity.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmScanControl.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmScannerSetting.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmSerialPortSettings.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmSetting.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmTCPClientSettings.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmTCPServerSettings.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmVpChooseImages.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmVppSetting.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmVpVisionControl.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.FrmVpVisionControlSetting.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionProgram.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Debug\VisionTemplateProgram.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FormLogin.FrmEdit.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FormLogin.FrmLock.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FormLogin.FrmLogin.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FormLogin.FrmRegister.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FormScan.FrmMainScan.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FrmHalconChooseImages.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FrmHalconVisionControl.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FrmHalconWindow.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FrmMainVision.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FrmVpChooseImages.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FrmVppSetting.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.FrmVpVisionControl.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Home.FrmHome.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Page.MainPage.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Page.MainSonForm.FrmHardWareState.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Page.MainSonForm.FrmOutput.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Page.RecordPage.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Page.StatisticsPage.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Page.StatisticsSonForm.FrmStatisticsCCD.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Page.StatisticsSonForm.FrmStatisticsScan.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.RecordSonForm.FormPLCMessage.FrmPLCMessage.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.RecordSonForm.FormQuery.FrmCCDQuery.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.RecordSonForm.FormQuery.FrmLogQuery.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.RecordSonForm.FormQuery.FrmQuery.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.RecordSonForm.FormQuery.FrmScanQuery.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Com.FrmPlcCommSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Com.FrmSerialPortSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Com.FrmTCPClientSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Com.FrmTCPServerSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Com.FrmTestSignal.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Device.FrmCameraParamsSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Device.FrmCCDSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Device.FrmHVSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Device.FrmInkjetSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Device.FrmScannerSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Device.FrmSerialTesterSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Device.FrmSocketTesterSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.FrmGeneralSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.FrmImageStoreSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.FrmProductChangeSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.FrmSetting.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Service.FrmDataCheckSettings.resources" />
+    <EmbeddedResource Include="obj\Release\VisionProgram.UI.Setting.Service.FrmServiceSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FormLogin.FrmEdit.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FormLogin.FrmLock.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FormLogin.FrmLogin.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FormLogin.FrmRegister.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FormScan.FrmMainScan.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FrmHalconChooseImages.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FrmHalconVisionControl.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FrmHalconWindow.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FrmMainVision.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FrmVpChooseImages.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FrmVppSetting.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.FrmVpVisionControl.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Home.FrmHome.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Page.MainPage.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Page.MainSonForm.FrmHardWareState.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Page.MainSonForm.FrmOutput.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Page.RecordPage.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Page.StatisticsPage.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Page.StatisticsSonForm.FrmStatisticsCCD.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Page.StatisticsSonForm.FrmStatisticsScan.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.RecordSonForm.FormPLCMessage.FrmPLCMessage.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.RecordSonForm.FormQuery.FrmCCDQuery.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.RecordSonForm.FormQuery.FrmOperationLogQuery.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.RecordSonForm.FormQuery.FrmQuery.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.RecordSonForm.FormQuery.FrmScanQuery.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Com.FrmPlcCommSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Com.FrmSerialPortSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Com.FrmTCPClientSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Com.FrmTCPServerSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Com.FrmTestSignal.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Device.FrmCameraParamsSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Device.FrmCCDSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Device.FrmHVSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Device.FrmInkjetSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Device.FrmScannerSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Device.FrmSerialTesterSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Device.FrmSocketTesterSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.FrmGeneralSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.FrmImageStoreSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.FrmProductChangeSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.FrmSetting.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Service.FrmDataCheckSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\DataCollection.UI.Setting.Service.FrmServiceSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmCameraParamsSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmDataSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmGeneralSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmHalconChooseImages.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmHalconVisionControl.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmHalconWindow.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmHardWareState.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmHome.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmImageStoreSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmLock.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmMainScan.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmMainVision.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmOutput.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmPlcCommSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmProductionCCDCapacity.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmProductionData.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmProductionScanCapacity.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmScanControl.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmScannerSetting.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmSerialPortSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmSetting.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmTCPClientSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmTCPServerSettings.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmVpChooseImages.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmVppSetting.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmVpVisionControl.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.FrmVpVisionControlSetting.resources" />
+    <EmbeddedResource Include="obj\x64\Release\VisionProgram.Properties.Resources.resources" />
+    <None Include="bin\x64\Debug\BackupDB\DataCollection_20220915.bak" />
+    <None Include="bin\x64\Debug\Config\Configuration.ini" />
+    <None Include="bin\x64\Debug\Config\DataCheckComm.ini" />
+    <None Include="bin\x64\Debug\Config\PlcComm.ini" />
+    <None Include="bin\x64\Debug\Config\ScanComm.ini" />
+    <None Include="bin\x64\Debug\Config\Sql.ini" />
+    <None Include="bin\x64\Debug\Config\TesterComm.ini" />
+    <None Include="bin\x64\Debug\DataCollection.exe.config" />
+    <None Include="bin\x64\Debug\DataCollection.vshost.exe.config" />
+    <None Include="bin\x64\Debug\DataCollection.vshost.exe.manifest" />
+    <None Include="bin\x64\Debug\log4net.config" />
+    <None Include="bin\x64\Debug\Log\LogDebug\20220915\16_log.log" />
+    <None Include="bin\x64\Debug\Log\LogDebug\20220915\17_log.log" />
+    <None Include="bin\x64\Debug\Log\LogDebug\20220916\13_log.log" />
+    <None Include="bin\x64\Debug\Log\LogDebug\20220916\14_log.log" />
+    <None Include="bin\x64\Debug\Log\LogDebug\20220916\15_log.log" />
+    <None Include="bin\x64\Debug\Log\LogDebug\20220916\16_log.log" />
+    <None Include="bin\x64\Debug\Log\LogError\20220915_log.log" />
+    <None Include="bin\x64\Debug\Log\LogError\20220916_log.log" />
+    <None Include="bin\x64\Debug\Log\LogFatal\20220915_log.log" />
+    <None Include="bin\x64\Debug\Log\LogFatal\20220916_log.log" />
+    <None Include="bin\x64\Debug\Log\LogInfo\20220915\16_log.log" />
+    <None Include="bin\x64\Debug\Log\LogInfo\20220915\17_log.log" />
+    <None Include="bin\x64\Debug\Log\LogInfo\20220916\13_log.log" />
+    <None Include="bin\x64\Debug\Log\LogInfo\20220916\14_log.log" />
+    <None Include="bin\x64\Debug\Log\LogInfo\20220916\15_log.log" />
+    <None Include="bin\x64\Debug\Log\LogInfo\20220916\16_log.log" />
+    <None Include="bin\x64\Debug\User\UserInfo.json" />
+    <None Include="bin\x64\Debug\VisionProgram.Main.exe.config" />
+    <None Include="bin\x64\Debug\VisionProgram.Main.vshost.exe.config" />
+    <None Include="bin\x64\Debug\VisionProgram.Main.vshost.exe.manifest" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\TemplateProgram.csproj.GenerateResource.Cache" />
+    <None Include="obj\Debug\TemplateProgram.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Debug\VisionProgram.csproj.GenerateResource.Cache" />
+    <None Include="obj\Debug\VisionProgram.csproj.ResolveComReference.cache" />
+    <None Include="obj\Debug\VisionProgram.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Debug\VisionTemplateProgram.csproj.GenerateResource.Cache" />
+    <None Include="obj\Debug\VisionTemplateProgram.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Release\VisionProgram.csproj.GenerateResource.Cache" />
+    <None Include="obj\Release\VisionProgram.csproj.ResolveComReference.cache" />
+    <None Include="obj\Release\VisionProgram.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\x64\Release\DataCollection.csproj.GenerateResource.Cache" />
+    <None Include="obj\x64\Release\DataCollection.csproj.ResolveComReference.cache" />
+    <None Include="obj\x64\Release\DataCollection.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\x64\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\x64\Release\VisionProgram.csproj.GenerateResource.Cache" />
+    <None Include="obj\x64\Release\VisionProgram.csproj.ResolveComReference.cache" />
+    <None Include="obj\x64\Release\VisionProgram.csprojResolveAssemblyReference.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MSDATASRC">
+      <Guid>{7C0FFAB0-CD84-11D0-949A-00A0C91110ED}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\x64\Debug\CIPCompolet.dll" />
+    <Content Include="bin\x64\Debug\CIPCompolet64.dll" />
+    <Content Include="bin\x64\Debug\CIPCompoletProxyLib.dll" />
+    <Content Include="bin\x64\Debug\CIPCompoletProxyServer.exe" />
+    <Content Include="bin\x64\Debug\CIPCoreDotNet.dll" />
+    <Content Include="bin\x64\Debug\CIPMessaging.dll" />
+    <Content Include="bin\x64\Debug\CIPObjectLibrary.dll" />
+    <Content Include="bin\x64\Debug\CommonCipService.dll" />
+    <Content Include="bin\x64\Debug\CompoletDataManager.dll" />
+    <Content Include="bin\x64\Debug\CompoletFramework.dll" />
+    <Content Include="bin\x64\Debug\DataCollection.exe" />
+    <Content Include="bin\x64\Debug\DataCollection.pdb" />
+    <Content Include="bin\x64\Debug\DataCollection.vshost.exe" />
+    <Content Include="bin\x64\Debug\FgwDotnet.dll" />
+    <Content Include="bin\x64\Debug\ja\CommonCipService.resources.dll" />
+    <Content Include="bin\x64\Debug\ja\CompoletDataManager.resources.dll" />
+    <Content Include="bin\x64\Debug\ja\CompoletFramework.resources.dll" />
+    <Content Include="bin\x64\Debug\ja\FgwDotnet.resources.dll" />
+    <Content Include="bin\x64\Debug\ja\PLCDevice.resources.dll" />
+    <Content Include="bin\x64\Debug\ja\SysmacCipService.resources.dll" />
+    <Content Include="bin\x64\Debug\ja\VariableCompolet.resources.dll" />
+    <Content Include="bin\x64\Debug\log4net.dll" />
+    <Content Include="bin\x64\Debug\log4net.xml" />
+    <Content Include="bin\x64\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\x64\Debug\PLCDevice.dll" />
+    <Content Include="bin\x64\Debug\res\Splash.png" />
+    <Content Include="bin\x64\Debug\SplashScreen.dll" />
+    <Content Include="bin\x64\Debug\SplashScreen.pdb" />
+    <Content Include="bin\x64\Debug\stdole.dll" />
+    <Content Include="bin\x64\Debug\SunnyUI.Common.dll" />
+    <Content Include="bin\x64\Debug\SunnyUI.dll" />
+    <Content Include="bin\x64\Debug\SysmacCipService.dll" />
+    <Content Include="bin\x64\Debug\TwinCAT.Ads.dll" />
+    <Content Include="bin\x64\Debug\UserControls.dll" />
+    <Content Include="bin\x64\Debug\UserControls.pdb" />
+    <Content Include="bin\x64\Debug\VariableCompolet.dll" />
+    <Content Include="bin\x64\Debug\VisionProgram.Main.vshost.exe" />
+    <Content Include="obj\Debug\Interop.MSDATASRC.dll" />
+    <Content Include="obj\Debug\TemplateProgram.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\TemplateProgram.exe" />
+    <Content Include="obj\Debug\TemplateProgram.pdb" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="obj\Debug\VisionProgram.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\VisionProgram.exe" />
+    <Content Include="obj\Debug\VisionProgram.pdb" />
+    <Content Include="obj\Debug\VisionTemplateProgram.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\VisionTemplateProgram.exe" />
+    <Content Include="obj\Debug\VisionTemplateProgram.pdb" />
+    <Content Include="obj\Release\Interop.MSDATASRC.dll" />
+    <Content Include="obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="obj\Release\VisionProgram.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\VisionProgram.exe" />
+    <Content Include="obj\Release\VisionProgram.pdb" />
+    <Content Include="obj\x64\Release\DataCollection.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\x64\Release\DataCollection.exe" />
+    <Content Include="obj\x64\Release\DataCollection.pdb" />
+    <Content Include="obj\x64\Release\Interop.MSDATASRC.dll" />
+    <Content Include="obj\x64\Release\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="obj\x64\Release\VisionProgram.csproj.FileListAbsolute.txt" />
+    <Content Include="VisionProgram.Main.user" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
