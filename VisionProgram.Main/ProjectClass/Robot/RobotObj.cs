@@ -181,7 +181,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
         {
             TriggerEventArgs e = null;
             //从队列中取出数据
-              if (!_taskQueueList[0].IsCompleted)
+            if (!_taskQueueList[0].IsCompleted)
             {
                 e = _taskQueueList[0].Dequeue();
             }
@@ -541,6 +541,8 @@ namespace VisionProgram.Main.ProjectClass.Robot
 
 
 
+
+
                 #endregion
                 //运行取相＋处理时间
                 string FinalResult = "";
@@ -565,9 +567,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Inputs["ProductGrayValue"].Value = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_ProductGrayValueMin[_workFlowIndex];
                 Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Inputs["OffsetX"].Value = offSetX;
                 Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].RunProcessBlock(ref img);
-                
+
                 var mSeconds1 = watch1.ElapsedMilliseconds;
-                
+
 
                 if (!Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].UpdateGraphicResult(GlobalCameraParams.cameraVisionControlList[_workFlowIndex]))
                 {
@@ -597,14 +599,20 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 bool bAccept = (bool)Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Outputs["bAccept"].Value;
                 string sError = (string)Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Outputs["sError"].Value;
                 double Pangle = (double)Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Outputs["Angle"].Value;
+
+                watch2.Stop();
+                var mSeconds2 = watch2.ElapsedMilliseconds;
                 string _code1 = "";
                 string _code2 = "";
                 int _jiajuhao = 0;
                 double _spacing = 0.0;
+                double _spacing1 = 0.0;
                 _code1 = Project.Instance().PLCManagerInstance.ReadString("D102", 10);
                 _code2 = Project.Instance().PLCManagerInstance.ReadString("D101", 10);
                 _jiajuhao = Project.Instance().PLCManagerInstance.ReadInt16("D100");
-                _spacing = Project.Instance().PLCManagerInstance.ReadFloat("D141") ;
+                _spacing = Project.Instance().PLCManagerInstance.ReadFloat("D141");
+                _spacing1 = Project.Instance().PLCManagerInstance.ReadFloat("D143");
+
 
                 if (bAccept)
                 {
@@ -614,7 +622,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     List<double[]> ListResult2 = new List<double[]>();
                     List<double[]> ListResult3 = new List<double[]>();
                     List<double[]> ListResult4 = new List<double[]>();
-                    
+
                     ListResult1 = (List<double[]>)Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Outputs["ResultList1"].Value;
                     ListResult2 = (List<double[]>)Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Outputs["ResultList2"].Value;
                     ListResult3 = (List<double[]>)Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Outputs["ResultList3"].Value;
@@ -672,21 +680,21 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     #endregion
 
                     #region 根据夹具号来分别额外补偿，若无夹具号
-                    if (_jiajuhao ==1)
+                    if (_jiajuhao == 1)
                     {
                         AddR1X = AddR1J1X + dX1[0];
-                        AddR1Y = AddR1J1Y+ dY1[0];
-                        AddR2X = AddR2J1X+ dX2[0];
-                        AddR2Y = AddR2J1Y+ dY2[0];
-                        AddL1X1 = AddL1J1X1+ dX3[0];
-                        AddL1Y1 = AddL1J1Y1/2 + AddL1J1Y2 / 2 + dY3[0];
+                        AddR1Y = AddR1J1Y + dY1[0];
+                        AddR2X = AddR2J1X + dX2[0];
+                        AddR2Y = AddR2J1Y + dY2[0];
+                        AddL1X1 = AddL1J1X1 + dX3[0];
+                        AddL1Y1 = AddL1J1Y1 / 2 + AddL1J1Y2 / 2 + dY3[0];
                         AddL1X2 = AddL1J1X2 + dX3[0];
-                        AddL1Y2 = AddL1J1Y2 / 2 + AddL1J1Y1/2 + dY3[0];
+                        AddL1Y2 = AddL1J1Y2 / 2 + AddL1J1Y1 / 2 + dY3[0];
                         AddL1X3 = AddL1J1X3 + dX3[0];
                         AddL1Y3 = AddL1J1Y3 + dY3[0];
                         AddL1X4 = AddL1J1X4 + dX3[0];
                         AddL1Y4 = AddL1J1Y4 + dY3[0];
-                        AddL2X1 = AddL2J1X1+ dX4[0];
+                        AddL2X1 = AddL2J1X1 + dX4[0];
                         AddL2Y1 = AddL2J1Y1 + dY4[0];
                         AddL2X2 = AddL2J1X2 + dX4[0];
                         AddL2Y2 = AddL2J1Y2 + dY4[0];
@@ -694,7 +702,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddL2Y3 = AddL2J1Y3 + dY4[0];
                         AddL2X4 = AddL2J1X4 + dX4[0];
                         AddL2Y4 = AddL2J1Y4 + dY4[0];
-                        LengthC = AddL1J1X2 - AddL1J1X1;
+                        LengthC = -(AddL1J1X2 - AddL1J1X1);
                     }
                     else if (_jiajuhao == 2)
                     {
@@ -703,9 +711,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddR2X = AddR2J2X + dX2[0];
                         AddR2Y = AddR2J2Y + dY2[0];
                         AddL1X1 = AddL1J2X1 + dX3[0];
-                        AddL1Y1 = AddL1J2Y1/2 +AddL1J2Y2 / 2 + dY3[0];
+                        AddL1Y1 = AddL1J2Y1 / 2 + AddL1J2Y2 / 2 + dY3[0];
                         AddL1X2 = AddL1J2X2 + dX3[0];
-                        AddL1Y2 = AddL1J2Y2 / 2+ AddL1J2Y1/2 + dY3[0];
+                        AddL1Y2 = AddL1J2Y2 / 2 + AddL1J2Y1 / 2 + dY3[0];
                         AddL1X3 = AddL1J2X3 + dX3[0];
                         AddL1Y3 = AddL1J2Y3 + dY3[0];
                         AddL1X4 = AddL1J2X4 + dX3[0];
@@ -718,7 +726,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddL2Y3 = AddL2J2Y3 + dY4[0];
                         AddL2X4 = AddL2J2X4 + dX4[0];
                         AddL2Y4 = AddL2J2Y4 + dY4[0];
-                        LengthC = AddL1J2X2 - AddL1J2X1;
+                        LengthC = -(AddL1J2X2 - AddL1J2X1);
 
                     }
                     else if (_jiajuhao == 3)
@@ -728,9 +736,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddR2X = AddR2J3X + dX2[0];
                         AddR2Y = AddR2J3Y + dY2[0];
                         AddL1X1 = AddL1J3X1 + dX3[0];
-                        AddL1Y1 = AddL1J3Y1/2 +AddL1J3Y2 / 2 + dY3[0];
+                        AddL1Y1 = AddL1J3Y1 / 2 + AddL1J3Y2 / 2 + dY3[0];
                         AddL1X2 = AddL1J3X2 + dX3[0];
-                        AddL1Y2 = AddL1J3Y2 / 2+ AddL1J3Y1/2 + dY3[0];
+                        AddL1Y2 = AddL1J3Y2 / 2 + AddL1J3Y1 / 2 + dY3[0];
                         AddL1X3 = AddL1J3X3 + dX3[0];
                         AddL1Y3 = AddL1J3Y3 + dY3[0];
                         AddL1X4 = AddL1J3X4 + dX3[0];
@@ -743,7 +751,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddL2Y3 = AddL2J3Y3 + dY4[0];
                         AddL2X4 = AddL2J3X4 + dX4[0];
                         AddL2Y4 = AddL2J3Y4 + dY4[0];
-                        LengthC = AddL1J3X2 - AddL1J3X1;
+                        LengthC = -(AddL1J3X2 - AddL1J3X1);
 
                     }
                     else if (_jiajuhao == 4)
@@ -753,9 +761,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddR2X = AddR2J4X + dX2[0];
                         AddR2Y = AddR2J4Y + dY2[0];
                         AddL1X1 = AddL1J4X1 + dX3[0];
-                        AddL1Y1 = AddL1J4Y1/2 +AddL1J4Y2 / 2 + dY3[0];
+                        AddL1Y1 = AddL1J4Y1 / 2 + AddL1J4Y2 / 2 + dY3[0];
                         AddL1X2 = AddL1J4X2 + dX3[0];
-                        AddL1Y2 = AddL1J4Y2 / 2+ AddL1J4Y1/2 + dY3[0];
+                        AddL1Y2 = AddL1J4Y2 / 2 + AddL1J4Y1 / 2 + dY3[0];
                         AddL1X3 = AddL1J4X3 + dX3[0];
                         AddL1Y3 = AddL1J4Y3 + dY3[0];
                         AddL1X4 = AddL1J4X4 + dX3[0];
@@ -768,7 +776,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddL2Y3 = AddL2J4Y3 + dY4[0];
                         AddL2X4 = AddL2J4X4 + dX4[0];
                         AddL2Y4 = AddL2J4Y4 + dY4[0];
-                        LengthC = AddL1J4X2 - AddL1J4X1;
+                        LengthC = -(AddL1J4X2 - AddL1J4X1);
 
                     }
                     else if (_jiajuhao == 5)
@@ -778,9 +786,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddR2X = AddR2J5X + dX2[0];
                         AddR2Y = AddR2J5Y + dY2[0];
                         AddL1X1 = AddL1J5X1 + dX3[0];
-                        AddL1Y1 = AddL1J5Y1/2 +AddL1J5Y2 / 2 + dY3[0];
+                        AddL1Y1 = AddL1J5Y1 / 2 + AddL1J5Y2 / 2 + dY3[0];
                         AddL1X2 = AddL1J5X2 + dX3[0];
-                        AddL1Y2 = AddL1J5Y2 / 2+ AddL1J5Y1/2 + dY3[0];
+                        AddL1Y2 = AddL1J5Y2 / 2 + AddL1J5Y1 / 2 + dY3[0];
                         AddL1X3 = AddL1J5X3 + dX3[0];
                         AddL1Y3 = AddL1J5Y3 + dY3[0];
                         AddL1X4 = AddL1J5X4 + dX3[0];
@@ -793,7 +801,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddL2Y3 = AddL2J5Y3 + dY4[0];
                         AddL2X4 = AddL2J5X4 + dX4[0];
                         AddL2Y4 = AddL2J5Y4 + dY4[0];
-                        LengthC = AddL1J5X2 - AddL1J5X1;
+                        LengthC = -(AddL1J5X2 - AddL1J5X1);
 
                     }
                     else if (_jiajuhao == 6)
@@ -803,9 +811,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddR2X = AddR2J6X + dX2[0];
                         AddR2Y = AddR2J6Y + dY2[0];
                         AddL1X1 = AddL1J6X1 + dX3[0];
-                        AddL1Y1 = AddL1J6Y1/2 +AddL1J6Y2 / 2 + dY3[0];
+                        AddL1Y1 = AddL1J6Y1 / 2 + AddL1J6Y2 / 2 + dY3[0];
                         AddL1X2 = AddL1J6X2 + dX3[0];
-                        AddL1Y2 = AddL1J6Y2 / 2+ AddL1J6Y1/2 + dY3[0];
+                        AddL1Y2 = AddL1J6Y2 / 2 + AddL1J6Y1 / 2 + dY3[0];
                         AddL1X3 = AddL1J6X3 + dX3[0];
                         AddL1Y3 = AddL1J6Y3 + dY3[0];
                         AddL1X4 = AddL1J6X4 + dX3[0];
@@ -818,7 +826,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddL2Y3 = AddL2J6Y3 + dY4[0];
                         AddL2X4 = AddL2J6X4 + dX4[0];
                         AddL2Y4 = AddL2J6Y4 + dY4[0];
-                        LengthC = AddL1J6X2 - AddL1J6X1;
+                        LengthC = -(AddL1J6X2 - AddL1J6X1);
 
                     }
                     else if (_jiajuhao == 7)
@@ -828,9 +836,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddR2X = AddR2J7X + dX2[0];
                         AddR2Y = AddR2J7Y + dY2[0];
                         AddL1X1 = AddL1J7X1 + dX3[0];
-                        AddL1Y1 = AddL1J7Y1/2 +AddL1J7Y2 / 2 + dY3[0];
+                        AddL1Y1 = AddL1J7Y1 / 2 + AddL1J7Y2 / 2 + dY3[0];
                         AddL1X2 = AddL1J7X2 + dX3[0];
-                        AddL1Y2 = AddL1J7Y2 / 2+ AddL1J7Y1/2 + dY3[0];
+                        AddL1Y2 = AddL1J7Y2 / 2 + AddL1J7Y1 / 2 + dY3[0];
                         AddL1X3 = AddL1J7X3 + dX3[0];
                         AddL1Y3 = AddL1J7Y3 + dY3[0];
                         AddL1X4 = AddL1J7X4 + dX3[0];
@@ -843,7 +851,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddL2Y3 = AddL2J7Y3 + dY4[0];
                         AddL2X4 = AddL2J7X4 + dX4[0];
                         AddL2Y4 = AddL2J7Y4 + dY4[0];
-                        LengthC = AddL1J7X2 - AddL1J7X1;
+                        LengthC = -(AddL1J7X2 - AddL1J7X1);
 
                     }
                     else if (_jiajuhao == 8)
@@ -853,9 +861,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddR2X = AddR2J8X + dX2[0];
                         AddR2Y = AddR2J8Y + dY2[0];
                         AddL1X1 = AddL1J8X1 + dX3[0];
-                        AddL1Y1 = AddL1J8Y1/2 +AddL1J8Y2 / 2 + dY3[0];
+                        AddL1Y1 = AddL1J8Y1 / 2 + AddL1J8Y2 / 2 + dY3[0];
                         AddL1X2 = AddL1J8X2 + dX3[0];
-                        AddL1Y2 = AddL1J8Y2 / 2+ AddL1J8Y1/2 + dY3[0];
+                        AddL1Y2 = AddL1J8Y2 / 2 + AddL1J8Y1 / 2 + dY3[0];
                         AddL1X3 = AddL1J8X3 + dX3[0];
                         AddL1Y3 = AddL1J8Y3 + dY3[0];
                         AddL1X4 = AddL1J8X4 + dX3[0];
@@ -868,7 +876,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddL2Y3 = AddL2J8Y3 + dY4[0];
                         AddL2X4 = AddL2J8X4 + dX4[0];
                         AddL2Y4 = AddL2J8Y4 + dY4[0];
-                        LengthC = AddL1J8X2 - AddL1J8X1;
+                        LengthC = -(AddL1J8X2 - AddL1J8X1);
 
                     }
                     else if (_jiajuhao == 9)
@@ -878,9 +886,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddR2X = AddR2J9X + dX2[0];
                         AddR2Y = AddR2J9Y + dY2[0];
                         AddL1X1 = AddL1J9X1 + dX3[0];
-                        AddL1Y1 = AddL1J9Y1/2+ AddL1J9Y2 / 2 + dY3[0];
+                        AddL1Y1 = AddL1J9Y1 / 2 + AddL1J9Y2 / 2 + dY3[0];
                         AddL1X2 = AddL1J9X2 + dX3[0];
-                        AddL1Y2 = AddL1J9Y2/2+AddL1J9Y1/2 + dY3[0];
+                        AddL1Y2 = AddL1J9Y2 / 2 + AddL1J9Y1 / 2 + dY3[0];
                         AddL1X3 = AddL1J9X3 + dX3[0];
                         AddL1Y3 = AddL1J9Y3 + dY3[0];
                         AddL1X4 = AddL1J9X4 + dX3[0];
@@ -893,15 +901,15 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         AddL2Y3 = AddL2J9Y3 + dY4[0];
                         AddL2X4 = AddL2J9X4 + dX4[0];
                         AddL2Y4 = AddL2J9Y4 + dY4[0];
-                        LengthC = AddL1J9X2 - AddL1J9X1;
+                        LengthC = -(AddL1J9X2 - AddL1J9X1);
 
                     }
-                    else 
+                    else
                     {
-                        AddR1X =  dX1[0];
-                        AddR1Y =  dY1[0];
-                        AddR2X =  dX2[0];
-                        AddR2Y =  dY2[0];
+                        AddR1X = dX1[0];
+                        AddR1Y = dY1[0];
+                        AddR2X = dX2[0];
+                        AddR2Y = dY2[0];
                         AddL1X1 = dX3[0];
                         AddL1Y1 = dY3[0];
                         AddL1X2 = dX3[0];
@@ -922,21 +930,24 @@ namespace VisionProgram.Main.ProjectClass.Robot
 
                     #endregion
                     string q = _spacing.ToString("f3");
-                    if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.SpacingUse[_workFlowIndex] ==1.0)
+                    if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.SpacingUse[_workFlowIndex] == 1.0)
                     {
-                        double SpecingX =Math.Round(( Convert.ToDouble(_spacing.ToString("f3")) /*- Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.Spacing[_workFlowIndex]*/),3);
-                       
-                        AddL1X3 = dX3[0] + SpecingX;
-                        AddL1X4 = dX3[0] + SpecingX;
-                        
-                        AddL2X3 = dX4[0] + SpecingX;
-                        AddL2X4 = dX4[0] + SpecingX;
+                        //工位一间距
+                        double SpecingX = Math.Round((Convert.ToDouble(_spacing.ToString("f3")) - Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.Spacing[_workFlowIndex]), 3);
+                        //工位二间距
+                        double SpecingX2 = Math.Round((Convert.ToDouble(_spacing1.ToString("f3")) - Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.Spacing[_workFlowIndex]), 3);
+
+                        AddL1X3 = AddL1X3 + SpecingX;
+                        AddL1X4 = AddL1X4 + SpecingX;
+
+                        AddL2X3 = AddL2X3 + SpecingX2;
+                        AddL2X4 = AddL2X4 + SpecingX2;
                     }
 
 
                     Project.Instance().ProductionDataManagerInstance.L_productionCCDOKCountList[0][_workFlowIndex]++;
                     FinalResult = "OK";
-                    
+
                 }
                 else
                 {
@@ -945,21 +956,21 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     FinalResult = "NG";
                 }
                 _camResult[_workFlowIndex] = isOk ? 1 : 2;
-              
+
                 if (Project.Instance().RobotManagerInstance.m_strLaserReceive.Contains("T1"))
                 {
                     double limitMIN = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_Limitmin[_workFlowIndex];
                     double limitMAX = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_Limitmax[_workFlowIndex];
                     bool OutLimit = false;
-                    if (dX1[0]< limitMIN|| dX1[0]> limitMAX|| dX3[0] < limitMIN || dX3[0] > limitMAX || dY1[0] < limitMIN || dY1[0] > limitMAX || dY3[0] < limitMIN || dY3[0] > limitMAX)
+                    if (dX1[0] < limitMIN || dX1[0] > limitMAX || dX3[0] < limitMIN || dX3[0] > limitMAX || dY1[0] < limitMIN || dY1[0] > limitMAX || dY3[0] < limitMIN || dY3[0] > limitMAX)
                     {
                         isOk = false;
                         OutLimit = true;
                         FinalResult = "NG";
                     }
                     if (!isOk)
-                {
-                       
+                    {
+
                         string sendtorob = "PGE" + ";" + "0" + ";" + "2" + ";" + "0" + ";" + AddR1X.ToString("f3") + ";" + AddR1Y.ToString("f3") + ";" + "0" + ";" + "\r\n";  //
 
                         if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobUse[0] != 1)
@@ -967,7 +978,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                             sendtorob = "PGE" + ";" + "0" + ";" + "1" + ";" + "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";" + "\r\n";
                         }
 
-                        string sendtolasb = "_NG;" + AddL1X1.ToString("f3") + "%" + AddL1Y1.ToString("f3") + "%" + dT3[0].ToString("f3") + "%" + posXLAS1[0].ToString("f3") + "%" + posYLAS1[0].ToString("f3") + "%" + "10" + "%" + "10" + "#" + AddL1X3.ToString("f3") + "%" + AddL1Y3.ToString("f3") + "%" + dT3[0].ToString("f3") + "%" + posXLAS1[0].ToString("f3") + "%" + posYLAS1[0].ToString("f3") + "%" +"10" + "%" + "10" + "#" + AddL1X4.ToString("f3") + "%" + AddL1Y4.ToString("f3") + "%" + dT3[0].ToString("f3") + "%" + posXLAS1[0].ToString("f3") + "%" + posYLAS1[0].ToString("f3") + "%" + "10" + "%" + "10";
+                        string sendtolasb = "_NG;" + AddL1X1.ToString("f3") + "%" + AddL1Y1.ToString("f3") + "%" + dT3[0].ToString("f3") + "%" + posXLAS1[0].ToString("f3") + "%" + posYLAS1[0].ToString("f3") + "%" + "10" + "%" + "10" + "#" + AddL1X3.ToString("f3") + "%" + AddL1Y3.ToString("f3") + "%" + dT3[0].ToString("f3") + "%" + posXLAS1[0].ToString("f3") + "%" + posYLAS1[0].ToString("f3") + "%" + "10" + "%" + "10" + "#" + AddL1X4.ToString("f3") + "%" + AddL1Y4.ToString("f3") + "%" + dT3[0].ToString("f3") + "%" + posXLAS1[0].ToString("f3") + "%" + posYLAS1[0].ToString("f3") + "%" + "10" + "%" + "10";
 
                         if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.LaserUse[0] != 1)
                         {
@@ -981,18 +992,17 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         Project.Instance().RobotManagerInstance.L_Robot[0].SendText(sendtorob, 0);
                         Project.Instance().RobotManagerInstance.L_Robot[2].SendText(sendtolasb, 0);
                         Project.Instance().ProductionDataManagerInstance.L_ProductionStationNGCount[0]++;
-                    _camComplete[e.Index] = false;
+                        _camComplete[e.Index] = false;
                         LogHelper.Info("给到机械手返回：" + sendtorob);
-                        LogHelper.Info("给到激光返回：" + sendtolasb);
-                        NoticeHelper.OutputMessageSend("给到机械手返回"+ sendtorob, OutputLevelModel.INFO);
+                        NoticeHelper.OutputMessageSend("给到机械手返回" + sendtorob, OutputLevelModel.INFO);
 
                     }
                     else
-                {
+                    {
                         string sendtorob = "PGE" + ";" + "0" + ";" + "1" + ";" + "0" + ";" + AddR1X.ToString("f3") + ";" + AddR1Y.ToString("f3") + ";" + "0" + ";" + "\r\n";  //
-                        if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobUse[0] !=1)
+                        if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobUse[0] != 1)
                         {
-                             sendtorob = "PGE" + ";" + "0" + ";" + "1" + ";" + "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";" + "\r\n";  
+                            sendtorob = "PGE" + ";" + "0" + ";" + "1" + ";" + "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";" + "\r\n";
                         }
                         string sendtolasb = "_OK;" + AddL1X1.ToString("f3") + "%" + AddL1Y1.ToString("f3") + "%" + dT3[0].ToString("f3") + "%" + posXLAS1[0].ToString("f3") + "%" + posYLAS1[0].ToString("f3") + "%" + "10" + "%" + "10"
                                                 + "#" + AddL1X3.ToString("f3") + "%" + AddL1Y3.ToString("f3") + "%" + dT3[0].ToString("f3") + "%" + posXLAS1[0].ToString("f3") + "%" + posYLAS1[0].ToString("f3") + "%" + "10" + "%" + "10"
@@ -1000,10 +1010,10 @@ namespace VisionProgram.Main.ProjectClass.Robot
 
                         if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.LaserUse[0] != 1)
                         {
-                            sendtolasb =       "_OK;" + "0" + "%" + "0" + "%" + "0" + "%" + "0" + "%" + "0" + "%" + "10" + "%" + "10"
+                            sendtolasb = "_OK;" + "0" + "%" + "0" + "%" + "0" + "%" + "0" + "%" + "0" + "%" + "10" + "%" + "10"
                                                 + "#" + "0" + "%" + "0" + "%" + "0" + "%" + "0" + "%" + "0" + "%" + "10" + "%" + "10"
                                                 + "#" + "0" + "%" + "0" + "%" + "0" + "%" + "0" + "%" + "0" + "%" + "10" + "%" + "10";
-                         }
+                        }
                         Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0] = LengthC + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.CellLineL[0];
 
                         Project.Instance().RobotManagerInstance.L_Robot[0].SendText(sendtorob, 0);
@@ -1012,38 +1022,37 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         Project.Instance().ProductionDataManagerInstance.L_ProductionStationOKCount[0]++;
                         _camComplete[e.Index] = true;
                         LogHelper.Info("给到机械手返回：" + sendtorob);
-                        LogHelper.Info("给到激光返回：" + sendtolasb);
                         NoticeHelper.OutputMessageSend("给到机械手返回" + sendtorob, OutputLevelModel.INFO);
 
                     }
-                    watch2.Stop();
-                var mSeconds2 = watch2.ElapsedMilliseconds;
-                ///显示界面:
-                CogColorConstants Color = isOk ? CogColorConstants.Green : CogColorConstants.Red;
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], Color, 0, 0, string.Format("{0}", FinalResult), FontSize);
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 2, "取像时间：" + mSeconds1.ToString() + "ms", FontSize);
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 4, "处理时间：" + mSeconds2.ToString() + "ms", FontSize);
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 6, "机械手1偏移X：" + dX1[0].ToString("f3") + "Y：" + dY1[0].ToString("f3"), FontSize);
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 8, "焊点1偏移 X：" + (AddL1X1).ToString("f3") + "Y：" + (AddL1Y1).ToString("f3"), FontSize);
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 10, "焊点2偏移 X：" + (AddL1X2).ToString("f3") + "Y：" + (AddL1Y2).ToString("f3"), FontSize);
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 12, "焊点3偏移 X：" + (AddL1X3).ToString("f3") + "Y：" + (AddL1Y3).ToString("f3"), FontSize);
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 14, "焊点4偏移 X：" + (AddL1X4).ToString("f3") + "Y：" + (AddL1Y4).ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 16, "焊点偏移X：" + dX3[0].ToString("f3") + "Y：" + dY3[0].ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 18, "弹夹角度：" + Pangle.ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 20, "胶片角度：" + Pangle.ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 22, "极耳间距：" + _spacing.ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 24, "工位号：" + "1(面朝屏幕右手端)", FontSize);
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 26, "夹具号：" + _jiajuhao, FontSize);
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 28, "电池条码：" + _code1, FontSize);
-                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 30, DateTime.Now.ToString("HH:mm:ss"), FontSize);
-                    if (OutLimit==true)
+
+                    ///显示界面:
+                    CogColorConstants Color = isOk ? CogColorConstants.Green : CogColorConstants.Red;
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], Color, 0, 0, string.Format("{0}", FinalResult), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 2, "取像时间：" + mSeconds1.ToString() + "ms", FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 4, "处理时间：" + mSeconds2.ToString() + "ms", FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 6, "机械手1偏移X：" + AddR1X.ToString("f3") + "Y：" + AddR1Y.ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 8, "机械手1当前X：" + Cam1posXRob1.ToString("f3") + "Y：" + Cam1posYRob1.ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 10, "焊点1偏移 X：" + (AddL1X1).ToString("f3") + "Y：" + (AddL1Y1).ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 12, "焊点2偏移 X：" + (AddL1X2).ToString("f3") + "Y：" + (AddL1Y2).ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 14, "焊点3偏移 X：" + (AddL1X3).ToString("f3") + "Y：" + (AddL1Y3).ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 16, "焊点4偏移 X：" + (AddL1X4).ToString("f3") + "Y：" + (AddL1Y4).ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 18, "焊点偏移X：" + dX3[0].ToString("f3") + "Y：" + dY3[0].ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 20, "弹夹角度：" + Pangle.ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 22, "胶片角度：" + Pangle.ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 24, "极耳间距：" + _spacing.ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 26, "工位号：" + "1(面朝屏幕右手端)", FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 28, "夹具号：" + _jiajuhao, FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 30, "电池条码：" + _code1, FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 32, DateTime.Now.ToString("HH:mm:ss"), FontSize);
+                    if (OutLimit == true)
                     {
-                        WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 32, "偏移值超限NG", FontSize);
+                        WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 34, "偏移值超限NG", FontSize);
 
                     }
 
                     #region 保存数据
-                    string[] strLogData = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "","" };
+                    string[] strLogData = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
                     string strHead = "状态,工位,夹具,机械手偏移X,机械手偏移Y,机械手偏移Angle,焊点1X,焊点1Y,焊点2X,焊点2Y,焊点3X,焊点3Y,焊点4X,焊点4Y,焊点偏移X,焊点偏移Y,胶片角度Angle,弹夹角度Angle,时间,编码,极耳间距";
                     File_CSV csv = new File_CSV();
                     strLogData[0] = FinalResult;
@@ -1052,14 +1061,14 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     strLogData[3] = dX1[0].ToString("f3");
                     strLogData[4] = dY1[0].ToString("f3");
                     strLogData[5] = dT1[0].ToString("f3");
-                    strLogData[6] = (AddL1X1 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALX[0]).ToString("f3");
-                    strLogData[7] = (AddL1Y1 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALY[0]).ToString("f3");
-                    strLogData[8] = (AddL1X2 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALX[0]).ToString("f3");
-                    strLogData[9] = (AddL1Y2 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALY[0]).ToString("f3");
-                    strLogData[10] = (AddL1X3 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.NI1X[0]).ToString("f3");
-                    strLogData[11] = (AddL1Y3 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.NI1Y[0]).ToString("f3");
-                    strLogData[12] = (AddL1X4 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.NI2X[0]).ToString("f3");
-                    strLogData[13] = (AddL1Y4 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.NI2Y[0]).ToString("f3");
+                    strLogData[6] = (AddL1X1).ToString("f3");
+                    strLogData[7] = (AddL1Y1).ToString("f3");
+                    strLogData[8] = (AddL1X2).ToString("f3");
+                    strLogData[9] = (AddL1Y2).ToString("f3");
+                    strLogData[10] = (AddL1X3).ToString("f3");
+                    strLogData[11] = (AddL1Y3).ToString("f3");
+                    strLogData[12] = (AddL1X4).ToString("f3");
+                    strLogData[13] = (AddL1Y4).ToString("f3");
                     strLogData[14] = dX3[0].ToString("f3");
                     strLogData[15] = dY3[0].ToString("f3");
                     strLogData[16] = Pangle.ToString("f3");
@@ -1073,7 +1082,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     //VP或者Halcon存图
                     e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
                     e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
-                    e.imageName =  "1" + "-" + _jiajuhao.ToString() + "_" + _code1.ToString();
+                    e.imageName = (e.Index + 1).ToString() + "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();
                     e.results = isOk;
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
                     #endregion
@@ -1084,7 +1093,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     double limitMIN = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_Limitmin[_workFlowIndex];
                     double limitMAX = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_Limitmax[_workFlowIndex];
                     bool OutLimit = false;
-                    if (dX2[0] < limitMIN || dX2[0] > limitMAX || dX4[0] < limitMIN || dX4[0] > limitMAX|| dY2[0] < limitMIN || dY2[0] > limitMAX || dY4[0] < limitMIN || dY4[0] > limitMAX)
+                    if (dX2[0] < limitMIN || dX2[0] > limitMAX || dX4[0] < limitMIN || dX4[0] > limitMAX || dY2[0] < limitMIN || dY2[0] > limitMAX || dY4[0] < limitMIN || dY4[0] > limitMAX)
                     {
                         isOk = false;
                         OutLimit = true;
@@ -1099,7 +1108,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     if (!isOk)
                     {
 
-                       
+
                         string sendtorob = "PGE" + ";" + "0" + ";" + "2" + ";" + "0" + ";" + AddR2X.ToString("f3") + ";" + AddR2Y.ToString("f3") + ";" + "0" + ";" + "\r\n";  //
 
                         if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobUse[0] != 1)
@@ -1107,7 +1116,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                             sendtorob = "PGE" + ";" + "0" + ";" + "1" + ";" + "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";" + "\r\n";
                         }
                         string sendtolasb = "_NG;" + AddL2X1.ToString("f3") + "%" + AddL2Y1.ToString("f3") + "%" + dT4[0].ToString("f3") + "%" + posXLAS2[0].ToString("f3") + "%" + posYLAS2[0].ToString("f3") + "%" + "10" + "%" + "10"
-                                                   + "#" + AddL2X3.ToString("f3") + "%" + AddL2Y3.ToString("f3") + "%" + dT4[0].ToString("f3") + "%" + posXLAS2[0].ToString("f3") + "%" + posYLAS2[0].ToString("f3") + "%" +"10" + "%" + "10"
+                                                   + "#" + AddL2X3.ToString("f3") + "%" + AddL2Y3.ToString("f3") + "%" + dT4[0].ToString("f3") + "%" + posXLAS2[0].ToString("f3") + "%" + posYLAS2[0].ToString("f3") + "%" + "10" + "%" + "10"
                                                    + "#" + AddL2X4.ToString("f3") + "%" + AddL2Y4.ToString("f3") + "%" + dT4[0].ToString("f3") + "%" + posXLAS2[0].ToString("f3") + "%" + posYLAS2[0].ToString("f3") + "%" + "10" + "%" + "10";
                         if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.LaserUse[0] != 1)
                         {
@@ -1123,13 +1132,12 @@ namespace VisionProgram.Main.ProjectClass.Robot
                         Project.Instance().ProductionDataManagerInstance.L_ProductionStationNGCount[0]++;
                         _camComplete[e.Index] = false;
                         LogHelper.Info("给到机械手返回：" + sendtorob);
-                        LogHelper.Info("给到激光返回：" + sendtolasb);
                         NoticeHelper.OutputMessageSend("给到机械手返回" + sendtorob, OutputLevelModel.INFO);
 
                     }
                     else
                     {
-                     
+
                         string sendtorob = "PGE" + ";" + "0" + ";" + "1" + ";" + "0" + ";" + AddR2X.ToString("f3") + ";" + AddR2Y.ToString("f3") + ";" + "0" + ";" + "\r\n";  //
 
                         if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobUse[0] != 1)
@@ -1151,43 +1159,43 @@ namespace VisionProgram.Main.ProjectClass.Robot
 
                         Project.Instance().RobotManagerInstance.L_Robot[1].SendText(sendtorob, 0);
                         Project.Instance().RobotManagerInstance.L_Robot[2].SendText(sendtolasb, 0);
-                       
+
                         Project.Instance().ProductionDataManagerInstance.L_ProductionStationOKCount[0]++;
-                            _camComplete[e.Index] = true;
+                        _camComplete[e.Index] = true;
                         LogHelper.Info("给到机械手返回：" + sendtorob);
-                        LogHelper.Info("给到激光返回：" + sendtolasb);
                         NoticeHelper.OutputMessageSend("给到机械手返回" + sendtorob, OutputLevelModel.INFO);
 
                     }
 
-                    watch2.Stop();
-                    var mSeconds2 = watch2.ElapsedMilliseconds;
+
                     ///显示界面:
                     CogColorConstants Color = isOk ? CogColorConstants.Green : CogColorConstants.Red;
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], Color, 0, 0, string.Format("{0}", FinalResult), FontSize);
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 2, "取像时间：" + mSeconds1.ToString() + "ms", FontSize);
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 4, "处理时间：" + mSeconds2.ToString() + "ms", FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 6, "机械手1偏移X：" + dX2[0].ToString("f3") + "Y：" + dY2[0].ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 8, "焊点1偏移 X：" + (AddL2X1).ToString("f3") + "Y：" + (AddL2Y1).ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 10, "焊点2偏移 X：" + (AddL2X2).ToString("f3") + "Y：" + (AddL2Y2).ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 12, "焊点3偏移 X：" + (AddL2X3).ToString("f3") + "Y：" + (AddL2Y3).ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 14, "焊点4偏移 X：" + (AddL2X4).ToString("f3") + "Y：" + (AddL2Y4).ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 16, "焊点偏移X：" + dX4[0].ToString("f3") + "Y：" + dY4[0].ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 18, "弹夹角度：" + Pangle.ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 20, "胶片角度：" + Pangle.ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 22, "极耳间距：" + _spacing.ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 24, "工位号：" + "2(面朝屏幕左手端)", FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 26, "夹具号：" + _jiajuhao, FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 28, "电池条码：" + _code2, FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 30, DateTime.Now.ToString("HH:mm:ss"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 6, "机械手2偏移X：" + AddR2X.ToString("f3") + "Y：" + AddR2Y.ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 8, "机械手2当前X：" + Cam1posXRob2.ToString("f3") + "Y：" + Cam1posYRob2.ToString("f3"), FontSize);
+
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 10, "焊点1偏移 X：" + (AddL2X1).ToString("f3") + "Y：" + (AddL2Y1).ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 12, "焊点2偏移 X：" + (AddL2X2).ToString("f3") + "Y：" + (AddL2Y2).ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 14, "焊点3偏移 X：" + (AddL2X3).ToString("f3") + "Y：" + (AddL2Y3).ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 16, "焊点4偏移 X：" + (AddL2X4).ToString("f3") + "Y：" + (AddL2Y4).ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 18, "焊点偏移X：" + dX4[0].ToString("f3") + "Y：" + dY4[0].ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 20, "弹夹角度：" + Pangle.ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 22, "胶片角度：" + Pangle.ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 24, "极耳间距：" + _spacing1.ToString("f3"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 26, "工位号：" + "2(面朝屏幕左手端)", FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 28, "夹具号：" + _jiajuhao, FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 30, "电池条码：" + _code2, FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 32, DateTime.Now.ToString("HH:mm:ss"), FontSize);
                     if (OutLimit == true)
                     {
-                        WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 32, "偏移值超限NG", FontSize);
+                        WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 34, "偏移值超限NG", FontSize);
 
                     }
 
                     #region 保存数据
-                    string[] strLogData = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "","" };
+                    string[] strLogData = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
                     string strHead = "状态,工位,夹具,机械手偏移X,机械手偏移Y,机械手偏移Angle,焊点1X,焊点1Y,焊点2X,焊点2Y,焊点3X,焊点3Y,焊点4X,焊点4Y,焊点偏移X,焊点偏移Y,胶片角度Angle,弹夹角度Angle,时间,编码,极耳间距";
                     File_CSV csv = new File_CSV();
                     strLogData[0] = FinalResult;
@@ -1196,31 +1204,40 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     strLogData[3] = dX2[0].ToString("f3");
                     strLogData[4] = dY2[0].ToString("f3");
                     strLogData[5] = dT2[0].ToString("f3");
-                    strLogData[6] = (AddL2X1 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALX1[0]).ToString("f3");
-                    strLogData[7] = (AddL2Y1 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALY1[0]).ToString("f3");
-                    strLogData[8] = (AddL2X2 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALX1[0]).ToString("f3");
-                    strLogData[9] = (AddL2Y2 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALY1[0]).ToString("f3");
-                    strLogData[10] = (AddL2X3 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.NI1X1[0]).ToString("f3");
-                    strLogData[11] = (AddL2Y3 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.NI1Y1[0]).ToString("f3");
-                    strLogData[12] = (AddL2X4 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.NI2X1[0]).ToString("f3");
-                    strLogData[13] = (AddL2Y4 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.NI2Y1[0]).ToString("f3");
+                    strLogData[6] = (AddL2X1).ToString("f3");
+                    strLogData[7] = (AddL2Y1).ToString("f3");
+                    strLogData[8] = (AddL2X2).ToString("f3");
+                    strLogData[9] = (AddL2Y2).ToString("f3");
+                    strLogData[10] = (AddL2X3).ToString("f3");
+                    strLogData[11] = (AddL2Y3).ToString("f3");
+                    strLogData[12] = (AddL2X4).ToString("f3");
+                    strLogData[13] = (AddL2Y4).ToString("f3");
                     strLogData[14] = dX4[0].ToString("f3");
                     strLogData[15] = dY4[0].ToString("f3");
                     strLogData[16] = Pangle.ToString("f3");
                     strLogData[17] = Pangle.ToString("f3");
                     strLogData[18] = string.Format("{0}{1:000}", DateTime.Now.ToString("HH:mm:ss"), DateTime.Now.Millisecond);
                     strLogData[19] = _code2.ToString();
-                    strLogData[20] = _spacing.ToString("f3");
+                    strLogData[20] = _spacing1.ToString("f3");
                     csv.SaveToCSV(strHead, strLogData, "PositionData");
                     #endregion
 
                     #region 存图
+                    ////VP或者Halcon存图
+                    //e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
+                    //e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
+                    //e.imageName = (e.Index + 1).ToString() + "2" + "-" + _jiajuhao.ToString() + "-" + _code2.ToString();
+                    //e.results = isOk;
+                    //Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
+
                     //VP或者Halcon存图
                     e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
                     e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
-                    e.imageName = "2" + "-" + _jiajuhao.ToString() + "_" + _code2.ToString();
+                    e.imageName = (e.Index + 1).ToString() + "2" + _jiajuhao.ToString() + _code2.ToString();
                     e.results = isOk;
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
+
+
                     #endregion
                 }
 
@@ -1248,7 +1265,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 LogHelper.Error($"处理{e.Index + 1}相机检测出现异常", ex);  //写日志
             }
         }
-       
+
         #region Robot服务器事件
         /// <summary>
         ///启动服务器Robot
