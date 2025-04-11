@@ -298,19 +298,26 @@ namespace VisionProgram.Vision.VP
         /// <returns></returns>
         public bool RunAcquireBlock(out ICogImage img)
         {
-            if ((m_AcquireTool.Operator.FrameGrabber != null))
+            try
             {
-                Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveExprosure(0, Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[0]);
-                m_AcquireBlock.Run();
-                img = m_AcquireBlock.Outputs["OutputImage"].Value as ICogImage;
-                return (bool)(AcquireBlock.Outputs["bAccept"].Value);
+                if ((m_AcquireTool.Operator.FrameGrabber != null))
+                {
+                    Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveExprosure(0, Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[0]);
+                    m_AcquireBlock.Run();
+                    img = m_AcquireBlock.Outputs["OutputImage"].Value as ICogImage;
+                    return (bool)(AcquireBlock.Outputs["bAccept"].Value);
+                }
+                else
+                {
+                    img = null;
+                    MessageBox.Show("控件CamOperator属性未赋值.", "取像时...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
-            else
-            {
-                img = null;
-                MessageBox.Show("控件CamOperator属性未赋值.", "取像时...", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            catch { }
+          
+            img = null;
+            return false;
         }
      
 

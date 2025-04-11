@@ -1045,6 +1045,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 28, "夹具号：" + _jiajuhao, FontSize);
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 30, "电池条码：" + _code1, FontSize);
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 32, DateTime.Now.ToString("HH:mm:ss"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 36, sError, FontSize);//YBR
                     if (OutLimit == true)
                     {
                         WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 34, "偏移值超限NG", FontSize);
@@ -1058,8 +1059,10 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     strLogData[0] = FinalResult;
                     strLogData[1] = "1";
                     strLogData[2] = _jiajuhao.ToString();
-                    strLogData[3] = dX1[0].ToString("f3");
-                    strLogData[4] = dY1[0].ToString("f3");
+                    strLogData[3] = AddR1X.ToString("f3");//YB
+                    strLogData[4] = AddR1Y.ToString("f3");
+                    //strLogData[3] = dX1[0].ToString("f3");
+                    //strLogData[4] = dY1[0].ToString("f3");
                     strLogData[5] = dT1[0].ToString("f3");
                     strLogData[6] = (AddL1X1).ToString("f3");
                     strLogData[7] = (AddL1Y1).ToString("f3");
@@ -1082,7 +1085,8 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     //VP或者Halcon存图
                     e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
                     e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
-                    e.imageName = (e.Index + 1).ToString() + "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();
+                    //e.imageName = (e.Index +1).ToString() + "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();
+                    e.imageName =  "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();                   
                     e.results = isOk;
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
                     #endregion
@@ -1188,6 +1192,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 28, "夹具号：" + _jiajuhao, FontSize);
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 30, "电池条码：" + _code2, FontSize);
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 32, DateTime.Now.ToString("HH:mm:ss"), FontSize);
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 36, sError, FontSize);//YBH
                     if (OutLimit == true)
                     {
                         WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 34, "偏移值超限NG", FontSize);
@@ -1201,8 +1206,10 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     strLogData[0] = FinalResult;
                     strLogData[1] = "2";
                     strLogData[2] = _jiajuhao.ToString();
-                    strLogData[3] = dX2[0].ToString("f3");
-                    strLogData[4] = dY2[0].ToString("f3");
+                    strLogData[3] = AddR2X.ToString("f3");//YB
+                    strLogData[4] = AddR2Y.ToString("f3");
+                    //strLogData[3] = dX2[0].ToString("f3");
+                    //strLogData[4] = dY2[0].ToString("f3");
                     strLogData[5] = dT2[0].ToString("f3");
                     strLogData[6] = (AddL2X1).ToString("f3");
                     strLogData[7] = (AddL2Y1).ToString("f3");
@@ -1233,7 +1240,8 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     //VP或者Halcon存图
                     e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
                     e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
-                    e.imageName = (e.Index + 1).ToString() + "2" + _jiajuhao.ToString() + _code2.ToString();
+                    //e.imageName = (e.Index + 1).ToString() + "2" + "-" + _jiajuhao.ToString() +"-" + _code2.ToString();
+                    e.imageName =  "2" + "-" + _jiajuhao.ToString() + "-" + _code2.ToString();                    
                     e.results = isOk;
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
 

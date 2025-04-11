@@ -72,7 +72,7 @@ namespace VisionProgram.UI.UIVision
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(2, 1, 0, 1);
-            this.menuStrip.Size = new System.Drawing.Size(883, 26);
+            this.menuStrip.Size = new System.Drawing.Size(889, 26);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "打开图片";
             // 
@@ -163,7 +163,7 @@ namespace VisionProgram.UI.UIVision
             this.panel1.Location = new System.Drawing.Point(0, 26);
             this.panel1.Margin = new System.Windows.Forms.Padding(1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(883, 424);
+            this.panel1.Size = new System.Drawing.Size(889, 455);
             this.panel1.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -180,7 +180,7 @@ namespace VisionProgram.UI.UIVision
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(883, 424);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(889, 455);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // uiTableLayoutPanel1
@@ -199,7 +199,7 @@ namespace VisionProgram.UI.UIVision
             this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
             this.uiTableLayoutPanel1.RowCount = 1;
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(879, 13);
+            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(885, 13);
             this.uiTableLayoutPanel1.TabIndex = 1;
             // 
             // lbSerialNum
@@ -208,7 +208,7 @@ namespace VisionProgram.UI.UIVision
             this.lbSerialNum.Dock = System.Windows.Forms.DockStyle.Left;
             this.lbSerialNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbSerialNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lbSerialNum.Location = new System.Drawing.Point(264, 0);
+            this.lbSerialNum.Location = new System.Drawing.Point(266, 0);
             this.lbSerialNum.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lbSerialNum.Name = "lbSerialNum";
             this.lbSerialNum.Size = new System.Drawing.Size(46, 13);
@@ -238,12 +238,13 @@ namespace VisionProgram.UI.UIVision
             this.cogRecordDisplay1.Name = "cogRecordDisplay1";
             this.cogRecordDisplay1.SelectedRecordKey = null;
             this.cogRecordDisplay1.ShowRecordsDropDown = true;
-            this.cogRecordDisplay1.Size = new System.Drawing.Size(879, 403);
+            this.cogRecordDisplay1.Size = new System.Drawing.Size(885, 434);
             this.cogRecordDisplay1.Subject = null;
             this.cogRecordDisplay1.TabIndex = 2;
             // 
             // tbExposeReal
             // 
+            this.tbExposeReal.BackColor = System.Drawing.Color.White;
             this.tbExposeReal.Location = new System.Drawing.Point(754, 2);
             this.tbExposeReal.Name = "tbExposeReal";
             this.tbExposeReal.Size = new System.Drawing.Size(73, 21);
@@ -253,7 +254,7 @@ namespace VisionProgram.UI.UIVision
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Lavender;
-            this.label1.Location = new System.Drawing.Point(683, 5);
+            this.label1.Location = new System.Drawing.Point(683, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 4;
@@ -264,7 +265,7 @@ namespace VisionProgram.UI.UIVision
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(883, 450);
+            this.ClientSize = new System.Drawing.Size(889, 481);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbExposeReal);
             this.Controls.Add(this.panel1);

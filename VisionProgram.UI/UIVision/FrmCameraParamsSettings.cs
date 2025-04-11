@@ -38,7 +38,7 @@ namespace VisionProgram.UI.UIVision
         private static FrmCameraParamsSettings _instance;
         public static FrmCameraParamsSettings Instance
         {
-            
+
             get
             {
                 if (_instance == null || _instance.IsDisposed)
@@ -47,7 +47,7 @@ namespace VisionProgram.UI.UIVision
             }
         }
 
-       
+
 
 
         private void FrmCCDParamSettings_Load(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace VisionProgram.UI.UIVision
                                               tb_Cam1AddX4,tb_Cam1AddY4,tb_Cam1AddT4,
                                               tb_Cam1Anglemin,tb_Cam1Anglemax,
                                               tb_Cam1Limitmin,tb_Cam1Limitmax,tb_Cam1OffsetX,
-                                             tb_Cam1Exprosure,tb_Cam1Exprosure1,tb_Cam1Exprosure2,tb_Cam1Exprosure3,
+                                             tb_Cam1Exprosure,
                                               tb_Cam1L1CalibX0,tb_Cam1L1CalibY0,
                                               tb_Cam1L2CalibX0,tb_Cam1L2CalibY0,
                                                 tb_Cam1CellLineL,tb_Cam1P2byP1X,tb_Cam1P2byP1Y,tb_Cam1P4byP3X,
@@ -416,11 +416,17 @@ namespace VisionProgram.UI.UIVision
             Utility.SetControlsText(this, controls, values, "相机参数");
             for (int i = 0; i < controls.Length; i++)
             {
-                controls[i].Validating += tb__Validating;
-            }
+                controls[i].TextChanged += tb__Validating;
 
-            _validatingDic.Clear();
+            }
+            _validatingDic.Clear();     
         }
+
+        private void FrmCameraParamsSettings_TextChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -859,7 +865,7 @@ namespace VisionProgram.UI.UIVision
                             Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams($"camera{cameraIndex}", "L1CalibX0", Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[cameraIndex - 1].ToString());
                         }
                         break;
-                  
+
 
                     case "L1CalibY0":
                         if (!Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[cameraIndex - 1].ToString().Equals(text))
@@ -869,7 +875,7 @@ namespace VisionProgram.UI.UIVision
                             Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams($"camera{cameraIndex}", "L1CalibY0", Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[cameraIndex - 1].ToString());
                         }
                         break;
-                 
+
                     case "L2CalibX0":
                         if (!Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[cameraIndex - 1].ToString().Equals(text))
                         {
@@ -878,7 +884,7 @@ namespace VisionProgram.UI.UIVision
                             Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams($"camera{cameraIndex}", "L2CalibX0", Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[cameraIndex - 1].ToString());
                         }
                         break;
-                   
+
 
                     case "L2CalibY0":
                         if (!Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[cameraIndex - 1].ToString().Equals(text))
@@ -2618,37 +2624,37 @@ namespace VisionProgram.UI.UIVision
                         #endregion
                 }
             }
-           
+
             #endregion
         }
         private void uiSymbolButtonSave_Click(object sender, EventArgs e)
         {
 
-                if (_validatingDic.Keys.Count == 0)
-                {
-                    System.Windows.MessageBox.Show("相机设置参数暂无修改");
+            if (_validatingDic.Keys.Count == 0)
+            {
+                System.Windows.MessageBox.Show("相机设置参数暂无修改");
 
-                }
-                //若有控件获取过焦点
-                List<OperationLogParamModel.OldParam> oldCameraParamObjects = new List<OperationLogParamModel.OldParam>();
-                string productName = Project.Instance().GlobalManagerInstance.GlobalParamModel.useProductModel ? Project.Instance().GlobalManagerInstance.GlobalParamModel.curProductModel : "通用产品";
-                foreach (string name in _validatingDic.Keys)
-                {
-                    checkAndSave(name, _validatingDic[name], productName, ref oldCameraParamObjects);
-                }
+            }
+            //若有控件获取过焦点
+            List<OperationLogParamModel.OldParam> oldCameraParamObjects = new List<OperationLogParamModel.OldParam>();
+            string productName = Project.Instance().GlobalManagerInstance.GlobalParamModel.useProductModel ? Project.Instance().GlobalManagerInstance.GlobalParamModel.curProductModel : "通用产品";
+            foreach (string name in _validatingDic.Keys)
+            {
+                checkAndSave(name, _validatingDic[name], productName, ref oldCameraParamObjects);
+            }
 
-                if (oldCameraParamObjects.Count > 0)
-                {
-                    System.Windows.MessageBox.Show("相机设置参数修改成功！");
+            if (oldCameraParamObjects.Count > 0)
+            {
+                System.Windows.MessageBox.Show("相机设置参数修改成功！");
 
-                    OperationLogDataBll.GetInstance().InsertOperationLog(oldCameraParamObjects, "相机设置");
-                }
-                else
-                {
-                    System.Windows.MessageBox.Show("相机设置参数暂无修改！");
+                OperationLogDataBll.GetInstance().InsertOperationLog(oldCameraParamObjects, "相机设置");
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("相机设置参数暂无修改！");
 
-                }
-            
+            }
+
 
         }
 
@@ -2657,35 +2663,46 @@ namespace VisionProgram.UI.UIVision
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tb__Validating(object sender, CancelEventArgs e)
+        private void tb__Validating(object sender, /*CancelEventArgs e*/EventArgs e)
         {
-            TextBox uiTb = (TextBox)sender;
-            uiTb.Text = uiTb.Text.Trim();
-            Label l = (Label)this.Controls.Find("lb_" + uiTb.Name.Substring(3), true)[0];
-            if (string.IsNullOrEmpty(uiTb.Text))
+            try
             {
-                System.Windows.MessageBox.Show($"{l.Text }文本框内不能为空！");
+                
+                TextBox uiTb = (TextBox)sender;
+                LogHelper.Info(uiTb.Text + "参数填入成功");
+                uiTb.Text = uiTb.Text.Trim();
+                Label l = (Label)this.Controls.Find("lb_" + uiTb.Name.Substring(3), true)[0];
+                if (string.IsNullOrEmpty(uiTb.Text))
+                {
+                    System.Windows.MessageBox.Show($"{l.Text }文本框内不能为空！");
 
-                e.Cancel = true;
-                return;
-            }
-            // if (!Regex.IsMatch(uiTb.Text, @"^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$"))   //正浮点数匹配
-            if (!Regex.IsMatch(uiTb.Text, @"^(-?\d+)(\.\d+)?$"))  //浮点数匹配
-            {
-                e.Cancel = true;
-                System.Windows.MessageBox.Show($"{l.Text }：{ uiTb.Text}参数格式不正确！");
-                return;
-            }
+                    //e.Cancel = true;
+                    return;
+                }
+                // if (!Regex.IsMatch(uiTb.Text, @"^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$"))   //正浮点数匹配
+                //if (!Regex.IsMatch(uiTb.Text, @"^(-?\d+)(\.\d+)?$"))  //浮点数匹配
+                //{
+                //    e.Cancel = true;
+                //    System.Windows.MessageBox.Show($"{l.Text }：{ uiTb.Text}参数格式不正确！");
+                //    return;
+                //}
 
-            //判断是否已在集合中
-            if (_validatingDic.ContainsKey(uiTb.Name))
-            {
-                _validatingDic[uiTb.Name] = uiTb.Text;
+                //判断是否已在集合中
+                if (_validatingDic.ContainsKey(uiTb.Name))
+                {
+                    _validatingDic[uiTb.Name] = uiTb.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(uiTb.Name, uiTb.Text);
+                }
+                
             }
-            else
+            catch  (Exception ex)
             {
-                _validatingDic.Add(uiTb.Name, uiTb.Text);
+                System.Windows.MessageBox.Show(ex.ToString());
             }
+           
         }
 
         private void btn_GetStd1_Click(object sender, EventArgs e)
@@ -2696,37 +2713,37 @@ namespace VisionProgram.UI.UIVision
             //tb_Cam1StdT1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRRob1.ToString("f3");
             if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
             {
-            tb_Cam1StdX1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXRob1.ToString("f3");
-            tb_Cam1StdY1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYRob1.ToString("f3");
-            tb_Cam1StdT1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRRob1.ToString("f3");
+                tb_Cam1StdX1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXRob1.ToString("f3");
+                tb_Cam1StdY1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYRob1.ToString("f3");
+                tb_Cam1StdT1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRRob1.ToString("f3");
 
-            //判断是否已在集合中
-            if (_validatingDic.ContainsKey(tb_Cam1StdX1.Name))
-            {
-                _validatingDic[tb_Cam1StdX1.Name] = tb_Cam1StdX1.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdX1.Name, tb_Cam1StdX1.Text);
-            }
+                //判断是否已在集合中
+                if (_validatingDic.ContainsKey(tb_Cam1StdX1.Name))
+                {
+                    _validatingDic[tb_Cam1StdX1.Name] = tb_Cam1StdX1.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdX1.Name, tb_Cam1StdX1.Text);
+                }
 
-            if (_validatingDic.ContainsKey(tb_Cam1StdY1.Name))
-            {
-                _validatingDic[tb_Cam1StdY1.Name] = tb_Cam1StdY1.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdY1.Name, tb_Cam1StdY1.Text);
-            }
+                if (_validatingDic.ContainsKey(tb_Cam1StdY1.Name))
+                {
+                    _validatingDic[tb_Cam1StdY1.Name] = tb_Cam1StdY1.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdY1.Name, tb_Cam1StdY1.Text);
+                }
 
-            if (_validatingDic.ContainsKey(tb_Cam1StdT1.Name))
-            {
-                _validatingDic[tb_Cam1StdT1.Name] = tb_Cam1StdT1.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdT1.Name, tb_Cam1StdT1.Text);
-            }
+                if (_validatingDic.ContainsKey(tb_Cam1StdT1.Name))
+                {
+                    _validatingDic[tb_Cam1StdT1.Name] = tb_Cam1StdT1.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdT1.Name, tb_Cam1StdT1.Text);
+                }
             }
             else
             {
@@ -2735,43 +2752,43 @@ namespace VisionProgram.UI.UIVision
 
         }
 
-       
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
             {
                 tb_Cam1StdX2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXRob2.ToString("f3");
-            tb_Cam1StdY2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYRob2.ToString("f3");
-            tb_Cam1StdT2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRRob2.ToString("f3");
+                tb_Cam1StdY2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYRob2.ToString("f3");
+                tb_Cam1StdT2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRRob2.ToString("f3");
 
-            //判断是否已在集合中
-            if (_validatingDic.ContainsKey(tb_Cam1StdX2.Name))
-            {
-                _validatingDic[tb_Cam1StdX2.Name] = tb_Cam1StdX2.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdX2.Name, tb_Cam1StdX2.Text);
-            }
+                //判断是否已在集合中
+                if (_validatingDic.ContainsKey(tb_Cam1StdX2.Name))
+                {
+                    _validatingDic[tb_Cam1StdX2.Name] = tb_Cam1StdX2.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdX2.Name, tb_Cam1StdX2.Text);
+                }
 
-            if (_validatingDic.ContainsKey(tb_Cam1StdY2.Name))
-            {
-                _validatingDic[tb_Cam1StdY2.Name] = tb_Cam1StdY2.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdY2.Name, tb_Cam1StdY2.Text);
-            }
+                if (_validatingDic.ContainsKey(tb_Cam1StdY2.Name))
+                {
+                    _validatingDic[tb_Cam1StdY2.Name] = tb_Cam1StdY2.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdY2.Name, tb_Cam1StdY2.Text);
+                }
 
-            if (_validatingDic.ContainsKey(tb_Cam1StdT2.Name))
-            {
-                _validatingDic[tb_Cam1StdT2.Name] = tb_Cam1StdT2.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdT2.Name, tb_Cam1StdT2.Text);
-            }
+                if (_validatingDic.ContainsKey(tb_Cam1StdT2.Name))
+                {
+                    _validatingDic[tb_Cam1StdT2.Name] = tb_Cam1StdT2.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdT2.Name, tb_Cam1StdT2.Text);
+                }
             }
             else
             {
@@ -2781,39 +2798,39 @@ namespace VisionProgram.UI.UIVision
 
         private void button2_Click(object sender, EventArgs e)
         {
-                if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
+            if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
+            {
+                tb_Cam1StdX3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXLas1.ToString("f3");
+                tb_Cam1StdY3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYLas1.ToString("f3");
+                tb_Cam1StdT3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRLas1.ToString("f3");
+
+                //判断是否已在集合中
+                if (_validatingDic.ContainsKey(tb_Cam1StdX3.Name))
                 {
-                    tb_Cam1StdX3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXLas1.ToString("f3");
-            tb_Cam1StdY3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYLas1.ToString("f3");
-            tb_Cam1StdT3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRLas1.ToString("f3");
+                    _validatingDic[tb_Cam1StdX3.Name] = tb_Cam1StdX3.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdX3.Name, tb_Cam1StdX3.Text);
+                }
 
-            //判断是否已在集合中
-            if (_validatingDic.ContainsKey(tb_Cam1StdX3.Name))
-            {
-                _validatingDic[tb_Cam1StdX3.Name] = tb_Cam1StdX3.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdX3.Name, tb_Cam1StdX3.Text);
-            }
+                if (_validatingDic.ContainsKey(tb_Cam1StdY3.Name))
+                {
+                    _validatingDic[tb_Cam1StdY3.Name] = tb_Cam1StdY3.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdY3.Name, tb_Cam1StdY3.Text);
+                }
 
-            if (_validatingDic.ContainsKey(tb_Cam1StdY3.Name))
-            {
-                _validatingDic[tb_Cam1StdY3.Name] = tb_Cam1StdY3.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdY3.Name, tb_Cam1StdY3.Text);
-            }
-
-            if (_validatingDic.ContainsKey(tb_Cam1StdT3.Name))
-            {
-                _validatingDic[tb_Cam1StdT3.Name] = tb_Cam1StdT3.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdT3.Name, tb_Cam1StdT3.Text);
-            }
+                if (_validatingDic.ContainsKey(tb_Cam1StdT3.Name))
+                {
+                    _validatingDic[tb_Cam1StdT3.Name] = tb_Cam1StdT3.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdT3.Name, tb_Cam1StdT3.Text);
+                }
             }
             else
             {
@@ -2826,37 +2843,37 @@ namespace VisionProgram.UI.UIVision
         {
             if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
             {
-            tb_Cam1StdX4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXLas2.ToString("f3");
-            tb_Cam1StdY4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYLas2.ToString("f3");
-            tb_Cam1StdT4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRLas2.ToString("f3");
+                tb_Cam1StdX4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXLas2.ToString("f3");
+                tb_Cam1StdY4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYLas2.ToString("f3");
+                tb_Cam1StdT4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRLas2.ToString("f3");
 
-            //判断是否已在集合中
-            if (_validatingDic.ContainsKey(tb_Cam1StdX4.Name))
-            {
-                _validatingDic[tb_Cam1StdX4.Name] = tb_Cam1StdX4.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdX4.Name, tb_Cam1StdX4.Text);
-            }
+                //判断是否已在集合中
+                if (_validatingDic.ContainsKey(tb_Cam1StdX4.Name))
+                {
+                    _validatingDic[tb_Cam1StdX4.Name] = tb_Cam1StdX4.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdX4.Name, tb_Cam1StdX4.Text);
+                }
 
-            if (_validatingDic.ContainsKey(tb_Cam1StdY4.Name))
-            {
-                _validatingDic[tb_Cam1StdY4.Name] = tb_Cam1StdY4.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdY4.Name, tb_Cam1StdY4.Text);
-            }
+                if (_validatingDic.ContainsKey(tb_Cam1StdY4.Name))
+                {
+                    _validatingDic[tb_Cam1StdY4.Name] = tb_Cam1StdY4.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdY4.Name, tb_Cam1StdY4.Text);
+                }
 
-            if (_validatingDic.ContainsKey(tb_Cam1StdT4.Name))
-            {
-                _validatingDic[tb_Cam1StdT4.Name] = tb_Cam1StdT4.Text;
-            }
-            else
-            {
-                _validatingDic.Add(tb_Cam1StdT4.Name, tb_Cam1StdT4.Text);
-            }
+                if (_validatingDic.ContainsKey(tb_Cam1StdT4.Name))
+                {
+                    _validatingDic[tb_Cam1StdT4.Name] = tb_Cam1StdT4.Text;
+                }
+                else
+                {
+                    _validatingDic.Add(tb_Cam1StdT4.Name, tb_Cam1StdT4.Text);
+                }
             }
             else
             {
@@ -2903,7 +2920,7 @@ namespace VisionProgram.UI.UIVision
             tb_Cam1AddL2J1X4.Text = (Convert.ToDouble(tb_Cam1AddL2J1X3.Text) + Convert.ToDouble(tb_Cam1P4byP3X.Text)).ToString();
 
         }
-            
+
         private void tb_Cam1AddL2J1Y3_TextChanged(object sender, EventArgs e)
         {
             tb_Cam1AddL2J1Y4.Text = (Convert.ToDouble(tb_Cam1AddL2J1Y3.Text) + Convert.ToDouble(tb_Cam1P4byP3Y.Text)).ToString();

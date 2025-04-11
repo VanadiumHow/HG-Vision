@@ -165,8 +165,10 @@ namespace VisionProgram.Main.ProjectClass.Robot
         {
             try
             {
+                mainSocket = null;
+                mainSocket = new Socket(SocketType.Stream, ProtocolType.Tcp);
                 //Connect to Server
-                mainSocket.BeginConnect(serverEndPoint, new AsyncCallback(ConfirmConnect), null);
+                mainSocket.Connect(serverEndPoint);
                 //mainSocket.BeginConnect(serverEndPoint, ConfirmConnect, null);
                 return true;
             }

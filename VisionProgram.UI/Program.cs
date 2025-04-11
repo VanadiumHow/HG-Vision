@@ -76,9 +76,9 @@ namespace VisionProgram.UI
             ProgramGerneral.SplashScreen.SetStatus("初始化PLC...");
             Project.Instance().InitialPLC();
             Project.Instance().InitialProductionData();
-            ProgramGerneral.SplashScreen.SetStatus("初始Robot服务器...");
+            ProgramGerneral.SplashScreen.SetStatus("初始Robot/Laser服务器...");
             Project.Instance().InitialRobotSever();
-            ProgramGerneral.SplashScreen.SetStatus("初始客户端...");
+            ProgramGerneral.SplashScreen.SetStatus("初始Laser客户端...");
             Project.Instance().InitialLaserClient();
             ProgramGerneral.SplashScreen.SetStatus("初始化硬件状态...");
             Project.Instance().InitialHardWareState();

@@ -390,6 +390,12 @@ namespace VisionProgram.UI.UIVision
             {
                 string lasermove = "_PDMoveAbs(0," + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[0].ToString() + "," + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[0].ToString() + ",500);";
                 Project.Instance().LaserManagerInstance.L_Laser[0].IsConnectedLaser = Project.Instance().LaserManagerInstance.L_Laser[0].SendText(lasermove);
+                if (!Project.Instance().LaserManagerInstance.L_Laser[0].IsConnectedLaser)
+                {
+                    Project.Instance().LaserManagerInstance.L_Laser[0].Connect();
+                    Thread.Sleep(50);
+                    Project.Instance().LaserManagerInstance.L_Laser[0].IsConnectedLaser = Project.Instance().LaserManagerInstance.L_Laser[0].SendText(lasermove);
+                }
                 Thread.Sleep(100);
             }
             catch (Exception)
@@ -1228,11 +1234,20 @@ namespace VisionProgram.UI.UIVision
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 26, "夹具号：" + _jiajuhao, FontSize);
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 28, "电池条码：" + _code1, FontSize);
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 30, DateTime.Now.ToString("HH:mm:ss"), FontSize);
-                    if (OutLimit == true)
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 36, sError, FontSize);//YBR
+                if (OutLimit == true)
                     {
                         WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 32, "偏移值超限NG", FontSize);
 
                     }
+                TriggerEventArgs triggerEventArgs = new TriggerEventArgs();
+                //VP或者Halcon存图
+                triggerEventArgs.resultImage = GlobalCameraParams.cameraVisionControlList[_workFlowIndex];
+                triggerEventArgs.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
+                triggerEventArgs.imageName = (_workFlowIndex + 1).ToString();
+                triggerEventArgs.results = isOk;
+                triggerEventArgs.Index = _workFlowIndex;
+                Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[_workFlowIndex].Enqueue(triggerEventArgs);
 
             }
             catch (Exception ex)
@@ -1407,7 +1422,7 @@ namespace VisionProgram.UI.UIVision
         private void 查看图片ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[_workFlowIndex].ResultImagePosition + @"\" + DateTime.Now.ToString("yyyy-MM-dd") + @"\" + "CCD" + (_workFlowIndex + 1);
+            string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[_workFlowIndex].ResultImagePosition + @"\" + DateTime.Now.ToString("yyyy-MM-dd") + @"\" + "CCD";
             if (Directory.Exists(path))
             {
                 Process.Start(path);
@@ -2205,12 +2220,20 @@ namespace VisionProgram.UI.UIVision
                 WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 26, "夹具号：" + _jiajuhao, FontSize);
                 WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 28, "电池条码：" + _code2, FontSize);
                 WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 30, DateTime.Now.ToString("HH:mm:ss"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 36, sError, FontSize);//YBR
                 if (OutLimit == true)
                 {
                     WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 32, "偏移值超限NG", FontSize);
 
                 }
-
+                TriggerEventArgs triggerEventArgs = new TriggerEventArgs();
+                //VP或者Halcon存图
+                triggerEventArgs.resultImage = GlobalCameraParams.cameraVisionControlList[_workFlowIndex];
+                triggerEventArgs.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
+                triggerEventArgs.imageName = (_workFlowIndex + 1).ToString();
+                triggerEventArgs.results = isOk;
+                triggerEventArgs.Index = _workFlowIndex;
+                Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[_workFlowIndex].Enqueue(triggerEventArgs);
 
             }
             catch (Exception ex)
@@ -2237,6 +2260,12 @@ namespace VisionProgram.UI.UIVision
             {
                 string lasermove = "_PDMoveAbs(0," + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[0].ToString() + "," + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[0].ToString() + ",500);";
                 Project.Instance().LaserManagerInstance.L_Laser[0].IsConnectedLaser = Project.Instance().LaserManagerInstance.L_Laser[0].SendText(lasermove);
+                if (!Project.Instance().LaserManagerInstance.L_Laser[0].IsConnectedLaser)
+                {
+                    Project.Instance().LaserManagerInstance.L_Laser[0].Connect();
+                    Thread.Sleep(50);
+                    Project.Instance().LaserManagerInstance.L_Laser[0].IsConnectedLaser = Project.Instance().LaserManagerInstance.L_Laser[0].SendText(lasermove);
+                }
                 Thread.Sleep(50);
             }
             catch (Exception)
