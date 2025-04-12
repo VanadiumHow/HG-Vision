@@ -163,7 +163,13 @@ namespace VisionProgram.ProjectClass.CameraParams
         public List<double> NI2X1 = new List<double>();
         public List<double> NI2Y1 = new List<double>();
 
-
+        //根据钢片角度固定补偿
+        public List<double> AngleAdd_1 = new List<double>(); //-0.5~-1.5
+        public List<double> AngleAdd_2 = new List<double>();
+        public List<double> AngleAdd_3 = new List<double>();
+        public List<double> AngleAdd1 = new List<double>();  //0.5~1.5
+        public List<double> AngleAdd2 = new List<double>();
+        public List<double> AngleAdd3 = new List<double>();
 
         //夹具1补偿
         public List<double> AddR1J1X = new List<double>();
@@ -457,6 +463,13 @@ namespace VisionProgram.ProjectClass.CameraParams
                     cameraParams.RobUse.Add(Convert.ToDouble(_ini.IniReadValue(varName, "RobUse", "0")));
                     cameraParams.LaserUse.Add(Convert.ToDouble(_ini.IniReadValue(varName, "LaserUse", "0")));
 
+                    cameraParams.AngleAdd_1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AngleAdd_1", "0")));
+                    cameraParams.AngleAdd_2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AngleAdd_2", "0")));
+                    cameraParams.AngleAdd_3.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AngleAdd_3", "0")));
+                    cameraParams.AngleAdd1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AngleAdd1", "0")));
+                    cameraParams.AngleAdd2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AngleAdd2", "0")));
+                    cameraParams.AngleAdd3.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AngleAdd3", "0")));
+
                     cameraParams.ALX.Add(Convert.ToDouble(_ini.IniReadValue(varName, "ALX", "0")));
                     cameraParams.ALY.Add(Convert.ToDouble(_ini.IniReadValue(varName, "ALY", "0")));
                     cameraParams.NI1X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "NI1X", "0")));
@@ -471,10 +484,10 @@ namespace VisionProgram.ProjectClass.CameraParams
                     cameraParams.NI2Y1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "NI2Y1", "0")));
 
 
-                    cameraParams.AddR1J1X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J1X", "0")));
-                    cameraParams.AddR1J1Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J1Y", "0")));
-                    cameraParams.AddR2J1X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J1X", "0")));
-                    cameraParams.AddR2J1Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J1Y", "0")));
+                    cameraParams.AddR1J1X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J1X", "0")));
+                    cameraParams.AddR1J1Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J1Y", "0")));
+                    cameraParams.AddR2J1X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J1X", "0")));
+                    cameraParams.AddR2J1Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J1Y", "0")));
                     cameraParams.AddL1J1X1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J1X1", "0")));
                     cameraParams.AddL1J1Y1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J1Y1", "0")));
                     cameraParams.AddL1J1X2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J1X2", "0")));
@@ -492,10 +505,10 @@ namespace VisionProgram.ProjectClass.CameraParams
                     cameraParams.AddL2J1X4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J1X4", "0")));
                     cameraParams.AddL2J1Y4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J1Y4", "0")));
 
-                    cameraParams.AddR1J2X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J2X", "0")));
-                    cameraParams.AddR1J2Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J2Y", "0")));
-                    cameraParams.AddR2J2X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J2X", "0")));
-                    cameraParams.AddR2J2Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J2Y", "0")));
+                    cameraParams.AddR1J2X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J2X", "0")));
+                    cameraParams.AddR1J2Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J2Y", "0")));
+                    cameraParams.AddR2J2X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J2X", "0")));
+                    cameraParams.AddR2J2Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J2Y", "0")));
                     cameraParams.AddL1J2X1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J2X1", "0")));
                     cameraParams.AddL1J2Y1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J2Y1", "0")));
                     cameraParams.AddL1J2X2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J2X2", "0")));
@@ -513,10 +526,10 @@ namespace VisionProgram.ProjectClass.CameraParams
                     cameraParams.AddL2J2X4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J2X4", "0")));
                     cameraParams.AddL2J2Y4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J2Y4", "0")));
 
-                    cameraParams.AddR1J3X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J3X", "0")));
-                    cameraParams.AddR1J3Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J3Y", "0")));
-                    cameraParams.AddR2J3X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J3X", "0")));
-                    cameraParams.AddR2J3Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J3Y", "0")));
+                    cameraParams.AddR1J3X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J3X", "0")));
+                    cameraParams.AddR1J3Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J3Y", "0")));
+                    cameraParams.AddR2J3X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J3X", "0")));
+                    cameraParams.AddR2J3Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J3Y", "0")));
                     cameraParams.AddL1J3X1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J3X1", "0")));
                     cameraParams.AddL1J3Y1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J3Y1", "0")));
                     cameraParams.AddL1J3X2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J3X2", "0")));
@@ -534,10 +547,10 @@ namespace VisionProgram.ProjectClass.CameraParams
                     cameraParams.AddL2J3X4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J3X4", "0")));
                     cameraParams.AddL2J3Y4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J3Y4", "0")));
 
-                    cameraParams.AddR1J4X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J4X", "0")));
-                    cameraParams.AddR1J4Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J4Y", "0")));
-                    cameraParams.AddR2J4X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J4X", "0")));
-                    cameraParams.AddR2J4Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J4Y", "0")));
+                    cameraParams.AddR1J4X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J4X", "0")));
+                    cameraParams.AddR1J4Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J4Y", "0")));
+                    cameraParams.AddR2J4X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J4X", "0")));
+                    cameraParams.AddR2J4Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J4Y", "0")));
                     cameraParams.AddL1J4X1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J4X1", "0")));
                     cameraParams.AddL1J4Y1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J4Y1", "0")));
                     cameraParams.AddL1J4X2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J4X2", "0")));
@@ -555,10 +568,10 @@ namespace VisionProgram.ProjectClass.CameraParams
                     cameraParams.AddL2J4X4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J4X4", "0")));
                     cameraParams.AddL2J4Y4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J4Y4", "0")));
 
-                    cameraParams.AddR1J5X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J5X", "0")));
-                    cameraParams.AddR1J5Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J5Y", "0")));
-                    cameraParams.AddR2J5X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J5X", "0")));
-                    cameraParams.AddR2J5Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J5Y", "0")));
+                    cameraParams.AddR1J5X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J5X", "0")));
+                    cameraParams.AddR1J5Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J5Y", "0")));
+                    cameraParams.AddR2J5X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J5X", "0")));
+                    cameraParams.AddR2J5Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J5Y", "0")));
                     cameraParams.AddL1J5X1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J5X1", "0")));
                     cameraParams.AddL1J5Y1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J5Y1", "0")));
                     cameraParams.AddL1J5X2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J5X2", "0")));
@@ -576,10 +589,10 @@ namespace VisionProgram.ProjectClass.CameraParams
                     cameraParams.AddL2J5X4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J5X4", "0")));
                     cameraParams.AddL2J5Y4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J5Y4", "0")));
 
-                    cameraParams.AddR1J6X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J6X", "0")));
-                    cameraParams.AddR1J6Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J6Y", "0")));
-                    cameraParams.AddR2J6X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J6X", "0")));
-                    cameraParams.AddR2J6Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J6Y", "0")));
+                    cameraParams.AddR1J6X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J6X", "0")));
+                    cameraParams.AddR1J6Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J6Y", "0")));
+                    cameraParams.AddR2J6X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J6X", "0")));
+                    cameraParams.AddR2J6Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J6Y", "0")));
                     cameraParams.AddL1J6X1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J6X1", "0")));
                     cameraParams.AddL1J6Y1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J6Y1", "0")));
                     cameraParams.AddL1J6X2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J6X2", "0")));
@@ -597,10 +610,10 @@ namespace VisionProgram.ProjectClass.CameraParams
                     cameraParams.AddL2J6X4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J6X4", "0")));
                     cameraParams.AddL2J6Y4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J6Y4", "0")));
 
-                    cameraParams.AddR1J7X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J7X", "0")));
-                    cameraParams.AddR1J7Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J7Y", "0")));
-                    cameraParams.AddR2J7X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J7X", "0")));
-                    cameraParams.AddR2J7Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J7Y", "0")));
+                    cameraParams.AddR1J7X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J7X", "0")));
+                    cameraParams.AddR1J7Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J7Y", "0")));
+                    cameraParams.AddR2J7X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J7X", "0")));
+                    cameraParams.AddR2J7Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J7Y", "0")));
                     cameraParams.AddL1J7X1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J7X1", "0")));
                     cameraParams.AddL1J7Y1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J7Y1", "0")));
                     cameraParams.AddL1J7X2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J7X2", "0")));
@@ -618,10 +631,10 @@ namespace VisionProgram.ProjectClass.CameraParams
                     cameraParams.AddL2J7X4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J7X4", "0")));
                     cameraParams.AddL2J7Y4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J7Y4", "0")));
 
-                    cameraParams.AddR1J8X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J8X", "0")));
-                    cameraParams.AddR1J8Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J8Y", "0")));
-                    cameraParams.AddR2J8X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J8X", "0")));
-                    cameraParams.AddR2J8Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J8Y", "0")));
+                    cameraParams.AddR1J8X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J8X", "0")));
+                    cameraParams.AddR1J8Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J8Y", "0")));
+                    cameraParams.AddR2J8X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J8X", "0")));
+                    cameraParams.AddR2J8Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J8Y", "0")));
                     cameraParams.AddL1J8X1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J8X1", "0")));
                     cameraParams.AddL1J8Y1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J8Y1", "0")));
                     cameraParams.AddL1J8X2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J8X2", "0")));
@@ -639,10 +652,10 @@ namespace VisionProgram.ProjectClass.CameraParams
                     cameraParams.AddL2J8X4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J8X4", "0")));
                     cameraParams.AddL2J8Y4.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL2J8Y4", "0")));
 
-                    cameraParams.AddR1J9X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J9X", "0")));
-                    cameraParams.AddR1J9Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J9Y", "0")));
-                    cameraParams.AddR2J9X.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J9X", "0")));
-                    cameraParams.AddR2J9Y.Add (Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J9Y", "0")));
+                    cameraParams.AddR1J9X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J9X", "0")));
+                    cameraParams.AddR1J9Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR1J9Y", "0")));
+                    cameraParams.AddR2J9X.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J9X", "0")));
+                    cameraParams.AddR2J9Y.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddR2J9Y", "0")));
                     cameraParams.AddL1J9X1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J9X1", "0")));
                     cameraParams.AddL1J9Y1.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J9Y1", "0")));
                     cameraParams.AddL1J9X2.Add(Convert.ToDouble(_ini.IniReadValue(varName, "AddL1J9X2", "0")));
@@ -754,8 +767,8 @@ namespace VisionProgram.ProjectClass.CameraParams
 
             cameraParams.L_cam2Rotation_X.Clear();
             cameraParams.L_cam2Rotation_Y.Clear();
-            cameraParams.L_cam2Rotation_RMS.Clear();               
-                    
+            cameraParams.L_cam2Rotation_RMS.Clear();
+
             cameraParams.L_ProductCodeAreaMin.Clear();
             cameraParams.L_ProductCodeAreaMax.Clear();
             cameraParams.L_ProductGrayValueMin.Clear();

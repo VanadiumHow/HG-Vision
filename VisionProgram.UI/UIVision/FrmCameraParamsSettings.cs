@@ -31,6 +31,7 @@ namespace VisionProgram.UI.UIVision
         public FrmCameraParamsSettings()
         {
             InitializeComponent();
+            this.PerformLayout(); // 强制计算布局
         }
         /// <summary>
         /// 窗体对象实例
@@ -49,7 +50,7 @@ namespace VisionProgram.UI.UIVision
 
 
 
-
+        
         private void FrmCCDParamSettings_Load(object sender, EventArgs e)
         {
             Control[] controls = {
@@ -69,6 +70,8 @@ namespace VisionProgram.UI.UIVision
                                                 tb_Cam1CellLineL,tb_Cam1P2byP1X,tb_Cam1P2byP1Y,tb_Cam1P4byP3X,
                                              tb_Cam1P4byP3Y,tb_Cam1LaserStep,tb_Cam1RobStep,tb_Cam1Spacing,
                                                 tb_Cam1SpacingUse,tb_Cam1RobUse,tb_Cam1LaserUse,
+                                                tb_Cam1AngleAdd_1,tb_Cam1AngleAdd_2,tb_Cam1AngleAdd_3,
+                                                tb_Cam1AngleAdd1,tb_Cam1AngleAdd2,tb_Cam1AngleAdd3,
                                                 tb_Cam1ALX,tb_Cam1ALY,tb_Cam1NI1X,tb_Cam1NI1Y,tb_Cam1NI2X,tb_Cam1NI2Y,
                                                 tb_Cam1ALX1,tb_Cam1ALY1,tb_Cam1NI1X1,tb_Cam1NI1Y1,tb_Cam1NI2X1,tb_Cam1NI2Y1,
 
@@ -208,6 +211,13 @@ namespace VisionProgram.UI.UIVision
                 values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.SpacingUse[i].ToString());
                 values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobUse[i].ToString());
                 values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.LaserUse[i].ToString());
+
+                values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_1[i].ToString());
+                values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_2[i].ToString());
+                values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_3[i].ToString());
+                values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd1[i].ToString());
+                values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd2[i].ToString());
+                values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd3[i].ToString());
 
                 values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALX[i].ToString());
                 values.Add(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALY[i].ToString());
@@ -989,6 +999,57 @@ namespace VisionProgram.UI.UIVision
                             Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams($"camera{cameraIndex}", "LaserUse", Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.LaserUse[cameraIndex - 1].ToString());
                         }
                         break;
+                    case "AngleAdd_1":
+                        if (!Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_1[cameraIndex - 1].ToString().Equals(text))
+                        {
+                            oldCameraParamObjects.Add(new OperationLogParamModel.OldParam() { Text = $"{productName}camera{cameraIndex}AngleAdd_1", Field = "AngleAdd_1", OldValue = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_1[cameraIndex - 1].ToString(), NewValue = text });
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_1[cameraIndex - 1] = double.Parse(text);
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams($"camera{cameraIndex}", "AngleAdd_1", Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_1[cameraIndex - 1].ToString());
+                        }
+                        break;
+                    case "AngleAdd_2":
+                        if (!Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_2[cameraIndex - 1].ToString().Equals(text))
+                        {
+                            oldCameraParamObjects.Add(new OperationLogParamModel.OldParam() { Text = $"{productName}camera{cameraIndex}AngleAdd_2", Field = "AngleAdd_2", OldValue = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_2[cameraIndex - 1].ToString(), NewValue = text });
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_2[cameraIndex - 1] = double.Parse(text);
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams($"camera{cameraIndex}", "AngleAdd_2", Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_2[cameraIndex - 1].ToString());
+                        }
+                        break;
+                    case "AngleAdd_3":
+                        if (!Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_3[cameraIndex - 1].ToString().Equals(text))
+                        {
+                            oldCameraParamObjects.Add(new OperationLogParamModel.OldParam() { Text = $"{productName}camera{cameraIndex}AngleAdd_3", Field = "AngleAdd_3", OldValue = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_3[cameraIndex - 1].ToString(), NewValue = text });
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_3[cameraIndex - 1] = double.Parse(text);
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams($"camera{cameraIndex}", "AngleAdd_3", Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_3[cameraIndex - 1].ToString());
+                        }
+                        break;
+                    case "AngleAdd1":
+                        if (!Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd1[cameraIndex - 1].ToString().Equals(text))
+                        {
+                            oldCameraParamObjects.Add(new OperationLogParamModel.OldParam() { Text = $"{productName}camera{cameraIndex}AngleAdd1", Field = "AngleAdd1", OldValue = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd1[cameraIndex - 1].ToString(), NewValue = text });
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd1[cameraIndex - 1] = double.Parse(text);
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams($"camera{cameraIndex}", "AngleAdd1", Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd1[cameraIndex - 1].ToString());
+                        }
+                        break;
+                    case "AngleAdd2":
+                        if (!Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd2[cameraIndex - 1].ToString().Equals(text))
+                        {
+                            oldCameraParamObjects.Add(new OperationLogParamModel.OldParam() { Text = $"{productName}camera{cameraIndex}AngleAdd2", Field = "AngleAdd2", OldValue = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd2[cameraIndex - 1].ToString(), NewValue = text });
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd2[cameraIndex - 1] = double.Parse(text);
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams($"camera{cameraIndex}", "AngleAdd2", Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd2[cameraIndex - 1].ToString());
+                        }
+                        break;
+                    case "AngleAdd3":
+                        if (!Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd3[cameraIndex - 1].ToString().Equals(text))
+                        {
+                            oldCameraParamObjects.Add(new OperationLogParamModel.OldParam() { Text = $"{productName}camera{cameraIndex}AngleAdd3", Field = "AngleAdd3", OldValue = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd3[cameraIndex - 1].ToString(), NewValue = text });
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd3[cameraIndex - 1] = double.Parse(text);
+                            Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams($"camera{cameraIndex}", "AngleAdd3", Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd3[cameraIndex - 1].ToString());
+                        }
+                        break;
+
+
+
 
                     case "ALX":
                         if (!Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.ALX[cameraIndex - 1].ToString().Equals(text))

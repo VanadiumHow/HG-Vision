@@ -537,6 +537,13 @@ namespace VisionProgram.UI.UIVision
                 //旋转中心
                 double[] Rotation_X = new double[NozzleNum];
                 double[] Rotation_Y = new double[NozzleNum];
+                //钢片角度按范围补偿
+                double[] angleAdd_1 = new double[NozzleNum];
+                double[] angleAdd_2 = new double[NozzleNum];
+                double[] angleAdd_3 = new double[NozzleNum];
+                double[] angleAdd1 = new double[NozzleNum];
+                double[] angleAdd2 = new double[NozzleNum];
+                double[] angleAdd3 = new double[NozzleNum];
                 #endregion
 
                 #region 
@@ -574,8 +581,14 @@ namespace VisionProgram.UI.UIVision
                     addX4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddX[i];
                     addY4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddY[i];
                     addT4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddT[i];
+                    //钢片角度补偿
+                    angleAdd_1[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_1[i];
+                    angleAdd_2[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_2[i];
+                    angleAdd_3[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_3[i];
+                    angleAdd1[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd1[i];
+                    angleAdd2[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd2[i];
+                    angleAdd3[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd3[i];
 
-                   
                 }
 
 
@@ -903,14 +916,71 @@ namespace VisionProgram.UI.UIVision
                     double rc_angle3 = dT3[0] * (Math.PI / 180);
                     dT4[0] = 0;//stdT4[0] - Cam1posRLas2 + addT4[0];
                     double rc_angle4 = dT4[0] * (Math.PI / 180);          //相机角度偏移
-
+                                                                          //当钢片角度落入某区间时给予Y固定补偿
+                    if (Cam1posRRob1 > -1.5 && Cam1posRRob1 <= -0.5)
+                    {
+                        dY1[0] = angleAdd_1[0];
+                    }
+                    else if (Cam1posRRob1 > -2.5 && Cam1posRRob1 <= -1.5)
+                    {
+                        dY1[0] = angleAdd_2[0];
+                    }
+                    else if (Cam1posRRob1 > -3.5 && Cam1posRRob1 <= -2.5)
+                    {
+                        dY1[0] = angleAdd_3[0];
+                    }
+                    else if (Cam1posRRob1 >= 0.5 && Cam1posRRob1 < 1.5)
+                    {
+                        dY1[0] = angleAdd1[0];
+                    }
+                    else if (Cam1posRRob1 >= 1.5 && Cam1posRRob1 < 2.5)
+                    {
+                        dY1[0] = angleAdd2[0];
+                    }
+                    else if (Cam1posRRob1 >= 2.5 && Cam1posRRob1 < 3.5)
+                    {
+                        dY1[0] = angleAdd3[0];
+                    }
+                    else
+                    {
+                        dY1[0] = 0.0;
+                        dY2[0] = 0.0;
+                    }
+                    if (Cam1posRRob2 > -1.5 && Cam1posRRob2 <= -0.5)
+                    {
+                        dY2[0] = angleAdd_1[0];
+                    }
+                    else if (Cam1posRRob2 > -2.5 && Cam1posRRob2 <= -1.5)
+                    {
+                        dY2[0] = angleAdd_2[0];
+                    }
+                    else if (Cam1posRRob2 > -3.5 && Cam1posRRob2 <= -2.5)
+                    {
+                        dY2[0] = angleAdd_3[0];
+                    }
+                    else if (Cam1posRRob2 >= 0.5 && Cam1posRRob2 < 1.5)
+                    {
+                        dY2[0] = angleAdd1[0];
+                    }
+                    else if (Cam1posRRob2 >= 1.5 && Cam1posRRob2 < 2.5)
+                    {
+                        dY2[0] = angleAdd2[0];
+                    }
+                    else if (Cam1posRRob2 >= 2.5 && Cam1posRRob2 < 3.5)
+                    {
+                        dY2[0] = angleAdd3[0];
+                    }
+                    else
+                    {
+                        dY2[0] = 0.0;
+                    }
                     dX1[0] = -(stdX1[0] - Cam1posXRob1) + addX1[0];
                     dX2[0] = -(stdX2[0] - Cam1posXRob2) + addX2[0];
                     dX3[0] = -(stdX3[0] - Cam1posXLas1) + addX3[0];
                     dX4[0] = -(stdX4[0] - Cam1posXLas2) + addX4[0];          //相机X偏移
 
-                    dY1[0] = -(stdY1[0] - Cam1posYRob1) + addY1[0];
-                    dY2[0] = -(stdY2[0] - Cam1posYRob2) + addY2[0];
+                    dY1[0] += -(stdY1[0] - Cam1posYRob1) + addY1[0];
+                    dY2[0] += -(stdY2[0] - Cam1posYRob2) + addY2[0];
                     dY3[0] = -(stdY3[0] - Cam1posYLas1) + addY3[0];
                     dY4[0] = -(stdY4[0] - Cam1posYLas2) + addY4[0];          //相机y偏移
 
@@ -1525,6 +1595,13 @@ namespace VisionProgram.UI.UIVision
                 //旋转中心
                 double[] Rotation_X = new double[NozzleNum];
                 double[] Rotation_Y = new double[NozzleNum];
+                //钢片角度按范围补偿
+                double[] angleAdd_1 = new double[NozzleNum];
+                double[] angleAdd_2 = new double[NozzleNum];
+                double[] angleAdd_3 = new double[NozzleNum];
+                double[] angleAdd1 = new double[NozzleNum];
+                double[] angleAdd2 = new double[NozzleNum];
+                double[] angleAdd3 = new double[NozzleNum];
                 #endregion
 
                 #region 
@@ -1562,7 +1639,13 @@ namespace VisionProgram.UI.UIVision
                     addX4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddX[i];
                     addY4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddY[i];
                     addT4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddT[i];
-
+                    //钢片角度补偿
+                    angleAdd_1[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_1[i];
+                    angleAdd_2[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_2[i];
+                    angleAdd_3[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_3[i];
+                    angleAdd1[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd1[i];
+                    angleAdd2[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd2[i];
+                    angleAdd3[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd3[i];
 
                 }
 
@@ -1891,14 +1974,71 @@ namespace VisionProgram.UI.UIVision
                     double rc_angle3 = dT3[0] * (Math.PI / 180);
                     dT4[0] = 0;//stdT4[0] - Cam1posRLas2 + addT4[0];
                     double rc_angle4 = dT4[0] * (Math.PI / 180);          //相机角度偏移
-
+                                                                          //当钢片角度落入某区间时给予Y固定补偿
+                    if (Cam1posRRob1 > -1.5 && Cam1posRRob1 <= -0.5)
+                    {
+                        dY1[0] = angleAdd_1[0];
+                    }
+                    else if (Cam1posRRob1 > -2.5 && Cam1posRRob1 <= -1.5)
+                    {
+                        dY1[0] = angleAdd_2[0];
+                    }
+                    else if (Cam1posRRob1 > -3.5 && Cam1posRRob1 <= -2.5)
+                    {
+                        dY1[0] = angleAdd_3[0];
+                    }
+                    else if (Cam1posRRob1 >= 0.5 && Cam1posRRob1 < 1.5)
+                    {
+                        dY1[0] = angleAdd1[0];
+                    }
+                    else if (Cam1posRRob1 >= 1.5 && Cam1posRRob1 < 2.5)
+                    {
+                        dY1[0] = angleAdd2[0];
+                    }
+                    else if (Cam1posRRob1 >= 2.5 && Cam1posRRob1 < 3.5)
+                    {
+                        dY1[0] = angleAdd3[0];
+                    }
+                    else
+                    {
+                        dY1[0] = 0.0;
+                        dY2[0] = 0.0;
+                    }
+                    if (Cam1posRRob2 > -1.5 && Cam1posRRob2 <= -0.5)
+                    {
+                        dY2[0] = angleAdd_1[0];
+                    }
+                    else if (Cam1posRRob2 > -2.5 && Cam1posRRob2 <= -1.5)
+                    {
+                        dY2[0] = angleAdd_2[0];
+                    }
+                    else if (Cam1posRRob2 > -3.5 && Cam1posRRob2 <= -2.5)
+                    {
+                        dY2[0] = angleAdd_3[0];
+                    }
+                    else if (Cam1posRRob2 >= 0.5 && Cam1posRRob2 < 1.5)
+                    {
+                        dY2[0] = angleAdd1[0];
+                    }
+                    else if (Cam1posRRob2 >= 1.5 && Cam1posRRob2 < 2.5)
+                    {
+                        dY2[0] = angleAdd2[0];
+                    }
+                    else if (Cam1posRRob2 >= 2.5 && Cam1posRRob2 < 3.5)
+                    {
+                        dY2[0] = angleAdd3[0];
+                    }
+                    else
+                    {
+                        dY2[0] = 0.0;
+                    }
                     dX1[0] = -(stdX1[0] - Cam1posXRob1) + addX1[0];
                     dX2[0] = -(stdX2[0] - Cam1posXRob2) + addX2[0];
                     dX3[0] = -(stdX3[0] - Cam1posXLas1) + addX3[0];
                     dX4[0] = -(stdX4[0] - Cam1posXLas2) + addX4[0];          //相机X偏移
 
-                    dY1[0] = -(stdY1[0] - Cam1posYRob1) + addY1[0];
-                    dY2[0] = -(stdY2[0] - Cam1posYRob2) + addY2[0];
+                    dY1[0] += -(stdY1[0] - Cam1posYRob1) + addY1[0];
+                    dY2[0] += -(stdY2[0] - Cam1posYRob2) + addY2[0];
                     dY3[0] = -(stdY3[0] - Cam1posYLas1) + addY3[0];
                     dY4[0] = -(stdY4[0] - Cam1posYLas2) + addY4[0];          //相机y偏移
 
