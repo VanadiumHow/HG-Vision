@@ -622,11 +622,28 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 int _jiajuhao = 0;
                 double _spacing = 0.0;
                 double _spacing1 = 0.0;
-                _code1 = Project.Instance().PLCManagerInstance.ReadString("D102", 10);
-                _code2 = Project.Instance().PLCManagerInstance.ReadString("D101", 10);
-                _jiajuhao = Project.Instance().PLCManagerInstance.ReadInt16("D100");
-                _spacing = Project.Instance().PLCManagerInstance.ReadFloat("D141");
-                _spacing1 = Project.Instance().PLCManagerInstance.ReadFloat("D143");
+
+                LogHelper.Info("开始读取");
+
+                byte[] _plcdataD100 = new byte[16];
+                _plcdataD100 = Project.Instance().PLCManagerInstance.Read("D100", 8);
+                _code1 = Encoding.ASCII.GetString(ReverseBytes(_plcdataD100, 4, 12));
+                _code2 = Encoding.ASCII.GetString(ReverseBytes(_plcdataD100, 2, 14));
+                _jiajuhao = BitConverter.ToInt16(ReverseBytes(_plcdataD100, 0, 2), 0);
+
+                byte[] _plcdataD143 = new byte[8];
+                _plcdataD143 = Project.Instance().PLCManagerInstance.Read("D141", 4);
+                _spacing = BitConverter.ToSingle(ReverseBytes(_plcdataD143, 0, 4), 0);
+                _spacing = BitConverter.ToSingle(ReverseBytes(_plcdataD143, 4, 4), 0);
+                LogHelper.Info("结束读取");
+
+
+                //_code1 = Project.Instance().PLCManagerInstance.ReadString("D102", 10);
+                //_code2 = Project.Instance().PLCManagerInstance.ReadString("D101", 10);
+                //_jiajuhao = Project.Instance().PLCManagerInstance.ReadInt16("D100");
+
+                //_spacing = Project.Instance().PLCManagerInstance.ReadFloat("D141");
+                //_spacing1 = Project.Instance().PLCManagerInstance.ReadFloat("D143");
 
 
                 if (bAccept)
@@ -751,7 +768,6 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     dY4[0] = -(stdY4[0] - Cam1posYLas2) + addY4[0];          //相机y偏移
 
                     #endregion
-
                     #region 根据夹具号来分别额外补偿，若无夹具号
                     if (_jiajuhao == 1)
                     {
@@ -1524,6 +1540,41 @@ namespace VisionProgram.Main.ProjectClass.Robot
         {
         }
         #endregion
+        private byte[] ReverseBytes(byte[] input, int index, int count)
+        {
+            // 参数校验
+            if (input == null)
+                throw new ArgumentNullException(nameof(input));
+            if (index < 0)
+            {
+                LogHelper.Error("index必须是非负的");
+                return input;
+            }
+            if (count < 0 || count % 2 != 0)
+            {
+                LogHelper.Error("index+count超出数组边界");
+                return input;
+            }
+
+            if (index + count > input.Length)
+            {
+                LogHelper.Error("index+count超出数组边界");
+                return input;
+            }
+            // 创建输出数组并复制数据
+            byte[] output = new byte[count];
+            Array.Copy(input, index, output, 0, count);
+
+            // 两两交换字节
+            for (int i = 0; i < count; i += 2)
+            {
+                // 交换相邻字节
+                byte temp = output[i];
+                output[i] = output[i + 1];
+                output[i + 1] = temp;
+            }
+
+            return output;
+        }
     }
 }
-

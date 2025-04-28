@@ -99,7 +99,53 @@ namespace VisionProgram.Main.ProjectClass.PLC
             }
             return false;
         }
-
+        public byte[] Read(string address, ushort length)
+        {
+            try
+            {
+                if (_isPLCConnect)
+                {
+                    OperateResult<byte[]> read;
+                    read = NJPLC.Read(address, length);
+                    if (read.IsSuccess)
+                    {
+                        return read.Content;
+                    }
+                    else
+                    {
+                        Connect();
+                        LogHelper.Fatal("读取二维码出现异常");
+                        return null;
+                    }
+                }
+                else
+                {
+                    Connect();
+                    if (_isPLCConnect)
+                    {
+                        OperateResult<byte[]> read;
+                        read = NJPLC.Read(address, length);
+                        if (read.IsSuccess)
+                        {
+                            return read.Content;
+                        }
+                        else
+                        {
+                            Connect();
+                            LogHelper.Fatal("读取二维码出现异常");
+                            return null;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                LogHelper.Fatal("读取二维码出现异常");
+                return null;
+            }
+            LogHelper.Fatal("读取二维码出现异常");
+            return null;
+        }
         public string ReadString(string address, ushort length)
         {
             try
