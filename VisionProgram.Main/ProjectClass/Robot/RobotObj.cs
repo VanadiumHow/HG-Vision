@@ -768,6 +768,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     dY4[0] = -(stdY4[0] - Cam1posYLas2) + addY4[0];          //相机y偏移
 
                     #endregion
+
                     #region 根据夹具号来分别额外补偿，若无夹具号
                     if (_jiajuhao == 1)
                     {
@@ -1450,30 +1451,36 @@ namespace VisionProgram.Main.ProjectClass.Robot
         {
             while (true)
             {
-                Thread.Sleep(1000);
-                if (clientIPNum < dicConnectIP.Count)
+                try
                 {
-                    dicDisConnectIP.Clear();
-                    dicTempConnectIP.Clear();
-                    for (int i = 0; i < clientIPNum; i++)
+                    Thread.Sleep(1000);
+                    if (clientIPNum < dicConnectIP.Count)
                     {
-                        dicTempConnectIP.Add(this.RemoteAddress(i));
-                    }
-                    foreach (var item in dicConnectIP)
-                    {
-                        if (!dicTempConnectIP.Contains(item))
+                        dicDisConnectIP.Clear();
+                        dicTempConnectIP.Clear();
+                        for (int i = 0; i < clientIPNum; i++)
                         {
-                            dicDisConnectIP.Add(item);
+                            dicTempConnectIP.Add(this.RemoteAddress(i));
+                        }
+                        foreach (var item in dicConnectIP)
+                        {
+                            if (!dicTempConnectIP.Contains(item))
+                            {
+                                dicDisConnectIP.Add(item);
+                            }
+                        }
+                        for (int i = 0; i < dicDisConnectIP.Count; i++)
+                        {
+                            if (dicDisConnectIP[i] == dicConnectIP[i])
+                            {
+                                IsConnectedRobot[0] = false;
+                            }
                         }
                     }
-                    for (int i = 0; i < dicDisConnectIP.Count; i++)
-                    {
-                        if (dicDisConnectIP[i] == dicConnectIP[i])
-                        {
-                            IsConnectedRobot[0] = false;
-
-                        }
-                    }
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Error("在比较断开连接和已连接的 IP 地址时发生了错误", ex);
                 }
             }
         }
