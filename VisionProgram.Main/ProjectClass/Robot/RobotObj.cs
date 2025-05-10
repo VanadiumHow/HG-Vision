@@ -623,19 +623,16 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 double _spacing = 0.0;
                 double _spacing1 = 0.0;
 
-                LogHelper.Info("开始读取");
-
-                byte[] _plcdataD100 = new byte[16];
-                _plcdataD100 = Project.Instance().PLCManagerInstance.Read("D100", 8);
+                byte[] _plcdataD100 = new byte[90];
+                _plcdataD100 = Project.Instance().PLCManagerInstance.Read("D100", 45);
                 _code1 = Encoding.ASCII.GetString(ReverseBytes(_plcdataD100, 4, 12));
-                _code2 = Encoding.ASCII.GetString(ReverseBytes(_plcdataD100, 2, 14));
+                _code2 = Encoding.ASCII.GetString(ReverseBytes(_plcdataD100, 2, 12));
                 _jiajuhao = BitConverter.ToInt16(ReverseBytes(_plcdataD100, 0, 2), 0);
 
-                byte[] _plcdataD143 = new byte[8];
-                _plcdataD143 = Project.Instance().PLCManagerInstance.Read("D141", 4);
-                _spacing = BitConverter.ToSingle(ReverseBytes(_plcdataD143, 0, 4), 0);
-                _spacing = BitConverter.ToSingle(ReverseBytes(_plcdataD143, 4, 4), 0);
-                LogHelper.Info("结束读取");
+                //byte[] _plcdataD141 = new byte[8];
+                //_plcdataD141 = Project.Instance().PLCManagerInstance.Read("D141", 4);
+                _spacing = BitConverter.ToSingle(ReverseBytes(_plcdataD100, 82, 4), 0);
+                _spacing1 = BitConverter.ToSingle(ReverseBytes(_plcdataD100, 86, 4), 0);
 
 
                 //_code1 = Project.Instance().PLCManagerInstance.ReadString("D102", 10);
