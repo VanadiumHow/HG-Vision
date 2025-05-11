@@ -625,23 +625,12 @@ namespace VisionProgram.Main.ProjectClass.Robot
 
                 byte[] _plcdataD100 = new byte[90];
                 _plcdataD100 = Project.Instance().PLCManagerInstance.Read("D100", 45);
-                _code1 = Encoding.ASCII.GetString(ReverseBytes(_plcdataD100, 4, 12));
-                _code2 = Encoding.ASCII.GetString(ReverseBytes(_plcdataD100, 2, 12));
+                _code1 = Encoding.ASCII.GetString(Remove_zero(ReverseBytes(_plcdataD100, 2, 40))).Replace(":", "-");
+                _code2 = Encoding.ASCII.GetString(Remove_zero(ReverseBytes(_plcdataD100, 42, 40))).Replace(":", "-");
                 _jiajuhao = BitConverter.ToInt16(ReverseBytes(_plcdataD100, 0, 2), 0);
 
-                //byte[] _plcdataD141 = new byte[8];
-                //_plcdataD141 = Project.Instance().PLCManagerInstance.Read("D141", 4);
                 _spacing = BitConverter.ToSingle(ReverseBytes(_plcdataD100, 82, 4), 0);
                 _spacing1 = BitConverter.ToSingle(ReverseBytes(_plcdataD100, 86, 4), 0);
-
-
-                //_code1 = Project.Instance().PLCManagerInstance.ReadString("D102", 10);
-                //_code2 = Project.Instance().PLCManagerInstance.ReadString("D101", 10);
-                //_jiajuhao = Project.Instance().PLCManagerInstance.ReadInt16("D100");
-
-                //_spacing = Project.Instance().PLCManagerInstance.ReadFloat("D141");
-                //_spacing1 = Project.Instance().PLCManagerInstance.ReadFloat("D143");
-
 
                 if (bAccept)
                 {
@@ -1571,6 +1560,19 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 output[i + 1] = temp;
             }
 
+            return output;
+        }
+        private byte[] Remove_zero(byte[] input)
+        {
+            List<byte> temp = new List<byte>();
+            foreach (var element in input)
+            {
+                if (element != 0)
+                {
+                    temp.Add(element);
+                }
+            }
+            byte[] output = temp.ToArray();
             return output;
         }
     }
