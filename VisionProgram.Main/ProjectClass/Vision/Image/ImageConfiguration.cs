@@ -149,7 +149,7 @@ namespace VisionProgram.ProjectClass.Image
                     TriggerEventArgs e = new TriggerEventArgs();
                     if (mSaveImageQueue[index].TryDequeue(out e))
                     {
-                        SaveImage(e.rawImage, e.resultImage, e.imageName, e.results, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH-mm-ss-ffffff"), e.Index);
+                        SaveImage(e.rawImage, e.resultImage, e.imageName, e.results, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH-mm-ss-fff"), e.Index);
                     }
                 }
                 catch (Exception ex)
