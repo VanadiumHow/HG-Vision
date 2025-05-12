@@ -35,6 +35,7 @@ namespace VisionProgram.UI.UIVision
             this.uiTabControlAll = new System.Windows.Forms.TabControl();
             this.uiTabPage1 = new System.Windows.Forms.TabPage();
             this.uiTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tb_Cam1StdT1 = new System.Windows.Forms.TextBox();
             this.lb_Cam1StdT1 = new System.Windows.Forms.Label();
             this.tb_Cam1StdY1 = new System.Windows.Forms.TextBox();
@@ -153,18 +154,7 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1NI1Y1 = new System.Windows.Forms.TextBox();
             this.tb_Cam1NI2X1 = new System.Windows.Forms.TextBox();
             this.tb_Cam1NI2Y1 = new System.Windows.Forms.TextBox();
-            this.tb_Cam1AngleAdd_1 = new System.Windows.Forms.TextBox();
-            this.lb_Cam1AngleAdd_1 = new System.Windows.Forms.Label();
-            this.lb_Cam1AngleAdd_2 = new System.Windows.Forms.Label();
-            this.tb_Cam1AngleAdd_2 = new System.Windows.Forms.TextBox();
-            this.tb_Cam1AngleAdd_3 = new System.Windows.Forms.TextBox();
-            this.lb_Cam1AngleAdd_3 = new System.Windows.Forms.Label();
-            this.lb_Cam1AngleAdd3 = new System.Windows.Forms.Label();
-            this.lb_Cam1AngleAdd2 = new System.Windows.Forms.Label();
-            this.lb_Cam1AngleAdd1 = new System.Windows.Forms.Label();
-            this.tb_Cam1AngleAdd1 = new System.Windows.Forms.TextBox();
-            this.tb_Cam1AngleAdd2 = new System.Windows.Forms.TextBox();
-            this.tb_Cam1AngleAdd3 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lb_Cam1AddR2J1Y = new System.Windows.Forms.Label();
@@ -703,6 +693,7 @@ namespace VisionProgram.UI.UIVision
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.140408F));
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.uiTableLayoutPanel1.Controls.Add(this.textBox2, 9, 4);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1StdT1, 1, 2);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1StdT1, 0, 2);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1StdY1, 1, 1);
@@ -821,18 +812,7 @@ namespace VisionProgram.UI.UIVision
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1NI1Y1, 3, 10);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1NI2X1, 5, 9);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1NI2Y1, 5, 10);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleAdd_1, 7, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleAdd_1, 6, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleAdd_2, 6, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleAdd_2, 7, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleAdd_3, 7, 9);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleAdd_3, 6, 9);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleAdd3, 8, 9);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleAdd2, 8, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleAdd1, 8, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleAdd1, 9, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleAdd2, 9, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleAdd3, 9, 9);
+            this.uiTableLayoutPanel1.Controls.Add(this.label8, 8, 4);
             this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTableLayoutPanel1.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -852,6 +832,18 @@ namespace VisionProgram.UI.UIVision
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333332F));
             this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1300, 552);
             this.uiTableLayoutPanel1.TabIndex = 2;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox2.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox2.Location = new System.Drawing.Point(832, 189);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox2.MinimumSize = new System.Drawing.Size(4, 4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(84, 21);
+            this.textBox2.TabIndex = 196;
             // 
             // tb_Cam1StdT1
             // 
@@ -2254,143 +2246,14 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1NI2Y1.Size = new System.Drawing.Size(84, 21);
             this.tb_Cam1NI2Y1.TabIndex = 190;
             // 
-            // tb_Cam1AngleAdd_1
+            // label8
             // 
-            this.tb_Cam1AngleAdd_1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1AngleAdd_1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1AngleAdd_1.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AngleAdd_1.Location = new System.Drawing.Point(648, 327);
-            this.tb_Cam1AngleAdd_1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1AngleAdd_1.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1AngleAdd_1.Name = "tb_Cam1AngleAdd_1";
-            this.tb_Cam1AngleAdd_1.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1AngleAdd_1.TabIndex = 196;
-            // 
-            // lb_Cam1AngleAdd_1
-            // 
-            this.lb_Cam1AngleAdd_1.AutoSize = true;
-            this.lb_Cam1AngleAdd_1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1AngleAdd_1.Location = new System.Drawing.Point(555, 322);
-            this.lb_Cam1AngleAdd_1.Name = "lb_Cam1AngleAdd_1";
-            this.lb_Cam1AngleAdd_1.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1AngleAdd_1.TabIndex = 193;
-            this.lb_Cam1AngleAdd_1.Text = "钢片与壳角度-0.5~-1.5";
-            this.lb_Cam1AngleAdd_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1AngleAdd_2
-            // 
-            this.lb_Cam1AngleAdd_2.AutoSize = true;
-            this.lb_Cam1AngleAdd_2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1AngleAdd_2.Location = new System.Drawing.Point(555, 368);
-            this.lb_Cam1AngleAdd_2.Name = "lb_Cam1AngleAdd_2";
-            this.lb_Cam1AngleAdd_2.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1AngleAdd_2.TabIndex = 197;
-            this.lb_Cam1AngleAdd_2.Text = "钢片与壳角度-1.5~-2.5";
-            this.lb_Cam1AngleAdd_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1AngleAdd_2
-            // 
-            this.tb_Cam1AngleAdd_2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1AngleAdd_2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1AngleAdd_2.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AngleAdd_2.Location = new System.Drawing.Point(648, 373);
-            this.tb_Cam1AngleAdd_2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1AngleAdd_2.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1AngleAdd_2.Name = "tb_Cam1AngleAdd_2";
-            this.tb_Cam1AngleAdd_2.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1AngleAdd_2.TabIndex = 198;
-            // 
-            // tb_Cam1AngleAdd_3
-            // 
-            this.tb_Cam1AngleAdd_3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1AngleAdd_3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1AngleAdd_3.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AngleAdd_3.Location = new System.Drawing.Point(648, 419);
-            this.tb_Cam1AngleAdd_3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1AngleAdd_3.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1AngleAdd_3.Name = "tb_Cam1AngleAdd_3";
-            this.tb_Cam1AngleAdd_3.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1AngleAdd_3.TabIndex = 200;
-            // 
-            // lb_Cam1AngleAdd_3
-            // 
-            this.lb_Cam1AngleAdd_3.AutoSize = true;
-            this.lb_Cam1AngleAdd_3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1AngleAdd_3.Location = new System.Drawing.Point(555, 414);
-            this.lb_Cam1AngleAdd_3.Name = "lb_Cam1AngleAdd_3";
-            this.lb_Cam1AngleAdd_3.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1AngleAdd_3.TabIndex = 199;
-            this.lb_Cam1AngleAdd_3.Text = "钢片与壳角度-2.5~-3.5";
-            this.lb_Cam1AngleAdd_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1AngleAdd3
-            // 
-            this.lb_Cam1AngleAdd3.AutoSize = true;
-            this.lb_Cam1AngleAdd3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1AngleAdd3.Location = new System.Drawing.Point(739, 414);
-            this.lb_Cam1AngleAdd3.Name = "lb_Cam1AngleAdd3";
-            this.lb_Cam1AngleAdd3.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1AngleAdd3.TabIndex = 203;
-            this.lb_Cam1AngleAdd3.Text = "钢片与壳角度2.5~3.5";
-            this.lb_Cam1AngleAdd3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1AngleAdd2
-            // 
-            this.lb_Cam1AngleAdd2.AutoSize = true;
-            this.lb_Cam1AngleAdd2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1AngleAdd2.Location = new System.Drawing.Point(739, 368);
-            this.lb_Cam1AngleAdd2.Name = "lb_Cam1AngleAdd2";
-            this.lb_Cam1AngleAdd2.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1AngleAdd2.TabIndex = 202;
-            this.lb_Cam1AngleAdd2.Text = "钢片与壳角度1.5~2.5";
-            this.lb_Cam1AngleAdd2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1AngleAdd1
-            // 
-            this.lb_Cam1AngleAdd1.AutoSize = true;
-            this.lb_Cam1AngleAdd1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1AngleAdd1.Location = new System.Drawing.Point(739, 322);
-            this.lb_Cam1AngleAdd1.Name = "lb_Cam1AngleAdd1";
-            this.lb_Cam1AngleAdd1.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1AngleAdd1.TabIndex = 201;
-            this.lb_Cam1AngleAdd1.Text = "钢片与壳角度0.5~1.5";
-            this.lb_Cam1AngleAdd1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1AngleAdd1
-            // 
-            this.tb_Cam1AngleAdd1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1AngleAdd1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1AngleAdd1.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AngleAdd1.Location = new System.Drawing.Point(832, 327);
-            this.tb_Cam1AngleAdd1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1AngleAdd1.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1AngleAdd1.Name = "tb_Cam1AngleAdd1";
-            this.tb_Cam1AngleAdd1.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1AngleAdd1.TabIndex = 204;
-            // 
-            // tb_Cam1AngleAdd2
-            // 
-            this.tb_Cam1AngleAdd2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1AngleAdd2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1AngleAdd2.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AngleAdd2.Location = new System.Drawing.Point(832, 373);
-            this.tb_Cam1AngleAdd2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1AngleAdd2.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1AngleAdd2.Name = "tb_Cam1AngleAdd2";
-            this.tb_Cam1AngleAdd2.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1AngleAdd2.TabIndex = 205;
-            // 
-            // tb_Cam1AngleAdd3
-            // 
-            this.tb_Cam1AngleAdd3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1AngleAdd3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1AngleAdd3.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AngleAdd3.Location = new System.Drawing.Point(832, 419);
-            this.tb_Cam1AngleAdd3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1AngleAdd3.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1AngleAdd3.Name = "tb_Cam1AngleAdd3";
-            this.tb_Cam1AngleAdd3.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1AngleAdd3.TabIndex = 206;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(739, 184);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 16);
+            this.label8.TabIndex = 193;
+            this.label8.Text = "label8";
             // 
             // tabPage1
             // 
@@ -8795,17 +8658,7 @@ namespace VisionProgram.UI.UIVision
         private TextBox tb_Cam1NI1Y1;
         private TextBox tb_Cam1NI2X1;
         private TextBox tb_Cam1NI2Y1;
-        private TextBox tb_Cam1AngleAdd_1;
-        private Label lb_Cam1AngleAdd_1;
-        private TextBox tb_Cam1AngleAdd_2;
-        private Label lb_Cam1AngleAdd_2;
-        private TextBox tb_Cam1AngleAdd_3;
-        private Label lb_Cam1AngleAdd_3;
-        private Label lb_Cam1AngleAdd3;
-        private Label lb_Cam1AngleAdd2;
-        private Label lb_Cam1AngleAdd1;
-        private TextBox tb_Cam1AngleAdd1;
-        private TextBox tb_Cam1AngleAdd2;
-        private TextBox tb_Cam1AngleAdd3;
+        private TextBox textBox2;
+        private Label label8;
     }
 }

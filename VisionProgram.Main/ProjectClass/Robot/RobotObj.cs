@@ -85,7 +85,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
         public RobotObj(IPEndPoint localEndPoint) : base(localEndPoint)
         {
             _localEndPoint = localEndPoint;
-
+            
         }
         #endregion
 
@@ -110,14 +110,14 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 mWorkThread.Start();
                 //缓存各个相机的工作线程
                 _cameraWorkThreadList.Add(mWorkThread);
-            }
+            }  
 
         }
 
+       
+   
 
-
-
-
+         
         public double Cam2offsetX = 0.0;
         public double Cam2offsetY = 0.0;
         public double Cam2offsetR = 0.0;
@@ -277,14 +277,6 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 //旋转中心
                 double[] Rotation_X = new double[NozzleNum];
                 double[] Rotation_Y = new double[NozzleNum];
-                //钢片角度按范围补偿
-                double[] angleAdd_1 = new double[NozzleNum];
-                double[] angleAdd_2 = new double[NozzleNum];
-                double[] angleAdd_3 = new double[NozzleNum];
-                double[] angleAdd1 = new double[NozzleNum];
-                double[] angleAdd2 = new double[NozzleNum];
-                double[] angleAdd3 = new double[NozzleNum];
-
                 #endregion
 
                 #region 
@@ -322,13 +314,6 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     addX4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddX[i];
                     addY4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddY[i];
                     addT4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddT[i];
-                    //钢片角度补偿
-                    angleAdd_1[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_1[i];
-                    angleAdd_2[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_2[i];
-                    angleAdd_3[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd_3[i];
-                    angleAdd1[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd1[i];
-                    angleAdd2[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd2[i];
-                    angleAdd3[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AngleAdd3[i];
 
                     ////旋转中心
                     //Rotation_X[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam1Rotation_X[i];
@@ -699,71 +684,13 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     dT4[0] = 0;//stdT4[0] - Cam1posRLas2 + addT4[0];
                     double rc_angle4 = dT4[0] * (Math.PI / 180);          //相机角度偏移
 
-                    //当钢片角度落入某区间时给予Y固定补偿
-                    if (Cam1posRRob1 > -1.5 && Cam1posRRob1 <= -0.5)
-                    {
-                        dY1[0] = angleAdd_1[0];
-                    }
-                    else if (Cam1posRRob1 > -2.5 && Cam1posRRob1 <= -1.5)
-                    {
-                        dY1[0] = angleAdd_2[0];
-                    }
-                    else if (Cam1posRRob1 > -3.5 && Cam1posRRob1 <= -2.5)
-                    {
-                        dY1[0] = angleAdd_3[0];
-                    }
-                    else if (Cam1posRRob1 >= 0.5 && Cam1posRRob1 < 1.5)
-                    {
-                        dY1[0] = angleAdd1[0];
-                    }
-                    else if (Cam1posRRob1 >= 1.5 && Cam1posRRob1 < 2.5)
-                    {
-                        dY1[0] = angleAdd2[0];
-                    }
-                    else if (Cam1posRRob1 >= 2.5 && Cam1posRRob1 < 3.5)
-                    {
-                        dY1[0] = angleAdd3[0];
-                    }
-                    else
-                    {
-                        dY1[0] = 0.0;
-                        dY2[0] = 0.0;
-                    }
-                    if (Cam1posRRob2 > -1.5 && Cam1posRRob2 <= -0.5)
-                    {
-                        dY2[0] = angleAdd_1[0];
-                    }
-                    else if (Cam1posRRob2 > -2.5 && Cam1posRRob2 <= -1.5)
-                    {
-                        dY2[0] = angleAdd_2[0];
-                    }
-                    else if (Cam1posRRob2 > -3.5 && Cam1posRRob2 <= -2.5)
-                    {
-                        dY2[0] = angleAdd_3[0];
-                    }
-                    else if (Cam1posRRob2 >= 0.5 && Cam1posRRob2 < 1.5)
-                    {
-                        dY2[0] = angleAdd1[0];
-                    }
-                    else if (Cam1posRRob2 >= 1.5 && Cam1posRRob2 < 2.5)
-                    {
-                        dY2[0] = angleAdd2[0];
-                    }
-                    else if (Cam1posRRob2 >= 2.5 && Cam1posRRob2 < 3.5)
-                    {
-                        dY2[0] = angleAdd3[0];
-                    }
-                    else
-                    {
-                        dY2[0] = 0.0;
-                    }
                     dX1[0] = -(stdX1[0] - Cam1posXRob1) + addX1[0];
                     dX2[0] = -(stdX2[0] - Cam1posXRob2) + addX2[0];
                     dX3[0] = -(stdX3[0] - Cam1posXLas1) + addX3[0];
                     dX4[0] = -(stdX4[0] - Cam1posXLas2) + addX4[0];          //相机X偏移
 
-                    dY1[0] += -(stdY1[0] - Cam1posYRob1) + addY1[0];
-                    dY2[0] += -(stdY2[0] - Cam1posYRob2) + addY2[0];
+                    dY1[0] = -(stdY1[0] - Cam1posYRob1) + addY1[0];
+                    dY2[0] = -(stdY2[0] - Cam1posYRob2) + addY2[0];
                     dY3[0] = -(stdY3[0] - Cam1posYLas1) + addY3[0];
                     dY4[0] = -(stdY4[0] - Cam1posYLas2) + addY4[0];          //相机y偏移
 
@@ -1176,7 +1103,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
                     e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
                     //e.imageName = (e.Index +1).ToString() + "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();
-                    e.imageName = "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();
+                    e.imageName =  "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();                   
                     e.results = isOk;
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
                     #endregion
@@ -1331,7 +1258,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
                     e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
                     //e.imageName = (e.Index + 1).ToString() + "2" + "-" + _jiajuhao.ToString() +"-" + _code2.ToString();
-                    e.imageName = "2" + "-" + _jiajuhao.ToString() + "-" + _code2.ToString();
+                    e.imageName =  "2" + "-" + _jiajuhao.ToString() + "-" + _code2.ToString();                    
                     e.results = isOk;
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
 
@@ -1415,11 +1342,11 @@ namespace VisionProgram.Main.ProjectClass.Robot
             {
                 dicConnectIP.Add((soc.RemoteEndPoint as IPEndPoint).Address.ToString());
             }
-
+            
             if ((soc.RemoteEndPoint as IPEndPoint).Address.ToString() == dicConnectIP[0])
             {
                 IsConnectedRobot[0] = true;
-
+              
             }
         }
         /// <summary>
@@ -1493,11 +1420,12 @@ namespace VisionProgram.Main.ProjectClass.Robot
         {
             if (RobotSignals.CCDProcess == 0)//0-自动运行
             {
-
+               
                 string receive_string = this.ReceivedText;
+                if((this._localEndPoint.Port).ToString() == Project.Instance().RobotManagerInstance.L_Robot[2]._localEndPoint.Port.ToString())
                 {
                     Project.Instance().RobotManagerInstance.m_strLaserReceive = receive_string;
-                    if (receive_string.Split(',').Length > 2)
+                    if (receive_string.Split(',').Length>2)
                     {
                         Project.Instance().RobotManagerInstance.m_strLaserReceiveTragger = receive_string.Split(',')[0];
                         Project.Instance().RobotManagerInstance.m_strLaserReceiveX = receive_string.Split(',')[1];
@@ -1527,8 +1455,8 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     {
                         LogHelper.Info("收到激光Get");
 
-
-                        Project.Instance().RobotManagerInstance.L_Robot[3].SendText(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3") + ";", 0);
+                        
+                        Project.Instance().RobotManagerInstance.L_Robot[3].SendText(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3") +";", 0);
                         //string WeldLgth = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3");
                         NoticeHelper.OutputMessageSend("给到激光整体长度" + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3"), OutputLevelModel.INFO);
                         LogHelper.Info("给激光整体长度：" + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3"));
