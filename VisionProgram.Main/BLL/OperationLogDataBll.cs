@@ -41,6 +41,7 @@ namespace VisionProgram.Main.BLL
         public void InitThread()
         {
             _workThread = new Thread(WorkThread);
+            _workThread.SetApartmentState(ApartmentState.STA);//2025 04 07
             _workThread.Start();
         }
 

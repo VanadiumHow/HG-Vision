@@ -68,6 +68,7 @@ namespace VisionProgram.Common
         public void InitThread()
         {
             _flashLogThread = new Thread(PersistentLog);
+            _flashLogThread.SetApartmentState(ApartmentState.STA);//2025  04  07
             _flashLogThread.Start();
         }
         #endregion

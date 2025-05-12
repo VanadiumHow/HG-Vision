@@ -1246,7 +1246,7 @@ namespace VisionProgram.UI.UIVision
                 //VP或者Halcon存图
                 triggerEventArgs.resultImage = GlobalCameraParams.cameraVisionControlList[_workFlowIndex];
                 triggerEventArgs.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
-                triggerEventArgs.imageName = (_workFlowIndex + 1).ToString();
+                triggerEventArgs.imageName = "1";
                 triggerEventArgs.results = isOk;
                 triggerEventArgs.Index = _workFlowIndex;
                 Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[_workFlowIndex].Enqueue(triggerEventArgs);
@@ -1424,7 +1424,7 @@ namespace VisionProgram.UI.UIVision
         private void 查看图片ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[_workFlowIndex].ResultImagePosition + @"\" + DateTime.Now.ToString("yyyy-MM-dd") + @"\" + "CCD";
+            string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[_workFlowIndex].ResultImagePosition ;
             if (Directory.Exists(path))
             {
                 Process.Start(path);
@@ -2234,11 +2234,10 @@ namespace VisionProgram.UI.UIVision
                 //VP或者Halcon存图
                 triggerEventArgs.resultImage = GlobalCameraParams.cameraVisionControlList[_workFlowIndex];
                 triggerEventArgs.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
-                triggerEventArgs.imageName = (_workFlowIndex + 1).ToString();
+                triggerEventArgs.imageName = "2";
                 triggerEventArgs.results = isOk;
                 triggerEventArgs.Index = _workFlowIndex;
                 Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[_workFlowIndex].Enqueue(triggerEventArgs);
-
             }
             catch (Exception ex)
             {

@@ -107,6 +107,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 _taskQueueList.Add(new BlockQueue<TriggerEventArgs>(20));
                 //实例化工作线程，并启动
                 mWorkThread = new Thread(_threadStartArray[index]);
+                mWorkThread.SetApartmentState(ApartmentState.STA);//2025 04 07
                 mWorkThread.Start();
                 //缓存各个相机的工作线程
                 _cameraWorkThreadList.Add(mWorkThread);
