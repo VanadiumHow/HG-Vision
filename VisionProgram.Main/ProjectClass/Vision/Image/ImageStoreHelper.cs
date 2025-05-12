@@ -99,36 +99,69 @@ namespace VisionProgram.Common
                 try
                 {
 
-                    string path= Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePosition + @"\" + ymd + @"\" + "CCD"  + (isOk ? "\\OK" : "\\NG") ;
+                    string path= Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePosition + @"\" + ymd + @"\" + "工位1" + (isOk ? "\\OK" : "\\NG") ;
                     //string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePosition + @"\" + ymd + @"\" + "CCD" + imageName[0] + (isOk ? "\\OK" : "\\NG");
+                    string path1 = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePosition + @"\" + ymd + @"\" + "工位2" + (isOk ? "\\OK" : "\\NG");
                     if (!Directory.Exists(path))
                     {
                         Directory.CreateDirectory(path);
                     }
-                    string str =path + @"\" + imageName + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePattern;//YBH
-                    //string str = path + @"\" + hms + "_" + imageName + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePattern;
-                    System.Drawing.Image ig = _cd.Display.CreateContentBitmap(Cognex.VisionPro.Display.CogDisplayContentBitmapConstants.Custom, null, 0);
-                    string format = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePattern;
-                    switch (format)
+                    if (!Directory.Exists(path1))
                     {
-                        case ".bmp":
-                            ig.Save(str, ImageFormat.Bmp);
-                            break;
-                        case ".jpg":
-                            ig.Save(str, ImageFormat.Jpeg);
-                            break;
-                        case ".png":
-                            ig.Save(str, ImageFormat.Png);
-                            break;
-                        case ".tif":
-                            ig.Save(str, ImageFormat.Tiff);
-                            break;
-                        default:
-                            ig.Save(str, ImageFormat.Jpeg);
-                            break;
+                        Directory.CreateDirectory(path1);
                     }
+                    string str = path + @"\" + imageName + "-" + hms + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePattern;//YBH
+                    string str1 = path1 + @"\" + imageName + "-" + hms + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePattern;
+                    //string str = path + @"\" + hms + "_" + imageName + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePattern;
+                    
+                    System.Drawing.Image ig = _cd.Display.CreateContentBitmap(Cognex.VisionPro.Display.CogDisplayContentBitmapConstants.Custom, null, 0);
+                    string L = "1";
+                   
+                    string format = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePattern;
+                    if (imageName.Substring(0, 1) == L)
+                    {
 
-                }
+                        switch (format)
+                        {
+                            case ".bmp":
+                                ig.Save(str, ImageFormat.Bmp);
+                                break;
+                            case ".jpg":
+                                ig.Save(str, ImageFormat.Jpeg);
+                                break;
+                            case ".png":
+                                ig.Save(str, ImageFormat.Png);
+                                break;
+                            case ".tif":
+                                ig.Save(str, ImageFormat.Tiff);
+                                break;
+                            default:
+                                ig.Save(str, ImageFormat.Jpeg);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (format)
+                        {
+                            case ".bmp":
+                                ig.Save(str1, ImageFormat.Bmp);
+                                break;
+                            case ".jpg":
+                                ig.Save(str1, ImageFormat.Jpeg);
+                                break;
+                            case ".png":
+                                ig.Save(str1, ImageFormat.Png);
+                                break;
+                            case ".tif":
+                                ig.Save(str1, ImageFormat.Tiff);
+                                break;
+                            default:
+                                ig.Save(str1, ImageFormat.Jpeg);
+                                break;
+                        }
+                    }
+                    }
                 catch (Exception ex)
                 {
                     LogHelper.Error("存相机VP结果图出现异常", ex);
@@ -197,23 +230,42 @@ namespace VisionProgram.Common
             string ymd1 = ymd;
             string hms1 = hms;
             int index1 = index;
+            
+            
             System.Threading.ThreadPool.QueueUserWorkItem((d) =>
             {
                 try
                 {
-                    string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePosition + @"\" + ymd1 + @"\" + "CCD"+  (isOk ? "\\OK" : "\\NG");
+                    string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePosition + @"\" + ymd1 + @"\" +  "工位1"+(isOk ? "\\OK" : "\\NG");
+                    string path1 = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePosition + @"\" + ymd1 + @"\" +  "工位2" + (isOk ? "\\OK" : "\\NG");
                     //string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePosition + @"\" + ymd1 + @"\" + "CCD" + imageName1[0] + (isOk ? "\\OK" : "\\NG");
                     if (!Directory.Exists(path))//2021_07_26\CCD1
                     {
                         Directory.CreateDirectory(path);
                     }
+                    if (!Directory.Exists(path1))//ybh
+                    {                        
+                        Directory.CreateDirectory(path1);
+                    }
                     Cognex.VisionPro.ImageFile.CogImageFileTool a = new Cognex.VisionPro.ImageFile.CogImageFileTool();
                     a.InputImage = img1;
-                    //string str = path + @"\" + hms + "_" + imageName1 + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePattern;//12_34_45_1-1_OK_.BMP
-                    string str = path + @"\" + imageName1 + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePattern;//YBH
-                    a.Operator.Open(str, Cognex.VisionPro.ImageFile.CogImageFileModeConstants.Write);
-                    a.Run();
-                    a.Dispose();
+                    string L= "1";
+                if (imageName1.Substring(0,1) == L)
+                    {
+                        //string str = path + @"\" + hms + "_" + imageName1 + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePattern;//12_34_45_1-1_OK_.BMP
+                        string str = path + @"\" + imageName1 + "-" + hms + "-" + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePattern;//YBH
+                        a.Operator.Open(str, Cognex.VisionPro.ImageFile.CogImageFileModeConstants.Write);
+                        a.Run();
+                        a.Dispose();
+                    }
+                    else
+                    {
+                        string str1 = path1 + @"\" + imageName1 + "-" + hms  + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePattern;
+
+                        a.Operator.Open(str1, Cognex.VisionPro.ImageFile.CogImageFileModeConstants.Write);
+                        a.Run();
+                        a.Dispose();
+                    }
                 }
                 catch (Exception ex)
                 {
