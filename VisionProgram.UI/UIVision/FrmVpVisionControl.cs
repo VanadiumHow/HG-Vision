@@ -845,10 +845,12 @@ namespace VisionProgram.UI.UIVision
                 double _spacing = 0.0;
                 if (Project.Instance().PLCManagerInstance._isPLCConnect)
                 {
-                    _code1 = Project.Instance().PLCManagerInstance.ReadString("D102", 10);
-                    _code2 = Project.Instance().PLCManagerInstance.ReadString("D101", 10);
-                    _jiajuhao = Project.Instance().PLCManagerInstance.ReadInt16("D100");
-                    _spacing = Project.Instance().PLCManagerInstance.ReadFloat("D141");
+                    byte[] _plcdataD100 = new byte[90];
+                    _plcdataD100 = Project.Instance().PLCManagerInstance.Read("D100", 45);
+                    _code1 = Encoding.ASCII.GetString(Remove_zero(ReverseBytes(_plcdataD100, 2, 40))).Replace(":", "-");
+                    _code2 = Encoding.ASCII.GetString(Remove_zero(ReverseBytes(_plcdataD100, 42, 40))).Replace(":", "-");
+                    _jiajuhao = BitConverter.ToInt16(ReverseBytes(_plcdataD100, 0, 2), 0);
+                    _spacing = BitConverter.ToSingle(ReverseBytes(_plcdataD100, 82, 4), 0);
                 }
 
                 if (bAccept)
@@ -1833,10 +1835,12 @@ namespace VisionProgram.UI.UIVision
                 double _spacing = 0.0;
                 if (Project.Instance().PLCManagerInstance._isPLCConnect)
                 {
-                    _code1 = Project.Instance().PLCManagerInstance.ReadString("D102", 10);
-                    _code2 = Project.Instance().PLCManagerInstance.ReadString("D101", 10);
-                    _jiajuhao = Project.Instance().PLCManagerInstance.ReadInt16("D100");
-                    _spacing = Project.Instance().PLCManagerInstance.ReadFloat("D141");
+                    byte[] _plcdataD100 = new byte[90];
+                    _plcdataD100 = Project.Instance().PLCManagerInstance.Read("D100", 45);
+                    _code1 = Encoding.ASCII.GetString(Remove_zero(ReverseBytes(_plcdataD100, 2, 40))).Replace(":", "-");
+                    _code2 = Encoding.ASCII.GetString(Remove_zero(ReverseBytes(_plcdataD100, 42, 40))).Replace(":", "-");
+                    _jiajuhao = BitConverter.ToInt16(ReverseBytes(_plcdataD100, 0, 2), 0);
+                    _spacing = BitConverter.ToSingle(ReverseBytes(_plcdataD100, 86, 4), 0);
                 }
 
                 if (bAccept)
@@ -2275,6 +2279,54 @@ namespace VisionProgram.UI.UIVision
             }
 
             GrabImage1();
+        }
+        private byte[] ReverseBytes(byte[] input, int index, int count)
+        {
+            // 参数校验
+            if (input == null)
+                throw new ArgumentNullException(nameof(input));
+            if (index < 0)
+            {
+                LogHelper.Error("index必须是非负的");
+                return input;
+            }
+            if (count < 0 || count % 2 != 0)
+            {
+                LogHelper.Error("index+count超出数组边界");
+                return input;
+            }
+
+            if (index + count > input.Length)
+            {
+                LogHelper.Error("index+count超出数组边界");
+                return input;
+            }
+            // 创建输出数组并复制数据
+            byte[] output = new byte[count];
+            Array.Copy(input, index, output, 0, count);
+
+            // 两两交换字节
+            for (int i = 0; i < count; i += 2)
+            {
+                // 交换相邻字节
+                byte temp = output[i];
+                output[i] = output[i + 1];
+                output[i + 1] = temp;
+            }
+            return output;
+        }
+        private byte[] Remove_zero(byte[] input)
+        {
+            List<byte> temp = new List<byte>();
+            foreach (var element in input)
+            {
+                if (element != 0)
+                {
+                    temp.Add(element);
+                }
+            }
+            byte[] output = temp.ToArray();
+            return output;
         }
     }
 
