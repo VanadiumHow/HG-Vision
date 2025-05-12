@@ -35,7 +35,6 @@ namespace VisionProgram.UI.UIVision
             this.uiTabControlAll = new System.Windows.Forms.TabControl();
             this.uiTabPage1 = new System.Windows.Forms.TabPage();
             this.uiTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tb_Cam1StdT1 = new System.Windows.Forms.TextBox();
             this.lb_Cam1StdT1 = new System.Windows.Forms.Label();
             this.tb_Cam1StdY1 = new System.Windows.Forms.TextBox();
@@ -154,7 +153,6 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1NI1Y1 = new System.Windows.Forms.TextBox();
             this.tb_Cam1NI2X1 = new System.Windows.Forms.TextBox();
             this.tb_Cam1NI2Y1 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lb_Cam1AddR2J1Y = new System.Windows.Forms.Label();
@@ -693,7 +691,6 @@ namespace VisionProgram.UI.UIVision
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.140408F));
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.uiTableLayoutPanel1.Controls.Add(this.textBox2, 9, 4);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1StdT1, 1, 2);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1StdT1, 0, 2);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1StdY1, 1, 1);
@@ -812,7 +809,6 @@ namespace VisionProgram.UI.UIVision
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1NI1Y1, 3, 10);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1NI2X1, 5, 9);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1NI2Y1, 5, 10);
-            this.uiTableLayoutPanel1.Controls.Add(this.label8, 8, 4);
             this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTableLayoutPanel1.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -832,18 +828,6 @@ namespace VisionProgram.UI.UIVision
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333332F));
             this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1300, 552);
             this.uiTableLayoutPanel1.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox2.Location = new System.Drawing.Point(832, 189);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox2.MinimumSize = new System.Drawing.Size(4, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(84, 21);
-            this.textBox2.TabIndex = 196;
             // 
             // tb_Cam1StdT1
             // 
@@ -2245,15 +2229,6 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1NI2Y1.Name = "tb_Cam1NI2Y1";
             this.tb_Cam1NI2Y1.Size = new System.Drawing.Size(84, 21);
             this.tb_Cam1NI2Y1.TabIndex = 190;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(739, 184);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 16);
-            this.label8.TabIndex = 193;
-            this.label8.Text = "label8";
             // 
             // tabPage1
             // 
@@ -8658,7 +8633,5 @@ namespace VisionProgram.UI.UIVision
         private TextBox tb_Cam1NI1Y1;
         private TextBox tb_Cam1NI2X1;
         private TextBox tb_Cam1NI2Y1;
-        private TextBox textBox2;
-        private Label label8;
     }
 }
