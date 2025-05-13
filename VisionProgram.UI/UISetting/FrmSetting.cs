@@ -186,11 +186,7 @@ namespace VisionProgram.UI.UISetting
 
         #endregion
 
-        private void ButtonCameraParamsSetting_Click(object sender, EventArgs e)
-        {
-            LoadForm(ButtonCameraParamsSetting, FrmCameraParamsSettings.Instance);
 
-        }
 
         private void ButtonMin_Click(object sender, EventArgs e)
         {
@@ -226,18 +222,24 @@ namespace VisionProgram.UI.UISetting
                 this.Location = new Point(this.Location.X + e.X - mPoint.X, this.Location.Y + e.Y - mPoint.Y);
             }
         }
-
         /// <summary>
-        /// 切换到产品信息设置界面
+        /// 切换到相机参数界面
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonProductChangeSet_Click_1(object sender, EventArgs e)
+        private void ButtonCameraParamsSetting_Click(object sender, EventArgs e)
+        {
+            LoadForm(ButtonCameraParamsSetting, FrmCameraParamsSettings.Instance);
+        }
+        /// <summary>
+        /// 切换到产品换型界面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonProductChangeSet_Click(object sender, EventArgs e)
         {
             LoadForm(ButtonProductChangeSet, FrmProductChangeSettings.Instance);
         }
-
-
         ///// <summary>
         ///// 切换到常规设置界面
         ///// </summary>

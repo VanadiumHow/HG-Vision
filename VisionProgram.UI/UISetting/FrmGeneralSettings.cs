@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VisionProgram.Models.VModels;
 using VisionProgram.Main.ProjectClass;
+using VisionProgram.Main.ProjectClass.GlobalConfig;
 using VisionProgram.Common;
-
 /****************************************************************
 
 *****************************************************************/
@@ -49,7 +49,8 @@ namespace VisionProgram.UI.UISetting
 
         public void InitializeLoad()
         {
-           TextBoxEXLogSaveDays.Text = Project.Instance().GlobalManagerInstance.GlobalParamModel.logSaveDays.ToString();
+            TextBoxEXLogSaveDays.Text = Project.Instance().GlobalManagerInstance.GlobalParamModel.logSaveDays.ToString();
+            cb_AutoStart.Checked = AutoStartHelper.CheckShortCut();
         }
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
@@ -65,7 +66,15 @@ namespace VisionProgram.UI.UISetting
                         oldGeneralParamObjects.Add(new OperationLogParamModel.OldParam() { Text = "日志保存天数", Field = "LogSaveDays", OldValue = Project.Instance().GlobalManagerInstance.GlobalParamModel.logSaveDays + "", NewValue = TextBoxEXLogSaveDays.Text });
                         Project.Instance().GlobalManagerInstance.GlobalParamModel.logSaveDays = Convert.ToInt16(TextBoxEXLogSaveDays.Text);
                         Project.Instance().GlobalManagerInstance.SaveOneParams("Config", "LogSaveDays", Project.Instance().GlobalManagerInstance.GlobalParamModel.logSaveDays.ToString());
-                    }                
+                    }
+                    if(AutoStartHelper.CheckShortCut() != cb_AutoStart.Checked)
+                    {
+                        oldGeneralParamObjects.Add(new OperationLogParamModel.OldParam() { Text = "开机自启动", Field = "AutoStart", OldValue = AutoStartHelper.CheckShortCut().ToString(), NewValue = cb_AutoStart.Checked.ToString() });
+                        if (cb_AutoStart.Checked)
+                            AutoStartHelper.CreateShortcut();
+                        else
+                            AutoStartHelper.DeleteShortcut();
+                    }
 
                     if (oldGeneralParamObjects.Count > 0)
                     {

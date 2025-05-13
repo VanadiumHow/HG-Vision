@@ -57,7 +57,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -325,6 +325,7 @@
     <Compile Include="DAL\CCDDataDal.cs" />
     <Compile Include="ProjectClass\DataCheck\DataCheckConfiguration.cs" />
     <Compile Include="ProjectClass\DataCheck\DataCheckManager.cs" />
+    <Compile Include="ProjectClass\GlobalConfig\AutoStartHelper.cs" />
     <Compile Include="ProjectClass\PLC\HSLPLCOmron.cs" />
     <Compile Include="ProjectClass\PLC\PLCVar.cs" />
     <Compile Include="ProjectClass\Robot\CClientSocket.cs" />
@@ -583,6 +584,15 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="MSDATASRC">
       <Guid>{7C0FFAB0-CD84-11D0-949A-00A0C91110ED}</Guid>
       <VersionMajor>1</VersionMajor>

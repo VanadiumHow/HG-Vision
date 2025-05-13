@@ -89,15 +89,20 @@ namespace VisionProgram.Models.VModels
         /// </summary>
         public string programTitle = "焊接程序";
 
+        #region 常规设置
         /// <summary>
         /// 日志存储天数
         /// </summary>
         public int logSaveDays = 7;
 
+        #endregion
+
+        #region 数据库
         /// <summary>
         /// 是否按数据库的方式保存操作日志
         /// </summary>
         public bool saveOperationLogsByDB = false;
+        #endregion
 
         #region 产品选择参数
         /// <summary>
