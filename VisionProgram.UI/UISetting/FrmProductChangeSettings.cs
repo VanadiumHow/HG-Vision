@@ -39,7 +39,7 @@ namespace VisionProgram.UI.UISetting
         {
             get
             {
-                if (_instance == null)
+                if (_instance == null || _instance.IsDisposed)
                     _instance = new FrmProductChangeSettings();
                 return _instance;
             }
