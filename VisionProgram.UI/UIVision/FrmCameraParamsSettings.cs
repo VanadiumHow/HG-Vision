@@ -2667,7 +2667,6 @@ namespace VisionProgram.UI.UIVision
         {
             try
             {
-                
                 TextBox uiTb = (TextBox)sender;
                 LogHelper.Info(uiTb.Text + "参数填入成功");
                 uiTb.Text = uiTb.Text.Trim();
@@ -2675,9 +2674,19 @@ namespace VisionProgram.UI.UIVision
                 if (string.IsNullOrEmpty(uiTb.Text))
                 {
                     System.Windows.MessageBox.Show($"{l.Text }文本框内不能为空！");
-
-                    //e.Cancel = true;
                     return;
+                }
+                if(uiTb.Name == "tb_Cam1RobStep" || uiTb.Name == "tb_Cam1LaserStep")
+                {
+                    if (Convert.ToDouble(uiTb.Text) > 3)
+                    {
+                        DialogResult res = System.Windows.Forms.MessageBox.Show($"{l.Text}数值不宜设置过大，目前为{uiTb.Text}，是否使用？", "数值检查", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                        if (res != DialogResult.OK)
+                        {
+                            uiTb.Text = null;
+                            return;
+                        }
+                    }
                 }
                 // if (!Regex.IsMatch(uiTb.Text, @"^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$"))   //正浮点数匹配
                 //if (!Regex.IsMatch(uiTb.Text, @"^(-?\d+)(\.\d+)?$"))  //浮点数匹配

@@ -1728,7 +1728,7 @@ namespace VisionProgram.UI.UIVision
             this.lb_Cam1LaserStep.Name = "lb_Cam1LaserStep";
             this.lb_Cam1LaserStep.Size = new System.Drawing.Size(86, 46);
             this.lb_Cam1LaserStep.TabIndex = 157;
-            this.lb_Cam1LaserStep.Text = "激光九点间距";
+            this.lb_Cam1LaserStep.Text = "激光标定偏移";
             this.lb_Cam1LaserStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tb_Cam1LaserStep
@@ -1764,7 +1764,7 @@ namespace VisionProgram.UI.UIVision
             this.lb_Cam1RobStep.Name = "lb_Cam1RobStep";
             this.lb_Cam1RobStep.Size = new System.Drawing.Size(86, 46);
             this.lb_Cam1RobStep.TabIndex = 160;
-            this.lb_Cam1RobStep.Text = "机械手九点间距";
+            this.lb_Cam1RobStep.Text = "机械手标定偏移";
             this.lb_Cam1RobStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb_Cam1P4byP3Y

@@ -131,7 +131,6 @@ namespace VisionProgram.UI
             Project.Instance().RobotManagerInstance.L_Robot[1].OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal2);
             Project.Instance().RobotManagerInstance.L_Robot[2].OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
             //九点标定结果刷新
-            Linear_RMS = _linear_calib_tool.Calibration.ComputedRMSError;
             //Rotation标定结果刷新
             //Rotation标定结果刷新
             if (vppindex == 0)
@@ -300,8 +299,27 @@ namespace VisionProgram.UI
                     tb_X_Linear.Text = module_X;
                     tb_Y_Linear.Text = module_Y;
                 }
-                //更新标定误差
-                tb_RMS_Linear.Text = Linear_RMS.ToString("f3");
+                //更新标定误差与标定偏移量
+                if (rdo_Robot_Con_L.Checked)
+                {
+                    tb_RMS_Linear.Text = _linear_calib_tool.Calibration.ComputedRMSError.ToString("f3");
+                    tb_Step.Text = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobStep[0].ToString("f3");
+                }
+                else if (rdo_Robot1_Con_L.Checked) 
+                {
+                    tb_RMS_Linear.Text = _linear_calib_tool1.Calibration.ComputedRMSError.ToString("f3");
+                    tb_Step.Text = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobStep[0].ToString("f3");
+                }
+                else if (rdo_Laser_Con_L.Checked)
+                {
+                    tb_RMS_Linear.Text = _linear_calib_tool2.Calibration.ComputedRMSError.ToString("f1");
+                    tb_Step.Text = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.LaserStep[0].ToString("f3");
+                }
+                else if (rdo_Laser1_Con_L.Checked)
+                {
+                    tb_RMS_Linear.Text = _linear_calib_tool3.Calibration.ComputedRMSError.ToString("f1");
+                    tb_Step.Text = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.LaserStep[0].ToString("f3");
+                }
             };
             sync_context.Post(callback1, null);
             if (timer1 != null)
@@ -347,47 +365,47 @@ namespace VisionProgram.UI
                         rdo_ROBOT_Con_R.BackColor = Color.LimeGreen;
                     }
                 }
-                if (rdo_RobotR_Con_R.Checked)
+                if (rdo_Robot1_Con_L.Checked)
                 {
                     //当前相机对应机器人是否连接成功
                     if (!Project.Instance().RobotManagerInstance.L_Robot[1].IsConnected)
                     {
                         ROBOT1_Statue = false;
-                        rdo_RobotR_Con_R.BackColor = Color.Red;
+                        rdo_Robot1_Con_L.BackColor = Color.Red;
                     }
                     else
                     {
                         ROBOT1_Statue = true;
-                        rdo_RobotR_Con_R.BackColor = Color.LimeGreen;
+                        rdo_Robot1_Con_L.BackColor = Color.LimeGreen;
                     }
                 }
-                if (rdo_LaserL_Con_L.Checked)
+                if (rdo_Laser_Con_L.Checked)
                 {
                     //当前相机对应机器人是否连接成功
                     if (!Project.Instance().RobotManagerInstance.L_Robot[2].IsConnected)
                     {
                         LASER_Statue = false;
-                        rdo_LaserL_Con_L.BackColor = Color.Red;
+                        rdo_Laser_Con_L.BackColor = Color.Red;
                     }
                     else
                     {
                         LASER_Statue = true;
-                        rdo_LaserL_Con_L.BackColor = Color.LimeGreen;
+                        rdo_Laser_Con_L.BackColor = Color.LimeGreen;
                     }
                 }
 
-                if (rdo_LaserR_Con_L.Checked)
+                if (rdo_Laser1_Con_L.Checked)
                 {
                     //当前相机对应机器人是否连接成功
                     if (!Project.Instance().RobotManagerInstance.L_Robot[2].IsConnected)
                     {
                         LASER_Statue = false;
-                        rdo_LaserR_Con_L.BackColor = Color.Red;
+                        rdo_Laser1_Con_L.BackColor = Color.Red;
                     }
                     else
                     {
                         LASER_Statue = true;
-                        rdo_LaserR_Con_L.BackColor = Color.LimeGreen;
+                        rdo_Laser1_Con_L.BackColor = Color.LimeGreen;
                     }
                 }
                 //更新旋转中心坐标
@@ -597,9 +615,9 @@ namespace VisionProgram.UI
         private void rdo_ROBOT_Con_L_Click(object sender, EventArgs e)
         {
             RefleshLinearTextMsgBox("连接模式：ROBOT1");
-            this.rdo_RobotR_Con_R.BackColor = Color.Transparent;
-            this.rdo_LaserL_Con_L.BackColor = Color.Transparent;
-            this.rdo_LaserR_Con_L.BackColor = Color.Transparent;
+            this.rdo_Robot1_Con_L.BackColor = Color.Transparent;
+            this.rdo_Laser_Con_L.BackColor = Color.Transparent;
+            this.rdo_Laser1_Con_L.BackColor = Color.Transparent;
             RefleshLinearDataGridView();
         }
         ///// <summary>
@@ -741,7 +759,7 @@ namespace VisionProgram.UI
                         module_X1 = str[2];
                         module_Y1 = str[3];
                     }
-                    double Step = 2;
+                    double Step = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobStep[0];
                     _inAuto = true;
                     //解析receive_string，假设如果是位置就以首字母！发送并以；来间隔xy，否则则为其他信号,接受字符无结束符
                     if (nCountNum == 4 && str[0] == "CBS")
@@ -1055,7 +1073,7 @@ namespace VisionProgram.UI
                         module_X1 = str[2];
                         module_Y1 = str[3];
                     }
-                    double Step = 2;
+                    double Step = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobStep[0];
                     _inAuto = true;
                     //解析receive_string，假设如果是位置就以首字母！发送并以；来间隔xy，否则则为其他信号,接受字符无结束符
                     if (nCountNum == 4 && str[0] == "CBS")
@@ -1703,15 +1721,15 @@ namespace VisionProgram.UI
             {
                 Clear_Linear();
             }
-            else if(rdo_RobotR_Con_R.Checked)
+            else if(rdo_Robot1_Con_L.Checked)
             {
                 Clear_Linear1();
             }
-            else if (rdo_LaserL_Con_L.Checked)
+            else if (rdo_Laser_Con_L.Checked)
             {
                 Clear_Linear2();
             }
-            else if (rdo_LaserR_Con_L.Checked)
+            else if (rdo_Laser1_Con_L.Checked)
             {
                 Clear_Linear3();
             }
@@ -1789,11 +1807,11 @@ namespace VisionProgram.UI
             {
                 _Linear_State = runLinear();
             }
-            else if (rdo_RobotR_Con_R.Checked)
+            else if (rdo_Robot1_Con_L.Checked)
             {
                 _Linear_State = runLinear();
             }
-            else if (rdo_LaserL_Con_L.Checked)
+            else if (rdo_Laser_Con_L.Checked)
             {
                 //_laserIndex = _laserIndex % 9;
                 //if (_laserIndex==0)
@@ -1803,7 +1821,7 @@ namespace VisionProgram.UI
                 // _Linear_State = laserRunLinearL(_laserIndex);
 
             }
-            else if (rdo_LaserR_Con_L.Checked)
+            else if (rdo_Laser1_Con_L.Checked)
             {
                 //_laserIndex = _laserIndex % 9;
                 //if (_laserIndex == 0)
@@ -2042,11 +2060,11 @@ namespace VisionProgram.UI
             {
                 addMark_Linear();
             }
-            else if (rdo_RobotR_Con_R.Checked)
+            else if (rdo_Robot1_Con_L.Checked)
             {
                 addMark_Linear1();
             }
-            else if (rdo_LaserL_Con_L.Checked)
+            else if (rdo_Laser_Con_L.Checked)
             {
                 for (int i = 0; i < 9; i++)
                 {
@@ -2066,7 +2084,7 @@ namespace VisionProgram.UI
                     Thread.Sleep(1000);
                 }
             }
-            else if (rdo_LaserR_Con_L.Checked)
+            else if (rdo_Laser1_Con_L.Checked)
             {
                 for (int i = 0; i < 9; i++)
                 {
@@ -2191,15 +2209,15 @@ namespace VisionProgram.UI
             {
                 linear();
             }
-            else if (rdo_RobotR_Con_R.Checked)
+            else if (rdo_Robot1_Con_L.Checked)
             {
                 linear1();
             }
-            else if (rdo_LaserL_Con_L.Checked)
+            else if (rdo_Laser_Con_L.Checked)
             {
                 linear2();
             }
-            else if (rdo_LaserR_Con_L.Checked)
+            else if (rdo_Laser1_Con_L.Checked)
             {
                 linear3();
             }
@@ -2354,7 +2372,7 @@ namespace VisionProgram.UI
                         return;
                     }
                 }
-                else if (rdo_RobotR_Con_R.Checked)
+                else if (rdo_Robot1_Con_L.Checked)
                 {
                     bool bIsConnected = Project.Instance().RobotManagerInstance.L_Robot[1].IsConnected;
                     if (!bIsConnected)
@@ -2380,7 +2398,7 @@ namespace VisionProgram.UI
                     }
 
                 }
-                else if (rdo_LaserL_Con_L.Checked)
+                else if (rdo_Laser_Con_L.Checked)
                 {
                     bool bIsConnected = Project.Instance().RobotManagerInstance.L_Robot[2].IsConnected;
                     if (!bIsConnected)
@@ -2394,7 +2412,7 @@ namespace VisionProgram.UI
                         return;
                     }
                 }
-                else if (rdo_LaserR_Con_L.Checked)
+                else if (rdo_Laser1_Con_L.Checked)
                 {
                     bool bIsConnected = Project.Instance().RobotManagerInstance.L_Robot[2].IsConnected;
                     if (!bIsConnected)
@@ -2472,7 +2490,7 @@ namespace VisionProgram.UI
                         Thread.CurrentThread.Abort();
                     }
                 }
-                else if (rdo_RobotR_Con_R.Checked)
+                else if (rdo_Robot1_Con_L.Checked)
                 {
                     if (!this.dataGridViewLinear.IsDisposed)
                     {
@@ -2512,7 +2530,7 @@ namespace VisionProgram.UI
                         Thread.CurrentThread.Abort();
                     }
                 }
-                else if (rdo_LaserL_Con_L.Checked)
+                else if (rdo_Laser_Con_L.Checked)
                 {
                     if (!this.dataGridViewLinear.IsDisposed)
                     {
@@ -2552,7 +2570,7 @@ namespace VisionProgram.UI
                         Thread.CurrentThread.Abort();
                     }
                 }
-                else if (rdo_LaserR_Con_L.Checked)
+                else if (rdo_Laser1_Con_L.Checked)
                 {
                     if (!this.dataGridViewLinear.IsDisposed)
                     {
@@ -3626,8 +3644,8 @@ namespace VisionProgram.UI
         private void rdo_RobotR_Con_R_Click(object sender, EventArgs e)
         {
             RefleshLinearTextMsgBox("连接模式：ROBOT2");
-            this.rdo_LaserL_Con_L.BackColor = Color.Transparent;
-            this.rdo_LaserR_Con_L.BackColor = Color.Transparent;
+            this.rdo_Laser_Con_L.BackColor = Color.Transparent;
+            this.rdo_Laser1_Con_L.BackColor = Color.Transparent;
             this.rdo_Robot_Con_L.BackColor = Color.Transparent;
             RefleshLinearDataGridView();
         }
@@ -3635,8 +3653,8 @@ namespace VisionProgram.UI
         private void rdo_LaserL_Con_L_Click(object sender, EventArgs e)
         {
             RefleshLinearTextMsgBox("连接模式：LASER振镜角度1");
-            this.rdo_RobotR_Con_R.BackColor = Color.Transparent;
-            this.rdo_LaserR_Con_L.BackColor = Color.Transparent;
+            this.rdo_Robot1_Con_L.BackColor = Color.Transparent;
+            this.rdo_Laser1_Con_L.BackColor = Color.Transparent;
             this.rdo_Robot_Con_L.BackColor = Color.Transparent;
             RefleshLinearDataGridView();
         }
@@ -3651,8 +3669,8 @@ namespace VisionProgram.UI
         private void rdo_LaserR_Con_L_Click(object sender, EventArgs e)
         {
             RefleshLinearTextMsgBox("连接模式：LASER振镜角度2");
-            this.rdo_LaserL_Con_L.BackColor = Color.Transparent;
-            this.rdo_RobotR_Con_R.BackColor = Color.Transparent;
+            this.rdo_Laser_Con_L.BackColor = Color.Transparent;
+            this.rdo_Robot1_Con_L.BackColor = Color.Transparent;
             this.rdo_Robot_Con_L.BackColor = Color.Transparent;
             RefleshLinearDataGridView();
         }
