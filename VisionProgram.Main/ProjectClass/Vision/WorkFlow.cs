@@ -51,6 +51,7 @@ namespace VisionProgram.Vision.VP
         private string _distortioncalibBlockpath;//畸变标定
         private string _linearcalibBlockpath;//九点线性标定   
         private string _rotationcalibBlockpath;//旋转中心标定
+        private string _VerificatecalibBlockpath;//标定验证
         private string _processBlockpath;//处理
 
         protected ICogTransform2D LinearTransform;  //rob1九点线性坐标转换关系
@@ -129,7 +130,20 @@ namespace VisionProgram.Vision.VP
                 return m_RotationCalibBlock;
             }
         }
-
+        /// <summary>
+        /// 标定验证模块
+        /// </summary>
+        protected CogToolBlock m_VerificatecalibBlock;
+        /// <summary>
+        /// 标定验证模块
+        /// </summary>
+        public CogToolBlock VerificatecalibBlock
+        {
+            get
+            {
+                return m_VerificatecalibBlock;
+            }
+        }
         /// <summary>
         /// 处理模块
         /// </summary>
@@ -172,6 +186,7 @@ namespace VisionProgram.Vision.VP
             _distortioncalibBlockpath= Project.Instance().VisionManagerInstance._visionToolPath + @"\calib_distortion\DistortionCalibBlock" + _vppName + ".vpp";
             _linearcalibBlockpath = Project.Instance().VisionManagerInstance._visionToolPath + @"\calib_linear\LinearCalibBlock" + _vppName + ".vpp";
             _rotationcalibBlockpath= Project.Instance().VisionManagerInstance._visionToolPath + @"\calib_rotation\RotationCalibBlock" + _vppName + ".vpp";
+            _VerificatecalibBlockpath = Project.Instance().VisionManagerInstance._visionToolPath + @"\calib_Verificate\VerificateCalibBlock" + _vppName + ".vpp";
             _processBlockpath = Project.Instance().VisionManagerInstance._visionToolPath + @"\process\ProcessBlock" + _vppName + ".vpp";
         }
         /// <summary>
@@ -182,40 +197,43 @@ namespace VisionProgram.Vision.VP
         {
             try
             {
-        
-                    m_AcquireBlock = CogSerializer.LoadObjectFromFile(_acquireBlockpath) as CogToolBlock;      
-                    m_ProcessBlock = CogSerializer.LoadObjectFromFile(_processBlockpath) as CogToolBlock;
-                    m_DistortionCalibBlock = CogSerializer.LoadObjectFromFile(_distortioncalibBlockpath) as CogToolBlock;
-                    m_LinearCalibBlock = CogSerializer.LoadObjectFromFile(_linearcalibBlockpath) as CogToolBlock;
-                    m_RotationCalibBlock = CogSerializer.LoadObjectFromFile(_rotationcalibBlockpath) as CogToolBlock;
-                    m_AcquireTool = m_AcquireBlock.Tools["CogAcqFifoTool1"] as CogAcqFifoTool;
 
-                    try
-                    {
-                        DistortionTransform = DistortionCalibBlock.Outputs["DistortionTransform"].Value as ICogTransform2D;
-                        LinearTransform = LinearCalibBlock.Outputs["LinearTransform"].Value as ICogTransform2D;
+                m_AcquireBlock = CogSerializer.LoadObjectFromFile(_acquireBlockpath) as CogToolBlock;
+                m_ProcessBlock = CogSerializer.LoadObjectFromFile(_processBlockpath) as CogToolBlock;
+                m_DistortionCalibBlock = CogSerializer.LoadObjectFromFile(_distortioncalibBlockpath) as CogToolBlock;
+                m_LinearCalibBlock = CogSerializer.LoadObjectFromFile(_linearcalibBlockpath) as CogToolBlock;
+                m_RotationCalibBlock = CogSerializer.LoadObjectFromFile(_rotationcalibBlockpath) as CogToolBlock;
+                m_VerificatecalibBlock = CogSerializer.LoadObjectFromFile(_VerificatecalibBlockpath) as CogToolBlock;
+
+                m_AcquireTool = m_AcquireBlock.Tools["CogAcqFifoTool1"] as CogAcqFifoTool;
+
+                try
+                {
+                    DistortionTransform = DistortionCalibBlock.Outputs["DistortionTransform"].Value as ICogTransform2D;
+                    LinearTransform = LinearCalibBlock.Outputs["LinearTransform"].Value as ICogTransform2D;
                     LinearTransform1 = LinearCalibBlock.Outputs["LinearTransform2"].Value as ICogTransform2D;
                     LinearTransform2 = LinearCalibBlock.Outputs["LinearTransform3"].Value as ICogTransform2D;
                     LinearTransform3 = LinearCalibBlock.Outputs["LinearTransform4"].Value as ICogTransform2D;
 
 
                     calibflag = true;
-                    }
-                    catch (System.Exception ex)
+                }
+                catch (System.Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                     calibflag = false;
-                    }
-                    m_SettingBlock = new CogToolBlock();
-                    SettingBlock.Tools.Add(AcquireBlock);
-                    if (calibflag)
-                    {
-                        SettingBlock.Tools.Add(DistortionCalibBlock);
-                        SettingBlock.Tools.Add(LinearCalibBlock);
-                        SettingBlock.Tools.Add(RotationCalibBlock);
-                    }     
-                    SettingBlock.Tools.Add(ProcessBlock);
-              
+                }
+                m_SettingBlock = new CogToolBlock();
+                SettingBlock.Tools.Add(AcquireBlock);
+                if (calibflag)
+                {
+                    SettingBlock.Tools.Add(DistortionCalibBlock);
+                    SettingBlock.Tools.Add(LinearCalibBlock);
+                    SettingBlock.Tools.Add(RotationCalibBlock);
+                    SettingBlock.Tools.Add(VerificatecalibBlock);
+                }
+                SettingBlock.Tools.Add(ProcessBlock);
+
             }
             catch (System.Exception ex)
             {
@@ -255,22 +273,25 @@ namespace VisionProgram.Vision.VP
         {
             try
             {
-                    CogSerializer.SaveObjectToFile(AcquireBlock, _acquireBlockpath,
-                                typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
-                                CogSerializationOptionsConstants.Minimum);
-                    CogSerializer.SaveObjectToFile(ProcessBlock, _processBlockpath,
-                            typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
-                            CogSerializationOptionsConstants.Minimum);
-                    CogSerializer.SaveObjectToFile(DistortionCalibBlock, _distortioncalibBlockpath,
-                            typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
-                            CogSerializationOptionsConstants.Minimum);
-                    CogSerializer.SaveObjectToFile(LinearCalibBlock, _linearcalibBlockpath,
-                            typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
-                            CogSerializationOptionsConstants.Minimum);
-                    CogSerializer.SaveObjectToFile(RotationCalibBlock, _rotationcalibBlockpath,
-                             typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
-                             CogSerializationOptionsConstants.Minimum);
-                    try
+                CogSerializer.SaveObjectToFile(AcquireBlock, _acquireBlockpath,
+                    typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
+                    CogSerializationOptionsConstants.Minimum);
+                CogSerializer.SaveObjectToFile(ProcessBlock, _processBlockpath,
+                    typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
+                    CogSerializationOptionsConstants.Minimum);
+                CogSerializer.SaveObjectToFile(DistortionCalibBlock, _distortioncalibBlockpath,
+                    typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
+                    CogSerializationOptionsConstants.Minimum);
+                CogSerializer.SaveObjectToFile(LinearCalibBlock, _linearcalibBlockpath,
+                    typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
+                    CogSerializationOptionsConstants.Minimum);
+                CogSerializer.SaveObjectToFile(RotationCalibBlock, _rotationcalibBlockpath,
+                    typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
+                    CogSerializationOptionsConstants.Minimum);
+                CogSerializer.SaveObjectToFile(VerificatecalibBlock, _VerificatecalibBlockpath,
+                    typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
+                    CogSerializationOptionsConstants.Minimum);
+                try
                     {
                         DistortionTransform = DistortionCalibBlock.Outputs["DistortionTransform"].Value as ICogTransform2D;
                         LinearTransform = LinearCalibBlock.Outputs["LinearTransform"].Value as ICogTransform2D;
@@ -426,6 +447,30 @@ namespace VisionProgram.Vision.VP
             catch (Exception ex)
             {
                 LogHelper.Error("运行旋转中心标定模块工具出现异常", ex);
+                MessageBox.Show(ex.Message);
+            }
+            return false;
+        }
+        /// <summary>
+        /// 运行标定验证模块
+        /// </summary>
+        /// <param name="img"></param>
+        /// <param name="calibimg"></param>
+        /// <returns></returns>
+        public bool RunVerificatecalibBlock(ref ICogImage img)
+        {
+            try
+            {
+                VerificatecalibBlock.Inputs["InputImage"].Value = img;
+                VerificatecalibBlock.Inputs["LinerTransform"].Value = LinearTransform;
+                VerificatecalibBlock.Inputs["LinerTransform1"].Value = LinearTransform1;
+
+                VerificatecalibBlock.Run();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("运行九点线性标定模块工具出现异常", ex);
                 MessageBox.Show(ex.Message);
             }
             return false;
