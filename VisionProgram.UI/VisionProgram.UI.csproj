@@ -480,6 +480,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UISetting\FrmGeneralSettings.resx">
       <DependentUpon>FrmGeneralSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UISetting\FrmProductChangeSettings.resx">
       <DependentUpon>FrmProductChangeSettings.cs</DependentUpon>
