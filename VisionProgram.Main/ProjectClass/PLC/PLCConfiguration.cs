@@ -15,7 +15,7 @@ using VisionProgram.Models.VModels;
 
 namespace VisionProgram.Main.ProjectClass.PLC
 {
-    public class PLCConfiguration                                                                                                                                                                                                                                                                                   
+    public class PLCConfiguration
     {
         /// <summary>
         /// Ini读写对象
@@ -99,7 +99,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
                 }
 
                 //解析信号表EXECL
-             // LoadTestSignalExecl(ref L_PLCSignalInfoList, FilePathModel.PlcSignalPath);
+                // LoadTestSignalExecl(ref L_PLCSignalInfoList, FilePathModel.PlcSignalPath);
             }
             catch (Exception ex)
             {
@@ -115,7 +115,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
         /// </summary>
         /// <param name="index">下标</param>
         /// <param name="values">测试信号信息</param>
-        public void LoadTestSignalExecl(ref List<List<PLCSignalInfo>> L_PLCSignalInfoList,string excelPath)
+        public void LoadTestSignalExecl(ref List<List<PLCSignalInfo>> L_PLCSignalInfoList, string excelPath)
         {
             List<List<PLCSignalInfo>> LObjectList = new List<List<PLCSignalInfo>>();
             List<DataTable> dtList = EPPlusHelper.GetSheetsReaderExcel(excelPath, plcSignalExcelSheetNameList);
@@ -133,7 +133,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
                         info.Msg = dtList[i].Rows[k]["备注"].ToString();
                         LObjectList[i].Add(info);
                     }
-                }                
+                }
             }
             L_PLCSignalInfoList = LObjectList;
         }

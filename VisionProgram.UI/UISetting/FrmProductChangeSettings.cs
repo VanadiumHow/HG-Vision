@@ -116,7 +116,7 @@ namespace VisionProgram.UI.UISetting
             string newValue = ListBoxProductModelList.Text;
             NoticeHelper.OutputMessageSend($"切换产品型号 {ListBoxProductModelList.Text} 中....", OutputLevelModel.INFO);
             try
-            {             
+            {
                 //设置产品模式
                 Project.Instance().GlobalManagerInstance.GlobalParamModel.curProductModel = ListBoxProductModelList.Text;
                 Project.Instance().GlobalManagerInstance.GlobalParamModel.useProductModel = ListBoxProductModelList.Text == "默认" ? false : true;
@@ -166,7 +166,7 @@ namespace VisionProgram.UI.UISetting
                 return;
             }
 
-            if (this.QuestionInfoDialog( "确定要添加该产品型号吗？","添加产品型号") == DialogResult.Yes)
+            if (this.QuestionInfoDialog("确定要添加该产品型号吗？", "添加产品型号") == DialogResult.Yes)
             {
                 bool bExits = ListBoxProductModelList.Items.Contains(t);
 
@@ -211,7 +211,7 @@ namespace VisionProgram.UI.UISetting
             }
 
             string oldText = ListBoxProductModelList.Text;
-            if (this.ConfirmInfoDialog( "是否删除选中产品型号的配置文件", "删除产品型号") == DialogResult.OK)
+            if (this.ConfirmInfoDialog("是否删除选中产品型号的配置文件", "删除产品型号") == DialogResult.OK)
             {
                 try
                 {

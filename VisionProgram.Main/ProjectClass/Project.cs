@@ -118,8 +118,8 @@ namespace VisionProgram.Main.ProjectClass
 
             ScheduledTaskManagerInstance = new ScheduledTaskManager();
 
-          
-           
+
+
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace VisionProgram.Main.ProjectClass
             }
         }
 
-      
+
 
         /// <summary>
         /// 加载数据库信息

@@ -48,7 +48,7 @@ namespace VisionProgram.ProjectClass.DataCheck
         /// <summary>
         /// Ini读写对象
         /// </summary>
-        private IniHelper _ini = new IniHelper(FilePathModel.ConfigPath + @"\\DataCheckComm.ini");     
+        private IniHelper _ini = new IniHelper(FilePathModel.ConfigPath + @"\\DataCheckComm.ini");
 
         /// <summary>
         /// 检查各配置文件
@@ -78,7 +78,7 @@ namespace VisionProgram.ProjectClass.DataCheck
             try
             {
                 InitConfigDirctory();
-               
+
                 checkInfo.OpenCheckRepeatedCode = bool.Parse(_ini.IniReadValue("ScanSelf", "OpenCheckRepeatedCode"));
                 checkInfo.BatteryCodeLength = int.Parse(_ini.IniReadValue("ScanSelf", "BatteryCodeLength"));
                 checkInfo.OpenBatteryIdent = bool.Parse(_ini.IniReadValue("ScanSelf", "OpenBatteryIdent"));
@@ -104,7 +104,7 @@ namespace VisionProgram.ProjectClass.DataCheck
                 checkInfo.ResidualMin = double.Parse(_ini.IniReadValue("MES", "ResidualMin"));
                 checkInfo.ResidualMax = double.Parse(_ini.IniReadValue("MES", "ResidualMax"));
                 checkInfo.OpenGrade = bool.Parse(_ini.IniReadValue("MES", "OpenGrade"));
-                checkInfo.CellGrade = _ini.IniReadValue("MES", "CellGrade");            
+                checkInfo.CellGrade = _ini.IniReadValue("MES", "CellGrade");
             }
             catch (Exception ex)
             {

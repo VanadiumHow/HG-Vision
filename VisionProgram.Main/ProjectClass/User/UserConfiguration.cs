@@ -41,7 +41,7 @@ namespace VisionProgram.Main.ProjectClass.User
         /// <summary>
         /// 解析UserInfo,初始化userInfoDic
         /// </summary>
-        public void AnalysisUserInfoConfig(SortedDictionary<string, string> userRoleDic,ref Dictionary<string, UserInfoModel> userInfoDic)
+        public void AnalysisUserInfoConfig(SortedDictionary<string, string> userRoleDic, ref Dictionary<string, UserInfoModel> userInfoDic)
         {
             try
             {

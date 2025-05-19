@@ -86,8 +86,8 @@ namespace VisionProgram.UI.UIHome.RightForm
             //LoadLabelLight(0, 0, Project.Instance().SqlInfoManagerInstance.SqlNum, "SQL");
             LoadLabelLight(0, 0, Project.Instance().PLCManagerInstance.PLCNum, "PLC");
             //LoadLabelLight(0, Project.Instance().SqlInfoManagerInstance.SqlNum + Project.Instance().PLCManagerInstance.PLCNum, Project.Instance().RobotManagerInstance.RobotNum, "BOT");
-            LoadLabelLight(0, 2*Project.Instance().PLCManagerInstance.PLCNum, Project.Instance().RobotManagerInstance.RobotNum, "BOT");
-            LoadLabelLight(0,2* Project.Instance().RobotManagerInstance.RobotNum+ 2 * Project.Instance().PLCManagerInstance.PLCNum, Project.Instance().VisionManagerInstance.CameraNum, "CCD");
+            LoadLabelLight(0, 2 * Project.Instance().PLCManagerInstance.PLCNum, Project.Instance().RobotManagerInstance.RobotNum, "BOT");
+            LoadLabelLight(0, 2 * Project.Instance().RobotManagerInstance.RobotNum + 2 * Project.Instance().PLCManagerInstance.PLCNum, Project.Instance().VisionManagerInstance.CameraNum, "CCD");
 
             //if (deviceCount > 0)
             //{
@@ -160,9 +160,9 @@ namespace VisionProgram.UI.UIHome.RightForm
                     TableLayoutPanelAll.Controls.Add(lamp, col + i, row);
 
                 }
-               
-               
-              
+
+
+
                 switch (str)
                 {
                     case "SQL":
@@ -292,7 +292,7 @@ namespace VisionProgram.UI.UIHome.RightForm
 
                     //2.SQL指示刷新
                     {
-                      //  RefreshLight_SQL();//刷新SQL的灯
+                        //  RefreshLight_SQL();//刷新SQL的灯
                     }
 
                     //3.CCD指示刷新
@@ -438,9 +438,9 @@ namespace VisionProgram.UI.UIHome.RightForm
                 {
                     if (!Project.Instance().RobotManagerInstance.L_Robot[i].IsConnectedRobot[0])
                     {
-                    //    Project.Instance().HardWareStateManagerInstance.L_robotState[i] = Project.Instance().RobotManagerInstance.L_Robot[i].IsConnectedRobot[0];
+                        //    Project.Instance().HardWareStateManagerInstance.L_robotState[i] = Project.Instance().RobotManagerInstance.L_Robot[i].IsConnectedRobot[0];
                         //未连接
-                        if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR && i !=3)
+                        if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR && i != 3)
                         {
                             _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
                         }
@@ -451,7 +451,7 @@ namespace VisionProgram.UI.UIHome.RightForm
                     }
                     else
                     {
-                    //    Project.Instance().HardWareStateManagerInstance.L_robotState[i] = Project.Instance().RobotManagerInstance.L_Robot[i].IsConnectedRobot[0];
+                        //    Project.Instance().HardWareStateManagerInstance.L_robotState[i] = Project.Instance().RobotManagerInstance.L_Robot[i].IsConnectedRobot[0];
                         //防止频繁无效刷新连接状态
                         if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
                         {

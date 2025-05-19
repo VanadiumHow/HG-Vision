@@ -94,13 +94,14 @@ namespace VisionProgram.Common
         ///队列中的元素是否处理完，为空集,并且调用了CompleteAdding
         /// </summary>
         public bool IsCompleted
-        { get
+        {
+            get
             {
                 try
                 {
                     return _blockQueue.IsCompleted;
                 }
-                catch 
+                catch
                 {
                     return true;
                 }

@@ -48,14 +48,14 @@ namespace VisionProgram.Main.ProjectClass.HardWareState
             for (int i = 0; i < Project.Instance().VisionManagerInstance.CameraNum; i++)
             {
                 L_ccdState.Add(false);
-                L_ccdState[i] =  Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[i].connected();
+                L_ccdState[i] = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[i].connected();
             }
 
-       
-            for (int i = 0; i <1; i++)
+
+            for (int i = 0; i < 1; i++)
             {
                 L_robotState.Add(false);
-         //    L_robotState[i] = Project.Instance().RobotManagerInstance.L_Robot[i].IsConnectedRobot[0];
+                //    L_robotState[i] = Project.Instance().RobotManagerInstance.L_Robot[i].IsConnectedRobot[0];
             }
             //数据库连接状态初始化
             for (int i = 0; i < Project.Instance().SqlInfoManagerInstance.SqlNum; i++)
@@ -67,7 +67,7 @@ namespace VisionProgram.Main.ProjectClass.HardWareState
             {
                 OnConnectDB = new Func<List<bool>>(() => { return Project.Instance().SqlInfoManagerInstance.ConnectSql(); });
                 OnConnectDB.BeginInvoke(DoneConnectDBCallback, OnConnectDB);
-            }          
+            }
         }
 
 
@@ -85,7 +85,7 @@ namespace VisionProgram.Main.ProjectClass.HardWareState
             {
                 Project.Instance().SqlInfoManagerInstance.CreateOperationLogTable();
                 Project.Instance().SqlInfoManagerInstance.CreateOperationLogProc();
-            }          
+            }
         }
     }
 }

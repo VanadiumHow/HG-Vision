@@ -22,7 +22,7 @@ namespace VisionProgram.UI.UIHome.RightForm
             InitializeComponent();
 
             this.TopLevel = false;
-            this.Dock = DockStyle.Fill;          
+            this.Dock = DockStyle.Fill;
         }
 
         /// <summary>
@@ -41,11 +41,11 @@ namespace VisionProgram.UI.UIHome.RightForm
 
         private void FrmRightMain_Load(object sender, EventArgs e)
         {
-           
+
             //产能统计图统计
             PanelCapaticyDataChart();
             //良率表格统计
-           // PanelYieldDataChart();
+            // PanelYieldDataChart();
             ////加载PLCMessageMin信息面板
             //PanelPLCMessageMinLoad();
             ////加载PLCMessage信息面板
@@ -57,7 +57,7 @@ namespace VisionProgram.UI.UIHome.RightForm
 
         #region 实例化窗体
 
-        
+
 
         /// <summary>
         /// 产能统计图统计
@@ -82,10 +82,10 @@ namespace VisionProgram.UI.UIHome.RightForm
         /// 加载PLCMessageMin信息面板
         /// </summary>
         private void PanelPLCMessageMinLoad()
-        {        
+        {
             //TabPageInteractionInfo.Controls.Clear();
             //TabPageInteractionInfo.Controls.Add(FrmPLCMessageMini.Instance);
-        
+
 
             if (FrmPLCMessageMini.Instance.OnClearMessageMinEvent == null)
                 FrmPLCMessageMini.Instance.OnClearMessageMinEvent += ClearPLCMessageData;

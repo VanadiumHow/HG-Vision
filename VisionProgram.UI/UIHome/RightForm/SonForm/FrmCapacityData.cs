@@ -37,7 +37,7 @@ namespace DataCollection.UI.UIHome.RightForm
             this.Dock = DockStyle.Fill;
 
             NoticeHelper.OnUpdateCapaticyChart += UpdateChartData;
-            
+
             xDatas.Add(new List<string>() { "机台1OK数", "机台1NG数" });//这两个名字可以根据自己需求更改，但必须是什么什么OK数、什么什么NG数
             //当前界面模拟一个Chart!! 若还有第二个统计图，可继续添加其对应的图例说明，如下面屏蔽的代码
             //xDatas.Add(new List<string>() { "机台2OK数", "机台2NG数" });//这两个名字可以根据自己需求更改，但必须是什么什么OK数、什么什么NG数
@@ -49,7 +49,7 @@ namespace DataCollection.UI.UIHome.RightForm
                 Project.Instance().ProductionDataManagerInstance.L_ProductionStationOKCount[0],
                 Project.Instance().ProductionDataManagerInstance.L_ProductionStationNGCount[0]
             }));
-            
+
         }
 
         /// <summary>
@@ -98,7 +98,8 @@ namespace DataCollection.UI.UIHome.RightForm
         {
             if (this.IsHandleCreated)
             {
-                this.BeginInvoke(new Action(() => {
+                this.BeginInvoke(new Action(() =>
+                {
                     lock (O)
                     {
                         if (index < 0)

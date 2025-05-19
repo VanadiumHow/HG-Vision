@@ -44,7 +44,7 @@ namespace VisionProgram.Main.ProjectClass.SqlDB
             try
             {
                 InitConfigDirctory();
-                List<string> L_AllSection = _ini.IniReadAllSection();          
+                List<string> L_AllSection = _ini.IniReadAllSection();
                 A_SqlInfo = new SqlInfo[L_AllSection.Count];
                 for (int i = 0; i < L_AllSection.Count; i++)
                 {

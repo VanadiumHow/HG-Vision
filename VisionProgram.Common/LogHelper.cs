@@ -32,7 +32,7 @@ namespace VisionProgram.Common
         /// 调试日志
         /// </summary>
         private readonly log4net.ILog _logdebug = log4net.LogManager.GetLogger("logdebug");
-       
+
 
         /// <summary>
         /// 任务队列

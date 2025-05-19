@@ -87,7 +87,7 @@ namespace VisionProgram.ProjectClass.CameraParams
         /// <summary>
         /// 将曝光值写入到取图工具
         /// </summary>
-        public void SaveExprosure(int index,double camExprosure)
+        public void SaveExprosure(int index, double camExprosure)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace VisionProgram.ProjectClass.CameraParams
                         }
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {

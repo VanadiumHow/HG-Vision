@@ -85,7 +85,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
         public RobotObj(IPEndPoint localEndPoint) : base(localEndPoint)
         {
             _localEndPoint = localEndPoint;
-            
+
         }
         #endregion
 
@@ -111,14 +111,14 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 mWorkThread.Start();
                 //缓存各个相机的工作线程
                 _cameraWorkThreadList.Add(mWorkThread);
-            }  
+            }
 
         }
 
-       
-   
 
-         
+
+
+
         public double Cam2offsetX = 0.0;
         public double Cam2offsetY = 0.0;
         public double Cam2offsetR = 0.0;
@@ -1089,7 +1089,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
                     e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
                     //e.imageName = (e.Index +1).ToString() + "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();
-                    e.imageName =  "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();                   
+                    e.imageName = "1" + "-" + _jiajuhao.ToString() + "-" + _code1.ToString();
                     e.results = isOk;
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
                     #endregion
@@ -1247,7 +1247,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     e.resultImage = GlobalCameraParams.cameraVisionControlList[e.Index];
                     e.rawImage = Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[e.Index].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
                     //e.imageName = (e.Index + 1).ToString() + "2" + "-" + _jiajuhao.ToString() +"-" + _code2.ToString();
-                    e.imageName =  "2" + "-" + _jiajuhao.ToString() + "-" + _code2.ToString();                    
+                    e.imageName = "2" + "-" + _jiajuhao.ToString() + "-" + _code2.ToString();
                     e.results = isOk;
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
 
@@ -1333,11 +1333,11 @@ namespace VisionProgram.Main.ProjectClass.Robot
             {
                 dicConnectIP.Add((soc.RemoteEndPoint as IPEndPoint).Address.ToString());
             }
-            
+
             if ((soc.RemoteEndPoint as IPEndPoint).Address.ToString() == dicConnectIP[0])
             {
                 IsConnectedRobot[0] = true;
-              
+
             }
         }
         /// <summary>
@@ -1405,12 +1405,12 @@ namespace VisionProgram.Main.ProjectClass.Robot
         {
             if (RobotSignals.CCDProcess == 0)//0-自动运行
             {
-               
+
                 string receive_string = this.ReceivedText;
-                if((this._localEndPoint.Port).ToString() == Project.Instance().RobotManagerInstance.L_Robot[2]._localEndPoint.Port.ToString())
+                if ((this._localEndPoint.Port).ToString() == Project.Instance().RobotManagerInstance.L_Robot[2]._localEndPoint.Port.ToString())
                 {
                     Project.Instance().RobotManagerInstance.m_strLaserReceive = receive_string;
-                    if (receive_string.Split(',').Length>2)
+                    if (receive_string.Split(',').Length > 2)
                     {
                         Project.Instance().RobotManagerInstance.m_strLaserReceiveTragger = receive_string.Split(',')[0];
                         Project.Instance().RobotManagerInstance.m_strLaserReceiveX = receive_string.Split(',')[1];
@@ -1440,8 +1440,8 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     {
                         LogHelper.Info("收到激光Get");
 
-                        
-                        Project.Instance().RobotManagerInstance.L_Robot[3].SendText(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3") +";", 0);
+
+                        Project.Instance().RobotManagerInstance.L_Robot[3].SendText(Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3") + ";", 0);
                         //string WeldLgth = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3");
                         NoticeHelper.OutputMessageSend("给到激光整体长度" + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3"), OutputLevelModel.INFO);
                         LogHelper.Info("给激光整体长度：" + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3"));

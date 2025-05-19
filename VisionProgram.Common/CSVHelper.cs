@@ -55,7 +55,7 @@ namespace VisionProgram.Common
             return true;
         }
 
-      
+
 
         public void SaveGRRData(string item, string time)
         {
@@ -96,7 +96,7 @@ namespace VisionProgram.Common
             {
             }
         }
-      
+
 
         public bool DeleteCSVFile(int nDay)//删除超过保存天数的CSV文件
         {

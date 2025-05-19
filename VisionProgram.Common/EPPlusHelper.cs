@@ -48,7 +48,7 @@ namespace VisionProgram.Common
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static List<DataTable> GetSheetsReaderExcel(string filePath,List<string> sheetNames)
+        public static List<DataTable> GetSheetsReaderExcel(string filePath, List<string> sheetNames)
         {
             FileInfo file = new FileInfo(filePath);
             List<DataTable> dataTableList = null;
@@ -60,7 +60,7 @@ namespace VisionProgram.Common
                     dataTableList = new List<DataTable>();
                     for (int i = 0; i < sheetNames.Count; i++)
                     {
-                        ExcelWorksheet worksheet = workbook.Worksheets[sheetNames[i]];                       
+                        ExcelWorksheet worksheet = workbook.Worksheets[sheetNames[i]];
                         DataTable dt = worksheetToTable(worksheet);
                         dataTableList.Add(dt);
                     }

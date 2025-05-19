@@ -53,7 +53,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
         {
             public static string CCDPLCHandshakeOut = ".gwHMICCDOneSecondPulse1"; //bool PLC给的握手信号
             public static string CCDPLCHandshakeIn = ".gwHMICCDOneSecondPulse11";   //bool 给PLC的握手信号
-           }
+        }
 
         #endregion
         #region 倍福PLC4
@@ -117,9 +117,9 @@ namespace VisionProgram.Main.ProjectClass.PLC
 
 
 
-          
 
-           
+
+
 
 
 

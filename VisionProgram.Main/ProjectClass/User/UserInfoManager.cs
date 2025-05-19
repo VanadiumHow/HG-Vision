@@ -57,13 +57,13 @@ namespace VisionProgram.Main.ProjectClass.User
             //程序启动游客自动登录操作员
             Project.Instance().UserInfoManagerInstance.LoginUser = Project.Instance().UserInfoManagerInstance._operatorUser;
             _userInfoDic.Clear();
-            _userConfiguration.AnalysisUserInfoConfig(_userRoleDic,ref _userInfoDic);
-            
+            _userConfiguration.AnalysisUserInfoConfig(_userRoleDic, ref _userInfoDic);
+
         }
 
-       /// <summary>
-       /// 切换到默认操作员
-       /// </summary>
+        /// <summary>
+        /// 切换到默认操作员
+        /// </summary>
         public void SwitchToOperatorUser()
         {
             Project.Instance().UserInfoManagerInstance.LoginUser = Project.Instance().UserInfoManagerInstance._operatorUser;
@@ -75,7 +75,7 @@ namespace VisionProgram.Main.ProjectClass.User
         /// <param name="number"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public LoginSituationModels UserLogin(string userRoleName,string password)
+        public LoginSituationModels UserLogin(string userRoleName, string password)
         {
 
             //校验
@@ -190,7 +190,7 @@ namespace VisionProgram.Main.ProjectClass.User
         public List<string> GetRoleNames()
         {
             List<string> roles = _userRoleDic.Values.ToList<string>();
-            roles.Remove("操作员");         
+            roles.Remove("操作员");
             return roles;
         }
 

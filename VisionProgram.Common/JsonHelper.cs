@@ -61,7 +61,7 @@ namespace VisionProgram.Common
                         {
                             return JsonConvert.DeserializeObject<T>(json);
                         }
-                        catch 
+                        catch
                         {
                             return default(T);
                         }
@@ -92,7 +92,7 @@ namespace VisionProgram.Common
                             List<T> result = JsonConvert.DeserializeObject<List<T>>(json);
                             return result;
                         }
-                        catch 
+                        catch
                         {
                             return default(List<T>);
                         }

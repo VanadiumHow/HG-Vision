@@ -54,7 +54,7 @@ namespace VisionProgram.Main.ProjectClass.Vision
         public int CameraNum
         {
             get { return Project.Instance().GlobalManagerInstance.GlobalParamModel.WorkFlowNum; }
-        }     
+        }
 
         internal VisionManager() { }
 
@@ -74,14 +74,14 @@ namespace VisionProgram.Main.ProjectClass.Vision
         public void LoadVision()
         {
             try
-            {              
+            {
                 //先获取路径
                 LoadVisionPath();
                 ManagerInstance();
                 LoadImageParam();
                 LoadVisionParam();
                 LoadVisionTool();
-              
+
             }
             catch (Exception ex)
             {
@@ -161,7 +161,7 @@ namespace VisionProgram.Main.ProjectClass.Vision
         public void InitSaveImageThreads()
         {
             Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.InitSaveImage();
-        }   
+        }
 
         /// <summary>
         /// 关闭存图队列、线程
@@ -169,7 +169,7 @@ namespace VisionProgram.Main.ProjectClass.Vision
         public void CloseSaveImageQueue()
         {
             Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.CloseSaveImage();
-        }      
+        }
 
         /// <summary>
         /// 获取原始图像保存路径
@@ -194,7 +194,7 @@ namespace VisionProgram.Main.ProjectClass.Vision
             for (int i = 0; i < Project.Instance().GlobalManagerInstance.GlobalParamModel.WorkFlowNum; i++)
             {
                 ImageStoreHelper.CleanHistoryPicture(i);
-            } 
+            }
         }
         #endregion
 

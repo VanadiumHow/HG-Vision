@@ -15,7 +15,7 @@ namespace VisionProgram.UI.UILogin
         private FrmLogin _pParentWin = null;
         private string _userPwd = null;
 
-        public FrmEdit(FrmLogin parent,string roleName)
+        public FrmEdit(FrmLogin parent, string roleName)
         {
             _pParentWin = parent;
             InitializeComponent();
@@ -69,7 +69,7 @@ namespace VisionProgram.UI.UILogin
             this.DialogResult = DialogResult.OK;
         }
 
-        private bool CheckEmpty(TextBoxEX tb,string message)
+        private bool CheckEmpty(TextBoxEX tb, string message)
         {
             if (string.IsNullOrEmpty(tb.Text) || string.IsNullOrWhiteSpace(tb.Text))
             {

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace VisionProgram.Main.ProjectClass.Vision.Global
 {
-  public static  class GlobalCameraParams
+    public static class GlobalCameraParams
     {
         //图像窗口列表
         public static List<CogRecordsDisplay> cameraVisionControlList = new List<CogRecordsDisplay>();

@@ -77,12 +77,12 @@ namespace VisionProgram.Main.ProjectClass.PLC
                         L_basePLCObjects[i].Dispose();
                         L_basePLCObjects[i] = null;
                     }
-                }               
+                }
             }
             L_basePLCObjects.Clear();
             L_PLCSignalInfoList.Clear();
             //加载ini
-            _plcConfiguration.AnalysisPlcCommConfig(ref L_PLCInfo,ref L_PLCSignalInfoList);
+            _plcConfiguration.AnalysisPlcCommConfig(ref L_PLCInfo, ref L_PLCSignalInfoList);
 
             //不在这里实例化
         }

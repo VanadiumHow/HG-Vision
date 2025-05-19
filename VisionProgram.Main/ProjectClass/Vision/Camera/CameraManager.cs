@@ -49,7 +49,7 @@ namespace VisionProgram.DeviceUtility.Camera
             _cameraConfiguration.AnalysisCameraAttributeConfig(ref A_CameraAttributes);
 
             LoadVpp();
-           
+
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace VisionProgram.DeviceUtility.Camera
                 MessageBox.Show($"加载视觉检测工具出现异常：{ex.Message}");
                 LogHelper.Error("加载视觉检测工具出现异常", ex);
             }
-    
+
         }
 
         /// <summary>

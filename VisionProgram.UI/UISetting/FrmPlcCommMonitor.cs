@@ -58,7 +58,7 @@ namespace VisionProgram.UI.UISetting
 
             this.InitControl();
             this.UpdateForm();
-           
+
             ToolStripButton1.PerformClick();
         }
 
@@ -96,7 +96,7 @@ namespace VisionProgram.UI.UISetting
             _toolStripButtonList.Add(this.ToolStripButton1);
             _allDataGridViewList.Add(this.DataGridViewAllPLC1);
             _checkDataGridViewList.Add(this.DataGridViewCheckPLC1);
-            
+
             //定义按钮事件
             for (int i = 0; i < Project.Instance().PLCManagerInstance.PLCNum; i++)
             {
@@ -139,7 +139,7 @@ namespace VisionProgram.UI.UISetting
                     buttonResetResult.Size = this.ButtonResetResultPLC1.Size;
                     buttonResetResult.Text = "重置监听结果";
                     buttonResetResult.UseVisualStyleBackColor = this.ButtonResetResultPLC1.UseVisualStyleBackColor;
-                    buttonResetResult.Click += (o, e) => { Btn_ResetResult_Click(buttonClearSignal, new MyEventArgs(index)); }; 
+                    buttonResetResult.Click += (o, e) => { Btn_ResetResult_Click(buttonClearSignal, new MyEventArgs(index)); };
 
                     Button buttonCheckAll = new Button();
                     buttonCheckAll.BackColor = this.ButtonCheckAllPLC1.BackColor;
@@ -323,14 +323,14 @@ namespace VisionProgram.UI.UISetting
             this.ButtonClearSignalPLC1.Click += (o, e) => { Btn_SignalClear_Click(ButtonClearSignalPLC1, new MyEventArgs(0)); };
             this.ButtonResetResultPLC1.Click += (o, e) => { Btn_ResetResult_Click(ButtonResetResultPLC1, new MyEventArgs(0)); };
             this.ButtonMonitorPLC1.Click += (o, e) => { Btn_SignalMonitor_Click(ButtonMonitorPLC1, new MyEventArgs(0)); };
-            this.ToolStripButton1.Click += (o, e) => { SwitchtableLayoutPanelAll_Click(this, new MyEventArgs(new string[] {"0", ToolStripButton1.Name })); };
+            this.ToolStripButton1.Click += (o, e) => { SwitchtableLayoutPanelAll_Click(this, new MyEventArgs(new string[] { "0", ToolStripButton1.Name })); };
             for (int i = 0; i < _allDataGridViewList.Count; i++)
-                InitDataGridView(_allDataGridViewList[i],new double[] { 0.1 , 0.58 , 0.3 });
+                InitDataGridView(_allDataGridViewList[i], new double[] { 0.1, 0.58, 0.3 });
             for (int i = 0; i < _checkDataGridViewList.Count; i++)
                 InitDataGridView(_checkDataGridViewList[i], new double[] { 0.5, 0.25, 0.25 });
         }
 
-        public void InitDataGridView(DataGridView DGV,double[] proportions)
+        public void InitDataGridView(DataGridView DGV, double[] proportions)
         {
             DGV.Columns[0].Width = Convert.ToInt32((DGV.Width - 10) * proportions[0]);
             DGV.Columns[1].Width = Convert.ToInt32((DGV.Width - 10) * proportions[1]);
@@ -358,13 +358,13 @@ namespace VisionProgram.UI.UISetting
         {
             for (int i = 0; i < Project.Instance().PLCManagerInstance.PLCNum; i++)
             {
-                int signalCount = Project.Instance().PLCManagerInstance.L_PLCSignalInfoList[i].Count;              
+                int signalCount = Project.Instance().PLCManagerInstance.L_PLCSignalInfoList[i].Count;
                 for (int j = 0; j < signalCount; j++)
                 {
                     _allDataGridViewList[i].Rows.Add();
                     _allDataGridViewList[i].Rows[j].Cells[1].Value = _singleNameAllList[i][j];
                     _allDataGridViewList[i].Rows[j].Cells[2].Value = _singleMsgAllList[i][j];
-                }             
+                }
             }
         }
 
@@ -462,7 +462,7 @@ namespace VisionProgram.UI.UISetting
             UpdateSignalData(index);
         }
 
-        
+
 
         /// <summary>
         /// 开始/停止监听
@@ -529,8 +529,8 @@ namespace VisionProgram.UI.UISetting
                 _singleMsgCheckList[index].Add(_checkDataGridViewList[index].Rows[i].Cells[1].Value.ToString());
                 _singleDataCheckList[index].Add("Unknown");
             }
-        }    
-        
+        }
+
 
         /// <summary>
         /// 读取信号后更新
@@ -551,9 +551,9 @@ namespace VisionProgram.UI.UISetting
                 }
                 UpdateSignalData(index);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                LogHelper.Error($"实时监听PLC{index + 1}信号出现异常",ex);
+                LogHelper.Error($"实时监听PLC{index + 1}信号出现异常", ex);
             }
         }
 

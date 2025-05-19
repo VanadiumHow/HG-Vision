@@ -171,7 +171,7 @@ namespace VisionProgram.UI.UIHome.RightForm
         /// 手动清除
         /// </summary>
         private void clear()
-        {         
+        {
             _numSum = 0;
             _numGreen = 0;
             _numRed = 0;
@@ -188,8 +188,8 @@ namespace VisionProgram.UI.UIHome.RightForm
         {
             Process.Start(FilePathModel.LogPath);
         }
-     
-      
+
+
         private void Frm_Output_SizeChanged(object sender, EventArgs e)
         {
             ListView1.Columns[1].Width = ListView1.Width - ListView1.Columns[0].Width;
@@ -216,7 +216,8 @@ namespace VisionProgram.UI.UIHome.RightForm
 
         private void BtnAll_Click(object sender, EventArgs e)
         {
-            this.BeginInvoke(new Action(() => {
+            this.BeginInvoke(new Action(() =>
+            {
                 ListView1.Items.Clear();
                 for (int i = 0; i < _outputItemList.Count; i++)
                 {
@@ -232,7 +233,8 @@ namespace VisionProgram.UI.UIHome.RightForm
 
         private void BtnTip_Click(object sender, EventArgs e)
         {
-            this.BeginInvoke(new Action(() => {
+            this.BeginInvoke(new Action(() =>
+            {
                 ListView1.Items.Clear();
                 for (int i = 0; i < _outputItemList.Count; i++)
                 {
@@ -251,7 +253,8 @@ namespace VisionProgram.UI.UIHome.RightForm
 
         private void BtnWarn_Click(object sender, EventArgs e)
         {
-            this.BeginInvoke(new Action(() => {
+            this.BeginInvoke(new Action(() =>
+            {
                 ListView1.Items.Clear();
                 for (int i = 0; i < _outputItemList.Count; i++)
                 {
@@ -270,7 +273,8 @@ namespace VisionProgram.UI.UIHome.RightForm
 
         private void BtnError_Click(object sender, EventArgs e)
         {
-            this.BeginInvoke(new Action(() => {
+            this.BeginInvoke(new Action(() =>
+            {
                 ListView1.Items.Clear();
                 for (int i = 0; i < _outputItemList.Count; i++)
                 {

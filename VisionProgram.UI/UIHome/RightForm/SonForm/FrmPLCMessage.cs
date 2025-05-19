@@ -24,11 +24,11 @@ namespace VisionProgram.UI.UIHome.RightForm
         private DataGridView[] _dataGridViewArray = new DataGridView[Project.Instance().PLCManagerInstance.PLCNum];
         private List<ToolStripButton> _toolStripButtonArray = new List<ToolStripButton>();
         //展示信息委托
-        private delegate void UpdateControls(string msg, int plcIndex,string time, bool isOK = true);
+        private delegate void UpdateControls(string msg, int plcIndex, string time, bool isOK = true);
         private UpdateControls _upd = null;
 
         internal Action<int> OnClearMessageEvent;
-        
+
         private bool _inited = false;
 
         #region 构造 单例
@@ -71,7 +71,7 @@ namespace VisionProgram.UI.UIHome.RightForm
             {
                 if (_instance == null || _instance.IsDisposed)
                 {
-                    _instance = new FrmPLCMessage();                   
+                    _instance = new FrmPLCMessage();
                 }
                 return _instance;
             }
@@ -89,7 +89,7 @@ namespace VisionProgram.UI.UIHome.RightForm
         private void InitControl()
         {
             //先加载默认的一个PLC的ListView
-            _dataGridViewArray[0] = this.DataGridViewMessage;        
+            _dataGridViewArray[0] = this.DataGridViewMessage;
 
             this.停止滚动PLC1ToolStripMenuItem.Click += (o, e) => { 停止滚动PLCToolStripMenuItem_Click(停止滚动PLC1ToolStripMenuItem, new MyEventArgs(0)); };
             清屏PLC1ToolStripMenuItem.Click += (o, e) => { 清屏PLCToolStripMenuItem_Click(this, new MyEventArgs(0)); };
@@ -240,7 +240,7 @@ namespace VisionProgram.UI.UIHome.RightForm
 
         #region 显示信息方法
 
-        public void PLCMessageReceived(string msg, int i,string time, bool isOK = true)
+        public void PLCMessageReceived(string msg, int i, string time, bool isOK = true)
         {
             if (this.IsHandleCreated)
             {
@@ -254,7 +254,7 @@ namespace VisionProgram.UI.UIHome.RightForm
         /// <param name="strData"></param>
         /// <param name="i"></param>
         /// <param name="isOK"></param>
-        public void UpdateShowMessage(string data, int plcIndex,string time, bool isOK = true)
+        public void UpdateShowMessage(string data, int plcIndex, string time, bool isOK = true)
         {
             if (string.IsNullOrEmpty(data) || string.IsNullOrWhiteSpace(data))
                 return;
@@ -270,7 +270,7 @@ namespace VisionProgram.UI.UIHome.RightForm
                 }
                 if (_dataGridViewArray[plcIndex].Rows.Count > Project.Instance().GlobalManagerInstance.GlobalParamModel.InteractionInfoMaxLines)
                     _dataGridViewArray[plcIndex].Rows.RemoveAt(0);
-                if(_isAutoRollFlagArray[plcIndex])
+                if (_isAutoRollFlagArray[plcIndex])
                 {
                     _dataGridViewArray[plcIndex].CurrentCell = _dataGridViewArray[plcIndex].Rows[_dataGridViewArray[plcIndex].RowCount - 1].Cells[0];
                 }
@@ -390,6 +390,6 @@ namespace VisionProgram.UI.UIHome.RightForm
 
         #endregion
 
-      
+
     }
 }

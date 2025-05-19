@@ -342,7 +342,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
                     TagValue = (T)(adsClient.ReadAny(hander_read, typeof(T)));
                 }
             }
-            catch 
+            catch
             {
                 TagValue = default(T);
                 //LogHelper.Fatal($"向倍福PLC读取{varname}信号时出现异常", ex);
@@ -703,7 +703,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
                 return 0;
 
             }
-            catch 
+            catch
             {
                 val = null;
                 return 1;
@@ -932,7 +932,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
                         return "false";
                 }
             }
-            catch 
+            catch
             {
                 ////WriteLog.WriteLogFileToUI("PLC Read Error ->" + ip + " - " + varname, Color.Red);
                 switch (dataType)

@@ -80,9 +80,9 @@ namespace VisionProgram.Main.ProjectClass.SqlDB
                 catch (Exception ex)
                 {
                     sqlConnectStates.Add(false);
-                    LogHelper.Error($"连接{L_sqlDBName[i]}数据库失败",ex);
+                    LogHelper.Error($"连接{L_sqlDBName[i]}数据库失败", ex);
                 }
-               
+
             }
             return sqlConnectStates;
         }

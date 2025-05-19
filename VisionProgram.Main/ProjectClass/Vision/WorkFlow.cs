@@ -183,9 +183,9 @@ namespace VisionProgram.Vision.VP
             _vppName = p;
             _vppIndex = Convert.ToInt16(_vppName) - 1;
             _acquireBlockpath = Project.Instance().VisionManagerInstance._visionToolPath + @"\acquire\AcquireBlock" + _vppName + ".vpp";
-            _distortioncalibBlockpath= Project.Instance().VisionManagerInstance._visionToolPath + @"\calib_distortion\DistortionCalibBlock" + _vppName + ".vpp";
+            _distortioncalibBlockpath = Project.Instance().VisionManagerInstance._visionToolPath + @"\calib_distortion\DistortionCalibBlock" + _vppName + ".vpp";
             _linearcalibBlockpath = Project.Instance().VisionManagerInstance._visionToolPath + @"\calib_linear\LinearCalibBlock" + _vppName + ".vpp";
-            _rotationcalibBlockpath= Project.Instance().VisionManagerInstance._visionToolPath + @"\calib_rotation\RotationCalibBlock" + _vppName + ".vpp";
+            _rotationcalibBlockpath = Project.Instance().VisionManagerInstance._visionToolPath + @"\calib_rotation\RotationCalibBlock" + _vppName + ".vpp";
             _VerificatecalibBlockpath = Project.Instance().VisionManagerInstance._visionToolPath + @"\calib_Verificate\VerificateCalibBlock" + _vppName + ".vpp";
             _processBlockpath = Project.Instance().VisionManagerInstance._visionToolPath + @"\process\ProcessBlock" + _vppName + ".vpp";
         }
@@ -292,16 +292,16 @@ namespace VisionProgram.Vision.VP
                     typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
                     CogSerializationOptionsConstants.Minimum);
                 try
-                    {
-                        DistortionTransform = DistortionCalibBlock.Outputs["DistortionTransform"].Value as ICogTransform2D;
-                        LinearTransform = LinearCalibBlock.Outputs["LinearTransform"].Value as ICogTransform2D;
+                {
+                    DistortionTransform = DistortionCalibBlock.Outputs["DistortionTransform"].Value as ICogTransform2D;
+                    LinearTransform = LinearCalibBlock.Outputs["LinearTransform"].Value as ICogTransform2D;
                     LinearTransform1 = LinearCalibBlock.Outputs["LinearTransform2"].Value as ICogTransform2D;
                     LinearTransform2 = LinearCalibBlock.Outputs["LinearTransform3"].Value as ICogTransform2D;
                     LinearTransform3 = LinearCalibBlock.Outputs["LinearTransform4"].Value as ICogTransform2D;
 
                 }
-                    catch { }
-       
+                catch { }
+
             }
             catch (System.Exception ex)
             {
@@ -336,11 +336,11 @@ namespace VisionProgram.Vision.VP
                 }
             }
             catch { }
-          
+
             img = null;
             return false;
         }
-     
+
 
         /// <summary>
         /// 运行处理模块
@@ -485,7 +485,7 @@ namespace VisionProgram.Vision.VP
             RunAcquireBlock(out img);
             return RunProcessBlock(ref img);
         }
-       
+
         /// <summary>
         /// 运行取向+标定模块
         /// </summary>
@@ -600,7 +600,7 @@ namespace VisionProgram.Vision.VP
         }
 
         //窗体显示文字信息
-        public  static void DisplayLabelCogDisplay(CogRecordsDisplay mydisplay, CogColorConstants Color, System.Single x, System.Single y, string text, System.Int16 fontSize)
+        public static void DisplayLabelCogDisplay(CogRecordsDisplay mydisplay, CogColorConstants Color, System.Single x, System.Single y, string text, System.Int16 fontSize)
         {
             new Action(() =>
             {

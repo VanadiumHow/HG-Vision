@@ -310,7 +310,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
         private static readonly object obj = new object();
         public bool SendText(string mens, int SocketIndex)
         {
-            lock(obj)
+            lock (obj)
             {
                 if ((Clients.Count - 1) >= SocketIndex)
                 {

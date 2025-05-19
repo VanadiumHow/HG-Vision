@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace VisionProgram.Common
 {
     /// <summary>
+    /// <summary>
     /// 文件夹辅助类
     /// </summary>
     public sealed class DirectoryHelper

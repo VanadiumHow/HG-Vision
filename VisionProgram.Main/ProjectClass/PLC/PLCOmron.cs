@@ -16,7 +16,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
     public class PLCOmron : BasePLC
     {
         public NJCompolet NJPLC;
-        public PLCOmron(string PLCAddress, int PortNo, IContainer Container,int number = 0,string description = "") :base("Omron", number, description)
+        public PLCOmron(string PLCAddress, int PortNo, IContainer Container, int number = 0, string description = "") : base("Omron", number, description)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
 
         public override bool ConnectionState()
         {
-             return NJPLC.IsConnected;
+            return NJPLC.IsConnected;
         }
 
         public override bool Connect()
@@ -195,7 +195,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
                 {
                     val = (T)NJPLC.ReadVariable(varname);
                 }
-                catch 
+                catch
                 {
                     return 0;
                 }
@@ -213,15 +213,15 @@ namespace VisionProgram.Main.ProjectClass.PLC
             {
                 NJPLC.Active = true;
             }
-            catch 
+            catch
             {
                 // NJPLC.Active = false;
             }
             return NJPLC.IsConnected;
         }
-        
 
-      
+
+
 
         public string GetValueOfVariables(object val)
         {

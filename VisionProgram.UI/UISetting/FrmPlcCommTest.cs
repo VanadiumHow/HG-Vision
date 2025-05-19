@@ -259,13 +259,13 @@ namespace VisionProgram.UI.UISetting
                     result += objVale[i].ToString() + "；";
                 }
                 this.TextBoxEXText.Text = result;
-               // ShowMsg($"标签【{string.Join(",", signals)}】" + (successFlag ? "读取成功！" : "读取失败！"), successFlag ? Color.Black : _redColor);
-            }            
+                // ShowMsg($"标签【{string.Join(",", signals)}】" + (successFlag ? "读取成功！" : "读取失败！"), successFlag ? Color.Black : _redColor);
+            }
         }
 
         private void BtnWrite_Click(object sender, EventArgs e)
         {
-            if (_checkedSignalInfoList == null || _checkedSignalInfoList.Count <=0)
+            if (_checkedSignalInfoList == null || _checkedSignalInfoList.Count <= 0)
             {
                 this.ConfirmErrorDialog("请选择需要写入的标签！");
                 return;
@@ -307,20 +307,20 @@ namespace VisionProgram.UI.UISetting
                     //    successFlag = Project.Instance().PLCManagerInstance.L_basePLCObjects[ComboBoxEXIP.SelectedIndex].Write(_checkedSignalInfoList[0].Name, data);
                     //    break;
                 }
-                ShowMsg($"标签【{_checkedSignalInfoList[0].Name}】" + (successFlag ? "写入成功！" : "写入失败！"), successFlag ? Color.Black : _redColor);             
+                ShowMsg($"标签【{_checkedSignalInfoList[0].Name}】" + (successFlag ? "写入成功！" : "写入失败！"), successFlag ? Color.Black : _redColor);
             }
             catch (Exception ex)
             {
                 ShowMsg(ex.Message, _redColor);
             }
-           
+
         }
 
         /// <summary>
         /// 信息显示
         /// </summary>
         /// <param name="message">要显示的信息</param>
-        private void ShowMsg(string message,Color color)
+        private void ShowMsg(string message, Color color)
         {
             try
             {

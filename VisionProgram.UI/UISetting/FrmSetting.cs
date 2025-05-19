@@ -117,7 +117,7 @@ namespace VisionProgram.UI.UISetting
             {
                 this.Dispose();
                 this.Close();
-                
+
             }
         }
 

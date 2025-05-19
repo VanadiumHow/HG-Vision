@@ -54,7 +54,7 @@ namespace VisionProgram.DeviceUtility.Camera
                 for (int i = 0; i < Project.Instance().GlobalManagerInstance.GlobalParamModel.WorkFlowNum; i++)
                 {
                     CameraAttribute _cameraAttribute = new CameraAttribute();
-                    string ScanSection = "Camera" + (i+1).ToString();
+                    string ScanSection = "Camera" + (i + 1).ToString();
                     string ImageWindowName = _ini.IniReadValue(ScanSection, "ImageWindowName");
                     string ImageWindowType = _ini.IniReadValue(ScanSection, "ImageWindowType");
                     _cameraAttribute.ImageWindowName = ImageWindowName;

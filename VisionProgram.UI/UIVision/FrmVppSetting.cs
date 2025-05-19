@@ -18,7 +18,7 @@ namespace VisionProgram.UI
     public partial class FrmVppSetting : Form
     {
         #region 字段
-      
+
         //1个服务器-2个机器人-1个VPP
         private IniHelper _iniRotation;//配置文件
         private WorkFlow cur_WorkFlow;
@@ -212,7 +212,7 @@ namespace VisionProgram.UI
                 Project.Instance().RobotManagerInstance.L_Robot[1].OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal2);
                 Project.Instance().RobotManagerInstance.L_Robot[2].OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
 
-               
+
                 if (cts1 != null)
                 {
                     cts1.Cancel();
@@ -309,7 +309,7 @@ namespace VisionProgram.UI
                     tb_RMS_Linear.Text = _linear_calib_tool.Calibration.ComputedRMSError.ToString("f3");
                     tb_Step.Text = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobStep[0].ToString("f3");
                 }
-                else if (rdo_Robot1_Con_L.Checked) 
+                else if (rdo_Robot1_Con_L.Checked)
                 {
                     tb_RMS_Linear.Text = _linear_calib_tool1.Calibration.ComputedRMSError.ToString("f3");
                     tb_Step.Text = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.RobStep[0].ToString("f3");
@@ -1134,7 +1134,7 @@ namespace VisionProgram.UI
                 {
 
                     RefleshLinearTextMsgBox("请核对机器人发送内容是否符合标准" + receive_string);
-                    
+
                 }
             }
             else
@@ -1789,14 +1789,14 @@ namespace VisionProgram.UI
                     {
                         Project.Instance().RobotManagerInstance.L_Robot[2].SendText(RobotSignals.Laser2NinePointStr, 0);
                     }
-                        
+
                     MessageBox.Show("激光此时正在出光，等待出光完成继续流程");
                     if (Acq_Linear())
                     {
                         RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                    
-                    for (int i = 0; i < 9; i++)
-                    {
+
+                        for (int i = 0; i < 9; i++)
+                        {
                             if (str[0] == "T1")
                             {
                                 if (laserRunLinearL(i + 1) && addMark_Linear2() && str[0] == "T1")
@@ -1825,49 +1825,49 @@ namespace VisionProgram.UI
                                     flag = 10;
                                 }
                             }
-                           
-                       
-                        Thread.Sleep(1000);
-                    }
-                        if (flag<10)
-                        {
-                    if (str[0]=="T1")
-                    {
-                        if (linear2())
-                        {
-                            RefleshLinearTextMsgBox("CCD发送标定结束信号：标定成功 ......");
+
+
+                            Thread.Sleep(1000);
                         }
-                        else
+                        if (flag < 10)
                         {
-                            RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
-                        }
-                    }
-                    else
-                    {
-                        if (linear3 ())
-                        {
-                            RefleshLinearTextMsgBox("CCD发送标定结束信号：标定成功 ......");
-                        }
-                        else
-                        {
-                            RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
-                        }
-                    }
+                            if (str[0] == "T1")
+                            {
+                                if (linear2())
+                                {
+                                    RefleshLinearTextMsgBox("CCD发送标定结束信号：标定成功 ......");
+                                }
+                                else
+                                {
+                                    RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
+                                }
+                            }
+                            else
+                            {
+                                if (linear3())
+                                {
+                                    RefleshLinearTextMsgBox("CCD发送标定结束信号：标定成功 ......");
+                                }
+                                else
+                                {
+                                    RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
+                                }
+                            }
                         }
 
                         _b_Auto_Linear = false;
 
-                    Action action = () => { SetLinearCalibMode(0); };
-                    this.Invoke(action);
+                        Action action = () => { SetLinearCalibMode(0); };
+                        this.Invoke(action);
 
-                }
-                else
-                {
+                    }
+                    else
+                    {
                         RefleshLinearTextMsgBox("CCD采集图像失败：标定失败 ......");
 
                     }
                 }
-               
+
             }
 
 
@@ -1883,7 +1883,7 @@ namespace VisionProgram.UI
             {
                 Clear_Linear();
             }
-            else if(rdo_Robot1_Con_L.Checked)
+            else if (rdo_Robot1_Con_L.Checked)
             {
                 Clear_Linear1();
             }
@@ -1895,7 +1895,7 @@ namespace VisionProgram.UI
             {
                 Clear_Linear3();
             }
-           
+
         }
         private bool Clear_Linear()
         {
@@ -1992,7 +1992,7 @@ namespace VisionProgram.UI
                 //}
                 //_Linear_State = laserRunLinearR(_laserIndex);
             }
-          
+
         }
         private bool laserRunLinearL(int Index)
         {
@@ -2028,10 +2028,10 @@ namespace VisionProgram.UI
                     return false;
                 }
                 double Step = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.LaserStep[0];
-                if (Index ==1)
+                if (Index == 1)
                 {
-                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[vppindex]- Step).ToString();
-                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[vppindex]+Step).ToString();
+                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[vppindex] - Step).ToString();
+                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[vppindex] + Step).ToString();
                 }
                 if (Index == 2)
                 {
@@ -2046,17 +2046,17 @@ namespace VisionProgram.UI
                 if (Index == 4)
                 {
                     module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[vppindex] + Step).ToString();
-                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[vppindex] ).ToString();
+                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[vppindex]).ToString();
                 }
                 if (Index == 5)
                 {
-                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[vppindex] ).ToString();
-                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[vppindex] ).ToString();
+                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[vppindex]).ToString();
+                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[vppindex]).ToString();
                 }
                 if (Index == 6)
                 {
                     module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[vppindex] - Step).ToString();
-                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[vppindex] ).ToString();
+                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[vppindex]).ToString();
                 }
                 if (Index == 7)
                 {
@@ -2065,7 +2065,7 @@ namespace VisionProgram.UI
                 }
                 if (Index == 8)
                 {
-                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[vppindex] ).ToString();
+                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[vppindex]).ToString();
                     module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[vppindex] - Step).ToString();
                 }
                 if (Index == 9)
@@ -2119,11 +2119,11 @@ namespace VisionProgram.UI
                 if (Index == 1)
                 {
                     module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[vppindex] - Step).ToString();
-                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[vppindex]+Step).ToString();
+                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[vppindex] + Step).ToString();
                 }
                 if (Index == 2)
                 {
-                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[vppindex] ).ToString();
+                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[vppindex]).ToString();
                     module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[vppindex] + Step).ToString();
                 }
                 if (Index == 3)
@@ -2134,17 +2134,17 @@ namespace VisionProgram.UI
                 if (Index == 4)
                 {
                     module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[vppindex] + Step).ToString();
-                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[vppindex] ).ToString();
+                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[vppindex]).ToString();
                 }
                 if (Index == 5)
                 {
-                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[vppindex] ).ToString();
-                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[vppindex] ).ToString();
+                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[vppindex]).ToString();
+                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[vppindex]).ToString();
                 }
                 if (Index == 6)
                 {
-                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[vppindex] -Step).ToString();
-                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[vppindex] ).ToString();
+                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[vppindex] - Step).ToString();
+                    module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[vppindex]).ToString();
                 }
                 if (Index == 7)
                 {
@@ -2153,7 +2153,7 @@ namespace VisionProgram.UI
                 }
                 if (Index == 8)
                 {
-                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[vppindex]  ).ToString();
+                    module_X = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[vppindex]).ToString();
                     module_Y = (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[vppindex] - Step).ToString();
                 }
                 if (Index == 9)
@@ -2189,18 +2189,18 @@ namespace VisionProgram.UI
             {
                 for (int i = 0; i < 9; i++)
                 {
-                   
-                        if (laserRunLinearL(i + 1) && addMark_Linear2() )
-                        {
 
-                            RefleshLinearTextMsgBox("Laser1结果：添加点对成功 ......");
-                        }
-                        else
-                        {
-                            RefleshLinearTextMsgBox("结果：添加点对失败 ......");
-                            i = 10;
-                            flag = 10;
-                        }
+                    if (laserRunLinearL(i + 1) && addMark_Linear2())
+                    {
+
+                        RefleshLinearTextMsgBox("Laser1结果：添加点对成功 ......");
+                    }
+                    else
+                    {
+                        RefleshLinearTextMsgBox("结果：添加点对失败 ......");
+                        i = 10;
+                        flag = 10;
+                    }
 
                     Thread.Sleep(1000);
                 }
@@ -2209,19 +2209,19 @@ namespace VisionProgram.UI
             {
                 for (int i = 0; i < 9; i++)
                 {
-                   
-                       
-                        if (laserRunLinearR(i + 1) && addMark_Linear3() )
-                        {
 
-                            RefleshLinearTextMsgBox("Laser1结果：添加点对成功 ......");
-                        }
-                        else
-                        {
-                            RefleshLinearTextMsgBox("结果：添加点对失败 ......");
-                            i = 10;
-                            flag = 10;
-                        }
+
+                    if (laserRunLinearR(i + 1) && addMark_Linear3())
+                    {
+
+                        RefleshLinearTextMsgBox("Laser1结果：添加点对成功 ......");
+                    }
+                    else
+                    {
+                        RefleshLinearTextMsgBox("结果：添加点对失败 ......");
+                        i = 10;
+                        flag = 10;
+                    }
                     Thread.Sleep(1000);
                 }
             }
@@ -2383,7 +2383,7 @@ namespace VisionProgram.UI
             {
                 linear3();
             }
-            
+
         }
         private bool linear()
         {
@@ -2533,7 +2533,7 @@ namespace VisionProgram.UI
                 {
                     RefleshLinearTextMsgBox("采集图像为空!");
                     arr_CenterX = new List<double>();
-                    arr_CenterY = new List<double>(); 
+                    arr_CenterY = new List<double>();
                     return false;
                 }
             }
@@ -2692,7 +2692,7 @@ namespace VisionProgram.UI
                     if (!bIsConnected)
                     {
                         //ROBOT未链接
-                        MessageBox.Show("LASER"  + ":未链接!");
+                        MessageBox.Show("LASER" + ":未链接!");
                         return;
                     }
                     if (!Clear_Linear2())
@@ -2706,7 +2706,7 @@ namespace VisionProgram.UI
                     if (!bIsConnected)
                     {
                         //ROBOT未链接
-                        MessageBox.Show("LASER"  + ":未链接!");
+                        MessageBox.Show("LASER" + ":未链接!");
                         return;
                     }
                     if (!Clear_Linear3())
@@ -2716,9 +2716,9 @@ namespace VisionProgram.UI
 
                 }
 
-                    _b_Auto_Linear = true;
+                _b_Auto_Linear = true;
                 RobotSignals.CCDRobotCal = "0";
-               
+
 
                 RefleshLinearTextMsgBox("CCD自动九点线性标定模式开启......");
             }
@@ -2733,7 +2733,7 @@ namespace VisionProgram.UI
         /// 
 
 
-        
+
         private void RefleshLinearDataGridView()
         {
             try
@@ -2899,7 +2899,7 @@ namespace VisionProgram.UI
                     }
                 }
 
-                
+
             }
             catch
             {
@@ -3301,7 +3301,7 @@ namespace VisionProgram.UI
                     RotationCenter_Y = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam1Rotation_Y[1];
                     Rotation_RMS = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam1Rotation_RMS[1];
                 }
-               
+
             }
             else if (vppindex == 1)
             {
@@ -3450,7 +3450,7 @@ namespace VisionProgram.UI
                 {
                     cur_WorkFlow.RotationCalibBlock.Inputs["Nozzle"].Value = 1;
                 }
-               
+
                 cur_WorkFlow.RotationCalibBlock.Run();
                 RotationCenter_X = 0.0;
                 RotationCenter_Y = 0.0;
@@ -3478,29 +3478,29 @@ namespace VisionProgram.UI
                 if (img != null)
                 {
                     if (rdo_ROBOT_Con_R.Checked)
-                    { 
+                    {
                         cur_WorkFlow.RotationCalibBlock.Inputs["Index"].Value = 1;
-                    cur_WorkFlow.RotationCalibBlock.Inputs["Nozzle"].Value = 0;
-                    cur_WorkFlow.RunRotationCalibBlock(ref img);
-                    if (cur_WorkFlow.RotationCalibBlock.RunStatus.Result == Cognex.VisionPro.CogToolResultConstants.Accept)
-                    {
-                        
-                        cogRecordDisplayRotation.Record = cur_WorkFlow.RotationCalibBlock.Tools["Nozzle1"].CreateLastRunRecord();
-                        cogGraphicLabel2.Color = Cognex.VisionPro.CogColorConstants.Blue;
-                        cogGraphicLabel2.SetXYText(100, 200, string.Format("当前像素坐标XY:({0},{1})", ((double)_rotation_UnCalibrated_block.Outputs["X"].Value).ToString("F3"), ((double)_rotation_UnCalibrated_block.Outputs["Y"].Value).ToString("F3")));
-                        cogRecordDisplayRotation.StaticGraphics.Add(cogGraphicLabel2, "");
-                        cogRecordDisplayRotation.Fit(true);
-                        _Rotation_State = true;
-                    }
-                    else
-                    {
-                        cogGraphicLabel2.Color = Cognex.VisionPro.CogColorConstants.Red;
-                        cogGraphicLabel2.SetXYText(100, 200, "视觉模板运行错误!");
-                        cogRecordDisplayRotation.StaticGraphics.Add(cogGraphicLabel2, "");
-                        cogRecordDisplayRotation.Fit(true);
-                        RefleshRotationTextMsgBox("视觉模板运行错误!");
-                        return false;
-                    }
+                        cur_WorkFlow.RotationCalibBlock.Inputs["Nozzle"].Value = 0;
+                        cur_WorkFlow.RunRotationCalibBlock(ref img);
+                        if (cur_WorkFlow.RotationCalibBlock.RunStatus.Result == Cognex.VisionPro.CogToolResultConstants.Accept)
+                        {
+
+                            cogRecordDisplayRotation.Record = cur_WorkFlow.RotationCalibBlock.Tools["Nozzle1"].CreateLastRunRecord();
+                            cogGraphicLabel2.Color = Cognex.VisionPro.CogColorConstants.Blue;
+                            cogGraphicLabel2.SetXYText(100, 200, string.Format("当前像素坐标XY:({0},{1})", ((double)_rotation_UnCalibrated_block.Outputs["X"].Value).ToString("F3"), ((double)_rotation_UnCalibrated_block.Outputs["Y"].Value).ToString("F3")));
+                            cogRecordDisplayRotation.StaticGraphics.Add(cogGraphicLabel2, "");
+                            cogRecordDisplayRotation.Fit(true);
+                            _Rotation_State = true;
+                        }
+                        else
+                        {
+                            cogGraphicLabel2.Color = Cognex.VisionPro.CogColorConstants.Red;
+                            cogGraphicLabel2.SetXYText(100, 200, "视觉模板运行错误!");
+                            cogRecordDisplayRotation.StaticGraphics.Add(cogGraphicLabel2, "");
+                            cogRecordDisplayRotation.Fit(true);
+                            RefleshRotationTextMsgBox("视觉模板运行错误!");
+                            return false;
+                        }
                     }
                     else
                     {
@@ -3565,7 +3565,7 @@ namespace VisionProgram.UI
             {
                 cur_WorkFlow.RotationCalibBlock.Inputs["Nozzle"].Value = 1;
             }
-           
+
             cur_WorkFlow.RotationCalibBlock.Run();
             RefleshRotationDataGridView();
             RefleshRotationTextMsgBox("添加点位成功!");
@@ -3615,7 +3615,7 @@ namespace VisionProgram.UI
                     Rotation_RMS = _rotation_calib_tool1.Result.RMSError;
                     saveResult_Rotation();
                 }
-               
+
             }
             catch (Exception e)
             {
@@ -3640,7 +3640,7 @@ namespace VisionProgram.UI
         /// </summary>
         private void saveResult_Rotation()
         {
-       //     nozzleIndex = Convert.ToInt32(this.cbo_Nozzle_Rotation.Text) - 1;
+            //     nozzleIndex = Convert.ToInt32(this.cbo_Nozzle_Rotation.Text) - 1;
             if (_Rotation_State)
             {
                 if (vppindex == 0)
@@ -3657,7 +3657,7 @@ namespace VisionProgram.UI
                         Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam1Rotation_Y[1] = RotationCenter_Y;
                         Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam1Rotation_RMS[1] = Rotation_RMS;
                     }
-                   
+
                 }
                 else if (vppindex == 1)
                 {
@@ -3691,8 +3691,8 @@ namespace VisionProgram.UI
         {
             try
             {
-            string ssss=    Project.Instance().VisionManagerInstance._visionParamPath;
-                _iniRotation = new IniHelper(Project.Instance().VisionManagerInstance._visionParamPath + @"\\Config"  + "\\CameraParams.ini");
+                string ssss = Project.Instance().VisionManagerInstance._visionParamPath;
+                _iniRotation = new IniHelper(Project.Instance().VisionManagerInstance._visionParamPath + @"\\Config" + "\\CameraParams.ini");
                 if (ccdIndex == 0)
                 {
                     if (rdo_ROBOT_Con_R.Checked)
@@ -3796,7 +3796,7 @@ namespace VisionProgram.UI
                             }
                         }
 
-                        
+
                     }
                 }
                 else
@@ -3858,7 +3858,7 @@ namespace VisionProgram.UI
                         MessageBox.Show("ROBOT2" + ":未链接!");
                         return;
                     }
-                   
+
                     //通知ROBOT开始一键标定.
                     try
                     {
@@ -3926,7 +3926,7 @@ namespace VisionProgram.UI
 
         private void rdo_Robot_Con_L_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void rdo_RobotR_Con_R_Click(object sender, EventArgs e)

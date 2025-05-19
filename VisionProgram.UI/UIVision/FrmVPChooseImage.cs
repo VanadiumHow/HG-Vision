@@ -30,7 +30,7 @@ namespace VisionProgram.UI.UIVision
         {
             InitializeComponent();
             _userDisplay = p;
-            picBoxes = new PictureBox[4] { pictureBox1, pictureBox2, pictureBox3, pictureBox4};
+            picBoxes = new PictureBox[4] { pictureBox1, pictureBox2, pictureBox3, pictureBox4 };
         }
         /// <summary>
         /// 定义图像预览控件集合
@@ -48,7 +48,7 @@ namespace VisionProgram.UI.UIVision
         {
             using (OpenFileDialog oImage = new OpenFileDialog())
             {
-                
+
                 oImage.Filter = "所有图像文件 | *.tiff; *.png; *.jpg; *.bmp; *.hobj; *.ima; *.gif; *.jpeg; *.jp2; *.jxr; *.pcx; *.ras; *.xwd; *.pbm; *.pnm; *.pgm; *.ppm";
                 oImage.Multiselect = false;
                 oImage.Title = "请选择需要从本地打开的文件...";
@@ -93,7 +93,7 @@ namespace VisionProgram.UI.UIVision
 
                     string pathName = oImage.SelectedPath;
                     string[] str = "*.tiff;*.png;*.jpg;*.bmp;*.hobj;*.ima;*.gif;*.jpeg;*.jp2;*.jxr;*.pcx;*.ras;*.xwd;*.pbm;*.pnm;*.pgm;*.ppm".Split(';');
-                 
+
                     System.IO.DirectoryInfo d = new System.IO.DirectoryInfo(pathName);
                     List<System.IO.FileInfo> ALLfis = new List<FileInfo>(); ;
                     foreach (string st in str)
@@ -204,7 +204,7 @@ namespace VisionProgram.UI.UIVision
                 _userDisplay.ImageLoadStyle = FrmVpVisionControl.LoadStyle.Folder;
                 _userDisplay.ImageInfoNames = imageInfoNames;
                 _userDisplay.DirectoryName = imageInfoNames[0].Substring(0, imageInfoNames[0].LastIndexOf("\\"));
-                
+
             }
             this.Close();
             OnChooseSure?.Invoke();

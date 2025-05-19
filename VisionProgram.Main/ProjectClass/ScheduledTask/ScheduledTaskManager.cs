@@ -24,7 +24,7 @@ namespace VisionProgram.Main.ProjectClass.ScheduledTask
         /// 刷新指示灯事件
         /// </summary>
         public Action OnRefreshHardWareStateDisplay;
-              
+
 
         /// <summary>
         /// 刷新PLC交互信号监控
@@ -40,7 +40,7 @@ namespace VisionProgram.Main.ProjectClass.ScheduledTask
         /// 每天定时8:10分 
         /// </summary>
         private System.Timers.Timer _everyDayTask = new System.Timers.Timer(60000);
-   
+
 
 
         internal ScheduledTaskManager() { }
@@ -83,7 +83,7 @@ namespace VisionProgram.Main.ProjectClass.ScheduledTask
             MyEventArgs args = (MyEventArgs)e;
             object data = args.obj;
             int index = (int)data;
-            
+
             OnMonitorSignalExchange?.Invoke(index);
         }
 
@@ -141,7 +141,8 @@ namespace VisionProgram.Main.ProjectClass.ScheduledTask
         /// </summary>
         public void ClearProductData()
         {
-            new Action(() => {
+            new Action(() =>
+            {
                 try
                 {
                     Project.Instance().ProductionDataManagerInstance.ClearProductionData();
@@ -162,7 +163,8 @@ namespace VisionProgram.Main.ProjectClass.ScheduledTask
         /// </summary>
         public void ClearLog()
         {
-            new Action(() => {              
+            new Action(() =>
+            {
                 LogHelper.CleanHistoryLog(Project.Instance().GlobalManagerInstance.GlobalParamModel.logSaveDays);
                 NoticeHelper.OutputMessageSend($"清空N天前的日志完成-----------------------------------------------------------------------", OutputLevelModel.INFO);
             }).BeginInvoke(null, null);
@@ -173,7 +175,8 @@ namespace VisionProgram.Main.ProjectClass.ScheduledTask
         /// </summary>
         public void ClearPicture()
         {
-            new Action(() => {
+            new Action(() =>
+            {
                 Project.Instance().VisionManagerInstance.CleanHistoryImage();
                 NoticeHelper.OutputMessageSend($"清空N天前的图片完成-----------------------------------------------------------------------", OutputLevelModel.INFO);
             }).BeginInvoke(null, null);
@@ -181,7 +184,7 @@ namespace VisionProgram.Main.ProjectClass.ScheduledTask
 
         #endregion
 
-       
+
 
         #region 停止定时任务
         /// <summary>

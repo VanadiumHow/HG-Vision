@@ -29,11 +29,11 @@ namespace VisionProgram.Main.ProjectClass.Robot
         {
             //服务器1
             public string LocalName;
-            public string LocalIP;  
+            public string LocalIP;
             public string LocalPort;
             //服务器2
             public string LocalName1;
-            public string LocalIP1; 
+            public string LocalIP1;
             public string LocalPort1;
             //服务器3                 
             public string LocalName2;
@@ -75,7 +75,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
                 InitConfigDirctory(strFilePath);
                 _ini.path = strFilePath;
                 A_RobotInfo = new RobotInfo();
-                
+
                 string robotSection = "Robot1";
                 A_RobotInfo.LocalName = _ini.IniReadValue(robotSection, "Name");
                 A_RobotInfo.LocalIP = _ini.IniReadValue(robotSection, "Ip");

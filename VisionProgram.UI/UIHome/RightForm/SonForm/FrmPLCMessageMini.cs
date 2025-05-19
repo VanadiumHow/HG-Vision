@@ -27,7 +27,7 @@ namespace VisionProgram.UI.UIHome.RightForm
 
 
         //展示信息委托
-        private delegate void UpdateControls(string msg, int plcIndex,string time, bool isOK = true);
+        private delegate void UpdateControls(string msg, int plcIndex, string time, bool isOK = true);
         private UpdateControls _upd = null;
 
         internal Action<int> OnClearMessageMinEvent;
@@ -47,7 +47,7 @@ namespace VisionProgram.UI.UIHome.RightForm
             NoticeHelper.OnPLCMessageRecieved += PLCMessageMinReceived;
             _upd = new UpdateControls(OutputPLCMsg);
 
-            this.InitControl();       
+            this.InitControl();
         }
 
 
@@ -94,7 +94,7 @@ namespace VisionProgram.UI.UIHome.RightForm
                      this.放大窗口ToolStripMenuItem,
                      this.清屏PLC1ToolStripMenuItem});
 
-            清屏PLC1ToolStripMenuItem.Click += (o, e) => { 清屏PLCToolStripMenuItem_Click(this, new MyEventArgs(0)); };    
+            清屏PLC1ToolStripMenuItem.Click += (o, e) => { 清屏PLCToolStripMenuItem_Click(this, new MyEventArgs(0)); };
             ToolStripButton1.Click += (o, e) => { SwitchListView_Click(this, new MyEventArgs(new string[] { "0", ToolStripButton1.Name })); };
             _tsButtonList.Clear();
             _tsButtonList.Add(ToolStripButton1);
@@ -110,7 +110,7 @@ namespace VisionProgram.UI.UIHome.RightForm
         /// 根据PLC的个数把剩下的ListView动态渲染出来
         /// </summary>
         private void InitAllMessageListViewPage()
-        {         
+        {
             //判断是否多PLC，动态加载另外的PLC的信息显示框
             if (Project.Instance().PLCManagerInstance.PLCNum > 1)
             {
@@ -163,7 +163,7 @@ namespace VisionProgram.UI.UIHome.RightForm
                     lView.ShowItemToolTips = this.ListView1.ShowItemToolTips;
                     lView.Size = this.ListView1.Size;
                     lView.UseCompatibleStateImageBehavior = this.ListView1.UseCompatibleStateImageBehavior;
-                    lView.View = this.ListView1.View;                
+                    lView.View = this.ListView1.View;
                     lView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { cHeader1, cHeader2 });
                     _listViewArray[i] = lView;
 
@@ -180,7 +180,7 @@ namespace VisionProgram.UI.UIHome.RightForm
 
 
         #region 显示信息方法
-        public void PLCMessageMinReceived(string msg, int plcIndex,string time, bool isOK = true)
+        public void PLCMessageMinReceived(string msg, int plcIndex, string time, bool isOK = true)
         {
             if (this.IsHandleCreated)
             {
@@ -194,12 +194,12 @@ namespace VisionProgram.UI.UIHome.RightForm
         /// <param name="data"></param>
         /// <param name="plcIndex"></param>
         /// <param name="isOK"></param>
-        public void OutputPLCMsg(string data, int plcIndex,string time, bool isOK = true)
+        public void OutputPLCMsg(string data, int plcIndex, string time, bool isOK = true)
         {
             if (string.IsNullOrEmpty(data) || string.IsNullOrWhiteSpace(data))
                 return;
 
-            Action<string, int,string> act = (msg, index,nowTime) =>
+            Action<string, int, string> act = (msg, index, nowTime) =>
             {
                 try
                 {
@@ -257,7 +257,7 @@ namespace VisionProgram.UI.UIHome.RightForm
                 else
                     _listViewArray[i].Visible = true;
             }
-            
+
         }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace VisionProgram.UI.UIHome.RightForm
         /// <param name="e"></param>
         private void 放大窗口ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OnSetPLCMessageFormNormalEvent?.Invoke();         
+            OnSetPLCMessageFormNormalEvent?.Invoke();
         }
 
 

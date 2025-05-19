@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VisionProgram.Main.ProjectClass.PLC
-{  
+{
     /// <summary>
-     ///抽象量， PLC变量定义
-     /// </summary>
+    ///抽象量， PLC变量定义
+    /// </summary>
     public abstract class PLCVar
     {
         public string Name;

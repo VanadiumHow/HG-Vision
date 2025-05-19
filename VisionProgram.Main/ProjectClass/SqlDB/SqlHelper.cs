@@ -60,7 +60,7 @@ namespace VisionProgram.Main.ProjectClass.SqlDB
         /// <param name="cmdType">执行的脚本类型 1:sql语句  2:存储过程</param>
         /// <param name="parameters">参数列表</param>
         /// <returns></returns>
-        public static int ExecuteNonQuery(string connStr,string sql, int cmdType, params SqlParameter[] parameters)
+        public static int ExecuteNonQuery(string connStr, string sql, int cmdType, params SqlParameter[] parameters)
         {
             int result = 0;//返回结果
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -287,14 +287,14 @@ namespace VisionProgram.Main.ProjectClass.SqlDB
             }
         }
 
-       /// <summary>
-       /// 数据库备份
-       /// </summary>
-       /// <param name="connStr"></param>
-       /// <param name="sql"></param>
-       /// <param name="cmdType"></param>
-       /// <param name="parameters"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// 数据库备份
+        /// </summary>
+        /// <param name="connStr"></param>
+        /// <param name="sql"></param>
+        /// <param name="cmdType"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public static int ExecuteBackup(string connStr, string sql, int cmdType, params SqlParameter[] parameters)
         {
             int result = 0;//返回结果
@@ -334,7 +334,7 @@ namespace VisionProgram.Main.ProjectClass.SqlDB
             SqlCommand command = new SqlCommand(sql, conn);
             command.CommandTimeout = CommandTimeOut;
             if (cmdType == 2)
-                command.CommandType = CommandType.StoredProcedure;           
+                command.CommandType = CommandType.StoredProcedure;
             if (trans != null)
                 command.Transaction = trans;
             if (paras != null && paras.Length > 0)
@@ -421,7 +421,7 @@ namespace VisionProgram.Main.ProjectClass.SqlDB
                 VALUES(@loginRoleName , @logType , @modifyField , @oldValue, @newValue, @modifyInfo, @createDatetime)
                 END";
 
-             SqlHelper.ExecuteNonQuery(sqlconn, sqlstr, 1, null);
+            SqlHelper.ExecuteNonQuery(sqlconn, sqlstr, 1, null);
         }
 
 

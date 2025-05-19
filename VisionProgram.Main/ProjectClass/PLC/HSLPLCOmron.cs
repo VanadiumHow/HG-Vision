@@ -15,7 +15,7 @@ using HslCommunication;
 *****************************************************************/
 namespace VisionProgram.Main.ProjectClass.PLC
 {
-    public class HSLPLCOmron 
+    public class HSLPLCOmron
     {
         public OmronFinsNet NJPLC;
 
@@ -34,10 +34,10 @@ namespace VisionProgram.Main.ProjectClass.PLC
         /// </summary>
         public List<PLCConfiguration.PLCInfo> L_PLCInfo = new List<PLCConfiguration.PLCInfo>();
         //加载ini
-        
-      
 
-        public HSLPLCOmron() 
+
+
+        public HSLPLCOmron()
         {
             try
             {
@@ -48,8 +48,8 @@ namespace VisionProgram.Main.ProjectClass.PLC
                 NJPLC.DA2 = 0;
                 NJPLC.ByteTransform.DataFormat = HslCommunication.Core.DataFormat.CDAB;
                 NJPLC.ByteTransform.IsStringReverse = true;
-               
-                
+
+
             }
             catch (Exception ex)
             {
@@ -57,12 +57,12 @@ namespace VisionProgram.Main.ProjectClass.PLC
             }
         }
 
-        public  bool ConnectionState()
+        public bool ConnectionState()
         {
-             return _isPLCConnect;
+            return _isPLCConnect;
         }
 
-        public  bool Connect()
+        public bool Connect()
         {
             try
             {
@@ -77,7 +77,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
             return _isPLCConnect;
         }
 
-        public  void Dispose()
+        public void Dispose()
         {
             NJPLC.Dispose();
         }
@@ -241,7 +241,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
                     if (read.IsSuccess)
                     {
                         return read.Content;
-                       
+
                     }
                     else
                     {

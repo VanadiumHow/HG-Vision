@@ -162,7 +162,7 @@ namespace VisionProgram.UI.UIHome
                         {
                             this.SplitContainer2.Panel2.Show();
                             this.SplitContainer1.SplitterDistance = this.SplitContainer1.Width - Project.Instance().GlobalManagerInstance.GlobalParamModel.PanelRightWidth - 1;
-                           // ButtonShrinkPage.BackgroundImage = Resources.;
+                            // ButtonShrinkPage.BackgroundImage = Resources.;
                         }
                         else
                         {

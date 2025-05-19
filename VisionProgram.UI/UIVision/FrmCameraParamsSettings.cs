@@ -2690,10 +2690,10 @@ namespace VisionProgram.UI.UIVision
                 LogHelper.Info(currentTab.Text + l.Text + $"填入参数{uiTb.Text}成功");
                 if (string.IsNullOrEmpty(uiTb.Text))
                 {
-                    System.Windows.MessageBox.Show($"{l.Text }文本框内不能为空！");
+                    System.Windows.MessageBox.Show($"{l.Text}文本框内不能为空！");
                     return;
                 }
-                if(uiTb.Name == "tb_Cam1RobStep" || uiTb.Name == "tb_Cam1LaserStep")
+                if (uiTb.Name == "tb_Cam1RobStep" || uiTb.Name == "tb_Cam1LaserStep")
                 {
                     if (Convert.ToDouble(uiTb.Text) > 3)
                     {

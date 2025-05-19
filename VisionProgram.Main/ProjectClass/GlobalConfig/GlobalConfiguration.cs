@@ -38,7 +38,7 @@ namespace VisionProgram.Main.ProjectClass
                 InitConfigDirctory();
                 globalParamModel.WorkFlowNum = Convert.ToInt16(_ini.IniReadValue("Config", "WorkFlowNum"));
                 globalParamModel.NozzleNum = Convert.ToInt16(_ini.IniReadValue("Config", "NozzleNum"));
-                globalParamModel.RobotNum= Convert.ToInt16(_ini.IniReadValue("Config", "RobotNum"));
+                globalParamModel.RobotNum = Convert.ToInt16(_ini.IniReadValue("Config", "RobotNum"));
                 globalParamModel.programTitle = _ini.IniReadValue("Config", "ProgramTitle");
                 globalParamModel.logSaveDays = Convert.ToInt16(_ini.IniReadValue("Config", "LogSaveDays"));
                 globalParamModel.PanelRightWidth = Convert.ToInt32(_ini.IniReadValue("Config", "PanelRightWidth"));
@@ -61,7 +61,7 @@ namespace VisionProgram.Main.ProjectClass
             }
         }
 
-     
+
 
         /// <summary>
         /// 存单个参数
@@ -90,7 +90,7 @@ namespace VisionProgram.Main.ProjectClass
         private void InitConfigDirctory()
         {
             try
-            {             
+            {
                 //配置文件夹
                 if (!Directory.Exists(FilePathModel.ConfigPath))
                     Directory.CreateDirectory(FilePathModel.ConfigPath);

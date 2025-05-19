@@ -17,7 +17,7 @@ namespace VisionProgram.Main.ProjectClass.GlobalConfig
         /// <summary>
         /// 系统参数配置类
         /// </summary>
-        private GlobalConfiguration _globalConfiguration = new GlobalConfiguration();     
+        private GlobalConfiguration _globalConfiguration = new GlobalConfiguration();
 
         /// <summary>
         /// 系统参数类
@@ -63,6 +63,6 @@ namespace VisionProgram.Main.ProjectClass.GlobalConfig
             return true;
         }
 
-      
+
     }
 }

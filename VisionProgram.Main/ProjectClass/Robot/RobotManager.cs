@@ -58,14 +58,14 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     }
                 }
                 L_Robot.Clear();
-                
+
                 for (int i = 0; i < RobotNum; i++)
                 {
                     if (i == 0)
                     {
                         RobotConfiguration.AnalysisRobotInfoConfig(FilePathModel.RobotCommPath1);
                     }
-                  
+
 
                     if (int.Parse(RobotConfiguration.A_RobotInfo.LocalPort) < 65536)
                     {
@@ -93,9 +93,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                             L_Robot.Add(RobotObj);
                         }
                         L_Robot[i].StartServerRobot();
-                        
+
                     }
-                }               
+                }
             }
             catch (Exception ex)
             {

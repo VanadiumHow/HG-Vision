@@ -33,7 +33,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
 
         private bool _isWarningOfReconn = false;//是否已经发送重连提醒 
 
-        public BasePLC(string plcType,int number,string description)
+        public BasePLC(string plcType, int number, string description)
         {
             this.PLCType = plcType;
             this.PLCNumber = number;
@@ -186,7 +186,7 @@ namespace VisionProgram.Main.ProjectClass.PLC
         #endregion
 
         #region 实时监听信号多读
-        public void ReadMultiSignal(string[] signals,out object[] objVale)
+        public void ReadMultiSignal(string[] signals, out object[] objVale)
         {
             objVale = new object[signals.Length];
             ReadMultiTagValue(signals, out objVale);

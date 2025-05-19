@@ -33,7 +33,7 @@ namespace VisionProgram.UI.UIVision
             //初始化图像窗口LIST
             //InitialFrmVisionControlList(Project.Instance().VisionManagerInstance.CameraManagerInstance.CameraNum);
         }
-     
+
 
         /// <summary>
         /// 窗体对象实例
@@ -47,7 +47,7 @@ namespace VisionProgram.UI.UIVision
                     _instance = new FrmMainVision();
                 return _instance;
             }
-        }     
+        }
 
         private void FrmMainVision_Load(object sender, EventArgs e)
         {
@@ -80,7 +80,7 @@ namespace VisionProgram.UI.UIVision
                     _frmVisionControlList.Add(frmVisionControl1);
                     GlobalCameraParams.cameraVisionControlList.Add(frmVisionControl1.RecordDisplay);
                 }
-               
+
             }
         }
 
@@ -89,7 +89,7 @@ namespace VisionProgram.UI.UIVision
         /// </summary>
         /// <param name="videoNum"></param>
         /// <returns></returns>
-        private void LoadCameraForm(int maxWorkNum,int workFlowNum)
+        private void LoadCameraForm(int maxWorkNum, int workFlowNum)
         {
             if (workFlowNum <= 0) return;
             //清空画布上的控件
@@ -100,7 +100,7 @@ namespace VisionProgram.UI.UIVision
             if (maxWorkNum / workFlowNum > 1)//1234
             {
                 this.PanelAll.Controls.Add(this.TableLayoutPanelMainVision);
-                LoadCameraTabPage1(workFlowNum,TableLayoutPanelMainVision);
+                LoadCameraTabPage1(workFlowNum, TableLayoutPanelMainVision);
             }
             else//5678
             {
@@ -116,7 +116,7 @@ namespace VisionProgram.UI.UIVision
         /// <param name="workFlowNum"></param>
         private void LoadCameraTabPage1(int workFlowNum, System.Windows.Forms.TableLayoutPanel tlp)
         {
-          
+
             int newRowCount = workFlowNum > 2 ? 2 : 1;//1 1 2 2
             int newColCount = workFlowNum > 1 ? 2 : 1;//1 2 2 2 
 

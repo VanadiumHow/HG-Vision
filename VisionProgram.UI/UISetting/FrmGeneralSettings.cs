@@ -23,7 +23,7 @@ namespace VisionProgram.UI.UISetting
         /// 记录修改
         /// </summary>
         public Action<List<OperationLogParamModel.OldParam>> OnChangeGeneralSettings;
-       
+
         private FrmGeneralSettings()
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace VisionProgram.UI.UISetting
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
         {
-            if (this.QuestionInfoDialog( "确定要保存常规参数？", "提交参数") == DialogResult.Yes)
+            if (this.QuestionInfoDialog("确定要保存常规参数？", "提交参数") == DialogResult.Yes)
             {
                 try
                 {
@@ -67,7 +67,7 @@ namespace VisionProgram.UI.UISetting
                         Project.Instance().GlobalManagerInstance.GlobalParamModel.logSaveDays = Convert.ToInt16(TextBoxEXLogSaveDays.Text);
                         Project.Instance().GlobalManagerInstance.SaveOneParams("Config", "LogSaveDays", Project.Instance().GlobalManagerInstance.GlobalParamModel.logSaveDays.ToString());
                     }
-                    if(AutoStartHelper.CheckShortCut() != cb_AutoStart.Checked)
+                    if (AutoStartHelper.CheckShortCut() != cb_AutoStart.Checked)
                     {
                         oldGeneralParamObjects.Add(new OperationLogParamModel.OldParam() { Text = "开机自启动", Field = "AutoStart", OldValue = AutoStartHelper.CheckShortCut().ToString(), NewValue = cb_AutoStart.Checked.ToString() });
                         if (cb_AutoStart.Checked)
@@ -91,9 +91,9 @@ namespace VisionProgram.UI.UISetting
                 catch (Exception ex)
                 {
                     NoticeHelper.OutputMessageSend($"保存常规参数出现异常：{ex.Message}", OutputLevelModel.ERROR);
-                    LogHelper.Error("保存常规参数出现异常",ex);
+                    LogHelper.Error("保存常规参数出现异常", ex);
                 }
-             
+
             }
         }
 

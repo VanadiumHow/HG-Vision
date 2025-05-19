@@ -21,7 +21,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
         public static string CCDRobotPRespond = "PCSEND;P;TriggerOK";
         public static string CCDRobotNRespond = "PCSEND;N;TriggerOK";
 
-        public static string CCDRobotOffset= "1;2;3;"; //x,y,r偏移量    //ReceiveOK
+        public static string CCDRobotOffset = "1;2;3;"; //x,y,r偏移量    //ReceiveOK
 
         public static string CCD1RobotResultNG = "PCSEND;N;NG1"; //ccd1结果信号
         public static string CCD1RobotResultOK = "PCSEND;N;OK1"; //ccd1结果信号
@@ -70,7 +70,7 @@ namespace VisionProgram.Main.ProjectClass.Robot
 
         //激光的发送内容
         public static string Laser1NinePointStr =
-          "_OK;"+ Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[0].ToString() + "%" + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[0].ToString() + "#"
+          "_OK;" + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[0].ToString() + "%" + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[0].ToString() + "#"
                 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX1[0].ToString() + "%" + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY1[0].ToString() + "#"
                 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX2[0].ToString() + "%" + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY2[0].ToString() + "#"
                 + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX3[0].ToString() + "%" + Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY3[0].ToString() + "#"

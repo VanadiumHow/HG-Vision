@@ -43,11 +43,11 @@ namespace VisionProgram.UI.UILogin
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-                this.TextBoxEXPwd.Clear();
-                this.ComboBoxEXUser.Items.Clear();
-                this.ComboBoxEXUser.Items.AddRange(Project.Instance().UserInfoManagerInstance.GetRoleNames().ToArray());
-                this.ComboBoxEXUser.SelectedIndex = 0;
-                this.ActiveControl = TextBoxEXPwd;
+            this.TextBoxEXPwd.Clear();
+            this.ComboBoxEXUser.Items.Clear();
+            this.ComboBoxEXUser.Items.AddRange(Project.Instance().UserInfoManagerInstance.GetRoleNames().ToArray());
+            this.ComboBoxEXUser.SelectedIndex = 0;
+            this.ActiveControl = TextBoxEXPwd;
         }
 
         protected override CreateParams CreateParams
@@ -88,7 +88,7 @@ namespace VisionProgram.UI.UILogin
 
         private void TextBoxEXPwd_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 ButtonLogin.PerformClick();
             }
@@ -148,13 +148,13 @@ namespace VisionProgram.UI.UILogin
             }
 
             FrmEdit ue = new FrmEdit(this, ComboBoxEXUser.SelectedItem.ToString());
-           
+
             if (ue.ShowDialog() == DialogResult.OK)
             {
                 this.ConfirmInfoDialog($"角色{ComboBoxEXUser.SelectedItem.ToString()} 密码修改成功！");
                 ue.Close();
                 ue.Dispose();
-            }        
+            }
         }
 
     }

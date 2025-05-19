@@ -175,7 +175,7 @@ namespace VisionProgram.UI.UIVision
             ICogAcqFifo CamOperator = _curWorkFlow.AcquireTool.Operator;
             try
             {
-                if (tbExposeReal.Text != null&& tbExposeReal.Text != "")
+                if (tbExposeReal.Text != null && tbExposeReal.Text != "")
                 {
                     relExpose = Convert.ToDouble(tbExposeReal.Text);
                 }
@@ -184,9 +184,9 @@ namespace VisionProgram.UI.UIVision
                     relExpose = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[0];
                 }
             }
-            catch 
-            { 
-                relExpose = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[0]; 
+            catch
+            {
+                relExpose = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[0];
             }
             if (CamOperator != null && CamOperator.FrameGrabber != null)
             {
@@ -283,7 +283,7 @@ namespace VisionProgram.UI.UIVision
         public void GrabImage()
         {
 
-          
+
 
             this.cogRecordDisplay1.Display.StaticGraphics.Clear();
             this.cogRecordDisplay1.Subject = null;
@@ -335,7 +335,7 @@ namespace VisionProgram.UI.UIVision
             this.RecordDisplay.Display.StaticGraphics.Add(label, "");
         }
 
-       
+
         private void 实时ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //开始实时
@@ -403,7 +403,7 @@ namespace VisionProgram.UI.UIVision
                 if (null != Project.Instance().LaserManagerInstance.L_Laser[0]) Project.Instance().LaserManagerInstance.L_Laser[0].Close();
                 Project.Instance().LaserManagerInstance.L_Laser[0].Connect();
             }
-           
+
             GrabImage();
         }
 
@@ -454,7 +454,7 @@ namespace VisionProgram.UI.UIVision
                     MessageBox.Show("未提供图片！");
                     return;
                 }
-                
+
                 #region 参数初始化
                 //当前吸嘴个数
                 int NozzleNum = 1;//1个
@@ -575,7 +575,7 @@ namespace VisionProgram.UI.UIVision
                     addY4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddY[i];
                     addT4[i] = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_cam4AddT[i];
 
-                   
+
                 }
 
 
@@ -827,7 +827,7 @@ namespace VisionProgram.UI.UIVision
                         Project.Instance().RobotManagerInstance.L_Robot[0].SendText(RobotSignals.CCD1RobotResultNG, 0);
                     }
                     Project.Instance().ProductionDataManagerInstance.L_ProductionStationNGCount[0]++;
-                 //   _camComplete[e.Index] = false;
+                    //   _camComplete[e.Index] = false;
                     return;
                 }
 
@@ -1182,7 +1182,7 @@ namespace VisionProgram.UI.UIVision
                     }
 
                     #endregion
-                   
+
                     if (Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.SpacingUse[_workFlowIndex] == 1.0)
                     {
                         double SpecingX = Math.Round((Convert.ToDouble(_spacing.ToString("f3")) - Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.Spacing[_workFlowIndex]), 3);
@@ -1206,42 +1206,42 @@ namespace VisionProgram.UI.UIVision
                 }
                 _camResult[_workFlowIndex] = isOk ? 1 : 2;
 
-                
-                    double limitMIN = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_Limitmin[_workFlowIndex];
-                    double limitMAX = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_Limitmax[_workFlowIndex];
-                    bool OutLimit = false;
-                    if (dX1[0] < limitMIN || dX1[0] > limitMAX || dX3[0] < limitMIN || dX3[0] > limitMAX || dY1[0] < limitMIN || dY1[0] > limitMAX || dY3[0] < limitMIN || dY3[0] > limitMAX)
-                    {
-                        isOk = false;
-                        OutLimit = true;
-                        FinalResult = "NG";
-                    }
-                  
-                 
-                    ///显示界面:
-                    CogColorConstants Color = isOk ? CogColorConstants.Green : CogColorConstants.Red;
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], Color, 0, 0, string.Format("{0}", FinalResult), FontSize);
-                    //WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 2, "取像时间：" + mSeconds1.ToString() + "ms", FontSize);
-                    //WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 4, "处理时间：" + mSeconds2.ToString() + "ms", FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 6, "机械手1偏移X：" + dX1[0].ToString("f3") + "Y：" + dY1[0].ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 8, "焊点1偏移 X：" + (AddL1X1).ToString("f3") + "Y：" + (AddL1Y1).ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 10, "焊点2偏移 X：" + (AddL1X2).ToString("f3") + "Y：" + (AddL1Y2).ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 12, "焊点3偏移 X：" + (AddL1X3).ToString("f3") + "Y：" + (AddL1Y3).ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 14, "焊点4偏移 X：" + (AddL1X4).ToString("f3") + "Y：" + (AddL1Y4).ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 16, "焊点偏移X：" + dX3[0].ToString("f3") + "Y：" + dY3[0].ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 18, "弹夹角度：" + Pangle.ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 20, "胶片角度：" + Pangle.ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 22, "极耳间距：" + _spacing.ToString("f3"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 24, "工位号：" + "1(面朝屏幕右手端)", FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 26, "夹具号：" + _jiajuhao, FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 28, "电池条码：" + _code1, FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 30, DateTime.Now.ToString("HH:mm:ss"), FontSize);
-                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 36, sError, FontSize);//YBR
-                if (OutLimit == true)
-                    {
-                        WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 32, "偏移值超限NG", FontSize);
 
-                    }
+                double limitMIN = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_Limitmin[_workFlowIndex];
+                double limitMAX = Project.Instance().VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_Limitmax[_workFlowIndex];
+                bool OutLimit = false;
+                if (dX1[0] < limitMIN || dX1[0] > limitMAX || dX3[0] < limitMIN || dX3[0] > limitMAX || dY1[0] < limitMIN || dY1[0] > limitMAX || dY3[0] < limitMIN || dY3[0] > limitMAX)
+                {
+                    isOk = false;
+                    OutLimit = true;
+                    FinalResult = "NG";
+                }
+
+
+                ///显示界面:
+                CogColorConstants Color = isOk ? CogColorConstants.Green : CogColorConstants.Red;
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], Color, 0, 0, string.Format("{0}", FinalResult), FontSize);
+                //WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 2, "取像时间：" + mSeconds1.ToString() + "ms", FontSize);
+                //WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 4, "处理时间：" + mSeconds2.ToString() + "ms", FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 6, "机械手1偏移X：" + dX1[0].ToString("f3") + "Y：" + dY1[0].ToString("f3"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 8, "焊点1偏移 X：" + (AddL1X1).ToString("f3") + "Y：" + (AddL1Y1).ToString("f3"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 10, "焊点2偏移 X：" + (AddL1X2).ToString("f3") + "Y：" + (AddL1Y2).ToString("f3"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 12, "焊点3偏移 X：" + (AddL1X3).ToString("f3") + "Y：" + (AddL1Y3).ToString("f3"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 14, "焊点4偏移 X：" + (AddL1X4).ToString("f3") + "Y：" + (AddL1Y4).ToString("f3"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 16, "焊点偏移X：" + dX3[0].ToString("f3") + "Y：" + dY3[0].ToString("f3"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 18, "弹夹角度：" + Pangle.ToString("f3"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 20, "胶片角度：" + Pangle.ToString("f3"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 22, "极耳间距：" + _spacing.ToString("f3"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 24, "工位号：" + "1(面朝屏幕右手端)", FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 26, "夹具号：" + _jiajuhao, FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 28, "电池条码：" + _code1, FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 30, DateTime.Now.ToString("HH:mm:ss"), FontSize);
+                WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 36, sError, FontSize);//YBR
+                if (OutLimit == true)
+                {
+                    WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Red, 0, FontSize * 32, "偏移值超限NG", FontSize);
+
+                }
                 TriggerEventArgs triggerEventArgs = new TriggerEventArgs();
                 //VP或者Halcon存图
                 triggerEventArgs.resultImage = GlobalCameraParams.cameraVisionControlList[_workFlowIndex];
@@ -1302,7 +1302,7 @@ namespace VisionProgram.UI.UIVision
                     cogRecordDisplay1.Display.BackColor = Color.Black;
                     cogRecordDisplay1.Display.GridColor = Color.Black;
                     _image2BRun = this.cogRecordDisplay1.Display.Image;
-               
+
                 }
                 else if (ImageLoadStyle == LoadStyle.Folder)
                 {
@@ -1324,13 +1324,13 @@ namespace VisionProgram.UI.UIVision
                         this.ImageName = ImageInfoNames[0];
                         if (index == 0)
                         {
-                         
+
                         }
                     }
                 }
                 Project.Instance().VisionManagerInstance.CameraManagerInstance.L_workFlowList[_workFlowIndex].AcquireBlock.Outputs["bAccept"].Value = true;
             }
-            catch  
+            catch
             {
                 MessageBox.Show("读取图像异常");
             }
@@ -1424,7 +1424,7 @@ namespace VisionProgram.UI.UIVision
         private void 查看图片ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[_workFlowIndex].ResultImagePosition ;
+            string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[_workFlowIndex].ResultImagePosition;
             if (Directory.Exists(path))
             {
                 Process.Start(path);
@@ -2209,8 +2209,8 @@ namespace VisionProgram.UI.UIVision
                 ///显示界面:
                 CogColorConstants Color = isOk ? CogColorConstants.Green : CogColorConstants.Red;
                 WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], Color, 0, 0, string.Format("{0}", FinalResult), FontSize);
-               // WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 2, "取像时间：" + mSeconds1.ToString() + "ms", FontSize);
-               // WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 4, "处理时间：" + mSeconds2.ToString() + "ms", FontSize);
+                // WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 2, "取像时间：" + mSeconds1.ToString() + "ms", FontSize);
+                // WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 4, "处理时间：" + mSeconds2.ToString() + "ms", FontSize);
                 WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 6, "机械手1偏移X：" + dX2[0].ToString("f3") + "Y：" + dY2[0].ToString("f3"), FontSize);
                 WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 8, "焊点1偏移 X：" + (AddL2X1).ToString("f3") + "Y：" + (AddL2Y1).ToString("f3"), FontSize);
                 WorkFlow.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[_workFlowIndex], CogColorConstants.Blue, 0, FontSize * 10, "焊点2偏移 X：" + (AddL2X2).ToString("f3") + "Y：" + (AddL2Y2).ToString("f3"), FontSize);
@@ -2248,7 +2248,7 @@ namespace VisionProgram.UI.UIVision
         private void 单帧2工位ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-           
+
             if (_isLive)
             {
                 实时ToolStripMenuItem.Text = "开始实时";
