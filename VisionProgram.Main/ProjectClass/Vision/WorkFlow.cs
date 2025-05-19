@@ -462,8 +462,8 @@ namespace VisionProgram.Vision.VP
             try
             {
                 VerificatecalibBlock.Inputs["InputImage"].Value = img;
-                VerificatecalibBlock.Inputs["LinerTransform"].Value = LinearTransform;
-                VerificatecalibBlock.Inputs["LinerTransform1"].Value = LinearTransform1;
+                VerificatecalibBlock.Inputs["LinearTransform"].Value = LinearTransform;
+                VerificatecalibBlock.Inputs["LinearTransform1"].Value = LinearTransform1;
 
                 VerificatecalibBlock.Run();
                 return true;
