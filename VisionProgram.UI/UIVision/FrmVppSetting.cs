@@ -292,8 +292,17 @@ namespace VisionProgram.UI
                 //更新坐标
                 if (_inAuto == true)
                 {
-                    tb_X_Linear.Text = module_X;
-                    tb_Y_Linear.Text = module_Y;
+                    if (rdo_Auto_Linear.Checked)
+                    {
+                        tb_X_Linear.Text = module_X;
+                        tb_Y_Linear.Text = module_Y;
+                    }
+                    else if (rdo_Verificate_Linear.Checked)
+                    {
+                        tb_X_Linear.Text = currunt_CenterX.ToString();
+                        tb_X_Linear.Text = currunt_CenterX.ToString();
+
+                    }
                 }
                 //更新标定误差
                 tb_RMS_Linear.Text = Linear_RMS.ToString("f3");
@@ -965,9 +974,9 @@ namespace VisionProgram.UI
                                 else if (rdo_Verificate_Linear.Checked && runVerificate())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
-                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送6号标定点字符：" + "CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送7号标定点字符：" + "CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
                                 else
                                 {
@@ -1469,7 +1478,7 @@ namespace VisionProgram.UI
                             }
                             else if (rdo_Verificate_Linear.Checked)
                             {
-                                if (runVerificate())
+                                if (runVerificate1())
                                 {
                                     Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
@@ -2463,6 +2472,8 @@ namespace VisionProgram.UI
         }
         #endregion
         #region 标定验证
+        private double currunt_CenterX = 0;
+        private double currunt_CenterY = 0;
         private List<double> arr_CenterX = new List<double>();
         private List<double> arr_CenterY = new List<double>();
         double[][] testData = new double[2][];
@@ -2477,34 +2488,42 @@ namespace VisionProgram.UI
                     cur_WorkFlow.RunVerificatecalibBlock(ref img);
                     if (cur_WorkFlow.VerificatecalibBlock.RunStatus.Result == CogToolResultConstants.Accept)
                     {
+                        currunt_CenterX = Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value);
+                        currunt_CenterY = Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputY"].Value);
                         cogRecordDisplayLinear.Record = cur_WorkFlow.VerificatecalibBlock.CreateLastRunRecord();
-                        cogGraphicLabel2.Color = CogColorConstants.Blue;
-                        cogGraphicLabel2.SetXYText(100, 200, string.Format("当前机械坐标XY:({0},{1})", (cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value, cur_WorkFlow.VerificatecalibBlock.Outputs["OutputY"].Value)));
-                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
+                        //cogGraphicLabel2.Color = CogColorConstants.Blue;
+                        //cogGraphicLabel2.SetXYText(100, 200, string.Format("当前机械坐标XY:({0},{1})", (cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value, cur_WorkFlow.VerificatecalibBlock.Outputs["OutputY"].Value)));
+                        //cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
                         cogRecordDisplayLinear.Fit(true);
                         _Linear_State = true;
-                        arr_CenterX.Add(Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value));
-                        arr_CenterY.Add(Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value));
+                        arr_CenterX.Add(currunt_CenterX);
+                        arr_CenterY.Add(currunt_CenterY);
                     }
                     else
                     {
-                        cogGraphicLabel2.Color = CogColorConstants.Red;
-                        cogGraphicLabel2.SetXYText(100, 200, "视觉模板运行错误!");
-                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
+                        //cogGraphicLabel2.Color = CogColorConstants.Red;
+                        //cogGraphicLabel2.SetXYText(100, 200, "视觉模板运行错误!");
+                        //cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
                         cogRecordDisplayLinear.Fit(true);
                         RefleshLinearTextMsgBox("视觉模板运行错误!");
+                        arr_CenterX = new List<double>();
+                        arr_CenterY = new List<double>();
                         return false;
                     }
                 }
                 else
                 {
                     RefleshLinearTextMsgBox("采集图像为空!");
+                    arr_CenterX = new List<double>();
+                    arr_CenterY = new List<double>(); 
                     return false;
                 }
             }
             catch
             {
                 RefleshLinearTextMsgBox("标定视觉运行错误!");
+                arr_CenterX = new List<double>();
+                arr_CenterY = new List<double>();
                 return false;
             }
             return true;
@@ -2520,34 +2539,44 @@ namespace VisionProgram.UI
                     cur_WorkFlow.RunVerificatecalibBlock(ref img);
                     if (cur_WorkFlow.VerificatecalibBlock.RunStatus.Result == CogToolResultConstants.Accept)
                     {
+                        currunt_CenterX = Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value);
+                        currunt_CenterY = Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputY"].Value);
                         cogRecordDisplayLinear.Record = cur_WorkFlow.VerificatecalibBlock.CreateLastRunRecord();
-                        cogGraphicLabel2.Color = CogColorConstants.Blue;
-                        cogGraphicLabel2.SetXYText(100, 200, string.Format("当前机械坐标XY:({0},{1})", (cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value, cur_WorkFlow.VerificatecalibBlock.Outputs["OutputY"].Value)));
-                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
+                        //cogGraphicLabel2.Color = CogColorConstants.Blue;
+                        //cogGraphicLabel2.SetXYText(100, 200, string.Format("当前机械坐标XY:({0},{1})", (cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value, cur_WorkFlow.VerificatecalibBlock.Outputs["OutputY"].Value)));
+                        //cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
                         cogRecordDisplayLinear.Fit(true);
                         _Linear_State = true;
                         arr_CenterX.Add(Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value));
                         arr_CenterY.Add(Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value));
+                        arr_CenterX.Add(currunt_CenterX);
+                        arr_CenterY.Add(currunt_CenterY);
                     }
                     else
                     {
-                        cogGraphicLabel2.Color = CogColorConstants.Red;
-                        cogGraphicLabel2.SetXYText(100, 200, "视觉模板运行错误!");
-                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
+                        //cogGraphicLabel2.Color = CogColorConstants.Red;
+                        //cogGraphicLabel2.SetXYText(100, 200, "视觉模板运行错误!");
+                        //cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
                         cogRecordDisplayLinear.Fit(true);
                         RefleshLinearTextMsgBox("视觉模板运行错误!");
+                        arr_CenterX = new List<double>();
+                        arr_CenterY = new List<double>();
                         return false;
                     }
                 }
                 else
                 {
                     RefleshLinearTextMsgBox("采集图像为空!");
+                    arr_CenterX = new List<double>();
+                    arr_CenterY = new List<double>();
                     return false;
                 }
             }
             catch
             {
                 RefleshLinearTextMsgBox("标定视觉运行错误!");
+                arr_CenterX = new List<double>();
+                arr_CenterY = new List<double>();
                 return false;
             }
             return true;
@@ -3909,10 +3938,12 @@ namespace VisionProgram.UI
 
         private void btn_test_Click(object sender, EventArgs e)
         {
-            double[][] testData = new double[2][];
-            testData[0] = new double[9] { 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9 };
-            testData[1] = new double[9] { 9.9, 8.8, 7.7, 6.6, 5.5, 4.4, 3.3, 2.2, 1.1 };
-            CsvExcelHelper.GenerateAndOpenCsv(testData);
+            //double[][] testData = new double[2][];
+            //testData[0] = new double[9] { 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9 };
+            //testData[1] = new double[9] { 9.9, 8.8, 7.7, 6.6, 5.5, 4.4, 3.3, 2.2, 1.1 };
+            //CsvExcelHelper.GenerateAndOpenCsv(testData);
+            Acq_Linear();
+            runVerificate();
         }
 
         private void rdo_LaserR_Con_L_Click(object sender, EventArgs e)
