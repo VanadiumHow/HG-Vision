@@ -238,7 +238,7 @@
             this.ButtonProductChangeSet.TabIndex = 4;
             this.ButtonProductChangeSet.Text = "产品换型";
             this.ButtonProductChangeSet.UseVisualStyleBackColor = false;
-            this.ButtonProductChangeSet.Click += new System.EventHandler(this.ButtonProductChangeSet_Click_1);
+            this.ButtonProductChangeSet.Click += new System.EventHandler(this.ButtonProductChangeSet_Click);
             // 
             // ButtonGeneralSet
             // 

@@ -83,9 +83,9 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1AddY4 = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddT4 = new System.Windows.Forms.TextBox();
             this.btn_GetStd1 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_GetStd2 = new System.Windows.Forms.Button();
+            this.btn_GetStd3 = new System.Windows.Forms.Button();
+            this.btn_GetStd4 = new System.Windows.Forms.Button();
             this.lb_Cam1AddT2 = new System.Windows.Forms.Label();
             this.lb_Cam1Exprosure = new System.Windows.Forms.Label();
             this.tb_Cam1Exprosure = new System.Windows.Forms.TextBox();
@@ -200,6 +200,8 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1AddL1J1Y4 = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddL1J1X4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.cb_clearJ1 = new System.Windows.Forms.CheckBox();
+            this.btn_clearJ1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lb_Cam1AddR2J2Y = new System.Windows.Forms.Label();
@@ -247,6 +249,8 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1AddL1J2Y4 = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddL1J2X4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btn_clearJ2 = new System.Windows.Forms.Button();
+            this.cb_clearJ2 = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lb_Cam1AddR2J3Y = new System.Windows.Forms.Label();
@@ -294,6 +298,8 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1AddL1J3Y4 = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddL1J3X4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btn_clearJ3 = new System.Windows.Forms.Button();
+            this.cb_clearJ3 = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.lb_Cam1AddR2J4Y = new System.Windows.Forms.Label();
@@ -341,6 +347,8 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1AddL1J4Y4 = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddL1J4X4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_clearJ4 = new System.Windows.Forms.Button();
+            this.cb_clearJ4 = new System.Windows.Forms.CheckBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.lb_Cam1AddR2J5Y = new System.Windows.Forms.Label();
@@ -388,6 +396,8 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1AddL1J5Y4 = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddL1J5X4 = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
+            this.btn_clearJ5 = new System.Windows.Forms.Button();
+            this.cb_clearJ5 = new System.Windows.Forms.CheckBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lb_Cam1AddR2J6Y = new System.Windows.Forms.Label();
@@ -435,6 +445,8 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1AddL1J6Y4 = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddL1J6X4 = new System.Windows.Forms.TextBox();
             this.label66 = new System.Windows.Forms.Label();
+            this.btn_clearJ6 = new System.Windows.Forms.Button();
+            this.cb_clearJ6 = new System.Windows.Forms.CheckBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.lb_Cam1AddR2J7Y = new System.Windows.Forms.Label();
@@ -482,6 +494,8 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1AddL1J7Y4 = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddL1J7X4 = new System.Windows.Forms.TextBox();
             this.label95 = new System.Windows.Forms.Label();
+            this.btn_clearJ7 = new System.Windows.Forms.Button();
+            this.cb_clearJ7 = new System.Windows.Forms.CheckBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.lb_Cam1AddR2J8Y = new System.Windows.Forms.Label();
@@ -529,6 +543,8 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1AddL1J8Y4 = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddL1J8X4 = new System.Windows.Forms.TextBox();
             this.label120 = new System.Windows.Forms.Label();
+            this.btn_clearJ8 = new System.Windows.Forms.Button();
+            this.cb_clearJ8 = new System.Windows.Forms.CheckBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.lb_Cam1AddR2J9Y = new System.Windows.Forms.Label();
@@ -576,6 +592,8 @@ namespace VisionProgram.UI.UIVision
             this.tb_Cam1AddL1J9Y4 = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddL1J9X4 = new System.Windows.Forms.TextBox();
             this.label145 = new System.Windows.Forms.Label();
+            this.btn_clearJ9 = new System.Windows.Forms.Button();
+            this.cb_clearJ9 = new System.Windows.Forms.CheckBox();
             this.uiSymbolButtonSave = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -739,9 +757,9 @@ namespace VisionProgram.UI.UIVision
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AddY4, 7, 4);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AddT4, 7, 5);
             this.uiTableLayoutPanel1.Controls.Add(this.btn_GetStd1, 1, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.button1, 3, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.button2, 5, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.button3, 7, 6);
+            this.uiTableLayoutPanel1.Controls.Add(this.btn_GetStd2, 3, 6);
+            this.uiTableLayoutPanel1.Controls.Add(this.btn_GetStd3, 5, 6);
+            this.uiTableLayoutPanel1.Controls.Add(this.btn_GetStd4, 7, 6);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AddT2, 2, 5);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1Exprosure, 0, 11);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1Exprosure, 1, 11);
@@ -1412,37 +1430,33 @@ namespace VisionProgram.UI.UIVision
             this.btn_GetStd1.TabIndex = 24;
             this.btn_GetStd1.Text = "获取基准";
             this.btn_GetStd1.UseVisualStyleBackColor = true;
-            this.btn_GetStd1.Click += new System.EventHandler(this.btn_GetStd1_Click);
             // 
-            // button1
+            // btn_GetStd2
             // 
-            this.button1.Location = new System.Drawing.Point(279, 279);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 39);
-            this.button1.TabIndex = 49;
-            this.button1.Text = "获取基准";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_GetStd2.Location = new System.Drawing.Point(279, 279);
+            this.btn_GetStd2.Name = "btn_GetStd2";
+            this.btn_GetStd2.Size = new System.Drawing.Size(75, 39);
+            this.btn_GetStd2.TabIndex = 49;
+            this.btn_GetStd2.Text = "获取基准";
+            this.btn_GetStd2.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btn_GetStd3
             // 
-            this.button2.Location = new System.Drawing.Point(463, 279);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 39);
-            this.button2.TabIndex = 50;
-            this.button2.Text = "获取基准";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btn_GetStd3.Location = new System.Drawing.Point(463, 279);
+            this.btn_GetStd3.Name = "btn_GetStd3";
+            this.btn_GetStd3.Size = new System.Drawing.Size(75, 39);
+            this.btn_GetStd3.TabIndex = 50;
+            this.btn_GetStd3.Text = "获取基准";
+            this.btn_GetStd3.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btn_GetStd4
             // 
-            this.button3.Location = new System.Drawing.Point(647, 279);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 39);
-            this.button3.TabIndex = 51;
-            this.button3.Text = "获取基准";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btn_GetStd4.Location = new System.Drawing.Point(647, 279);
+            this.btn_GetStd4.Name = "btn_GetStd4";
+            this.btn_GetStd4.Size = new System.Drawing.Size(75, 39);
+            this.btn_GetStd4.TabIndex = 51;
+            this.btn_GetStd4.Text = "获取基准";
+            this.btn_GetStd4.UseVisualStyleBackColor = true;
             // 
             // lb_Cam1AddT2
             // 
@@ -2305,6 +2319,8 @@ namespace VisionProgram.UI.UIVision
             this.tableLayoutPanel1.Controls.Add(this.tb_Cam1AddL1J1Y4, 10, 3);
             this.tableLayoutPanel1.Controls.Add(this.tb_Cam1AddL1J1X4, 10, 2);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cb_clearJ1, 13, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btn_clearJ1, 12, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -2873,6 +2889,26 @@ namespace VisionProgram.UI.UIVision
             this.label6.Text = "夹具1";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cb_clearJ1
+            // 
+            this.cb_clearJ1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cb_clearJ1.AutoSize = true;
+            this.cb_clearJ1.Location = new System.Drawing.Point(1056, 195);
+            this.cb_clearJ1.Name = "cb_clearJ1";
+            this.cb_clearJ1.Size = new System.Drawing.Size(15, 14);
+            this.cb_clearJ1.TabIndex = 53;
+            this.cb_clearJ1.UseVisualStyleBackColor = true;
+            // 
+            // btn_clearJ1
+            // 
+            this.btn_clearJ1.Enabled = false;
+            this.btn_clearJ1.Location = new System.Drawing.Point(975, 183);
+            this.btn_clearJ1.Name = "btn_clearJ1";
+            this.btn_clearJ1.Size = new System.Drawing.Size(75, 39);
+            this.btn_clearJ1.TabIndex = 52;
+            this.btn_clearJ1.Text = "清除补偿";
+            this.btn_clearJ1.UseVisualStyleBackColor = true;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tableLayoutPanel2);
@@ -2948,6 +2984,8 @@ namespace VisionProgram.UI.UIVision
             this.tableLayoutPanel2.Controls.Add(this.tb_Cam1AddL1J2Y4, 10, 3);
             this.tableLayoutPanel2.Controls.Add(this.tb_Cam1AddL1J2X4, 10, 2);
             this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btn_clearJ2, 12, 4);
+            this.tableLayoutPanel2.Controls.Add(this.cb_clearJ2, 13, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -3516,6 +3554,26 @@ namespace VisionProgram.UI.UIVision
             this.label5.Text = "夹具2";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_clearJ2
+            // 
+            this.btn_clearJ2.Enabled = false;
+            this.btn_clearJ2.Location = new System.Drawing.Point(975, 183);
+            this.btn_clearJ2.Name = "btn_clearJ2";
+            this.btn_clearJ2.Size = new System.Drawing.Size(75, 39);
+            this.btn_clearJ2.TabIndex = 54;
+            this.btn_clearJ2.Text = "清除补偿";
+            this.btn_clearJ2.UseVisualStyleBackColor = true;
+            // 
+            // cb_clearJ2
+            // 
+            this.cb_clearJ2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cb_clearJ2.AutoSize = true;
+            this.cb_clearJ2.Location = new System.Drawing.Point(1056, 195);
+            this.cb_clearJ2.Name = "cb_clearJ2";
+            this.cb_clearJ2.Size = new System.Drawing.Size(15, 14);
+            this.cb_clearJ2.TabIndex = 55;
+            this.cb_clearJ2.UseVisualStyleBackColor = true;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.tableLayoutPanel3);
@@ -3591,6 +3649,8 @@ namespace VisionProgram.UI.UIVision
             this.tableLayoutPanel3.Controls.Add(this.tb_Cam1AddL1J3Y4, 10, 3);
             this.tableLayoutPanel3.Controls.Add(this.tb_Cam1AddL1J3X4, 10, 2);
             this.tableLayoutPanel3.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btn_clearJ3, 12, 4);
+            this.tableLayoutPanel3.Controls.Add(this.cb_clearJ3, 13, 4);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
@@ -4159,6 +4219,26 @@ namespace VisionProgram.UI.UIVision
             this.label4.Text = "夹具3";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_clearJ3
+            // 
+            this.btn_clearJ3.Enabled = false;
+            this.btn_clearJ3.Location = new System.Drawing.Point(975, 183);
+            this.btn_clearJ3.Name = "btn_clearJ3";
+            this.btn_clearJ3.Size = new System.Drawing.Size(75, 39);
+            this.btn_clearJ3.TabIndex = 54;
+            this.btn_clearJ3.Text = "清除补偿";
+            this.btn_clearJ3.UseVisualStyleBackColor = true;
+            // 
+            // cb_clearJ3
+            // 
+            this.cb_clearJ3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cb_clearJ3.AutoSize = true;
+            this.cb_clearJ3.Location = new System.Drawing.Point(1056, 195);
+            this.cb_clearJ3.Name = "cb_clearJ3";
+            this.cb_clearJ3.Size = new System.Drawing.Size(15, 14);
+            this.cb_clearJ3.TabIndex = 55;
+            this.cb_clearJ3.UseVisualStyleBackColor = true;
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.tableLayoutPanel4);
@@ -4234,6 +4314,8 @@ namespace VisionProgram.UI.UIVision
             this.tableLayoutPanel4.Controls.Add(this.tb_Cam1AddL1J4Y4, 10, 3);
             this.tableLayoutPanel4.Controls.Add(this.tb_Cam1AddL1J4X4, 10, 2);
             this.tableLayoutPanel4.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btn_clearJ4, 12, 4);
+            this.tableLayoutPanel4.Controls.Add(this.cb_clearJ4, 13, 4);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
@@ -4802,6 +4884,26 @@ namespace VisionProgram.UI.UIVision
             this.label1.Text = "夹具4";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_clearJ4
+            // 
+            this.btn_clearJ4.Enabled = false;
+            this.btn_clearJ4.Location = new System.Drawing.Point(975, 183);
+            this.btn_clearJ4.Name = "btn_clearJ4";
+            this.btn_clearJ4.Size = new System.Drawing.Size(75, 39);
+            this.btn_clearJ4.TabIndex = 54;
+            this.btn_clearJ4.Text = "清除补偿";
+            this.btn_clearJ4.UseVisualStyleBackColor = true;
+            // 
+            // cb_clearJ4
+            // 
+            this.cb_clearJ4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cb_clearJ4.AutoSize = true;
+            this.cb_clearJ4.Location = new System.Drawing.Point(1056, 195);
+            this.cb_clearJ4.Name = "cb_clearJ4";
+            this.cb_clearJ4.Size = new System.Drawing.Size(15, 14);
+            this.cb_clearJ4.TabIndex = 55;
+            this.cb_clearJ4.UseVisualStyleBackColor = true;
+            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.tableLayoutPanel5);
@@ -4877,6 +4979,8 @@ namespace VisionProgram.UI.UIVision
             this.tableLayoutPanel5.Controls.Add(this.tb_Cam1AddL1J5Y4, 10, 3);
             this.tableLayoutPanel5.Controls.Add(this.tb_Cam1AddL1J5X4, 10, 2);
             this.tableLayoutPanel5.Controls.Add(this.label36, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btn_clearJ5, 12, 4);
+            this.tableLayoutPanel5.Controls.Add(this.cb_clearJ5, 13, 4);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
@@ -5445,6 +5549,26 @@ namespace VisionProgram.UI.UIVision
             this.label36.Text = "夹具5";
             this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_clearJ5
+            // 
+            this.btn_clearJ5.Enabled = false;
+            this.btn_clearJ5.Location = new System.Drawing.Point(975, 183);
+            this.btn_clearJ5.Name = "btn_clearJ5";
+            this.btn_clearJ5.Size = new System.Drawing.Size(75, 39);
+            this.btn_clearJ5.TabIndex = 54;
+            this.btn_clearJ5.Text = "清除补偿";
+            this.btn_clearJ5.UseVisualStyleBackColor = true;
+            // 
+            // cb_clearJ5
+            // 
+            this.cb_clearJ5.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cb_clearJ5.AutoSize = true;
+            this.cb_clearJ5.Location = new System.Drawing.Point(1056, 195);
+            this.cb_clearJ5.Name = "cb_clearJ5";
+            this.cb_clearJ5.Size = new System.Drawing.Size(15, 14);
+            this.cb_clearJ5.TabIndex = 55;
+            this.cb_clearJ5.UseVisualStyleBackColor = true;
+            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.tableLayoutPanel6);
@@ -5520,6 +5644,8 @@ namespace VisionProgram.UI.UIVision
             this.tableLayoutPanel6.Controls.Add(this.tb_Cam1AddL1J6Y4, 10, 3);
             this.tableLayoutPanel6.Controls.Add(this.tb_Cam1AddL1J6X4, 10, 2);
             this.tableLayoutPanel6.Controls.Add(this.label66, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.btn_clearJ6, 12, 4);
+            this.tableLayoutPanel6.Controls.Add(this.cb_clearJ6, 13, 4);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
@@ -6088,6 +6214,26 @@ namespace VisionProgram.UI.UIVision
             this.label66.Text = "夹具6";
             this.label66.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_clearJ6
+            // 
+            this.btn_clearJ6.Enabled = false;
+            this.btn_clearJ6.Location = new System.Drawing.Point(975, 183);
+            this.btn_clearJ6.Name = "btn_clearJ6";
+            this.btn_clearJ6.Size = new System.Drawing.Size(75, 39);
+            this.btn_clearJ6.TabIndex = 54;
+            this.btn_clearJ6.Text = "清除补偿";
+            this.btn_clearJ6.UseVisualStyleBackColor = true;
+            // 
+            // cb_clearJ6
+            // 
+            this.cb_clearJ6.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cb_clearJ6.AutoSize = true;
+            this.cb_clearJ6.Location = new System.Drawing.Point(1056, 195);
+            this.cb_clearJ6.Name = "cb_clearJ6";
+            this.cb_clearJ6.Size = new System.Drawing.Size(15, 14);
+            this.cb_clearJ6.TabIndex = 55;
+            this.cb_clearJ6.UseVisualStyleBackColor = true;
+            // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.tableLayoutPanel7);
@@ -6163,6 +6309,8 @@ namespace VisionProgram.UI.UIVision
             this.tableLayoutPanel7.Controls.Add(this.tb_Cam1AddL1J7Y4, 10, 3);
             this.tableLayoutPanel7.Controls.Add(this.tb_Cam1AddL1J7X4, 10, 2);
             this.tableLayoutPanel7.Controls.Add(this.label95, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.btn_clearJ7, 12, 4);
+            this.tableLayoutPanel7.Controls.Add(this.cb_clearJ7, 13, 4);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
@@ -6731,6 +6879,26 @@ namespace VisionProgram.UI.UIVision
             this.label95.Text = "夹具7";
             this.label95.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_clearJ7
+            // 
+            this.btn_clearJ7.Enabled = false;
+            this.btn_clearJ7.Location = new System.Drawing.Point(975, 183);
+            this.btn_clearJ7.Name = "btn_clearJ7";
+            this.btn_clearJ7.Size = new System.Drawing.Size(75, 39);
+            this.btn_clearJ7.TabIndex = 54;
+            this.btn_clearJ7.Text = "清除补偿";
+            this.btn_clearJ7.UseVisualStyleBackColor = true;
+            // 
+            // cb_clearJ7
+            // 
+            this.cb_clearJ7.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cb_clearJ7.AutoSize = true;
+            this.cb_clearJ7.Location = new System.Drawing.Point(1056, 195);
+            this.cb_clearJ7.Name = "cb_clearJ7";
+            this.cb_clearJ7.Size = new System.Drawing.Size(15, 14);
+            this.cb_clearJ7.TabIndex = 55;
+            this.cb_clearJ7.UseVisualStyleBackColor = true;
+            // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.tableLayoutPanel8);
@@ -6806,6 +6974,8 @@ namespace VisionProgram.UI.UIVision
             this.tableLayoutPanel8.Controls.Add(this.tb_Cam1AddL1J8Y4, 10, 3);
             this.tableLayoutPanel8.Controls.Add(this.tb_Cam1AddL1J8X4, 10, 2);
             this.tableLayoutPanel8.Controls.Add(this.label120, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.btn_clearJ8, 12, 4);
+            this.tableLayoutPanel8.Controls.Add(this.cb_clearJ8, 13, 4);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 0);
@@ -7374,6 +7544,26 @@ namespace VisionProgram.UI.UIVision
             this.label120.Text = "夹具8";
             this.label120.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_clearJ8
+            // 
+            this.btn_clearJ8.Enabled = false;
+            this.btn_clearJ8.Location = new System.Drawing.Point(975, 183);
+            this.btn_clearJ8.Name = "btn_clearJ8";
+            this.btn_clearJ8.Size = new System.Drawing.Size(75, 39);
+            this.btn_clearJ8.TabIndex = 54;
+            this.btn_clearJ8.Text = "清除补偿";
+            this.btn_clearJ8.UseVisualStyleBackColor = true;
+            // 
+            // cb_clearJ8
+            // 
+            this.cb_clearJ8.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cb_clearJ8.AutoSize = true;
+            this.cb_clearJ8.Location = new System.Drawing.Point(1056, 195);
+            this.cb_clearJ8.Name = "cb_clearJ8";
+            this.cb_clearJ8.Size = new System.Drawing.Size(15, 14);
+            this.cb_clearJ8.TabIndex = 55;
+            this.cb_clearJ8.UseVisualStyleBackColor = true;
+            // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.tableLayoutPanel9);
@@ -7449,6 +7639,8 @@ namespace VisionProgram.UI.UIVision
             this.tableLayoutPanel9.Controls.Add(this.tb_Cam1AddL1J9Y4, 10, 3);
             this.tableLayoutPanel9.Controls.Add(this.tb_Cam1AddL1J9X4, 10, 2);
             this.tableLayoutPanel9.Controls.Add(this.label145, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.btn_clearJ9, 12, 4);
+            this.tableLayoutPanel9.Controls.Add(this.cb_clearJ9, 13, 4);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
@@ -8017,6 +8209,26 @@ namespace VisionProgram.UI.UIVision
             this.label145.Text = "夹具9";
             this.label145.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_clearJ9
+            // 
+            this.btn_clearJ9.Enabled = false;
+            this.btn_clearJ9.Location = new System.Drawing.Point(975, 183);
+            this.btn_clearJ9.Name = "btn_clearJ9";
+            this.btn_clearJ9.Size = new System.Drawing.Size(75, 39);
+            this.btn_clearJ9.TabIndex = 54;
+            this.btn_clearJ9.Text = "清除补偿";
+            this.btn_clearJ9.UseVisualStyleBackColor = true;
+            // 
+            // cb_clearJ9
+            // 
+            this.cb_clearJ9.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cb_clearJ9.AutoSize = true;
+            this.cb_clearJ9.Location = new System.Drawing.Point(1056, 195);
+            this.cb_clearJ9.Name = "cb_clearJ9";
+            this.cb_clearJ9.Size = new System.Drawing.Size(15, 14);
+            this.cb_clearJ9.TabIndex = 55;
+            this.cb_clearJ9.UseVisualStyleBackColor = true;
+            // 
             // uiSymbolButtonSave
             // 
             this.uiSymbolButtonSave.BackColor = System.Drawing.Color.CadetBlue;
@@ -8140,9 +8352,8 @@ namespace VisionProgram.UI.UIVision
         private TextBox tb_Cam1AddY4;
         private TextBox tb_Cam1AddT4;
         private Button btn_GetStd1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btn_GetStd2;
+        private Button btn_GetStd3;
         private Label lb_Cam1Exprosure;
         private TextBox tb_Cam1Exprosure;
         private Label lb_Cam1AddT2;
@@ -8633,5 +8844,24 @@ namespace VisionProgram.UI.UIVision
         private TextBox tb_Cam1NI1Y1;
         private TextBox tb_Cam1NI2X1;
         private TextBox tb_Cam1NI2Y1;
+        private Button btn_GetStd4;
+        private Button btn_clearJ1;
+        private CheckBox cb_clearJ1;
+        private Button btn_clearJ2;
+        private CheckBox cb_clearJ2;
+        private Button btn_clearJ3;
+        private CheckBox cb_clearJ3;
+        private Button btn_clearJ4;
+        private CheckBox cb_clearJ4;
+        private Button btn_clearJ5;
+        private CheckBox cb_clearJ5;
+        private Button btn_clearJ6;
+        private CheckBox cb_clearJ6;
+        private Button btn_clearJ7;
+        private CheckBox cb_clearJ7;
+        private Button btn_clearJ8;
+        private CheckBox cb_clearJ8;
+        private Button btn_clearJ9;
+        private CheckBox cb_clearJ9;
     }
 }

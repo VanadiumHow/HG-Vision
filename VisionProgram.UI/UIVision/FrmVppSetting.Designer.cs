@@ -65,6 +65,7 @@ namespace VisionProgram.UI
             this.rdo_Robot_Con_L = new System.Windows.Forms.RadioButton();
             this.splitContainer15 = new System.Windows.Forms.SplitContainer();
             this.gb_LinearMode = new System.Windows.Forms.GroupBox();
+            this.rdo_Verificate_Linear = new System.Windows.Forms.RadioButton();
             this.rdo_Manual_Linear = new System.Windows.Forms.RadioButton();
             this.rdo_Auto_Linear = new System.Windows.Forms.RadioButton();
             this.gb_LinearVision = new System.Windows.Forms.GroupBox();
@@ -72,6 +73,7 @@ namespace VisionProgram.UI
             this.rdo_Snap_Linear = new System.Windows.Forms.RadioButton();
             this.btn_Auto_Linear = new System.Windows.Forms.Button();
             this.gb_Linear = new System.Windows.Forms.GroupBox();
+            this.btn_test = new System.Windows.Forms.Button();
             this.btn_Save_Linear = new System.Windows.Forms.Button();
             this.btn_Linear = new System.Windows.Forms.Button();
             this.btn_AddMark_Linear = new System.Windows.Forms.Button();
@@ -379,7 +381,7 @@ namespace VisionProgram.UI
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1276, 727);
-            this.splitContainer1.SplitterDistance = 801;
+            this.splitContainer1.SplitterDistance = 803;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 23;
             // 
@@ -398,7 +400,7 @@ namespace VisionProgram.UI
             this.cogRecordDisplayLinear.MouseWheelSensitivity = 1D;
             this.cogRecordDisplayLinear.Name = "cogRecordDisplayLinear";
             this.cogRecordDisplayLinear.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("cogRecordDisplayLinear.OcxState")));
-            this.cogRecordDisplayLinear.Size = new System.Drawing.Size(801, 727);
+            this.cogRecordDisplayLinear.Size = new System.Drawing.Size(803, 727);
             this.cogRecordDisplayLinear.TabIndex = 0;
             // 
             // splitContainer2
@@ -415,8 +417,8 @@ namespace VisionProgram.UI
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(472, 727);
-            this.splitContainer2.SplitterDistance = 101;
+            this.splitContainer2.Size = new System.Drawing.Size(470, 727);
+            this.splitContainer2.SplitterDistance = 99;
             this.splitContainer2.TabIndex = 23;
             // 
             // splitContainer5
@@ -433,7 +435,7 @@ namespace VisionProgram.UI
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.gb_Linear);
-            this.splitContainer5.Size = new System.Drawing.Size(101, 727);
+            this.splitContainer5.Size = new System.Drawing.Size(99, 727);
             this.splitContainer5.SplitterDistance = 454;
             this.splitContainer5.TabIndex = 25;
             // 
@@ -451,7 +453,7 @@ namespace VisionProgram.UI
             // splitContainer6.Panel2
             // 
             this.splitContainer6.Panel2.Controls.Add(this.btn_Auto_Linear);
-            this.splitContainer6.Size = new System.Drawing.Size(101, 454);
+            this.splitContainer6.Size = new System.Drawing.Size(99, 454);
             this.splitContainer6.SplitterDistance = 400;
             this.splitContainer6.SplitterWidth = 1;
             this.splitContainer6.TabIndex = 0;
@@ -470,7 +472,7 @@ namespace VisionProgram.UI
             // splitContainer14.Panel2
             // 
             this.splitContainer14.Panel2.Controls.Add(this.splitContainer15);
-            this.splitContainer14.Size = new System.Drawing.Size(101, 400);
+            this.splitContainer14.Size = new System.Drawing.Size(99, 400);
             this.splitContainer14.SplitterDistance = 180;
             this.splitContainer14.TabIndex = 0;
             // 
@@ -484,7 +486,7 @@ namespace VisionProgram.UI
             this.gb_LinearCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.gb_LinearCon.Location = new System.Drawing.Point(0, 0);
             this.gb_LinearCon.Name = "gb_LinearCon";
-            this.gb_LinearCon.Size = new System.Drawing.Size(101, 180);
+            this.gb_LinearCon.Size = new System.Drawing.Size(99, 180);
             this.gb_LinearCon.TabIndex = 55;
             this.gb_LinearCon.TabStop = false;
             this.gb_LinearCon.Text = "连接模式";
@@ -558,22 +560,36 @@ namespace VisionProgram.UI
             // splitContainer15.Panel2
             // 
             this.splitContainer15.Panel2.Controls.Add(this.gb_LinearVision);
-            this.splitContainer15.Size = new System.Drawing.Size(101, 216);
+            this.splitContainer15.Size = new System.Drawing.Size(99, 216);
             this.splitContainer15.SplitterDistance = 101;
             this.splitContainer15.TabIndex = 0;
             // 
             // gb_LinearMode
             // 
+            this.gb_LinearMode.Controls.Add(this.rdo_Verificate_Linear);
             this.gb_LinearMode.Controls.Add(this.rdo_Manual_Linear);
             this.gb_LinearMode.Controls.Add(this.rdo_Auto_Linear);
             this.gb_LinearMode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gb_LinearMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.gb_LinearMode.Location = new System.Drawing.Point(0, 0);
             this.gb_LinearMode.Name = "gb_LinearMode";
-            this.gb_LinearMode.Size = new System.Drawing.Size(101, 101);
+            this.gb_LinearMode.Size = new System.Drawing.Size(99, 101);
             this.gb_LinearMode.TabIndex = 24;
             this.gb_LinearMode.TabStop = false;
             this.gb_LinearMode.Text = "标定模式";
+            // 
+            // rdo_Verificate_Linear
+            // 
+            this.rdo_Verificate_Linear.AutoSize = true;
+            this.rdo_Verificate_Linear.BackColor = System.Drawing.Color.Transparent;
+            this.rdo_Verificate_Linear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.rdo_Verificate_Linear.Location = new System.Drawing.Point(16, 71);
+            this.rdo_Verificate_Linear.Name = "rdo_Verificate_Linear";
+            this.rdo_Verificate_Linear.Size = new System.Drawing.Size(60, 25);
+            this.rdo_Verificate_Linear.TabIndex = 27;
+            this.rdo_Verificate_Linear.Text = "验证";
+            this.rdo_Verificate_Linear.UseVisualStyleBackColor = false;
+            this.rdo_Verificate_Linear.Click += new System.EventHandler(this.rdo_Verificate_Linear_Click);
             // 
             // rdo_Manual_Linear
             // 
@@ -581,7 +597,7 @@ namespace VisionProgram.UI
             this.rdo_Manual_Linear.BackColor = System.Drawing.Color.Transparent;
             this.rdo_Manual_Linear.Checked = true;
             this.rdo_Manual_Linear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.rdo_Manual_Linear.Location = new System.Drawing.Point(16, 64);
+            this.rdo_Manual_Linear.Location = new System.Drawing.Point(16, 25);
             this.rdo_Manual_Linear.Name = "rdo_Manual_Linear";
             this.rdo_Manual_Linear.Size = new System.Drawing.Size(60, 25);
             this.rdo_Manual_Linear.TabIndex = 26;
@@ -594,7 +610,7 @@ namespace VisionProgram.UI
             // 
             this.rdo_Auto_Linear.AutoSize = true;
             this.rdo_Auto_Linear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.rdo_Auto_Linear.Location = new System.Drawing.Point(16, 33);
+            this.rdo_Auto_Linear.Location = new System.Drawing.Point(16, 48);
             this.rdo_Auto_Linear.Name = "rdo_Auto_Linear";
             this.rdo_Auto_Linear.Size = new System.Drawing.Size(60, 25);
             this.rdo_Auto_Linear.TabIndex = 25;
@@ -610,7 +626,7 @@ namespace VisionProgram.UI
             this.gb_LinearVision.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.gb_LinearVision.Location = new System.Drawing.Point(0, 0);
             this.gb_LinearVision.Name = "gb_LinearVision";
-            this.gb_LinearVision.Size = new System.Drawing.Size(101, 111);
+            this.gb_LinearVision.Size = new System.Drawing.Size(99, 111);
             this.gb_LinearVision.TabIndex = 22;
             this.gb_LinearVision.TabStop = false;
             this.gb_LinearVision.Text = "图像模式";
@@ -649,13 +665,14 @@ namespace VisionProgram.UI
             this.btn_Auto_Linear.Location = new System.Drawing.Point(0, 0);
             this.btn_Auto_Linear.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_Auto_Linear.Name = "btn_Auto_Linear";
-            this.btn_Auto_Linear.Size = new System.Drawing.Size(101, 53);
+            this.btn_Auto_Linear.Size = new System.Drawing.Size(99, 53);
             this.btn_Auto_Linear.TabIndex = 67;
             this.btn_Auto_Linear.Text = "自动标定";
             this.btn_Auto_Linear.Click += new System.EventHandler(this.btn_Auto_Linear_Click);
             // 
             // gb_Linear
             // 
+            this.gb_Linear.Controls.Add(this.btn_test);
             this.gb_Linear.Controls.Add(this.btn_Save_Linear);
             this.gb_Linear.Controls.Add(this.btn_Linear);
             this.gb_Linear.Controls.Add(this.btn_AddMark_Linear);
@@ -667,9 +684,22 @@ namespace VisionProgram.UI
             this.gb_Linear.Margin = new System.Windows.Forms.Padding(2);
             this.gb_Linear.Name = "gb_Linear";
             this.gb_Linear.Padding = new System.Windows.Forms.Padding(2);
-            this.gb_Linear.Size = new System.Drawing.Size(101, 269);
+            this.gb_Linear.Size = new System.Drawing.Size(99, 269);
             this.gb_Linear.TabIndex = 22;
             this.gb_Linear.TabStop = false;
+            // 
+            // btn_test
+            // 
+            this.btn_test.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_test.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.btn_test.Location = new System.Drawing.Point(11, 229);
+            this.btn_test.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_test.Name = "btn_test";
+            this.btn_test.Size = new System.Drawing.Size(91, 26);
+            this.btn_test.TabIndex = 73;
+            this.btn_test.Text = "测试按钮";
+            this.btn_test.Visible = false;
+            this.btn_test.Click += new System.EventHandler(this.btn_test_Click);
             // 
             // btn_Save_Linear
             // 
@@ -1792,6 +1822,8 @@ namespace VisionProgram.UI
         private RadioButton rdo_Laser_Con_L;
         private RadioButton rdo_Robot1_Con_L;
         private RadioButton rdo_ROBOT2_Con_R;
+        private RadioButton rdo_Verificate_Linear;
+        private Button btn_test;
         private TextBox tb_Step;
         private Label lb_Step;
     }

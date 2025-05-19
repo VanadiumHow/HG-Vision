@@ -611,8 +611,8 @@ namespace VisionProgram.Main.ProjectClass.Robot
 
                 byte[] _plcdataD100 = new byte[90];
                 _plcdataD100 = Project.Instance().PLCManagerInstance.Read("D100", 45);
-                _code1 = Encoding.ASCII.GetString(Remove_zero(ReverseBytes(_plcdataD100, 2, 40))).Replace(":", "-");
-                _code2 = Encoding.ASCII.GetString(Remove_zero(ReverseBytes(_plcdataD100, 42, 40))).Replace(":", "-");
+                _code1 = Encoding.ASCII.GetString(Remove_zero(ReverseBytes(_plcdataD100, 2, 40))).Trim().Replace(":", "-");
+                _code2 = Encoding.ASCII.GetString(Remove_zero(ReverseBytes(_plcdataD100, 42, 40))).Trim().Replace(":", "-");
                 _jiajuhao = BitConverter.ToInt16(ReverseBytes(_plcdataD100, 0, 2), 0);
 
                 _spacing = BitConverter.ToSingle(ReverseBytes(_plcdataD100, 82, 4), 0);
@@ -1094,6 +1094,9 @@ namespace VisionProgram.Main.ProjectClass.Robot
                     Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[e.Index].Enqueue(e);
                     #endregion
                     #endregion
+                    // 生成40个空格的字符串
+                    string Null_String = new string(' ', 40);
+                    Project.Instance().PLCManagerInstance.WriteString("D101", Null_String, 40);
                 }
                 else
                 {
@@ -1250,6 +1253,8 @@ namespace VisionProgram.Main.ProjectClass.Robot
 
 
                     #endregion
+                    string Null_String = new string(' ', 40);
+                    Project.Instance().PLCManagerInstance.WriteString("D121", Null_String, 40);
                 }
 
 

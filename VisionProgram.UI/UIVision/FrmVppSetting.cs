@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VisionProgram.Vision.VP;
 using Cognex.VisionPro.ImageFile;
@@ -15,8 +10,8 @@ using VisionProgram.Common;
 using VisionProgram.Main.ProjectClass.Robot;
 using System.Net.Sockets;
 using VisionProgram.Main.ProjectClass;
-using VisionProgram.Main.ProjectClass.PLC;
-using VisionProgram.Models.VModels;
+using VisionProgram.ProjectClass.Excel;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace VisionProgram.UI
 {
@@ -115,7 +110,7 @@ namespace VisionProgram.UI
             rdo_Robot_Con_L.Checked = true;
             rdo_ROBOT_Con_R.Checked = true;
             //默认标定模式为手动
-            SetLinearCalibMode(false);
+            SetLinearCalibMode(0);
             SetRotationCalibMode(false);
             //当前吸嘴Index
             for (int i = 0; i < Project.Instance().GlobalManagerInstance.GlobalParamModel.NozzleNum; i++)
@@ -533,36 +528,24 @@ namespace VisionProgram.UI
         }
         /// <summary>
         /// 更改九点标定模式
-        /// false为手动，true为自动
+        /// 0为手动，1为自动,2为验证
         /// </summary>
-        private void SetLinearCalibMode(bool bAutoLinear)
+        private void SetLinearCalibMode(uint mode)
         {
-            //更改标定模式
-            rdo_Manual_Linear.Checked = !bAutoLinear;
-            rdo_Auto_Linear.Checked = bAutoLinear;
+            // 0: 手动, 1: 自动, 2: 验证
+            rdo_Manual_Linear.Checked = (mode == 0);
+            rdo_Auto_Linear.Checked = (mode == 1);
+            rdo_Verificate_Linear.Checked = (mode == 2);
 
-            gb_LinearCon.Enabled = !bAutoLinear;
-            btn_Auto_Linear.Enabled = bAutoLinear;
-            gb_Linear.Enabled = !bAutoLinear;
+            gb_LinearCon.Enabled = (mode == 0);
+            btn_Auto_Linear.Enabled = (mode == 1 || mode == 2);
+            gb_Linear.Enabled = (mode == 0);
 
-            //停止实时采集
-            if (bAutoLinear)
+            // 停止实时采集
+            if (mode == 0)// 手动
             {
-                bool a = this.rdo_Snap_Linear.Checked;
-                bool b = this.rdo_Live_Linear.Checked;
-                if (cogRecordDisplayLinear.LiveDisplayRunning)
-                    cogRecordDisplayLinear.StopLiveDisplay();
-                rdo_Snap_Linear.Checked = bAutoLinear;
-                rdo_Live_Linear.Checked = !bAutoLinear;//修改于2022.2.1
-                bool c = this.rdo_Snap_Linear.Checked;
-                bool d = this.rdo_Live_Linear.Checked;
-                gb_LinearVision.Enabled = !bAutoLinear;
-                Project.Instance().RobotManagerInstance.SetStop(false);
-            }
-            else
-            {
+                btn_Auto_Linear.Text = "自动标定";
                 _b_Auto_Linear = false;
-                gb_LinearVision.Enabled = !bAutoLinear;
                 gb_LinearVision.Enabled = true;
                 btn_Run_Linear.Enabled = true;
                 btn_AddMark_Linear.Enabled = true;
@@ -570,9 +553,29 @@ namespace VisionProgram.UI
                 btn_Clear_Linear.Enabled = true;
                 btn_Save_Linear.Enabled = true;
                 Project.Instance().RobotManagerInstance.SetStop(false);
-
-                
-                RefleshLinearTextMsgBox("CCD手动九点线性标定模式开启......");
+                RefleshLinearTextMsgBox("当前模式为手动模式");
+            }
+            else if (mode == 1) // 自动
+            {
+                btn_Auto_Linear.Text = "自动标定";
+                if (cogRecordDisplayLinear.LiveDisplayRunning)
+                    cogRecordDisplayLinear.StopLiveDisplay();
+                rdo_Snap_Linear.Checked = true;
+                rdo_Live_Linear.Checked = false;
+                gb_LinearVision.Enabled = false;
+                Project.Instance().RobotManagerInstance.SetStop(false);
+                RefleshLinearTextMsgBox("当前模式为自动模式，机器人触发将自动标定");
+            }
+            else if (mode == 2) // 验证
+            {
+                btn_Auto_Linear.Text = "自动验证";
+                if (cogRecordDisplayLinear.LiveDisplayRunning)
+                    cogRecordDisplayLinear.StopLiveDisplay();
+                rdo_Snap_Linear.Checked = true;
+                rdo_Live_Linear.Checked = false;
+                gb_LinearVision.Enabled = false;
+                Project.Instance().RobotManagerInstance.SetStop(false);
+                RefleshLinearTextMsgBox("当前模式为验证模式，机器人触发将验证标定");
             }
         }
         /// <summary>
@@ -595,7 +598,15 @@ namespace VisionProgram.UI
             btn_Acq_Linear.Text = "实时采集";
             btn_Acq_Linear.BackColor = Color.FromArgb(220, 155, 40);
         }
-
+        /// <summary>
+        /// 选中手动九点标定模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rdo_Manual_Linear_Click(object sender, EventArgs e)
+        {
+            SetLinearCalibMode(0);
+        }
         /// <summary>
         /// 选中自动九点标定模式
         /// </summary>
@@ -603,9 +614,16 @@ namespace VisionProgram.UI
         /// <param name="e"></param>
         private void rdo_Auto_Linear_Click(object sender, EventArgs e)
         {
-            bool a = this.rdo_Live_Linear.Checked;
-            bool b = this.rdo_Snap_Linear.Checked;
-            SetLinearCalibMode(true);
+            SetLinearCalibMode(1);
+        }
+        /// <summary>
+        /// 选中标定验证模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rdo_Verificate_Linear_Click(object sender, EventArgs e)
+        {
+            SetLinearCalibMode(2);
         }
         /// <summary>
         /// 连接模式ROBOT
@@ -630,16 +648,6 @@ namespace VisionProgram.UI
         //    RefleshLinearTextMsgBox("连接模式：PLC");
         //    this.rdo_Robot_Con_L.BackColor = Color.Transparent;
         //}
-        /// <summary>
-        /// 选中手动九点标定模式
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void rdo_Manual_Linear_Click(object sender, EventArgs e)
-        {
-            SetLinearCalibMode(false);
-        }
-
         #region 线性标定手动标定
         /// <summary>
         /// 采集图像(九点)
@@ -773,7 +781,6 @@ namespace VisionProgram.UI
                             Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "01" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                             RefleshLinearTextMsgBox("CCD发送1号标定点字符：" + "CBP" + ";" + "01" + ";" + "01" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                         }
-
                         #endregion
                     }
                     else if (str[2] == "01" && str[0] == "CBA")
@@ -784,9 +791,15 @@ namespace VisionProgram.UI
 
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送2号标定点字符：" + "CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) - Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1)).ToString();
@@ -797,7 +810,6 @@ namespace VisionProgram.UI
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
@@ -815,7 +827,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送3号标定点字符：" + "CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) - Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
@@ -844,7 +863,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1)).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送4号标定点字符：" + "CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate())
                                 {
                                     module_X = (Convert.ToDouble(module_X1)).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
@@ -873,7 +899,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送5号标定点字符：" + "CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) + Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
@@ -903,7 +936,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送6号标定点字符：" + "CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) + Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1)).ToString();
@@ -933,12 +973,19 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) + Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
                                     Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送7号标定点字符：" + "CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送6号标定点字符：" + "CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
                                 else
                                 {
@@ -963,7 +1010,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1)).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送8号标定点字符：" + "CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate())
                                 {
                                     module_X = (Convert.ToDouble(module_X1)).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
@@ -993,7 +1047,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送9号标定点字符：" + "CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) - Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
@@ -1019,20 +1080,38 @@ namespace VisionProgram.UI
                         {
 
                             RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                            if (runLinear() && addMark_Linear())
+                            if (rdo_Auto_Linear.Checked)
                             {
-                                RefleshLinearTextMsgBox("添加点对成功");
-                            }
+                                if (runLinear() && addMark_Linear())
+                                {
+                                    RefleshLinearTextMsgBox("添加点对成功");
+                                }
 
-                            if (linear())
-                            {
-                                Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
-                                RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
+                                if (linear())
+                                {
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
+                                }
+                                else
+                                {
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
+                                }
                             }
-                            else
+                            else if (rdo_Verificate_Linear.Checked)
                             {
-                                Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
-                                RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
+                                if (runVerificate())
+                                {
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
+                                    RefleshLinearTextMsgBox("开始生成验证结果：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
+                                    enterExcel();
+                                }
+                                else
+                                {
+                                    Project.Instance().RobotManagerInstance.L_Robot[0].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
+                                }
                             }
                         }
                     }
@@ -1100,7 +1179,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear1())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear1())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送2号标定点字符：" + "CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate1())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) - Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1)).ToString();
@@ -1129,7 +1215,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear1())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear1())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送3号标定点字符：" + "CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate1())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) - Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
@@ -1158,7 +1251,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear1())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear1())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1)).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送4号标定点字符：" + "CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate1())
                                 {
                                     module_X = (Convert.ToDouble(module_X1)).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
@@ -1187,7 +1287,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear1())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear1())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送5号标定点字符：" + "CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate1())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) + Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
@@ -1217,7 +1324,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear1())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear1())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送6号标定点字符：" + "CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate1())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) + Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1)).ToString();
@@ -1247,7 +1361,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear1())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear1())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送7号标定点字符：" + "CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate1())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) + Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
@@ -1277,7 +1398,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear1())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear1())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1)).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送8号标定点字符：" + "CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate1())
                                 {
                                     module_X = (Convert.ToDouble(module_X1)).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
@@ -1307,7 +1435,14 @@ namespace VisionProgram.UI
                             {
 
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (runLinear() && addMark_Linear1())
+                                if (rdo_Auto_Linear.Checked && runLinear() && addMark_Linear1())
+                                {
+                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送9号标定点字符：" + "CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                }
+                                else if (rdo_Verificate_Linear.Checked && runVerificate1())
                                 {
                                     module_X = (Convert.ToDouble(module_X1) - Step).ToString();
                                     module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
@@ -1332,20 +1467,38 @@ namespace VisionProgram.UI
                         if (Acq_Linear())
                         {
                             RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                            if (runLinear() && addMark_Linear1())
+                            if (rdo_Auto_Linear.Checked)
                             {
-                                RefleshLinearTextMsgBox("添加点对成功");
-                            }
+                                if (runLinear() && addMark_Linear1())
+                                {
+                                    RefleshLinearTextMsgBox("添加点对成功");
+                                }
 
-                            if (linear1())
-                            {
-                                Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
-                                RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
+                                if (linear1())
+                                {
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
+                                }
+                                else
+                                {
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
+                                }
                             }
-                            else
+                            else if (rdo_Verificate_Linear.Checked)
                             {
-                                Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
-                                RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
+                                if (runVerificate())
+                                {
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
+                                    RefleshLinearTextMsgBox("开始生成验证结果：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
+                                    enterExcel();
+                                }
+                                else
+                                {
+                                    Project.Instance().RobotManagerInstance.L_Robot[1].SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
+                                }
                             }
                         }
                     }
@@ -1695,7 +1848,7 @@ namespace VisionProgram.UI
 
                         _b_Auto_Linear = false;
 
-                    Action action = () => { SetLinearCalibMode(false); };
+                    Action action = () => { SetLinearCalibMode(0); };
                     this.Invoke(action);
 
                 }
@@ -1831,47 +1984,6 @@ namespace VisionProgram.UI
                 //_Linear_State = laserRunLinearR(_laserIndex);
             }
           
-        }
-        private bool runLinear()
-        {
-            try
-            {
-                if (img != null)
-                {
-                    cur_WorkFlow.LinearCalibBlock.Inputs["Index"].Value = 4;
-                    cur_WorkFlow.LinearCalibBlock.Inputs["NIndex"].Value = 0;
-                    cur_WorkFlow.RunLinearCalibBlock(ref img);
-                    if (cur_WorkFlow.LinearCalibBlock.RunStatus.Result == Cognex.VisionPro.CogToolResultConstants.Accept)
-                    {
-                        cogRecordDisplayLinear.Record = cur_WorkFlow.LinearCalibBlock.CreateLastRunRecord();
-                        cogGraphicLabel2.Color = Cognex.VisionPro.CogColorConstants.Blue;
-                        cogGraphicLabel2.SetXYText(100, 200, string.Format("当前像素坐标XY:({0},{1})", ((double)_linear_UnCalibrate_block.Outputs["X"].Value).ToString("F3"), ((double)_linear_UnCalibrate_block.Outputs["Y"].Value).ToString("F3")));
-                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
-                        cogRecordDisplayLinear.Fit(true);
-                        _Linear_State = true;
-                    }
-                    else
-                    {
-                        cogGraphicLabel2.Color = Cognex.VisionPro.CogColorConstants.Red;
-                        cogGraphicLabel2.SetXYText(100, 200, "视觉模板运行错误!");
-                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
-                        cogRecordDisplayLinear.Fit(true);
-                        RefleshLinearTextMsgBox("视觉模板运行错误!");
-                        return false;
-                    }
-                }
-                else
-                {
-                    RefleshLinearTextMsgBox("采集图像为空!");
-                    return false;
-                }
-            }
-            catch
-            {
-                RefleshLinearTextMsgBox("标定视觉运行错误!");
-                return false;
-            }
-            return true;
         }
         private bool laserRunLinearL(int Index)
         {
@@ -2105,6 +2217,47 @@ namespace VisionProgram.UI
                 }
             }
         }
+        private bool runLinear()
+        {
+            try
+            {
+                if (img != null)
+                {
+                    cur_WorkFlow.LinearCalibBlock.Inputs["Index"].Value = 4;
+                    cur_WorkFlow.LinearCalibBlock.Inputs["NIndex"].Value = 0;
+                    cur_WorkFlow.RunLinearCalibBlock(ref img);
+                    if (cur_WorkFlow.LinearCalibBlock.RunStatus.Result == Cognex.VisionPro.CogToolResultConstants.Accept)
+                    {
+                        cogRecordDisplayLinear.Record = cur_WorkFlow.LinearCalibBlock.CreateLastRunRecord();
+                        cogGraphicLabel2.Color = Cognex.VisionPro.CogColorConstants.Blue;
+                        cogGraphicLabel2.SetXYText(100, 200, string.Format("当前像素坐标XY:({0},{1})", ((double)_linear_UnCalibrate_block.Outputs["X"].Value).ToString("F3"), ((double)_linear_UnCalibrate_block.Outputs["Y"].Value).ToString("F3")));
+                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
+                        cogRecordDisplayLinear.Fit(true);
+                        _Linear_State = true;
+                    }
+                    else
+                    {
+                        cogGraphicLabel2.Color = Cognex.VisionPro.CogColorConstants.Red;
+                        cogGraphicLabel2.SetXYText(100, 200, "视觉模板运行错误!");
+                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
+                        cogRecordDisplayLinear.Fit(true);
+                        RefleshLinearTextMsgBox("视觉模板运行错误!");
+                        return false;
+                    }
+                }
+                else
+                {
+                    RefleshLinearTextMsgBox("采集图像为空!");
+                    return false;
+                }
+            }
+            catch
+            {
+                RefleshLinearTextMsgBox("标定视觉运行错误!");
+                return false;
+            }
+            return true;
+        }
         private bool addMark_Linear()
         {
             if (!_Linear_State)
@@ -2327,6 +2480,105 @@ namespace VisionProgram.UI
             RefleshLinearTextMsgBox("标定结果保存成功！");
         }
         #endregion
+        #region 标定验证
+        private List<double> arr_CenterX = new List<double>();
+        private List<double> arr_CenterY = new List<double>();
+        double[][] testData = new double[2][];
+        private bool runVerificate()
+        {
+            try
+            {
+                if (img != null)
+                {
+                    //根据当前选择的机器人redio按钮，设置标定块的Index值
+                    cur_WorkFlow.VerificatecalibBlock.Inputs["Index"].Value = 0;
+                    cur_WorkFlow.RunVerificatecalibBlock(ref img);
+                    if (cur_WorkFlow.VerificatecalibBlock.RunStatus.Result == CogToolResultConstants.Accept)
+                    {
+                        cogRecordDisplayLinear.Record = cur_WorkFlow.VerificatecalibBlock.CreateLastRunRecord();
+                        cogGraphicLabel2.Color = CogColorConstants.Blue;
+                        cogGraphicLabel2.SetXYText(100, 200, string.Format("当前机械坐标XY:({0},{1})", (cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value, cur_WorkFlow.VerificatecalibBlock.Outputs["OutputY"].Value)));
+                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
+                        cogRecordDisplayLinear.Fit(true);
+                        _Linear_State = true;
+                        arr_CenterX.Add(Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value));
+                        arr_CenterY.Add(Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value));
+                    }
+                    else
+                    {
+                        cogGraphicLabel2.Color = CogColorConstants.Red;
+                        cogGraphicLabel2.SetXYText(100, 200, "视觉模板运行错误!");
+                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
+                        cogRecordDisplayLinear.Fit(true);
+                        RefleshLinearTextMsgBox("视觉模板运行错误!");
+                        return false;
+                    }
+                }
+                else
+                {
+                    RefleshLinearTextMsgBox("采集图像为空!");
+                    return false;
+                }
+            }
+            catch
+            {
+                RefleshLinearTextMsgBox("标定视觉运行错误!");
+                return false;
+            }
+            return true;
+        }
+        private bool runVerificate1()
+        {
+            try
+            {
+                if (img != null)
+                {
+                    //根据当前选择的机器人redio按钮，设置标定块的Index值
+                    cur_WorkFlow.VerificatecalibBlock.Inputs["Index"].Value = 1;
+                    cur_WorkFlow.RunVerificatecalibBlock(ref img);
+                    if (cur_WorkFlow.VerificatecalibBlock.RunStatus.Result == CogToolResultConstants.Accept)
+                    {
+                        cogRecordDisplayLinear.Record = cur_WorkFlow.VerificatecalibBlock.CreateLastRunRecord();
+                        cogGraphicLabel2.Color = CogColorConstants.Blue;
+                        cogGraphicLabel2.SetXYText(100, 200, string.Format("当前机械坐标XY:({0},{1})", (cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value, cur_WorkFlow.VerificatecalibBlock.Outputs["OutputY"].Value)));
+                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
+                        cogRecordDisplayLinear.Fit(true);
+                        _Linear_State = true;
+                        arr_CenterX.Add(Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value));
+                        arr_CenterY.Add(Convert.ToDouble(cur_WorkFlow.VerificatecalibBlock.Outputs["OutputX"].Value));
+                    }
+                    else
+                    {
+                        cogGraphicLabel2.Color = CogColorConstants.Red;
+                        cogGraphicLabel2.SetXYText(100, 200, "视觉模板运行错误!");
+                        cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
+                        cogRecordDisplayLinear.Fit(true);
+                        RefleshLinearTextMsgBox("视觉模板运行错误!");
+                        return false;
+                    }
+                }
+                else
+                {
+                    RefleshLinearTextMsgBox("采集图像为空!");
+                    return false;
+                }
+            }
+            catch
+            {
+                RefleshLinearTextMsgBox("标定视觉运行错误!");
+                return false;
+            }
+            return true;
+        }
+        private void enterExcel()
+        {
+            testData[0] = arr_CenterX.ToArray();
+            testData[1] = arr_CenterY.ToArray();
+            CsvExcelHelper.GenerateAndOpenCsv(testData);
+            arr_CenterX = new List<double>();
+            arr_CenterY = new List<double>();
+        }
+        #endregion
 
         /// <summary>
         /// 开始自动标定
@@ -2367,9 +2619,12 @@ namespace VisionProgram.UI
                         RefleshLinearTextMsgBox("CCD自动九点标定模式catch......");
                     }
                     #endregion
-                    if (!Clear_Linear())
+                    if (rdo_Auto_Linear.Checked)
                     {
-                        return;
+                        if (!Clear_Linear())
+                        {
+                            return;
+                        }
                     }
                 }
                 else if (rdo_Robot1_Con_L.Checked)
@@ -2392,9 +2647,13 @@ namespace VisionProgram.UI
                         RefleshLinearTextMsgBox("CCD自动九点标定模式catch......");
                     }
                     #endregion
-                    if (!Clear_Linear1())
+
+                    if (rdo_Auto_Linear.Checked)
                     {
-                        return;
+                        if (!Clear_Linear1())
+                        {
+                            return;
+                        }
                     }
 
                 }
@@ -3664,6 +3923,14 @@ namespace VisionProgram.UI
             RefleshRotationTextMsgBox("连接模式：ROBOT1");
             this.rdo_ROBOT_Con_R.BackColor = Color.Transparent;
             RefleshRotationDataGridView();
+        }
+
+        private void btn_test_Click(object sender, EventArgs e)
+        {
+            double[][] testData = new double[2][];
+            testData[0] = new double[9] { 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9 };
+            testData[1] = new double[9] { 9.9, 8.8, 7.7, 6.6, 5.5, 4.4, 3.3, 2.2, 1.1 };
+            CsvExcelHelper.GenerateAndOpenCsv(testData);
         }
 
         private void rdo_LaserR_Con_L_Click(object sender, EventArgs e)

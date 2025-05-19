@@ -22,6 +22,14 @@ namespace VisionProgram.UI.UIVision
 {
     public partial class FrmCameraParamsSettings : Form
     {
+        private DateTime buttonPressTime;//点击时间点
+        private Button currentButton; // 记录当前按下的按钮
+        private readonly Timer holdTimer = new Timer();
+        // 创建按钮与处理逻辑的映射字典
+        private readonly Dictionary<Button, Action> buttonActions = new Dictionary<Button, Action>();
+        // 创建控件映射集合
+        private readonly List<(CheckBox checkbox, Button button)> Pairscb_btn = new List<(CheckBox checkbox, Button button)>();
+        private readonly List<(Button button, TabPage tabpage)> Pairsbtn_tp = new List<(Button button, TabPage TabPage)>();
 
         /// <summary>
         /// 存储控件验证时发生的值
@@ -31,6 +39,10 @@ namespace VisionProgram.UI.UIVision
         public FrmCameraParamsSettings()
         {
             InitializeComponent();
+            // 初始化按钮按钮逻辑
+            InitializaButtonActions();
+            // 初始化关联关系
+            InitializeControlPairs();
         }
         /// <summary>
         /// 窗体对象实例
@@ -419,7 +431,9 @@ namespace VisionProgram.UI.UIVision
                 controls[i].TextChanged += tb__Validating;
 
             }
-            _validatingDic.Clear();     
+            _validatingDic.Clear();
+            // 直接指定要显示的TabPage
+            uiTabControlAll.SelectedTab = tabPage1;
         }
 
         private void FrmCameraParamsSettings_TextChanged(object sender, EventArgs e)
@@ -2667,10 +2681,13 @@ namespace VisionProgram.UI.UIVision
         {
             try
             {
+
                 TextBox uiTb = (TextBox)sender;
-                LogHelper.Info(uiTb.Text + "参数填入成功");
                 uiTb.Text = uiTb.Text.Trim();
                 Label l = (Label)this.Controls.Find("lb_" + uiTb.Name.Substring(3), true)[0];
+                TabPage currentTab = GetParentTabPage(l);
+
+                LogHelper.Info(currentTab.Text + l.Text + $"填入参数{uiTb.Text}成功");
                 if (string.IsNullOrEmpty(uiTb.Text))
                 {
                     System.Windows.MessageBox.Show($"{l.Text }文本框内不能为空！");
@@ -2705,53 +2722,228 @@ namespace VisionProgram.UI.UIVision
                 {
                     _validatingDic.Add(uiTb.Name, uiTb.Text);
                 }
-                
+
             }
-            catch  (Exception ex)
+            catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.ToString());
             }
-           
+
+        }
+        private void InitializaButtonActions()
+        {
+            // 使用数组和循环简化按钮与事件的绑定
+            var stdButtons = new[] { btn_GetStd1, btn_GetStd2, btn_GetStd3, btn_GetStd4 };
+            var stdClickHandlers = new Action[]
+            {
+                () => btn_GetStd1_Click(btn_GetStd1, EventArgs.Empty),
+                () => btn_GetStd2_Click(btn_GetStd2, EventArgs.Empty),
+                () => btn_GetStd3_Click(btn_GetStd3, EventArgs.Empty),
+                () => btn_GetStd4_Click(btn_GetStd4, EventArgs.Empty)
+            };
+            for (int i = 0; i < stdButtons.Length; i++)
+            {
+                buttonActions.Add(stdButtons[i], stdClickHandlers[i]);
+            }
+
+            var clearButtons = new[] { btn_clearJ1, btn_clearJ2, btn_clearJ3, btn_clearJ4, btn_clearJ5, btn_clearJ6, btn_clearJ7, btn_clearJ8, btn_clearJ9 };
+            foreach (var btn in clearButtons)
+            {
+                buttonActions.Add(btn, () => Button_Click(btn, EventArgs.Empty));
+            }
+
+            foreach (var btn in buttonActions.Keys)
+            {
+                btn.MouseDown += Button_MouseDown;
+                btn.MouseUp += Button_MouseUp;
+            }
+
+            holdTimer.Interval = 100;
+            holdTimer.Tick += HoldTimer_Tick;
+        }
+        private void InitializeControlPairs()
+        {
+            // 使用数组和循环简化控件对的添加
+            var clearCheckboxes = new[] { cb_clearJ1, cb_clearJ2, cb_clearJ3, cb_clearJ4, cb_clearJ5, cb_clearJ6, cb_clearJ7, cb_clearJ8, cb_clearJ9 };
+            var clearButtons = new[] { btn_clearJ1, btn_clearJ2, btn_clearJ3, btn_clearJ4, btn_clearJ5, btn_clearJ6, btn_clearJ7, btn_clearJ8, btn_clearJ9 };
+            var tabPages = new[] { tabPage1, tabPage2, tabPage3, tabPage4, tabPage5, tabPage6, tabPage7, tabPage8, tabPage9 };
+
+            for (int i = 0; i < clearCheckboxes.Length; i++)
+            {
+                Pairscb_btn.Add((clearCheckboxes[i], clearButtons[i]));
+                Pairsbtn_tp.Add((clearButtons[i], tabPages[i]));
+            }
+
+            foreach (var pair in Pairscb_btn)
+            {
+                pair.checkbox.CheckedChanged += Checkbox_CheckedChanged;
+                pair.button.Enabled = pair.checkbox.Checked;
+            }
+        }
+        private void Button_MouseDown(object sender, MouseEventArgs e)
+        {
+            currentButton = sender as Button; // 记录当前操作的按钮
+            currentButton.Tag = currentButton.Text;
+            buttonPressTime = DateTime.Now;
+            holdTimer.Start();
         }
 
+        private void Button_MouseUp(object sender, MouseEventArgs e)
+        {
+            holdTimer.Stop();
+            if (currentButton == null) return;
+            currentButton.Text = currentButton.Tag.ToString();
+            currentButton = null;
+        }
+
+        private void HoldTimer_Tick(object sender, EventArgs e)
+        {
+            if (currentButton == null) return;
+
+            var holdDuration = DateTime.Now - buttonPressTime;
+
+            double progress = Math.Min((DateTime.Now - buttonPressTime).TotalSeconds / 3 * 100, 100);
+            currentButton.Text = $"{progress:0}%";
+
+            if (holdDuration.TotalSeconds >= 3)
+            {
+                holdTimer.Stop();
+                if (buttonActions.TryGetValue(currentButton, out var action))
+                {
+                    action.Invoke(); // 执行对应逻辑
+                }
+                if (currentButton == null) return;
+                currentButton.Text = currentButton.Tag.ToString();
+                currentButton = null;
+            }
+        }
         private void btn_GetStd1_Click(object sender, EventArgs e)
         {
-
-            //tb_Cam1StdX1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXRob1.ToString("f3");
-            //tb_Cam1StdY1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYRob1.ToString("f3");
-            //tb_Cam1StdT1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRRob1.ToString("f3");
             if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
             {
-                tb_Cam1StdX1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXRob1.ToString("f3");
-                tb_Cam1StdY1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYRob1.ToString("f3");
-                tb_Cam1StdT1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRRob1.ToString("f3");
+                if (System.Windows.Forms.MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    tb_Cam1StdX1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXRob1.ToString("f3");
+                    tb_Cam1StdY1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYRob1.ToString("f3");
+                    tb_Cam1StdT1.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRRob1.ToString("f3");
 
-                //判断是否已在集合中
-                if (_validatingDic.ContainsKey(tb_Cam1StdX1.Name))
-                {
-                    _validatingDic[tb_Cam1StdX1.Name] = tb_Cam1StdX1.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdX1.Name, tb_Cam1StdX1.Text);
-                }
+                    //判断是否已在集合中
+                    if (_validatingDic.ContainsKey(tb_Cam1StdX1.Name))
+                    {
+                        _validatingDic[tb_Cam1StdX1.Name] = tb_Cam1StdX1.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdX1.Name, tb_Cam1StdX1.Text);
+                    }
 
-                if (_validatingDic.ContainsKey(tb_Cam1StdY1.Name))
-                {
-                    _validatingDic[tb_Cam1StdY1.Name] = tb_Cam1StdY1.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdY1.Name, tb_Cam1StdY1.Text);
-                }
+                    if (_validatingDic.ContainsKey(tb_Cam1StdY1.Name))
+                    {
+                        _validatingDic[tb_Cam1StdY1.Name] = tb_Cam1StdY1.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdY1.Name, tb_Cam1StdY1.Text);
+                    }
 
-                if (_validatingDic.ContainsKey(tb_Cam1StdT1.Name))
-                {
-                    _validatingDic[tb_Cam1StdT1.Name] = tb_Cam1StdT1.Text;
+                    if (_validatingDic.ContainsKey(tb_Cam1StdT1.Name))
+                    {
+                        _validatingDic[tb_Cam1StdT1.Name] = tb_Cam1StdT1.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdT1.Name, tb_Cam1StdT1.Text);
+                    }
                 }
-                else
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("工程师才可修改基准");
+            }
+
+        }
+        private void btn_GetStd2_Click(object sender, EventArgs e)
+        {
+            if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
+            {
+                if (System.Windows.Forms.MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
-                    _validatingDic.Add(tb_Cam1StdT1.Name, tb_Cam1StdT1.Text);
+                    tb_Cam1StdX2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXRob2.ToString("f3");
+                    tb_Cam1StdY2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYRob2.ToString("f3");
+                    tb_Cam1StdT2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRRob2.ToString("f3");
+
+                    //判断是否已在集合中
+                    if (_validatingDic.ContainsKey(tb_Cam1StdX2.Name))
+                    {
+                        _validatingDic[tb_Cam1StdX2.Name] = tb_Cam1StdX2.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdX2.Name, tb_Cam1StdX2.Text);
+                    }
+
+                    if (_validatingDic.ContainsKey(tb_Cam1StdY2.Name))
+                    {
+                        _validatingDic[tb_Cam1StdY2.Name] = tb_Cam1StdY2.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdY2.Name, tb_Cam1StdY2.Text);
+                    }
+
+                    if (_validatingDic.ContainsKey(tb_Cam1StdT2.Name))
+                    {
+                        _validatingDic[tb_Cam1StdT2.Name] = tb_Cam1StdT2.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdT2.Name, tb_Cam1StdT2.Text);
+                    }
+                }
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("工程师才可修改基准");
+            }
+        }
+
+        private void btn_GetStd3_Click(object sender, EventArgs e)
+        {
+            if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
+            {
+                if (System.Windows.Forms.MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    tb_Cam1StdX3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXLas1.ToString("f3");
+                    tb_Cam1StdY3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYLas1.ToString("f3");
+                    tb_Cam1StdT3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRLas1.ToString("f3");
+
+                    //判断是否已在集合中
+                    if (_validatingDic.ContainsKey(tb_Cam1StdX3.Name))
+                    {
+                        _validatingDic[tb_Cam1StdX3.Name] = tb_Cam1StdX3.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdX3.Name, tb_Cam1StdX3.Text);
+                    }
+
+                    if (_validatingDic.ContainsKey(tb_Cam1StdY3.Name))
+                    {
+                        _validatingDic[tb_Cam1StdY3.Name] = tb_Cam1StdY3.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdY3.Name, tb_Cam1StdY3.Text);
+                    }
+
+                    if (_validatingDic.ContainsKey(tb_Cam1StdT3.Name))
+                    {
+                        _validatingDic[tb_Cam1StdT3.Name] = tb_Cam1StdT3.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdT3.Name, tb_Cam1StdT3.Text);
+                    }
                 }
             }
             else
@@ -2761,127 +2953,43 @@ namespace VisionProgram.UI.UIVision
 
         }
 
-
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_GetStd4_Click(object sender, EventArgs e)
         {
             if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
             {
-                tb_Cam1StdX2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXRob2.ToString("f3");
-                tb_Cam1StdY2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYRob2.ToString("f3");
-                tb_Cam1StdT2.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRRob2.ToString("f3");
+                if (System.Windows.Forms.MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    tb_Cam1StdX4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXLas2.ToString("f3");
+                    tb_Cam1StdY4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYLas2.ToString("f3");
+                    tb_Cam1StdT4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRLas2.ToString("f3");
 
-                //判断是否已在集合中
-                if (_validatingDic.ContainsKey(tb_Cam1StdX2.Name))
-                {
-                    _validatingDic[tb_Cam1StdX2.Name] = tb_Cam1StdX2.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdX2.Name, tb_Cam1StdX2.Text);
-                }
+                    //判断是否已在集合中
+                    if (_validatingDic.ContainsKey(tb_Cam1StdX4.Name))
+                    {
+                        _validatingDic[tb_Cam1StdX4.Name] = tb_Cam1StdX4.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdX4.Name, tb_Cam1StdX4.Text);
+                    }
 
-                if (_validatingDic.ContainsKey(tb_Cam1StdY2.Name))
-                {
-                    _validatingDic[tb_Cam1StdY2.Name] = tb_Cam1StdY2.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdY2.Name, tb_Cam1StdY2.Text);
-                }
+                    if (_validatingDic.ContainsKey(tb_Cam1StdY4.Name))
+                    {
+                        _validatingDic[tb_Cam1StdY4.Name] = tb_Cam1StdY4.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdY4.Name, tb_Cam1StdY4.Text);
+                    }
 
-                if (_validatingDic.ContainsKey(tb_Cam1StdT2.Name))
-                {
-                    _validatingDic[tb_Cam1StdT2.Name] = tb_Cam1StdT2.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdT2.Name, tb_Cam1StdT2.Text);
-                }
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("工程师才可修改基准");
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
-            {
-                tb_Cam1StdX3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXLas1.ToString("f3");
-                tb_Cam1StdY3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYLas1.ToString("f3");
-                tb_Cam1StdT3.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRLas1.ToString("f3");
-
-                //判断是否已在集合中
-                if (_validatingDic.ContainsKey(tb_Cam1StdX3.Name))
-                {
-                    _validatingDic[tb_Cam1StdX3.Name] = tb_Cam1StdX3.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdX3.Name, tb_Cam1StdX3.Text);
-                }
-
-                if (_validatingDic.ContainsKey(tb_Cam1StdY3.Name))
-                {
-                    _validatingDic[tb_Cam1StdY3.Name] = tb_Cam1StdY3.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdY3.Name, tb_Cam1StdY3.Text);
-                }
-
-                if (_validatingDic.ContainsKey(tb_Cam1StdT3.Name))
-                {
-                    _validatingDic[tb_Cam1StdT3.Name] = tb_Cam1StdT3.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdT3.Name, tb_Cam1StdT3.Text);
-                }
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("工程师才可修改基准");
-            }
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (Project.Instance().UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
-            {
-                tb_Cam1StdX4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posXLas2.ToString("f3");
-                tb_Cam1StdY4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posYLas2.ToString("f3");
-                tb_Cam1StdT4.Text = Project.Instance().RobotManagerInstance.L_Robot[0].Cam1posRLas2.ToString("f3");
-
-                //判断是否已在集合中
-                if (_validatingDic.ContainsKey(tb_Cam1StdX4.Name))
-                {
-                    _validatingDic[tb_Cam1StdX4.Name] = tb_Cam1StdX4.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdX4.Name, tb_Cam1StdX4.Text);
-                }
-
-                if (_validatingDic.ContainsKey(tb_Cam1StdY4.Name))
-                {
-                    _validatingDic[tb_Cam1StdY4.Name] = tb_Cam1StdY4.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdY4.Name, tb_Cam1StdY4.Text);
-                }
-
-                if (_validatingDic.ContainsKey(tb_Cam1StdT4.Name))
-                {
-                    _validatingDic[tb_Cam1StdT4.Name] = tb_Cam1StdT4.Text;
-                }
-                else
-                {
-                    _validatingDic.Add(tb_Cam1StdT4.Name, tb_Cam1StdT4.Text);
+                    if (_validatingDic.ContainsKey(tb_Cam1StdT4.Name))
+                    {
+                        _validatingDic[tb_Cam1StdT4.Name] = tb_Cam1StdT4.Text;
+                    }
+                    else
+                    {
+                        _validatingDic.Add(tb_Cam1StdT4.Name, tb_Cam1StdT4.Text);
+                    }
                 }
             }
             else
@@ -3318,6 +3426,72 @@ namespace VisionProgram.UI.UIVision
         {
             tb_Cam1AddL2J9Y4.Text = (Convert.ToDouble(tb_Cam1AddL2J9Y3.Text) + Convert.ToDouble(tb_Cam1P4byP3Y.Text)).ToString();
 
+        }
+        // 所有夹具页面checkbox状态改变事件
+        private void Checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            var currentCheckbox = sender as CheckBox;
+
+            // 查找对应的按钮
+            var targetButton = Pairscb_btn
+                .FirstOrDefault(p => p.checkbox == currentCheckbox).button;
+
+            if (targetButton != null)
+            {
+                // 实时更新按钮状态
+                targetButton.Enabled = currentCheckbox.Checked;
+            }
+        }
+        // 方法：递归设置所有TextBox的值
+        private void SetAllTextBoxZero(Control container)
+        {
+            foreach (Control ctrl in container.Controls)
+            {
+                // 如果是文本框直接设置
+                if (ctrl is TextBox txt)
+                {
+                    txt.Text = "0";
+                }
+                // 如果是容器控件则递归遍历
+                else if (ctrl.HasChildren)
+                {
+                    SetAllTextBoxZero(ctrl);
+                }
+            }
+        }
+        private void Button_Click(object sender, EventArgs e)
+        {
+            var currentButton = sender as Button;
+
+            // 查找对应的按钮
+            var targetTabPage = Pairsbtn_tp
+                .FirstOrDefault(p => p.button == currentButton).tabpage;
+
+            if (targetTabPage != null)
+            {
+                if (System.Windows.Forms.MessageBox.Show("是否确定清除当前页面所有补偿", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    // 实时更新按钮状态
+                    SetAllTextBoxZero(targetTabPage);
+                }
+            }
+
+        }
+        // 通用方法：查找控件所在的TabPage
+        public static TabPage GetParentTabPage(Control control)
+        {
+            if (control == null) return null;
+
+            Control parent = control.Parent;
+            while (parent != null)
+            {
+                if (parent is TabPage tabPage)
+                {
+                    return tabPage;
+                }
+                parent = parent.Parent;
+            }
+            return null;
         }
     }
 }
