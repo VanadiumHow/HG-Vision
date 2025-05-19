@@ -81,6 +81,23 @@ namespace VisionProgram.Main.ProjectClass.PLC
         {
             NJPLC.Dispose();
         }
+        public bool Write(string address, byte[] value)
+        {
+            try
+            {
+                if (_isPLCConnect)
+                {
+                    result = NJPLC.Write(address, value);
+                    if (result.IsSuccess)
+                        return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
+        }
 
         public bool WriteInt(string address, int value)
         {
@@ -89,6 +106,23 @@ namespace VisionProgram.Main.ProjectClass.PLC
                 if (_isPLCConnect)
                 {
                     result = NJPLC.Write(address, value);
+                    if (result.IsSuccess)
+                        return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
+        }
+        public bool WriteString(string address, string value, int length)
+        {
+            try
+            {
+                if (_isPLCConnect)
+                {
+                    result = NJPLC.Write(address, value, length, Encoding.ASCII);
                     if (result.IsSuccess)
                         return true;
                 }
