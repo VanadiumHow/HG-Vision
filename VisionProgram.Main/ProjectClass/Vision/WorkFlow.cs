@@ -13,6 +13,7 @@ using VisionProgram.Common;
 using Cognex.VisionPro.CalibFix;
 using VisionProgram.Main.ProjectClass;
 using System.Threading.Tasks;
+using VisionProgram.Main.ProjectClass.Vision.Global;
 
 namespace VisionProgram.Vision.VP
 {
@@ -602,12 +603,11 @@ namespace VisionProgram.Vision.VP
         //窗体显示文字信息
         public static void DisplayLabelCogDisplay(CogRecordsDisplay mydisplay, CogColorConstants Color, System.Single x, System.Single y, string text, System.Int16 fontSize)
         {
-            new Action(() =>
+            // 定义实际执行的操作
+            void AddLabel()
             {
-                lock (obj)
+                try
                 {
-                    try
-                    {
                         CogGraphicLabel GraphicLabel = new CogGraphicLabel();
                         GraphicLabel.SetXYText(x, y, text);
                         Font font = new System.Drawing.Font("微软雅黑", fontSize, FontStyle.Bold);
@@ -616,13 +616,22 @@ namespace VisionProgram.Vision.VP
                         GraphicLabel.SelectedSpaceName = mydisplay.Display.UserDisplayTree.RootName;
                         GraphicLabel.Color = Color;
                         mydisplay.Display.InteractiveGraphics.Add(GraphicLabel, "me", true);
-                    }
-                    catch (Exception ex)
-                    {
-                        LogHelper.Error("Label加载异常", ex);
-                    }
                 }
-            }).Invoke();
+                catch (Exception ex)
+                {
+                    LogHelper.Error("Label加载异常", ex);
+                }
+            }
+
+            // 线程安全调用
+            if (mydisplay.InvokeRequired)
+            {
+                mydisplay.Invoke(new Action(AddLabel));
+            }
+            else
+            {
+                AddLabel(); // 直接调用，无需锁或Action.Invoke()
+            }
         }
 
 
