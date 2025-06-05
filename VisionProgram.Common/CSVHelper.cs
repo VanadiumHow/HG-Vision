@@ -18,8 +18,8 @@ namespace VisionProgram.Common
             try
             {
                 if (strFile == "") return false;
-                string strPath = System.IO.Directory.GetCurrentDirectory() + "\\CSV\\" + strFile + "\\";
-                string strFilePath = strPath + System.DateTime.Now.ToString("yyyyMMdd") + ".csv";
+                string strPath = Path.Combine(@"D:\CSV", strFile);
+                string strFilePath = Path.Combine(strPath, DateTime.Now.ToString("yyyyMMdd") + ".csv");
                 if (!Directory.Exists(strPath))//如果路径不存在
                 {
                     Directory.CreateDirectory(strPath);//创建一个路径的文件夹
