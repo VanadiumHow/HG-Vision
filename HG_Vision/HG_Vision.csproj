@@ -7,7 +7,7 @@
     <ProjectGuid>{41512D59-E70F-43E1-90FE-4058F39B6BFF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VisionProgram.UI</RootNamespace>
+    <RootNamespace>HG_Vision</RootNamespace>
     <AssemblyName>HG_Vision</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -500,20 +500,8 @@
     </None>
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\VisionProgram.UI.csproj.GenerateResource.Cache" />
-    <None Include="obj\Debug\VisionProgram.UI.csprojResolveAssemblyReference.cache" />
-    <None Include="obj\Release\VisionProgram.UI.csproj.AssemblyReference.cache" />
-    <None Include="obj\Release\VisionProgram.UI.csproj.CopyComplete" />
-    <None Include="obj\Release\VisionProgram.UI.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Release\VisionProgram.UI.csproj.GenerateResource.cache" />
     <None Include="obj\x64\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\x64\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\x64\Debug\VisionProgram.UI.csproj.AssemblyReference.cache" />
-    <None Include="obj\x64\Debug\VisionProgram.UI.csproj.CopyComplete" />
-    <None Include="obj\x64\Debug\VisionProgram.UI.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\x64\Debug\VisionProgram.UI.csproj.GenerateResource.cache" />
-    <None Include="obj\x64\Debug\VisionProgram.UI.csproj.SuggestedBindingRedirects.cache" />
-    <None Include="obj\x64\Debug\VisionProgram.UI.csprojResolveAssemblyReference.cache" />
     <None Include="obj\x64\Debug\_IsIncrementalBuild" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -621,15 +609,11 @@
     <Content Include="bin\x64\Debug\VisionProgram.UserControls.pdb" />
     <Content Include="HG-logo.ico" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
-    <Content Include="obj\Debug\VisionProgram.UI.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="obj\Release\VisionProgram.exe" />
     <Content Include="obj\Release\VisionProgram.pdb" />
-    <Content Include="obj\Release\VisionProgram.UI.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\x64\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="obj\x64\Debug\VisionProgram.exe" />
     <Content Include="obj\x64\Debug\VisionProgram.pdb" />
-    <Content Include="obj\x64\Debug\VisionProgram.UI.csproj.FileListAbsolute.txt" />
     <Content Include="Resources\HG-logo.ico" />
     <Content Include="Resources\信息.png" />
     <None Include="Resources\加载界面.png" />
