@@ -1,0 +1,743 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{41512D59-E70F-43E1-90FE-4058F39B6BFF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VisionProgram.UI</RootNamespace>
+    <AssemblyName>HG_Vision</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>HG-logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cognex.VisionPro, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ApplicationWizard.Core, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ApplicationWizard.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Blob, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Blob.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Blob.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Blob.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CalibFix, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFix.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CalibFix.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFix.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CalibFixPlus, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFixPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Caliper, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Caliper.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Caliper.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Caliper.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Comm, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Comm.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Comm.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Comm.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Core, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CorePlus, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CorePlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Database, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Display.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Display.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageFile, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageFile.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageProcessing, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageProcessing.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageProcessing.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageProcessing.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImagingDevice, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImagingDevice.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PMAlign, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMAlign.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PMAlign.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMAlign.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.QuickBuild.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.QuickBuild.Core, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.QuickBuild.IO, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ToolGroup, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ToolGroup.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ToolGroup.Controls, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ToolGroup.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="HslCommunication, Version=7.0.1.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x64\Debug\HslCommunication.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\VisionProgram.Main\bin\x64\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SunnyUI">
+      <HintPath>..\..\..\..\..\精简其它功能20241127\VisionProgram\bin\x64\Debug\SunnyUI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Control\Control_Vision\CameraConfiguration.cs" />
+    <Compile Include="Control\Control_Vision\CameraParamsConfiguration.cs" />
+    <Compile Include="Control\Control_Sql\CCDDataBll.cs" />
+    <Compile Include="Control\Control_Sql\SqlInfoConfiguration.cs" />
+    <Compile Include="Control\Control_Vision\ImageConfiguration.cs" />
+    <Compile Include="Control\Control_Laser\LeaserObj.cs" />
+    <Compile Include="Control\Control_System\DataCheckConfiguration.cs" />
+    <Compile Include="Control\Control_System\GlobalConfiguration.cs" />
+    <Compile Include="Control\Control_Laser\LeaserClientConfiguration.cs" />
+    <Compile Include="Control\Control_System\MD5Encrypt.cs" />
+    <Compile Include="Control\Control_Sql\OperationLogDataBll.cs" />
+    <Compile Include="Control\Control_Robot\RobotSeverConfiguration.cs" />
+    <Compile Include="Control\Control_System\UserConfiguration.cs" />
+    <Compile Include="Control\Control_Vision\WorkFlow.cs" />
+    <Compile Include="DAL\BaseDal.cs" />
+    <Compile Include="DAL\BQuery.cs" />
+    <Compile Include="DAL\CCDDataDal.cs" />
+    <Compile Include="DAL\OperationLogDataDal.cs" />
+    <Compile Include="Manager\Manager_Vision\CameraManager.cs" />
+    <Compile Include="Manager\Manager_Vision\CameraParamsManager.cs" />
+    <Compile Include="Manager\Manager_Vision\ImageManager.cs" />
+    <Compile Include="Manager\Manager_Laser\LeaserManager.cs" />
+    <Compile Include="Control\Control_System\PLCConfiguration.cs" />
+    <Compile Include="Manager\Manager_Process\ScheduledTaskManager.cs" />
+    <Compile Include="Manager\Manager_Robot\RobotManager.cs" />
+    <Compile Include="Control\Control_Robot\RobotObj.cs" />
+    <Compile Include="Manager\Manager_System\DataCheckManager.cs" />
+    <Compile Include="Manager\Manager_System\GlobalManager.cs" />
+    <Compile Include="Manager\Manager_System\HardWareStateManager.cs" />
+    <Compile Include="Manager\Manager_System\HSLPLCOmron.cs" />
+    <Compile Include="Manager\Manager_Process\ProductionDataManager.cs" />
+    <Compile Include="Manager\Manager_System\Project.cs" />
+    <Compile Include="Manager\Manager_Sql\SqlInfoManager.cs" />
+    <Compile Include="Manager\Manager_System\UserInfoManager.cs" />
+    <Compile Include="Manager\Manager_Vision\VisionManager.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="obj\x64\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="obj\x64\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\x64\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\x64\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UIInit\FrmSplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIInit\FrmSplashScreen.designer.cs">
+      <DependentUpon>FrmSplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIMain\FrmHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIMain\FrmHome.designer.cs">
+      <DependentUpon>FrmHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIMain\RightForm\FrmRightMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIMain\RightForm\FrmRightMain.Designer.cs">
+      <DependentUpon>FrmRightMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIMain\RightForm\SonForm\FrmCapacityData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIMain\RightForm\SonForm\FrmCapacityData.Designer.cs">
+      <DependentUpon>FrmCapacityData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogin\FrmEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UILogin\FrmEdit.Designer.cs">
+      <DependentUpon>FrmEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UILogin\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UILogin\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIMain\RightForm\SonForm\FrmHardWareState.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIMain\RightForm\SonForm\FrmHardWareState.Designer.cs">
+      <DependentUpon>FrmHardWareState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIMain\RightForm\SonForm\FrmOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIMain\RightForm\SonForm\FrmOutput.designer.cs">
+      <DependentUpon>FrmOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UISetting\FrmGeneralSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UISetting\FrmGeneralSettings.Designer.cs">
+      <DependentUpon>FrmGeneralSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UISetting\FrmProductChangeSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UISetting\FrmProductChangeSettings.Designer.cs">
+      <DependentUpon>FrmProductChangeSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UISetting\FrmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UISetting\FrmSetting.Designer.cs">
+      <DependentUpon>FrmSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UISetting\FrmPlcCommTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UISetting\FrmPlcCommTest.Designer.cs">
+      <DependentUpon>FrmPlcCommTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UISetting\FrmCameraParamsSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UISetting\FrmCameraParamsSettings.Designer.cs">
+      <DependentUpon>FrmCameraParamsSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIVision\FrmImageStoreSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIVision\FrmImageStoreSettings.Designer.cs">
+      <DependentUpon>FrmImageStoreSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIMain\VisionForm\FrmMainVision.cs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIMain\VisionForm\FrmMainVision.cs.Designer.cs">
+      <DependentUpon>FrmMainVision.cs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIVision\FrmVPChooseImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIVision\FrmVPChooseImage.designer.cs">
+      <DependentUpon>FrmVPChooseImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIVision\FrmVppSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIVision\FrmVppSetting.Designer.cs">
+      <DependentUpon>FrmVppSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIMain\VisionForm\FrmVpVisionControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIMain\VisionForm\FrmVpVisionControl.Designer.cs">
+      <DependentUpon>FrmVpVisionControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIInit\FrmSplashScreen.resx">
+      <DependentUpon>FrmSplashScreen.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIMain\FrmHome.resx">
+      <DependentUpon>FrmHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIMain\RightForm\FrmRightMain.resx">
+      <DependentUpon>FrmRightMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIMain\RightForm\SonForm\FrmCapacityData.resx">
+      <DependentUpon>FrmCapacityData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UILogin\FrmEdit.resx">
+      <DependentUpon>FrmEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UILogin\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIMain\RightForm\SonForm\FrmHardWareState.resx">
+      <DependentUpon>FrmHardWareState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIMain\RightForm\SonForm\FrmOutput.resx">
+      <DependentUpon>FrmOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UISetting\FrmGeneralSettings.resx">
+      <DependentUpon>FrmGeneralSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UISetting\FrmProductChangeSettings.resx">
+      <DependentUpon>FrmProductChangeSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UISetting\FrmSetting.resx">
+      <DependentUpon>FrmSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UISetting\FrmPlcCommTest.resx">
+      <DependentUpon>FrmPlcCommTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UISetting\FrmCameraParamsSettings.resx">
+      <DependentUpon>FrmCameraParamsSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIVision\FrmImageStoreSettings.resx">
+      <DependentUpon>FrmImageStoreSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIMain\VisionForm\FrmMainVision.cs.resx">
+      <DependentUpon>FrmMainVision.cs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIVision\FrmVPChooseImage.resx">
+      <DependentUpon>FrmVPChooseImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIVision\FrmVppSetting.resx">
+      <DependentUpon>FrmVppSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIMain\VisionForm\FrmVpVisionControl.resx">
+      <DependentUpon>FrmVpVisionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="bin\x64\Debug\Config\Configuration.ini" />
+    <None Include="bin\x64\Debug\Config\DataCheckComm.ini" />
+    <None Include="bin\x64\Debug\Config\PlcComm.ini" />
+    <None Include="bin\x64\Debug\Config\RobotComm1.ini" />
+    <None Include="bin\x64\Debug\Config\RobotComm2.ini" />
+    <None Include="bin\x64\Debug\Config\ScanComm.ini" />
+    <None Include="bin\x64\Debug\Config\Sql.ini" />
+    <None Include="bin\x64\Debug\log4net.config" />
+    <None Include="bin\x64\Debug\Logger\LogDebug\20230608\09_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogDebug\20230610\15_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogDebug\20230610\17_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogDebug\20230612\10_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogDebug\20230614\09_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogDebug\20230630\20_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogDebug\20230706\19_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogDebug\20230706\20_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogDebug\20230707\13_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogError\20230608_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogError\20230610_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogError\20230612_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogError\20230614_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogError\20230630_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogError\20230703_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogError\20230706_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogError\20230707_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogFatal\20230608_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogFatal\20230610_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogFatal\20230612_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogFatal\20230614_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogFatal\20230630_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogFatal\20230706_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogFatal\20230707_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogInfo\20230608\09_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogInfo\20230610\15_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogInfo\20230610\17_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogInfo\20230612\10_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogInfo\20230614\09_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogInfo\20230630\20_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogInfo\20230706\19_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogInfo\20230706\20_log.log" />
+    <None Include="bin\x64\Debug\Logger\LogInfo\20230707\13_log.log" />
+    <None Include="bin\x64\Debug\Logger\系统异常.log" />
+    <None Include="bin\x64\Debug\VisionParam\Config\CameraAttribute.ini" />
+    <None Include="bin\x64\Debug\VisionParam\Config\CameraParams.ini" />
+    <None Include="bin\x64\Debug\VisionParam\Config\ImageParams.ini" />
+    <None Include="bin\x64\Debug\VisionProgram.exe.config" />
+    <None Include="bin\x64\Debug\VisionTool\acquire\AcquireBlock1.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\acquire\AcquireBlock2.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\acquire\AcquireBlock3.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\acquire\AcquireBlock4.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_distortion\DistortionCalibBlock1.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_distortion\DistortionCalibBlock2.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_distortion\DistortionCalibBlock3.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_distortion\DistortionCalibBlock4.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_linear\LinearCalibBlock1.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_linear\LinearCalibBlock2.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_linear\LinearCalibBlock3.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_linear\LinearCalibBlock4.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_rotation\RotationCalibBlock1.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_rotation\RotationCalibBlock2.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_rotation\RotationCalibBlock3.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\calib_rotation\RotationCalibBlock4.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\process\ProcessBlock1.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\process\ProcessBlock2.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\process\ProcessBlock3.vpp" />
+    <None Include="bin\x64\Debug\VisionTool\process\ProcessBlock4.vpp" />
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\VisionProgram.UI.csproj.GenerateResource.Cache" />
+    <None Include="obj\Debug\VisionProgram.UI.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Release\VisionProgram.UI.csproj.AssemblyReference.cache" />
+    <None Include="obj\Release\VisionProgram.UI.csproj.CopyComplete" />
+    <None Include="obj\Release\VisionProgram.UI.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Release\VisionProgram.UI.csproj.GenerateResource.cache" />
+    <None Include="obj\x64\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\x64\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\x64\Debug\VisionProgram.UI.csproj.AssemblyReference.cache" />
+    <None Include="obj\x64\Debug\VisionProgram.UI.csproj.CopyComplete" />
+    <None Include="obj\x64\Debug\VisionProgram.UI.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\x64\Debug\VisionProgram.UI.csproj.GenerateResource.cache" />
+    <None Include="obj\x64\Debug\VisionProgram.UI.csproj.SuggestedBindingRedirects.cache" />
+    <None Include="obj\x64\Debug\VisionProgram.UI.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\x64\Debug\_IsIncrementalBuild" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\x64\Debug\CIPCompolet.dll" />
+    <Content Include="bin\x64\Debug\CIPCompolet64.dll" />
+    <Content Include="bin\x64\Debug\CIPCompoletProxyLib.dll" />
+    <Content Include="bin\x64\Debug\CIPCoreDotNet.dll" />
+    <Content Include="bin\x64\Debug\CIPMessaging.dll" />
+    <Content Include="bin\x64\Debug\CIPObjectLibrary.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ApplicationWizard.Core.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Blob.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Blob.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Blob.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.CalibFix.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.CalibFix.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.CalibFix.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.CalibFixPlus.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.CalibFixPlus.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Caliper.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Caliper.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Caliper.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Comm.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Comm.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Comm.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Core.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Core.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.CorePlus.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.CorePlus.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Database.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Database.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Display.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Display.Controls.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.FG1394DCAM.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.FG1394DCAM.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.FG8100.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.FG8100.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.FG8100L.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.FG8100L.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.FGGigE.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.FGGigE.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ImageFile.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ImageFile.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ImageFile.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ImageProcessing.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ImageProcessing.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ImageProcessing.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ImagingDevice.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ImagingDevice.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Inspection.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Inspection.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Inspection.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.Interop.Core.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.PMAlign.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.PMAlign.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.PMAlign.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.QuickBuild.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.QuickBuild.Core.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.QuickBuild.Core.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.QuickBuild.IO.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.QuickBuild.IO.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ResultsAnalysis.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ResultsAnalysis.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ToolGroup.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ToolGroup.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.ToolGroup.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro3D.Core.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro3D.Core.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro3D.Display.Controls.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro3D.Display.Controls.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro3D.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro3D.Graphic.dll" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro3D.Graphic.xml" />
+    <Content Include="bin\x64\Debug\Cognex.VisionPro3D.xml" />
+    <Content Include="bin\x64\Debug\EPPlus.dll" />
+    <Content Include="bin\x64\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\x64\Debug\stdole.dll" />
+    <Content Include="bin\x64\Debug\TwinCAT.Ads.dll" />
+    <Content Include="bin\x64\Debug\User\UserInfo.txt" />
+    <Content Include="bin\x64\Debug\VisionProgram.Common.dll" />
+    <Content Include="bin\x64\Debug\VisionProgram.Common.pdb" />
+    <Content Include="bin\x64\Debug\VisionProgram.exe" />
+    <Content Include="bin\x64\Debug\VisionProgram.Main.dll" />
+    <Content Include="bin\x64\Debug\VisionProgram.Main.pdb" />
+    <Content Include="bin\x64\Debug\VisionProgram.Models.dll" />
+    <Content Include="bin\x64\Debug\VisionProgram.Models.pdb" />
+    <Content Include="bin\x64\Debug\VisionProgram.pdb" />
+    <Content Include="bin\x64\Debug\VisionProgram.SplashScreen.dll" />
+    <Content Include="bin\x64\Debug\VisionProgram.SplashScreen.pdb" />
+    <Content Include="bin\x64\Debug\VisionProgram.UserControls.dll" />
+    <Content Include="bin\x64\Debug\VisionProgram.UserControls.pdb" />
+    <Content Include="HG-logo.ico" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="obj\Debug\VisionProgram.UI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="obj\Release\VisionProgram.exe" />
+    <Content Include="obj\Release\VisionProgram.pdb" />
+    <Content Include="obj\Release\VisionProgram.UI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\x64\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="obj\x64\Debug\VisionProgram.exe" />
+    <Content Include="obj\x64\Debug\VisionProgram.pdb" />
+    <Content Include="obj\x64\Debug\VisionProgram.UI.csproj.FileListAbsolute.txt" />
+    <Content Include="Resources\HG-logo.ico" />
+    <Content Include="Resources\信息.png" />
+    <None Include="Resources\加载界面.png" />
+    <Content Include="Resources\卡券标签.png" />
+    <Content Include="Resources\双人.png" />
+    <Content Include="Resources\向上.png" />
+    <Content Include="Resources\密码锁.png" />
+    <Content Include="Resources\平板.png" />
+    <Content Include="Resources\开始.png" />
+    <Content Include="Resources\手机.png" />
+    <Content Include="Resources\打印.png" />
+    <Content Include="Resources\搜索商家.png" />
+    <Content Include="Resources\播放.png" />
+    <Content Include="Resources\文本.png" />
+    <Content Include="Resources\暂停.png" />
+    <Content Include="Resources\用户.png" />
+    <Content Include="Resources\电话.png" />
+    <Content Include="Resources\相机.png" />
+    <Content Include="Resources\眼睛.png" />
+    <Content Include="Resources\系统.png" />
+    <Content Include="Resources\红绿灯.png" />
+    <Content Include="Resources\红绿灯1_红.png" />
+    <Content Include="Resources\红绿灯1_绿.png" />
+    <Content Include="Resources\红绿灯1_黄.png" />
+    <Content Include="Resources\红绿灯2.png" />
+    <Content Include="Resources\货币.png" />
+    <Content Include="Resources\通知.png" />
+    <Content Include="Resources\铃铛.png" />
+    <None Include="Resources\错误.png" />
+    <Content Include="Resources\饼图.png" />
+    <None Include="Resources\向下.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\x64\Debug\ja\" />
+    <Folder Include="bin\x64\Debug\Product\默认\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConstantModel\ConstantModel.csproj">
+      <Project>{b6a02326-ad97-4501-81d9-abc9fea24594}</Project>
+      <Name>ConstantModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
+      <Project>{bc2bfa33-eb95-4198-b3b3-169dcb520520}</Project>
+      <Name>DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnumModel\EnumModel.csproj">
+      <Project>{9719f883-fefc-41de-ad38-9faebd203e85}</Project>
+      <Name>EnumModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObjSerialize\Obj_Serialize.csproj">
+      <Project>{997438d5-7cda-4e13-806f-634cbd9db5ca}</Project>
+      <Name>Obj_Serialize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Obj_File\Obj_File.csproj">
+      <Project>{458d2eb6-b926-4f25-ad85-297937a88355}</Project>
+      <Name>Obj_File</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Obj_Image\Obj_Image.csproj">
+      <Project>{dabd3a69-dc25-41f9-b8b5-a23f637098d1}</Project>
+      <Name>Obj_Image</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Obj_Message\Obj_Message.csproj">
+      <Project>{4977349a-8d81-48cc-9dcc-d06385ef314f}</Project>
+      <Name>Obj_Message</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Obj_Other\Obj_Other.csproj">
+      <Project>{7e39a537-5d54-4799-93c0-bd766b9e52fd}</Project>
+      <Name>Obj_Other</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Obj_Queue\Obj_Queue.csproj">
+      <Project>{4cf9b0d6-77a1-44fa-b0d1-377ca8150e3f}</Project>
+      <Name>Obj_Queue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Obj_Sql\Obj_Sql.csproj">
+      <Project>{6d48c037-7b9a-41c9-a742-758ab8d1d97b}</Project>
+      <Name>Obj_Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Socket\Socket.csproj">
+      <Project>{45de612b-9c13-4116-9ad3-d641873b8b36}</Project>
+      <Name>Socket</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UIModel\UIModel.csproj">
+      <Project>{68be877e-2675-4369-9bce-d90ce4d5c44b}</Project>
+      <Name>UIModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VisionProgram.UserControls\VisionProgram.UserControls.csproj">
+      <Project>{f2b31baf-5300-4840-a356-438444fb8a17}</Project>
+      <Name>VisionProgram.UserControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
