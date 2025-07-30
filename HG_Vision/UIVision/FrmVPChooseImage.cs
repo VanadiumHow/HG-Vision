@@ -4,6 +4,9 @@ using System.IO;
 using System.Windows.Forms;
 using HG_Vision.Manager.Manager_System;
 
+/****************************************************************
+
+*****************************************************************/
 namespace HG_Vision.UIVision
 {
     public partial class FrmVPChooseImage : Form

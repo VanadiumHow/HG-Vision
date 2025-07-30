@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data;
-using System.Threading;
+﻿using HG_Vision.DAL;
+using HG_Vision.Manager.Manager_System;
+using HG_Vision.Manager.Manager_Thread;
 using Model.DataModel;
 using Model.UIModel;
 using Obj.Obj_File;
-using Obj.Obj_Queue;
 using Obj.Obj_Message;
-using HG_Vision.Manager.Manager_System;
-using HG_Vision.DAL;
+using Obj.Obj_Queue;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading;
+
 /****************************************************************
 
 *****************************************************************/
@@ -21,8 +23,8 @@ namespace HG_Vision.Contol.Control_Sql
 
         //任务队列
         private BlockQueue<OperationLogDataModel> _taskQueue = new BlockQueue<OperationLogDataModel>(50);
-        //处理任务队列线程
-        private Thread _workThread;
+        // 处理任务队列线程
+        private InsertDataThread _workThread;
 
         /// <summary>
         /// 单例
@@ -37,24 +39,9 @@ namespace HG_Vision.Contol.Control_Sql
         #region 开启线程
         public void InitThread()
         {
-            _workThread = new Thread(WorkThread);
-            _workThread.SetApartmentState(ApartmentState.STA);//2025 04 07
-            _workThread.Start();
-        }
-
-        private void WorkThread()
-        {
-            while (!_taskQueue.IsCompleted)
-            {
-                try
-                {
-                    DoWorkThread();
-                }
-                catch (Exception ex)
-                {
-                    LogHelper.Error("线程处理操作日志出现异常", ex);
-                }
-            }
+            _workThread = new InsertDataThread(_taskQueue, logDataDal);
+            _workThread.SetApartmentState(ApartmentState.STA);
+            _workThread.Initialize();
         }
         #endregion
 
@@ -95,21 +82,6 @@ namespace HG_Vision.Contol.Control_Sql
         #endregion
 
         #region 出队保存操作日志
-        private void DoWorkThread()
-        {
-            OperationLogDataModel logData = _taskQueue.Dequeue();
-            if (logData != null)
-            {
-                try
-                {
-                    InsertData(logData);
-                }
-                catch (Exception ex)
-                {
-                    LogHelper.Error("线程处理操作日志出现异常", ex);
-                }
-            }
-        }
 
         public void InsertOperationLog(List<OperationLogParamModel.OldParam> oldParamObjects,string tag)
         {
@@ -191,12 +163,10 @@ namespace HG_Vision.Contol.Control_Sql
             {              
                 Thread.Sleep(100);//阻塞当前调用线程，等待队列数据处理完
             }
-
-            if (_workThread != null && _workThread.IsAlive)
+            if (_workThread != null)
             {
-                _workThread.Abort();
+                _workThread.Deinitialize();
             }
-
             Thread.Sleep(30);
             _taskQueue.Close();
         }

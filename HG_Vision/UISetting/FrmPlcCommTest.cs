@@ -4,8 +4,8 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Obj.Obj_Message;
-using HG_Vision.Contol.Control_System;
 using HG_Vision.Manager.Manager_System;
+using HG_Vision.Contol.Control_PLC;
 /****************************************************************
 
 *****************************************************************/

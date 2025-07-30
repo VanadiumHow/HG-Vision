@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using HG_Vision.Contol.Control_Vision;
 
+/****************************************************************
+
+*****************************************************************/
 namespace HG_Vision.Manager.Manager_Vision
 {
     public class ImageManager

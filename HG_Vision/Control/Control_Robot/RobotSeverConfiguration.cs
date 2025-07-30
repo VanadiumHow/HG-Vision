@@ -4,11 +4,11 @@ using System.Windows;
 using Model.ConstantModel;
 using Obj.Obj_File;
 
-namespace HG_Vision.Contol.Control_Robot
-{
-    /****************************************************************
+/****************************************************************
 
 *****************************************************************/
+namespace HG_Vision.Contol.Control_Robot
+{
     public class RobotSeverConfiguration
     {
         /// <summary>

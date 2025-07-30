@@ -7,7 +7,6 @@ using VisionProgram.UserControls.UITextBox;
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.UILogin
 {
     public partial class FrmEdit : Form

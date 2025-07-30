@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,7 +11,7 @@ using Obj.Obj_Message;
 using HG_Vision.Manager.Manager_System;
 
 /****************************************************************
-*
+
 *****************************************************************/
 namespace DataCollection.UI.UIHome.RightForm
 {

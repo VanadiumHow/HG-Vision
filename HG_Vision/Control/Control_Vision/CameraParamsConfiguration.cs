@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Model.ConstantModel;
 using Obj.Obj_File;
 using HG_Vision.Manager.Manager_System;
 
+/****************************************************************
+
+*****************************************************************/
 namespace HG_Vision.Contol.Control_Vision
 {
     public class CameraParamsConfiguration

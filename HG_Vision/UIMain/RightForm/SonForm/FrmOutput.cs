@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
@@ -12,7 +11,6 @@ using Model.ConstantModel;
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.UIHome.RightForm
 {
     public partial class FrmOutput : Form

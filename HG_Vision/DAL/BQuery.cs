@@ -118,7 +118,5 @@ namespace HG_Vision.DAL
         }
 
         #endregion
-
-       
     }
 }

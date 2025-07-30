@@ -8,7 +8,6 @@ using Model.ConstantModel;
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.Contol.Control_Sql
 {
     public class SqlInfoConfiguration

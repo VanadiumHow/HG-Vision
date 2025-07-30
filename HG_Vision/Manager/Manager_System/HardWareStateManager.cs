@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using HG_Vision.Manager.Manager_System;
 
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.Manager.Manager_System
 {
     public class HardWareStateManager

@@ -5,6 +5,9 @@ using Obj.Obj_File;
 using HG_Vision.Contol.Control_Laser;
 using HG_Vision.Manager.Manager_System;
 
+/****************************************************************
+
+*****************************************************************/
 namespace HG_Vision.Manager.Manager_Laser
 {
     public class LaserManager

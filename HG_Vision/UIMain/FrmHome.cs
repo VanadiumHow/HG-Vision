@@ -12,6 +12,7 @@ using Obj.Obj_File;
 using Obj.Obj_Message;
 using HG_Vision.Manager.Manager_System;
 using HG_Vision.Contol.Control_Sql;
+
 /****************************************************************
 
 *****************************************************************/
@@ -28,7 +29,6 @@ namespace HG_Vision.UIHome
 
         // PLC交互业务       
         private Task[] _taskPLCArray = new Task[Project.Instance.PLCManagerInstance.PLCNum];
-
         #endregion
 
         private FrmHome()
@@ -58,20 +58,12 @@ namespace HG_Vision.UIHome
             }
         }
 
-
         /// <summary>
         /// 窗体对象实例
         /// </summary>
-        private static FrmHome _instance;
-        public static FrmHome Instance
-        {
-            get
-            {
-                if (_instance == null || _instance.IsDisposed)
-                    _instance = new FrmHome();
-                return _instance;
-            }
-        }
+        private static readonly Lazy<FrmHome> _lazyInstance =
+  new Lazy<FrmHome>(() => new FrmHome(), isThreadSafe: true);
+        public static FrmHome Instance => _lazyInstance.Value;
 
         protected override CreateParams CreateParams
         {
@@ -437,7 +429,7 @@ namespace HG_Vision.UIHome
                     //}
                     for (int i = 0; i < Project.Instance.HardWareStateManagerInstance.L_robotState.Count; i++)
                     {
-                        isRun = isRun && Project.Instance.RobotManagerInstance.L_Robot[i].IsConnectedRobot[0];
+                        isRun = isRun && Project.Instance.RobotManagerInstance.L_Robot[i].GetIsConnectedRobot(0);
                     }
                     if (isRun)
                     {

@@ -5,12 +5,11 @@ using HG_Vision.Manager.Manager_Vision;
 using HG_Vision.Manager.Manager_Process;
 using HG_Vision.Manager.Manager_Robot;
 using HG_Vision.Manager.Manager_Laser;
+using HG_Vision.Manager.Manager_PLC;
 
 /****************************************************************
 
 *****************************************************************/
-
-
 namespace HG_Vision.Manager.Manager_System
 {
     public class Project

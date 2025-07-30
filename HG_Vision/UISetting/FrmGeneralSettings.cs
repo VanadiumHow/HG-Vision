@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Windows.Forms;
 using Model.UIModel;
 using Obj.Obj_File;
 using Obj.Obj_Message;
-using Obj.Obj_Other;
 using HG_Vision.Manager.Manager_System;
+
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.UISetting
 {
     public partial class FrmGeneralSettings : Form

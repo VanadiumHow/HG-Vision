@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
-using Abstract;
+using BaseSocket;
 using Obj.Obj_File;
 using HG_Vision.Contol.Control_Vision;
 using HG_Vision.Manager.Manager_System;
@@ -2630,7 +2630,7 @@ namespace HG_Vision
         {
             testData[0] = arr_CenterX.ToArray();
             testData[1] = arr_CenterY.ToArray();
-            File_CSV.GenerateAndOpenCsv(testData);
+            File_CSV.ExportAndOpenXYData(testData);
             arr_CenterX = new List<double>();
             arr_CenterY = new List<double>();
         }

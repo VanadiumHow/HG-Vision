@@ -4,6 +4,9 @@ using System.Windows;
 using Obj.Obj_File;
 using HG_Vision.Manager.Manager_System;
 
+/****************************************************************
+
+*****************************************************************/
 namespace HG_Vision.Contol.Control_Vision
 {
     public struct CameraAttribute

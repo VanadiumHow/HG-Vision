@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
-
+using System.Drawing;
 #region using Cognex::namespace
 using Cognex.VisionPro;
 using Cognex.VisionPro.ToolBlock;
-using System.Drawing;
-#endregion
 using Cognex.VisionPro.CalibFix;
+#endregion
 using Obj.Obj_File;
 using Obj.Obj_Queue;
 using HG_Vision.Manager.Manager_System;
+
 /****************************************************************
 
 *****************************************************************/
@@ -65,7 +65,7 @@ namespace HG_Vision.Contol.Control_Vision
         public BlockQueue<ICogImage> mImageQueue = new BlockQueue<ICogImage>(200);
 
         /// <summary>
-        /// 取相工具集
+        /// 取相工具Tool
         /// </summary>
         protected CogAcqFifoTool m_AcquireTool;
         public CogAcqFifoTool AcquireTool
@@ -76,9 +76,6 @@ namespace HG_Vision.Contol.Control_Vision
         /// 取相模块
         /// </summary>
         protected CogToolBlock m_AcquireBlock;
-        /// <summary>
-        /// 取相模块
-        /// </summary>
         public CogToolBlock AcquireBlock
         {
             get
@@ -204,7 +201,7 @@ namespace HG_Vision.Contol.Control_Vision
                 m_RotationCalibBlock = CogSerializer.LoadObjectFromFile(_rotationcalibBlockpath) as CogToolBlock;
                 m_VerificatecalibBlock = CogSerializer.LoadObjectFromFile(_VerificatecalibBlockpath) as CogToolBlock;
 
-                m_AcquireTool = m_AcquireBlock.Tools["CogAcqFifoTool1"] as CogAcqFifoTool;
+                m_AcquireTool = m_AcquireBlock.Tools["相机工具*"] as CogAcqFifoTool;
 
                 try
                 {

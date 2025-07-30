@@ -8,7 +8,6 @@ using HG_Vision.Manager.Manager_System;
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.Manager.Manager_Sql
 {
     public class SqlInfoManager

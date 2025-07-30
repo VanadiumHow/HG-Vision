@@ -1,18 +1,18 @@
-﻿using Cognex.VisionPro;
+﻿using BaseThread;
+using HG_Vision.Manager.Manager_System;
+using HG_Vision.Manager.Manager_Thread;
 using Model.ConstantModel;
-using Obj.Obj_Image;
+using Obj.Obj_File;
+using Obj.Obj_Queue;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using Obj.Obj_File;
-using Obj.Obj_Queue;
-using HG_Vision.Manager.Manager_System;
 
+/****************************************************************
+
+*****************************************************************/
 namespace HG_Vision.Contol.Control_Vision
 {
     public class ImageConfiguration
@@ -99,76 +99,58 @@ namespace HG_Vision.Contol.Control_Vision
 
     public class ImageSave
     {
-        //存图线程
-        public Thread[] mSaveImageThread = new Thread[Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum];
         //存图队列
-        public BlockQueue<TriggerEventArgs>[] mSaveImageQueue = new BlockQueue<TriggerEventArgs>[Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum];
+        public List<BlockQueue<TriggerEventArgs>> saveImageQueueList = new List<BlockQueue<TriggerEventArgs>>();
+        private Control_Thread[] _Threads;
         public void InitSaveImage()
         {
+            SaveImageThread mSaveImageThread = new SaveImageThread();
+            _Threads = new Control_Thread[] { mSaveImageThread };
+            if (_Threads.Length < Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum)
+            {
+                MessageBox.Show("存图线程数量不足工作流程数量，请检查代码或配置文件！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            // 手动填充空对象
             for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum; i++)
             {
-                if (mSaveImageQueue[i] == null)
-                {
-                    mSaveImageQueue[i] = new BlockQueue<TriggerEventArgs>(20);
-                }
-                int workindex = i;
-                (mSaveImageThread[i] = new Thread(() => WorkThreadSaveImage(workindex))).Start();
+                saveImageQueueList.Add(null); // 初始化每个元素
             }
-        }
-        public void WorkThreadSaveImage(int index)
-        {
-            while (true)
+            for (int i = 0; i < _Threads.Length; i++)
             {
-                try
+                if (saveImageQueueList[i] == null)
                 {
-                    TriggerEventArgs e = new TriggerEventArgs();
-                    if (mSaveImageQueue[index].TryDequeue(out e))
-                    {
-                        SaveImage(e.rawImage, e.resultImage, e.imageName, e.results, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH-mm-ss-fff"), e.Index);
-                    }
+                    saveImageQueueList[i] = new BlockQueue<TriggerEventArgs>(20);
                 }
-                catch (Exception ex)
-                {
-                    LogHelper.Error("存图线程异常", ex);
-                }
-                Thread.Sleep(10);
             }
+            mSaveImageThread.SaveImageQueue = saveImageQueueList[0];
+            mSaveImageThread.Initialize();
         }
         public void CloseSaveImage()
         {
-            for (int i = 0; i < mSaveImageQueue.Length; i++)
+            for (int i = 0; i < saveImageQueueList.Count; i++)
             {
-                mSaveImageQueue[i].CompleteAdding();
-            }
-
-            for (int i = 0; i < mSaveImageQueue.Length; i++)
-            {
+                saveImageQueueList[i].CompleteAdding();
                 //自旋判断队列是否消费完
-                while (!mSaveImageQueue[i].IsCompleted)
+                while (!saveImageQueueList[i].IsCompleted)
                 {
                     Thread.Sleep(200);//阻塞当前调用线程，等待队列数据处理完
                 }
             }
-            Thread.Sleep(30);
-            for (int i = 0; i < mSaveImageThread.Length; i++)
+            for (int i = 0; i < _Threads.Length; i++)
             {
-                if (null != mSaveImageThread[i] && mSaveImageThread[i].IsAlive)
+                if (_Threads[i] != null)
                 {
-                    mSaveImageThread[i].Abort();
-                    mSaveImageThread[i] = null;
+                    _Threads[i].Deinitialize();
                 }
             }
-            for (int i = 0; i < mSaveImageQueue.Length; i++)
+            Thread.Sleep(30);
+            for (int i = 0; i < saveImageQueueList.Count; i++)
             {
-                mSaveImageQueue[i].Close();
+                saveImageQueueList[i].Close();
             }
         }
-        public void SaveImage(ICogImage img, CogRecordsDisplay _cd, string imagename, bool bOK, string ymd, string hms, int index)
-        {
-            ImageParamsModel _imageParams = Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageParams[index];
-            ImageStoreHelper.SaveRawImage(img, imagename, bOK, ymd, hms, index, _imageParams);
-            ImageStoreHelper.SaveResultImage(_cd, imagename, bOK, ymd, hms, index, _imageParams);
-        }
+
     }
 
 

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using Obj_Serialize;
 using Model.ConstantModel;
+
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.Contol.Control_System
 {
     public class UserConfiguration

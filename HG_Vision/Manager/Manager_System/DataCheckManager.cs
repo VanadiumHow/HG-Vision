@@ -1,9 +1,13 @@
 ﻿using HG_Vision.Contol.Control_System;
-/// <summary>
-/// 数据校验管理类
-/// </summary>
+
+/****************************************************************
+
+*****************************************************************/
 namespace HG_Vision.Manager.Manager_System
 {
+    /// <summary>
+    /// 数据校验管理类
+    /// </summary>
     public class DataCheckManager
     {
         private DataCheckConfiguration _dataCheckConfiguration = new DataCheckConfiguration();

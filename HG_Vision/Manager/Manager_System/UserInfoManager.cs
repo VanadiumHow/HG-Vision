@@ -9,7 +9,6 @@ using HG_Vision.Contol.Control_System;
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.Manager.Manager_System
 {
     public class UserInfoManager

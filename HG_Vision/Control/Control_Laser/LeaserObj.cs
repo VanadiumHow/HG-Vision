@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using Abstract;
+using BaseSocket;
 
+/****************************************************************
 
+*****************************************************************/
 namespace HG_Vision.Contol.Control_Laser
 {
     public class LaserObj : CClientSocket

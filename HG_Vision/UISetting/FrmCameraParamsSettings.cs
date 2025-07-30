@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Model.UIModel;
 using Obj.Obj_File;
-using Obj.Obj_Other;
+using Obj.Utility;
 using HG_Vision.Contol.Control_Sql;
 using HG_Vision.Manager.Manager_System;
 
@@ -419,7 +419,7 @@ namespace HG_Vision.UIVision
                 values.Add(Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.AddL2J9Y4[i].ToString());
             }
 
-            Utility.SetControlsText(this, controls, values, "相机参数");
+            CommonUtility.SetControlsText(this, controls, values, "相机参数");
             for (int i = 0; i < controls.Length; i++)
             {
                 controls[i].TextChanged += tb__Validating;

@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Model.EnumModel;
 using HG_Vision.Manager.Manager_System;
 
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.Manager.Manager_Process
 {
     /// <summary>

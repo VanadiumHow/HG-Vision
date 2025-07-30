@@ -1,11 +1,9 @@
 ﻿using HG_Vision.Contol.Control_System;
-using HG_Vision.Manager.Manager_System;
 using Model.ConstantModel;
 
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.Manager.Manager_System
 {
     public class GlobalManager

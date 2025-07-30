@@ -1,15 +1,15 @@
-﻿using System;
+﻿using HG_Vision.Manager.Manager_Thread;
+using System;
 using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-using Microsoft.Win32;
-using System.Runtime.InteropServices;
 
+/****************************************************************
+
+*****************************************************************/
 namespace ProgramGerneral
 {
     // The SplashScreen class definition.  AKO Form
@@ -19,8 +19,8 @@ namespace ProgramGerneral
 
         #region Member Variables
         // Threading
-        private static FrmSplashScreen ms_frmSplash = null;
-        private static Thread ms_oThread = null;
+        internal static FrmSplashScreen ms_frmSplash = null;
+        private static FrmSplashScreenThread ms_oThread;
 
         // Fade in and out.
         private double m_dblOpacityIncrement = .05;
@@ -56,7 +56,6 @@ namespace ProgramGerneral
             int nBottomRect,
             int nWidthEllipse,
             int nHeightEllipse
-
          );
 
         /// <summary>
@@ -79,9 +78,6 @@ namespace ProgramGerneral
 
             int ProgressbarEX_X = (int)(0.5 * (this.Width - progressBarEX.Width));
             progressBarEX.Location = new System.Drawing.Point(ProgressbarEX_X, progressBarEX.Location.Y);
-
-          
-
         }
 
         #region Public Static Methods
@@ -93,13 +89,12 @@ namespace ProgramGerneral
             // Make sure it's only launched once.
             if (ms_frmSplash != null)
                 return;
-            ms_oThread = new Thread(new ThreadStart(FrmSplashScreen.ShowForm));
+            ms_oThread = new FrmSplashScreenThread();
             ms_oThread.IsBackground = true;
-            ms_oThread.SetApartmentState(ApartmentState.STA);
-            ms_oThread.Start();
+            ms_oThread.Initialize();
             while (ms_frmSplash == null || ms_frmSplash.IsHandleCreated == false)
             {
-                System.Threading.Thread.Sleep(TIMER_INTERVAL);
+                Thread.Sleep(TIMER_INTERVAL);
             }
         }
 
@@ -134,26 +129,9 @@ namespace ProgramGerneral
                 ms_frmSplash.SetReferenceInternal();
         }
 
-        // Static method called from the initializing application to 
-        // give the splash screen reference points.  Not needed if
-        // you are using a lot of status strings.
-        static public void SetReferencePoint()
-        {
-            if (ms_frmSplash == null)
-                return;
-            ms_frmSplash.SetReferenceInternal();
-
-        }
         #endregion Public Static Methods
 
         #region Private Methods
-
-        // A private entry point for the thread.
-        static private void ShowForm()
-        {
-            ms_frmSplash = new FrmSplashScreen();
-            Application.Run(ms_frmSplash);
-        }
 
         // Internal method for setting reference points.
         private void SetReferenceInternal()
@@ -229,11 +207,6 @@ namespace ProgramGerneral
             m_dblPBIncrementPerTimerInterval = 1.0 / (double)m_iActualTicks;
 
             SplashScreenXMLStorage.Interval = m_dblPBIncrementPerTimerInterval.ToString("#.000000", System.Globalization.NumberFormatInfo.InvariantInfo);
-        }
-
-        public static FrmSplashScreen GetSplashScreen()
-        {
-            return ms_frmSplash;
         }
 
         #endregion Private Methods

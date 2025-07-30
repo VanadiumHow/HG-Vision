@@ -6,6 +6,9 @@ using Obj.Obj_File;
 using HG_Vision.Contol.Control_Vision;
 using HG_Vision.Manager.Manager_System;
 
+/****************************************************************
+
+*****************************************************************/
 namespace HG_Vision.Manager.Manager_Vision
 {
     public class CameraParamsManager
@@ -92,7 +95,7 @@ namespace HG_Vision.Manager.Manager_Vision
                 if (index >= 0)
                 {
                     ICogAcqFifo CamOperator = Project.Instance.VisionManagerInstance.CameraManagerInstance.L_workFlowList[index].AcquireTool.Operator;
-                    if (CamOperator != null && CamOperator.FrameGrabber != null)
+                    if (CamOperator != null && CamOperator.FrameGrabber != null) // 检查工具是否已连接硬件
                     {
                         if (CamOperator.CameraPort >= 0)
                         {

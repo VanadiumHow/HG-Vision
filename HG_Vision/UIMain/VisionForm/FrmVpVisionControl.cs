@@ -1243,7 +1243,7 @@ namespace HG_Vision.UIVision
                 triggerEventArgs.imageName = "1";
                 triggerEventArgs.results = isOk;
                 triggerEventArgs.Index = _workFlowIndex;
-                Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[_workFlowIndex].Enqueue(triggerEventArgs);
+                Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageSave.saveImageQueueList[_workFlowIndex].Enqueue(triggerEventArgs);
 
             }
             catch (Exception ex)
@@ -2231,7 +2231,7 @@ namespace HG_Vision.UIVision
                 triggerEventArgs.imageName = "2";
                 triggerEventArgs.results = isOk;
                 triggerEventArgs.Index = _workFlowIndex;
-                Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageSave.mSaveImageQueue[_workFlowIndex].Enqueue(triggerEventArgs);
+                Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageSave.saveImageQueueList[_workFlowIndex].Enqueue(triggerEventArgs);
             }
             catch (Exception ex)
             {

@@ -9,8 +9,8 @@ using Obj.Obj_Message;
 using HG_Vision.Manager.Manager_System;
 
 /****************************************************************
-*****************************************************************/
 
+*****************************************************************/
 namespace HG_Vision.UISetting
 {
     public partial class FrmProductChangeSettings : Form
@@ -210,10 +210,10 @@ namespace HG_Vision.UISetting
             {
                 try
                 {
-                    System.Threading.Thread.Sleep(100);
-                    System.IO.Directory.Delete(FilePathModel.ProductPath + @"\" + ListBoxProductModelList.Text, true);
+                    Thread.Sleep(100);
+                    Directory.Delete(FilePathModel.ProductPath + @"\" + ListBoxProductModelList.Text, true);
                     RefreshProductList();
-                    System.Threading.Thread.Sleep(100);
+                    Thread.Sleep(100);
                     NoticeHelper.OutputMessageSend($"删除产品型号 {oldText} 成功！", OutputLevelModel.INFO);
                     this.ConfirmInfoDialog($"删除产品型号{oldText} 成功！");
                     OnRemoveProductSettings?.Invoke(oldText);

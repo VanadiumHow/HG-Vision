@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Model.EnumModel;
 using Model.UIModel;
 using Obj.Obj_File;
 using Obj.Obj_Message;
-using Obj.Obj_Other;
+using Obj.Utility;
 using HG_Vision.Manager.Manager_System;
 
 /****************************************************************

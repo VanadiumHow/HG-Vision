@@ -5,11 +5,9 @@ using Obj.Obj_File;
 using Obj.Obj_Image;
 using HG_Vision.Manager.Manager_System;
 
-
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.Manager.Manager_Vision
 {
     public class VisionManager

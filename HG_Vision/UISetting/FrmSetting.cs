@@ -12,8 +12,8 @@ using HG_Vision.Contol.Control_Sql;
 using HG_Vision.Manager.Manager_System;
 
 /****************************************************************
-*****************************************************************/
 
+*****************************************************************/
 namespace HG_Vision.UISetting
 {
     public partial class FrmSetting : Form

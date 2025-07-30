@@ -1,12 +1,12 @@
-﻿using Sunny.UI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Model.UIModel;
 using HG_Vision.Manager.Manager_System;
-/****************************************************************
-*****************************************************************/
 
+/****************************************************************
+
+*****************************************************************/
 namespace HG_Vision.UIVision
 {
     public partial class FrmMainVision : Form

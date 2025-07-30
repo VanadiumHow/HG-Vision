@@ -33,13 +33,13 @@ namespace HG_Vision
             else
             {
                 MessageBox.Show("该视觉程序已经在运行中（或之前视觉程序尚未完全关闭）!");
-                System.Threading.Thread.Sleep(1000);
-                System.Environment.Exit(0);
+                Thread.Sleep(1000);
+                Environment.Exit(0);
                 return;
             }
         }
 
-        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             // UI thread exception.
             var msg = e.Exception.ToString();

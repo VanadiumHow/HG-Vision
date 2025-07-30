@@ -10,7 +10,6 @@ using VisionProgram.UserControls.UILamp;
 /****************************************************************
 
 *****************************************************************/
-
 namespace HG_Vision.UIHome.RightForm
 {
     public partial class FrmHardWareState : Form
@@ -431,7 +430,7 @@ namespace HG_Vision.UIHome.RightForm
                 int nRobotNum = Project.Instance.RobotManagerInstance.RobotNum;
                 for (int i = 0; i < nRobotNum; i++)
                 {
-                    if (!Project.Instance.RobotManagerInstance.L_Robot[i].IsConnectedRobot[0])
+                    if (!Project.Instance.RobotManagerInstance.L_Robot[i].GetIsConnectedRobot(0))
                     {
                         //    Project.Instance.HardWareStateManagerInstance.L_robotState[i] = Project.Instance.RobotManagerInstance.L_Robot[i].IsConnectedRobot[0];
                         //未连接

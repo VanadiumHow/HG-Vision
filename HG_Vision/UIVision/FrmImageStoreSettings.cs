@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Windows.Forms;
 using Model.ConstantModel;
 using Model.UIModel;
 using Obj.Obj_File;
 using Obj.Obj_Message;
-using Obj.Obj_Image;
 using HG_Vision.Manager.Manager_System;
 
 /****************************************************************
