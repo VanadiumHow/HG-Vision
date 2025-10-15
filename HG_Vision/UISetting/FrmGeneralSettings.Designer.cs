@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGeneralSettings));
             this.PanelAll = new System.Windows.Forms.Panel();
-            this.TableLayoutPanelAll = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanelAll = new System.Windows.Forms.UITableLayoutPanel();
             this.ButtonSubmit = new System.Windows.Forms.Button();
-            this.TableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanelPic = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanelMain = new System.Windows.Forms.UITableLayoutPanel();
+            this.tableLayoutPanelPic = new System.Windows.Forms.UITableLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lb_AxisTitle = new System.Windows.Forms.Label();
-            this.tableLayoutPanelSet = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelSet = new System.Windows.Forms.UITableLayoutPanel();
             this.Label1 = new System.Windows.Forms.Label();
             this.TextBoxEXLogSaveDays = new VisionProgram.UserControls.UITextBox.TextBoxEX();
             this.cb_AutoStart = new System.Windows.Forms.CheckBox();
@@ -281,15 +281,15 @@
         #endregion
 
         private System.Windows.Forms.Panel PanelAll;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelAll;
+        private System.Windows.Forms.UITableLayoutPanel TableLayoutPanelAll;
         private System.Windows.Forms.Button ButtonSubmit;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelMain;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPic;
+        private System.Windows.Forms.UITableLayoutPanel TableLayoutPanelMain;
+        private System.Windows.Forms.UITableLayoutPanel tableLayoutPanelPic;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lb_AxisTitle;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelSet;
+        private System.Windows.Forms.UITableLayoutPanel tableLayoutPanelSet;
         internal System.Windows.Forms.Label Label1;
         private VisionProgram.UserControls.UITextBox.TextBoxEX TextBoxEXLogSaveDays;
         private System.Windows.Forms.CheckBox cb_AutoStart;

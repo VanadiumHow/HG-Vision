@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.Panel1 = new System.Windows.Forms.Panel();
-            this.TableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanel1 = new System.Windows.Forms.UITableLayoutPanel();
             this.Panel2 = new System.Windows.Forms.Panel();
             this.TextBoxEXNewProductModelName = new VisionProgram.UserControls.UITextBox.TextBoxEX();
             this.ButtonDeleteProductModel = new System.Windows.Forms.Button();
@@ -242,7 +242,7 @@
         #endregion
 
         private System.Windows.Forms.Panel Panel1;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanel1;
+        private System.Windows.Forms.UITableLayoutPanel TableLayoutPanel1;
         private System.Windows.Forms.Panel Panel2;
         private System.Windows.Forms.Button ButtonDeleteProductModel;
         private System.Windows.Forms.Button ButtonExchangeProductModel;

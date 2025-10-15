@@ -37,11 +37,11 @@
             this.btnChooseDictionary = new System.Windows.Forms.Button();
             this.btnChooseImage = new System.Windows.Forms.Button();
             this.tbPath = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.UITableLayoutPanel();
             this.PanelTitle = new System.Windows.Forms.Panel();
             this.ButtonClose = new System.Windows.Forms.Button();
             this.LabelTitle = new System.Windows.Forms.Label();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.UITableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -357,11 +357,11 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label tbPath;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.UITableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel PanelTitle;
         private System.Windows.Forms.Button ButtonClose;
         private System.Windows.Forms.Label LabelTitle;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.UITableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;

@@ -1,4 +1,5 @@
-﻿namespace HG_Vision.UIHome.RightForm
+﻿using Sunny.UI;
+namespace HG_Vision.UIHome.RightForm
 {
     partial class FrmOutput
     {
@@ -34,7 +35,7 @@
             this.清除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.历史日志ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SplitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.TableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanel1 = new UITableLayoutPanel();
             this.ButtonError = new System.Windows.Forms.Button();
             this.ButtonWarn = new System.Windows.Forms.Button();
             this.ButtonTip = new System.Windows.Forms.Button();
@@ -249,7 +250,7 @@
         private System.Windows.Forms.ToolStripMenuItem 清除ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 历史日志ToolStripMenuItem;
         private System.Windows.Forms.SplitContainer SplitContainer1;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanel1;
+        private UITableLayoutPanel TableLayoutPanel1;
         private System.Windows.Forms.Button ButtonError;
         private System.Windows.Forms.Button ButtonWarn;
         private System.Windows.Forms.Button ButtonTip;

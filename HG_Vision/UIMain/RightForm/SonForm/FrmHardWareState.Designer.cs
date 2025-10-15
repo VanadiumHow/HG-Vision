@@ -1,4 +1,6 @@
-﻿namespace HG_Vision.UIHome.RightForm
+﻿using Sunny.UI;
+
+namespace HG_Vision.UIHome.RightForm
 {
     partial class FrmHardWareState
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.TableLayoutPanelAll = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanelAll = new UITableLayoutPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
@@ -83,7 +85,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelAll;
+        private UITableLayoutPanel TableLayoutPanelAll;
         private System.Windows.Forms.ToolTip toolTip1;
     }
 }

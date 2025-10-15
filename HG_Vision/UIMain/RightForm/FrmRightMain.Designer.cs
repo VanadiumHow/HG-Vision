@@ -1,4 +1,6 @@
-﻿namespace HG_Vision.UIHome.RightForm
+﻿using Sunny.UI;
+
+namespace HG_Vision.UIHome.RightForm
 {
     partial class FrmRightMain
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.SplitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.TableLayoutPanelLamp = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanelLamp = new UITableLayoutPanel();
             this.PanelLampTitle = new System.Windows.Forms.Panel();
             this.Panel5 = new System.Windows.Forms.Panel();
             this.TabControl1 = new VisionProgram.UserControls.UITabControl.TabControlEx();
@@ -162,7 +164,7 @@
         internal System.Windows.Forms.SplitContainer SplitContainer1;
         private VisionProgram.UserControls.UITabControl.TabControlEx TabControl1;
         private System.Windows.Forms.TabPage TabPageLog;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelLamp;
+        private UITableLayoutPanel TableLayoutPanelLamp;
         internal System.Windows.Forms.Panel PanelLampTitle;
         private System.Windows.Forms.Panel Panel5;
     }

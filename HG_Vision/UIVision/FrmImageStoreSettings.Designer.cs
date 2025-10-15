@@ -33,10 +33,10 @@ namespace HG_Vision.UIVision
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.uiPanel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.uiTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.uiTableLayoutPanel1 = new System.Windows.Forms.UITableLayoutPanel();
             this.uiSymbolButton1 = new System.Windows.Forms.Button();
             this.uiGroupBoxRaw = new System.Windows.Forms.GroupBox();
-            this.uiTableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.uiTableLayoutPanel2 = new System.Windows.Forms.UITableLayoutPanel();
             this.numUDRawKeepingDays = new System.Windows.Forms.NumericUpDown();
             this.cbRawImagePattern = new System.Windows.Forms.ComboBox();
             this.uiPanelRawPath = new System.Windows.Forms.Panel();
@@ -47,7 +47,7 @@ namespace HG_Vision.UIVision
             this.uiLabel3 = new System.Windows.Forms.Label();
             this.radioChanceRawIsSave = new System.Windows.Forms.ListBox();
             this.uiGroupBoxResult = new System.Windows.Forms.GroupBox();
-            this.uiTableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.uiTableLayoutPanel3 = new System.Windows.Forms.UITableLayoutPanel();
             this.numUDResultKeepingDays = new System.Windows.Forms.NumericUpDown();
             this.cbResultImagePattern = new System.Windows.Forms.ComboBox();
             this.uiLabel6 = new System.Windows.Forms.Label();
@@ -585,9 +585,9 @@ namespace HG_Vision.UIVision
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private Panel uiPanel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private TableLayoutPanel uiTableLayoutPanel1;
+        private UITableLayoutPanel uiTableLayoutPanel1;
         private GroupBox uiGroupBoxResult;
-        private TableLayoutPanel uiTableLayoutPanel3;
+        private UITableLayoutPanel uiTableLayoutPanel3;
         public NumericUpDown numUDResultKeepingDays;
         public ComboBox cbResultImagePattern;
         private Label uiLabel6;
@@ -598,7 +598,7 @@ namespace HG_Vision.UIVision
         private Button btnChangeResultPosition;
         private Button uiSymbolButton1;
         private GroupBox uiGroupBoxRaw;
-        private TableLayoutPanel uiTableLayoutPanel2;
+        private UITableLayoutPanel uiTableLayoutPanel2;
         public NumericUpDown numUDRawKeepingDays;
         public ComboBox cbRawImagePattern;
         private Panel uiPanelRawPath;

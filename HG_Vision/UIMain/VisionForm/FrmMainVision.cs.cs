@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Model.UIModel;
 using HG_Vision.Manager.Manager_System;
-
+using Sunny.UI;
 /****************************************************************
 
 *****************************************************************/
@@ -106,7 +106,7 @@ namespace HG_Vision.UIVision
         /// 加载第一页相机
         /// </summary>
         /// <param name="workFlowNum"></param>
-        private void LoadCameraTabPage1(int workFlowNum, System.Windows.Forms.TableLayoutPanel tlp)
+        private void LoadCameraTabPage1(int workFlowNum, UITableLayoutPanel tlp)
         {
 
             int newRowCount = workFlowNum > 2 ? 2 : 1;//1 1 2 2

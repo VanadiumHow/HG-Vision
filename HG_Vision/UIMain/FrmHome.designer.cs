@@ -1,4 +1,6 @@
-﻿namespace HG_Vision.UIHome
+﻿using Sunny.UI;
+
+namespace HG_Vision.UIHome
 {
     partial class FrmHome
     {
@@ -51,8 +53,8 @@
             this.ToolStripStatusLabelWeek = new System.Windows.Forms.ToolStripStatusLabel();
             this.ToolStripStatusLabelTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.TimerRefreshDate = new System.Windows.Forms.Timer(this.components);
-            this.TableLayoutPanelAll = new System.Windows.Forms.TableLayoutPanel();
-            this.TableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanelAll = new UITableLayoutPanel();
+            this.TableLayoutPanelMain = new UITableLayoutPanel();
             this.PanelMain = new System.Windows.Forms.Panel();
             this.SplitContainer1 = new System.Windows.Forms.SplitContainer();
             this.PanelVisionMain = new System.Windows.Forms.Panel();
@@ -527,11 +529,11 @@
         private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelWeek;
         private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelTime;
         private System.Windows.Forms.Timer TimerRefreshDate;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelAll;
+        private UITableLayoutPanel TableLayoutPanelAll;
         private System.Windows.Forms.Button ButtonClose;
         private System.Windows.Forms.Button ButtonMin;
         internal System.Windows.Forms.Label LabelProgramTitle;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelMain;
+        private UITableLayoutPanel TableLayoutPanelMain;
         private System.Windows.Forms.Panel PanelMain;
         private System.Windows.Forms.SplitContainer SplitContainer1;
         private System.Windows.Forms.Panel PanelVisionMain;

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.SplitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.TableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.TableLayoutPanelContent = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanelMain = new System.Windows.Forms.UITableLayoutPanel();
+            this.TableLayoutPanelContent = new System.Windows.Forms.UITableLayoutPanel();
             this.ButtonDown = new System.Windows.Forms.Button();
             this.ButtonUpAll = new System.Windows.Forms.Button();
             this.ButtonUp = new System.Windows.Forms.Button();
@@ -53,7 +53,7 @@
             this.RichTextBoxRecord = new System.Windows.Forms.RichTextBox();
             this.ContextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.清空记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TableLayoutPanelAll = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanelAll = new System.Windows.Forms.UITableLayoutPanel();
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.Label3 = new System.Windows.Forms.Label();
             this.ButtonClose = new System.Windows.Forms.Button();
@@ -597,7 +597,7 @@
         private System.Windows.Forms.Label Label2;
         private System.Windows.Forms.Label Label1;
         private System.Windows.Forms.GroupBox GroupBox1;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelContent;
+        private System.Windows.Forms.UITableLayoutPanel TableLayoutPanelContent;
         private System.Windows.Forms.Button ButtonDown;
         private System.Windows.Forms.Button ButtonUpAll;
         private System.Windows.Forms.Button ButtonUp;
@@ -612,8 +612,8 @@
         private System.Windows.Forms.ListView ListView1;
         private System.Windows.Forms.Panel PanelListView2;
         private System.Windows.Forms.ListView ListView2;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelMain;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelAll;
+        private System.Windows.Forms.UITableLayoutPanel TableLayoutPanelMain;
+        private System.Windows.Forms.UITableLayoutPanel TableLayoutPanelAll;
         private System.Windows.Forms.Panel PanelMain;
         private System.Windows.Forms.Panel PanelAll;
         public System.Windows.Forms.Panel PanelHeader;

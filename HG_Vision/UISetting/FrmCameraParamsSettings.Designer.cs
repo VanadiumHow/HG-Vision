@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-
+using Sunny.UI;
 namespace HG_Vision.UIVision
 {
     partial class FrmCameraParamsSettings:Form
@@ -34,7 +34,7 @@ namespace HG_Vision.UIVision
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.uiTabControlAll = new System.Windows.Forms.TabControl();
             this.uiTabPage1 = new System.Windows.Forms.TabPage();
-            this.uiTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.tb_Cam1StdT1 = new System.Windows.Forms.TextBox();
             this.lb_Cam1StdT1 = new System.Windows.Forms.Label();
             this.tb_Cam1StdY1 = new System.Windows.Forms.TextBox();
@@ -154,7 +154,7 @@ namespace HG_Vision.UIVision
             this.tb_Cam1NI2X1 = new System.Windows.Forms.TextBox();
             this.tb_Cam1NI2Y1 = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1AddR2J1Y = new System.Windows.Forms.Label();
             this.lb_Cam1AddR2J1X = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -203,7 +203,7 @@ namespace HG_Vision.UIVision
             this.cb_clearJ1 = new System.Windows.Forms.CheckBox();
             this.btn_clearJ1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1AddR2J2Y = new System.Windows.Forms.Label();
             this.lb_Cam1AddR2J2X = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -252,7 +252,7 @@ namespace HG_Vision.UIVision
             this.btn_clearJ2 = new System.Windows.Forms.Button();
             this.cb_clearJ2 = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1AddR2J3Y = new System.Windows.Forms.Label();
             this.lb_Cam1AddR2J3X = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
@@ -301,7 +301,7 @@ namespace HG_Vision.UIVision
             this.btn_clearJ3 = new System.Windows.Forms.Button();
             this.cb_clearJ3 = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1AddR2J4Y = new System.Windows.Forms.Label();
             this.tb_Cam1AddR2J4Y = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddR2J4X = new System.Windows.Forms.TextBox();
@@ -350,7 +350,7 @@ namespace HG_Vision.UIVision
             this.btn_clearJ4 = new System.Windows.Forms.Button();
             this.cb_clearJ4 = new System.Windows.Forms.CheckBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1AddR2J5Y = new System.Windows.Forms.Label();
             this.tb_Cam1AddR2J5Y = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddR2J5X = new System.Windows.Forms.TextBox();
@@ -399,7 +399,7 @@ namespace HG_Vision.UIVision
             this.btn_clearJ5 = new System.Windows.Forms.Button();
             this.cb_clearJ5 = new System.Windows.Forms.CheckBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1AddR2J6Y = new System.Windows.Forms.Label();
             this.tb_Cam1AddR2J6Y = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddR2J6X = new System.Windows.Forms.TextBox();
@@ -448,7 +448,7 @@ namespace HG_Vision.UIVision
             this.btn_clearJ6 = new System.Windows.Forms.Button();
             this.cb_clearJ6 = new System.Windows.Forms.CheckBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1AddR2J7Y = new System.Windows.Forms.Label();
             this.tb_Cam1AddR2J7Y = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddR2J7X = new System.Windows.Forms.TextBox();
@@ -497,7 +497,7 @@ namespace HG_Vision.UIVision
             this.btn_clearJ7 = new System.Windows.Forms.Button();
             this.cb_clearJ7 = new System.Windows.Forms.CheckBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel8 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1AddR2J8Y = new System.Windows.Forms.Label();
             this.tb_Cam1AddR2J8Y = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddR2J8X = new System.Windows.Forms.TextBox();
@@ -546,7 +546,7 @@ namespace HG_Vision.UIVision
             this.btn_clearJ8 = new System.Windows.Forms.Button();
             this.cb_clearJ8 = new System.Windows.Forms.CheckBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel9 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1AddR2J9Y = new System.Windows.Forms.Label();
             this.tb_Cam1AddR2J9Y = new System.Windows.Forms.TextBox();
             this.tb_Cam1AddR2J9X = new System.Windows.Forms.TextBox();
@@ -846,6 +846,7 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333332F));
             this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1300, 552);
             this.uiTableLayoutPanel1.TabIndex = 2;
+            this.uiTableLayoutPanel1.TagString = null;
             // 
             // tb_Cam1StdT1
             // 
@@ -2340,6 +2341,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1300, 552);
             this.tableLayoutPanel1.TabIndex = 3;
+            this.tableLayoutPanel1.TagString = null;
             // 
             // lb_Cam1AddR2J1Y
             // 
@@ -3005,6 +3007,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1300, 552);
             this.tableLayoutPanel2.TabIndex = 4;
+            this.tableLayoutPanel2.TagString = null;
             // 
             // lb_Cam1AddR2J2Y
             // 
@@ -3670,6 +3673,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1300, 552);
             this.tableLayoutPanel3.TabIndex = 4;
+            this.tableLayoutPanel3.TagString = null;
             // 
             // lb_Cam1AddR2J3Y
             // 
@@ -4335,6 +4339,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1300, 552);
             this.tableLayoutPanel4.TabIndex = 4;
+            this.tableLayoutPanel4.TagString = null;
             // 
             // lb_Cam1AddR2J4Y
             // 
@@ -5000,6 +5005,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1300, 552);
             this.tableLayoutPanel5.TabIndex = 5;
+            this.tableLayoutPanel5.TagString = null;
             // 
             // lb_Cam1AddR2J5Y
             // 
@@ -5665,6 +5671,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1300, 552);
             this.tableLayoutPanel6.TabIndex = 5;
+            this.tableLayoutPanel6.TagString = null;
             // 
             // lb_Cam1AddR2J6Y
             // 
@@ -6330,6 +6337,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(1300, 552);
             this.tableLayoutPanel7.TabIndex = 5;
+            this.tableLayoutPanel7.TagString = null;
             // 
             // lb_Cam1AddR2J7Y
             // 
@@ -6995,6 +7003,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel8.Size = new System.Drawing.Size(1300, 552);
             this.tableLayoutPanel8.TabIndex = 5;
+            this.tableLayoutPanel8.TagString = null;
             // 
             // lb_Cam1AddR2J8Y
             // 
@@ -7660,6 +7669,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(1300, 552);
             this.tableLayoutPanel9.TabIndex = 5;
+            this.tableLayoutPanel9.TagString = null;
             // 
             // lb_Cam1AddR2J9Y
             // 
@@ -8303,7 +8313,7 @@ namespace HG_Vision.UIVision
         private SplitContainer splitContainer1;
         private TabControl uiTabControlAll;
         private TabPage uiTabPage1;
-        private TableLayoutPanel uiTableLayoutPanel1;
+        private UITableLayoutPanel uiTableLayoutPanel1;
         private TextBox tb_Cam1StdT1;
         private Label lb_Cam1StdT1;
         private TextBox tb_Cam1StdY1;
@@ -8376,7 +8386,7 @@ namespace HG_Vision.UIVision
         private TextBox tb_Cam1L2CalibX0;
         private TextBox tb_Cam1L2CalibY0;
         private TabPage tabPage1;
-        private TableLayoutPanel tableLayoutPanel1;
+        private UITableLayoutPanel tableLayoutPanel1;
         private TextBox tb_Cam1AddR1J1X;
         private Label label3;
         private Label lb_Cam1AddR1J1X;
@@ -8422,7 +8432,7 @@ namespace HG_Vision.UIVision
         private TextBox tb_Cam1AddL2J1X4;
         private TextBox tb_Cam1AddL2J1Y4;
         private TabPage tabPage2;
-        private TableLayoutPanel tableLayoutPanel2;
+        private UITableLayoutPanel tableLayoutPanel2;
         private TextBox tb_Cam1AddR1J2X;
         private Label label25;
         private Label lb_Cam1AddR1J2X;
@@ -8468,7 +8478,7 @@ namespace HG_Vision.UIVision
         private TextBox tb_Cam1AddL2J2X4;
         private TextBox tb_Cam1AddL2J2Y4;
         private TabPage tabPage3;
-        private TableLayoutPanel tableLayoutPanel3;
+        private UITableLayoutPanel tableLayoutPanel3;
         private TextBox tb_Cam1AddR1J3X;
         private Label label49;
         private Label lb_Cam1AddR1J3X;
@@ -8514,7 +8524,7 @@ namespace HG_Vision.UIVision
         private TextBox tb_Cam1AddL2J3X4;
         private TextBox tb_Cam1AddL2J3Y4;
         private TabPage tabPage4;
-        private TableLayoutPanel tableLayoutPanel4;
+        private UITableLayoutPanel tableLayoutPanel4;
         private TextBox tb_Cam1AddR1J4X;
         private Label label73;
         private Label lb_Cam1AddR1J4X;
@@ -8568,7 +8578,7 @@ namespace HG_Vision.UIVision
         private Label label5;
         private Label label4;
         private Label label1;
-        private TableLayoutPanel tableLayoutPanel5;
+        private UITableLayoutPanel tableLayoutPanel5;
         private Label lb_Cam1AddR2J5Y;
         private TextBox tb_Cam1AddR2J5Y;
         private TextBox tb_Cam1AddR2J5X;
@@ -8614,7 +8624,7 @@ namespace HG_Vision.UIVision
         private TextBox tb_Cam1AddL1J5Y4;
         private TextBox tb_Cam1AddL1J5X4;
         private Label label36;
-        private TableLayoutPanel tableLayoutPanel6;
+        private UITableLayoutPanel tableLayoutPanel6;
         private Label lb_Cam1AddR2J6Y;
         private TextBox tb_Cam1AddR2J6Y;
         private TextBox tb_Cam1AddR2J6X;
@@ -8660,7 +8670,7 @@ namespace HG_Vision.UIVision
         private TextBox tb_Cam1AddL1J6Y4;
         private TextBox tb_Cam1AddL1J6X4;
         private Label label66;
-        private TableLayoutPanel tableLayoutPanel7;
+        private UITableLayoutPanel tableLayoutPanel7;
         private Label lb_Cam1AddR2J7Y;
         private TextBox tb_Cam1AddR2J7Y;
         private TextBox tb_Cam1AddR2J7X;
@@ -8706,7 +8716,7 @@ namespace HG_Vision.UIVision
         private TextBox tb_Cam1AddL1J7Y4;
         private TextBox tb_Cam1AddL1J7X4;
         private Label label95;
-        private TableLayoutPanel tableLayoutPanel8;
+        private UITableLayoutPanel tableLayoutPanel8;
         private Label lb_Cam1AddR2J8Y;
         private TextBox tb_Cam1AddR2J8Y;
         private TextBox tb_Cam1AddR2J8X;
@@ -8752,7 +8762,7 @@ namespace HG_Vision.UIVision
         private TextBox tb_Cam1AddL1J8Y4;
         private TextBox tb_Cam1AddL1J8X4;
         private Label label120;
-        private TableLayoutPanel tableLayoutPanel9;
+        private UITableLayoutPanel tableLayoutPanel9;
         private Label lb_Cam1AddR2J9Y;
         private TextBox tb_Cam1AddR2J9Y;
         private TextBox tb_Cam1AddR2J9X;

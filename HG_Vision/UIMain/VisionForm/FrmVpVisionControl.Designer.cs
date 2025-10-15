@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-
+using Sunny.UI;
 namespace HG_Vision.UIVision
 {
     partial class FrmVpVisionControl : Form
@@ -41,8 +41,8 @@ namespace HG_Vision.UIVision
             this.图片保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.查看图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.uiTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new UITableLayoutPanel();
+            this.uiTableLayoutPanel1 = new UITableLayoutPanel();
             this.lbSerialNum = new System.Windows.Forms.Label();
             this.lbImageName = new System.Windows.Forms.Label();
             this.cogRecordDisplay1 = new Cognex.VisionPro.CogRecordsDisplay();
@@ -295,8 +295,8 @@ namespace HG_Vision.UIVision
         private System.Windows.Forms.ToolStripMenuItem 单帧ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 实时ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 工具设置ToolStripMenuItem;
-        private TableLayoutPanel tableLayoutPanel1;
-        private TableLayoutPanel uiTableLayoutPanel1;
+        private UITableLayoutPanel tableLayoutPanel1;
+        private UITableLayoutPanel uiTableLayoutPanel1;
         private Label lbSerialNum;
         public Label lbImageName;
         private Cognex.VisionPro.CogRecordsDisplay cogRecordDisplay1;

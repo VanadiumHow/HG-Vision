@@ -1,4 +1,6 @@
-﻿namespace DataCollection.UI.UIHome.RightForm
+﻿using Sunny.UI;
+
+namespace DataCollection.UI.UIHome.RightForm
 {
     partial class FrmCapacityData
     {
@@ -41,7 +43,7 @@
             this.产能清0ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.原始图像ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.结果图像ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.TableLayoutPanelAll = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanelAll = new UITableLayoutPanel();
             this.Chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.PanelAll.SuspendLayout();
@@ -204,7 +206,7 @@
         private System.Windows.Forms.ContextMenuStrip ContextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 硬件设备良率ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 产能清0ToolStripMenuItem;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelAll;
+        private UITableLayoutPanel TableLayoutPanelAll;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataVisualization.Charting.Chart Chart1;
         private System.Windows.Forms.ToolStripMenuItem 原始图像ToolStripMenuItem;

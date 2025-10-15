@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-
+using Sunny.UI;
 namespace HG_Vision.UIVision
 {
     partial class FrmMainVision
@@ -34,10 +34,10 @@ namespace HG_Vision.UIVision
             this.PanelAll = new System.Windows.Forms.Panel();
             this.TabControlAll = new VisionProgram.UserControls.UITabControl.TabControlEx();
             this.TabPage1 = new System.Windows.Forms.TabPage();
-            this.TableLayoutPanelFirstVision = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanelFirstVision = new UITableLayoutPanel();
             this.TabPage2 = new System.Windows.Forms.TabPage();
-            this.TableLayoutPanelSecondVision = new System.Windows.Forms.TableLayoutPanel();
-            this.TableLayoutPanelMainVision = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanelSecondVision = new UITableLayoutPanel();
+            this.TableLayoutPanelMainVision = new UITableLayoutPanel();
             this.TabControlAll.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.TabPage2.SuspendLayout();
@@ -173,8 +173,8 @@ namespace HG_Vision.UIVision
         private VisionProgram.UserControls.UITabControl.TabControlEx TabControlAll;
         private System.Windows.Forms.TabPage TabPage1;
         private System.Windows.Forms.TabPage TabPage2;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelFirstVision;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelSecondVision;
-        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelMainVision;
+        private UITableLayoutPanel TableLayoutPanelFirstVision;
+        private UITableLayoutPanel TableLayoutPanelSecondVision;
+        private UITableLayoutPanel TableLayoutPanelMainVision;
     }
 }
