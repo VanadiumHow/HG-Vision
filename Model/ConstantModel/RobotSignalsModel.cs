@@ -1,11 +1,14 @@
 ﻿namespace Model.ConstantModel
 {
-    public static class RobotSignals
+    /// <summary>
+    /// 机器人静态信号
+    /// </summary>
+    public static class RobotSignalsModel
     {
+        #region 运行信号
         //自动运行信号1
         public static string CCD1RobotTrigger1 = "T1"; //Laser触发相机信号1
         public static string CCD1RobotTrigger2 = "T2"; //Laser触发相机信号2
-        public static string CCD1Receive = ""; //接收到的触发信号
 
         public static string CCD2RobotTrigger = "Trigger2\0"; //Robot触发相机
 
@@ -25,7 +28,7 @@
 
         public static string CCD4RobotResultNG = "PCSEND;P;NG2"; //ccd4结果信号
         public static string CCD4RobotResultOK = "PCSEND;P;OK2"; //ccd4结果信号
-
+        #endregion
 
         //区分自动运行和自动标定标志位
         public static int CCDProcess = 0; //0-自动运行 1-标定
@@ -58,10 +61,6 @@
         //正极机器人发送内容
         public static string RobotPGetResult1 = "ROBOTSEND,P,ReceiveResult1\0";
         public static string RobotPGetResult2 = "ROBOTSEND,P,ReceiveResult2\0";
-
-        //激光的发送内容
-        public static string Laser1NinePointStr;
-        public static string Laser2NinePointStr;
         #endregion
 
     }

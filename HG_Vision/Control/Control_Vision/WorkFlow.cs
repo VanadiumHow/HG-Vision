@@ -15,7 +15,6 @@ using HG_Vision.Manager.Manager_System;
 *****************************************************************/
 namespace HG_Vision.Contol.Control_Vision
 {
-    public class TriggerEventArgs : EventArgs
     {
         public int Index { get; set; } = 0;
         public bool IsAcquire { get; set; }

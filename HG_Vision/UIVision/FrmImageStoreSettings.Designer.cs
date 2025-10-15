@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-
+using Sunny.UI;
 namespace HG_Vision.UIVision
 {
     partial class FrmImageStoreSettings
@@ -33,10 +33,10 @@ namespace HG_Vision.UIVision
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.uiPanel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.uiTableLayoutPanel1 = new System.Windows.Forms.UITableLayoutPanel();
+            this.uiTableLayoutPanel1 = new UITableLayoutPanel();
             this.uiSymbolButton1 = new System.Windows.Forms.Button();
             this.uiGroupBoxRaw = new System.Windows.Forms.GroupBox();
-            this.uiTableLayoutPanel2 = new System.Windows.Forms.UITableLayoutPanel();
+            this.uiTableLayoutPanel2 = new UITableLayoutPanel();
             this.numUDRawKeepingDays = new System.Windows.Forms.NumericUpDown();
             this.cbRawImagePattern = new System.Windows.Forms.ComboBox();
             this.uiPanelRawPath = new System.Windows.Forms.Panel();
@@ -47,7 +47,7 @@ namespace HG_Vision.UIVision
             this.uiLabel3 = new System.Windows.Forms.Label();
             this.radioChanceRawIsSave = new System.Windows.Forms.ListBox();
             this.uiGroupBoxResult = new System.Windows.Forms.GroupBox();
-            this.uiTableLayoutPanel3 = new System.Windows.Forms.UITableLayoutPanel();
+            this.uiTableLayoutPanel3 = new UITableLayoutPanel();
             this.numUDResultKeepingDays = new System.Windows.Forms.NumericUpDown();
             this.cbResultImagePattern = new System.Windows.Forms.ComboBox();
             this.uiLabel6 = new System.Windows.Forms.Label();

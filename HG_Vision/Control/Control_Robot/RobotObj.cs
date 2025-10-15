@@ -108,7 +108,7 @@ namespace HG_Vision.Contol.Control_Robot
                 _taskQueueList.Add(new BlockQueue<TriggerEventArgs>(20));
             }
             //实例化工作线程，并启动
-            mainWorkThread1.TaskQueueList = _taskQueueList[0];
+            mainWorkThread1.TaskQueueListC1 = _taskQueueList[0];
             mainWorkThread1.Initialize();//启动主工作线程
             //后续相机处理线程可在此处添加
         }

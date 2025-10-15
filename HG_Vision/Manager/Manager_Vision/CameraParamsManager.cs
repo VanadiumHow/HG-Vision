@@ -20,9 +20,9 @@ namespace HG_Vision.Manager.Manager_Vision
             get { return _cameraParamsConfiguration; }
         }
 
-        private CameraParamsModel _cameraParams;
+        private ParamsModelC1 _cameraParams;
 
-        public CameraParamsModel CameraParams
+        public ParamsModelC1 ParamsC1
         {
             get { return _cameraParams; }
         }

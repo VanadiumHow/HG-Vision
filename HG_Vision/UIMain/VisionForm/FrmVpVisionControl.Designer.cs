@@ -41,8 +41,8 @@ namespace HG_Vision.UIVision
             this.图片保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.查看图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new UITableLayoutPanel();
-            this.uiTableLayoutPanel1 = new UITableLayoutPanel();
+            this.tableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
+            this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.lbSerialNum = new System.Windows.Forms.Label();
             this.lbImageName = new System.Windows.Forms.Label();
             this.cogRecordDisplay1 = new Cognex.VisionPro.CogRecordsDisplay();
@@ -182,6 +182,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(889, 455);
             this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutPanel1.TagString = null;
             // 
             // uiTableLayoutPanel1
             // 
@@ -201,6 +202,7 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.uiTableLayoutPanel1.Size = new System.Drawing.Size(885, 13);
             this.uiTableLayoutPanel1.TabIndex = 1;
+            this.uiTableLayoutPanel1.TagString = null;
             // 
             // lbSerialNum
             // 
@@ -245,7 +247,7 @@ namespace HG_Vision.UIVision
             // tbExposeReal
             // 
             this.tbExposeReal.BackColor = System.Drawing.Color.White;
-            this.tbExposeReal.Location = new System.Drawing.Point(754, 2);
+            this.tbExposeReal.Location = new System.Drawing.Point(753, 2);
             this.tbExposeReal.Name = "tbExposeReal";
             this.tbExposeReal.Size = new System.Drawing.Size(73, 21);
             this.tbExposeReal.TabIndex = 3;
@@ -254,7 +256,7 @@ namespace HG_Vision.UIVision
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Lavender;
-            this.label1.Location = new System.Drawing.Point(683, 9);
+            this.label1.Location = new System.Drawing.Point(692, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 4;
@@ -266,10 +268,11 @@ namespace HG_Vision.UIVision
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(889, 481);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.tbExposeReal);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "FrmVpVisionControl";

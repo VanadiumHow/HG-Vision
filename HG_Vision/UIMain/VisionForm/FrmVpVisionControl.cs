@@ -175,12 +175,12 @@ namespace HG_Vision.UIVision
                 }
                 else
                 {
-                    relExpose = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[0];
+                    relExpose = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.Exprosure;
                 }
             }
             catch
             {
-                relExpose = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[0];
+                relExpose = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.Exprosure;
             }
             if (CamOperator != null && CamOperator.FrameGrabber != null)
             {
@@ -239,10 +239,9 @@ namespace HG_Vision.UIVision
             {
                 if (CamOperator.CameraPort >= 0)
                 {
-                    Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[_workFlowIndex] = CamOperator.OwnedExposureParams.Exposure;
-                    //写入config
-                    string varName = "camera" + (_workFlowIndex + 1).ToString();
-                    Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.SaveOneParams(varName, "Exprosure", Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[_workFlowIndex].ToString());
+                    Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.Exprosure = CamOperator.OwnedExposureParams.Exposure;
+                    //写入config的.xml
+                    Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.SaveAllParams();
                     //刷新CCD链接状态
                     Project.Instance.HardWareStateManagerInstance.L_ccdState[_workFlowIndex] = true;
                 }
@@ -316,7 +315,7 @@ namespace HG_Vision.UIVision
         /// <param name="color">要显示字符串的前景色</param>
         /// <param name="textSize">要显示的字符串的字体大小</param>
         /// <param name="beforeClear">添加字符串之前是否清除以前添加的所有图形（包括字符串）</param>
-        public void AddTextOnImage(string text, int x, int y, CogColorConstants color, float textSize, bool beforeClear = true)
+        public void AddRextOnImage(string text, int x, int y, CogColorConstants color, float textSize, bool beforeClear = true)
         {
             if (beforeClear)
             {
@@ -382,7 +381,7 @@ namespace HG_Vision.UIVision
 
             try
             {
-                string lasermove = "_PDMoveAbs(0," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibX0[0].ToString() + "," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L1CalibY0[0].ToString() + ",500);";
+                string lasermove = "_PDMoveAbs(0," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X.ToString() + "," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y.ToString() + ",500);";
                 Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser = Project.Instance.LaserManagerInstance.L_Laser[0].SendText(lasermove);
                 if (!Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser)
                 {
@@ -1251,6 +1250,7 @@ namespace HG_Vision.UIVision
                 LogHelper.Error(ex.Message);
             }
         }
+            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.eMode = Model.EnumModel.eProcessMode.debug;
 
         private void 工具设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2238,6 +2238,7 @@ namespace HG_Vision.UIVision
                 LogHelper.Error(ex.Message);
             }
         }
+			Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.eMode = Model.EnumModel.eProcessMode.debug;
 
         private void 单帧2工位ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2255,7 +2256,7 @@ namespace HG_Vision.UIVision
             }
             try
             {
-                string lasermove = "_PDMoveAbs(0," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibX0[0].ToString() + "," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L2CalibY0[0].ToString() + ",500);";
+                string lasermove = "_PDMoveAbs(0," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La2Axis.X.ToString() + "," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La2Axis.Y.ToString() + ",500);";
                 Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser = Project.Instance.LaserManagerInstance.L_Laser[0].SendText(lasermove);
                 if (!Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser)
                 {

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace Obj.Obj_Other
+namespace Obj.Obj_File
 {
     public static class AutoStartHelper
     {

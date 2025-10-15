@@ -67,7 +67,7 @@ namespace HG_Vision.Manager.Manager_Vision
                     L_workFlowList[i].InitTools();
 
                     //重新写入曝光到工具
-                    Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.SaveExprosure(i, Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[0]);
+                    Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.SaveExprosure(i, Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.Exprosure);
                 }
             }
             catch (Exception ex)

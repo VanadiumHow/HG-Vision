@@ -1,4 +1,5 @@
-﻿namespace HG_Vision.UISetting
+﻿using Sunny.UI;
+namespace HG_Vision.UISetting
 {
     partial class FrmSetting
     {
@@ -32,7 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSetting));
             this.PanelForm = new System.Windows.Forms.Panel();
             this.PanelAll = new System.Windows.Forms.Panel();
-            this.TableLayoutPanelAll = new System.Windows.Forms.UITableLayoutPanel();
+            this.TableLayoutPanelAll = new UITableLayoutPanel();
             this.PanelTitle = new System.Windows.Forms.Panel();
             this.ButtonMin = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
@@ -293,7 +294,7 @@
 
         private System.Windows.Forms.Panel PanelForm;
         private System.Windows.Forms.Panel PanelAll;
-        private System.Windows.Forms.UITableLayoutPanel TableLayoutPanelAll;
+        private UITableLayoutPanel TableLayoutPanelAll;
         private System.Windows.Forms.Panel PanelTitle;
         private System.Windows.Forms.Label LabelTitle;
         private System.Windows.Forms.Panel PanelBottom;

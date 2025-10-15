@@ -290,7 +290,7 @@ namespace Obj.Obj_File
         }
 
 
-        public static void AddToDatabase(string area, string code, string des, string filename)
+        public static void AddRoDatabase(string area, string code, string des, string filename)
         {
             str = Application.StartupPath + "\\" + filename;						//INI文件的物理地址
             if (File.Exists(str))											//判断是否存在INI文件
