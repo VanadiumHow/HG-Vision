@@ -4,6 +4,7 @@ using Model.ConstantModel;
 using Obj.Obj_File;
 using Obj.Obj_Image;
 using HG_Vision.Manager.Manager_System;
+using HG_Vision.Contol.Control_Vision;
 
 /****************************************************************
 

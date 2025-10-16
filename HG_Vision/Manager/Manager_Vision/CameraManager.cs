@@ -28,7 +28,12 @@ namespace HG_Vision.Manager.Manager_Vision
         /// <summary>
         /// 工具集合
         /// </summary>
-        public List<WorkFlow> L_workFlowList = new List<WorkFlow>();
+        private List<WorkFlow1> _workFlowList = new List<WorkFlow1>();
+        public List<WorkFlow1> WorkFlowList
+        {
+            get { return _workFlowList; }
+            set { _workFlowList = value; }
+        }
 
         /// <summary>
         /// 相机数量
@@ -59,12 +64,12 @@ namespace HG_Vision.Manager.Manager_Vision
             try
             {
                 //加载视觉工具 内部已经初始化相机
-                L_workFlowList.Clear();
+                _workFlowList.Clear();
                 for (int i = 0; i < CameraNum; i++)
                 {
-                    WorkFlow df = new WorkFlow((i + 1).ToString());
-                    L_workFlowList.Add(df);
-                    L_workFlowList[i].InitTools();
+                    WorkFlow1 df = new WorkFlow1((i + 1).ToString());
+                    _workFlowList.Add(df);
+                    _workFlowList[i].InitTools();
 
                     //重新写入曝光到工具
                     Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.SaveExprosure(i, Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.Exprosure);

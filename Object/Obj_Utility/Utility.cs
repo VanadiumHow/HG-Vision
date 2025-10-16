@@ -106,7 +106,7 @@ namespace Obj.Utility
 
         delegate void DelSetControlsText(Control parent, Control[] controls, List<string> values, string tag);
         /// <summary>
-        /// 批量渲染显示控件
+        /// UI控件值批量设置
         /// </summary>
         /// <param name="parent"></param>
         /// <param name="controls"></param>

@@ -92,7 +92,6 @@ namespace Obj.Obj_Image
                 try
                 {
 
-                    //string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePosition + @"\" + ymd + @"\" + "工位1" + (isOk ? "\\OK" : "\\NG");
                     string path = imageParams.RawImagePosition + @"\" + ymd + @"\" + "工位1" + (isOk ? "\\OK" : "\\NG");
                     string path1 = imageParams.ResultImagePosition + @"\" + ymd + @"\" + "工位2" + (isOk ? "\\OK" : "\\NG");
                     if (!Directory.Exists(path))
@@ -105,7 +104,6 @@ namespace Obj.Obj_Image
                     }
                     string str = path + @"\" + imageName + "-" + hms + imageParams.ResultImagePattern;//YBH
                     string str1 = path1 + @"\" + imageName + "-" + hms + imageParams.ResultImagePattern;
-                    //string str = path + @"\" + hms + "_" + imageName + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index].ResultImagePattern;
 
                     System.Drawing.Image ig = _cd.Display.CreateContentBitmap(Cognex.VisionPro.Display.CogDisplayContentBitmapConstants.Custom, null, 0);
                     string L = "1";
@@ -231,7 +229,6 @@ namespace Obj.Obj_Image
                 {
                     string path = imageParams.RawImagePosition + @"\" + ymd1 + @"\" + "工位1" + (isOk ? "\\OK" : "\\NG");
                     string path1 = imageParams.RawImagePosition + @"\" + ymd1 + @"\" + "工位2" + (isOk ? "\\OK" : "\\NG");
-                    //string path = Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePosition + @"\" + ymd1 + @"\" + "CCD" + imageName1[0] + (isOk ? "\\OK" : "\\NG");
                     if (!Directory.Exists(path))//2021_07_26\CCD1
                     {
                         Directory.CreateDirectory(path);
@@ -245,7 +242,6 @@ namespace Obj.Obj_Image
                     string L = "1";
                     if (imageName1.Substring(0, 1) == L)
                     {
-                        //string str = path + @"\" + hms + "_" + imageName1 + Project.Instance().VisionManagerInstance.ImageManagerInstance.ImageParams[index1].RawImagePattern;//12_34_45_1-1_OK_.BMP
                         string str = path + @"\" + imageName1 + "-" + hms + "-" + imageParams.RawImagePattern;//YBH
                         a.Operator.Open(str, Cognex.VisionPro.ImageFile.CogImageFileModeConstants.Write);
                         a.Run();

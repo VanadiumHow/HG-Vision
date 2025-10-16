@@ -68,12 +68,8 @@ namespace HG_Vision.Contol.Control_Robot
         private int clientIPNum = 0;
 
         #region 暂且每一个相机都是独立的，都有所属的自己的业务
-        private int _cameraNum = Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum;
         //阻塞队列执行用户线程
-        public List<BlockQueue<TriggerEventArgs>> _taskQueueList = new List<BlockQueue<TriggerEventArgs>>();//相机触发队列集合
-        //标识
-        private volatile int[] _camTrigger = new int[Project.Instance.VisionManagerInstance.CameraNum];//相机触发标识
-        private volatile int[] _camTrigger_Old = new int[Project.Instance.VisionManagerInstance.CameraNum];
+        internal List<BlockQueue<TriggerEventArgs>> _taskQueueList = new List<BlockQueue<TriggerEventArgs>>();//相机触发队列集合
         #endregion
         
         #endregion
@@ -200,52 +196,26 @@ namespace HG_Vision.Contol.Control_Robot
         /// <param name="soc"></param>
         private void Server_OnRead(Socket soc)
         {
-            if (RobotSignals.CCDProcess == 0)//0-自动运行
+            if (RobotSignalsModel.CCDProcess == 0)//0-自动运行
             {
-
                 string receive_string = this.ReceivedText;
                 if ((this._localEndPoint.Port).ToString() == Project.Instance.RobotManagerInstance.L_Robot[2]._localEndPoint.Port.ToString())
                 {
-                    Project.Instance.RobotManagerInstance.m_strLaserReceive = receive_string;
-                    if (receive_string.Split(',').Length > 2)
+					Project.Instance.RobotManagerInstance.m_strLaserReceive = receive_string;
+                    string[] str = receive_string.Split(',');
+					if (str.Length > 2 && (str[0].Contains("T1") || str[0].Contains("T2")))
                     {
-                        Project.Instance.RobotManagerInstance.m_strLaserReceiveTragger = receive_string.Split(',')[0];
-                        Project.Instance.RobotManagerInstance.m_strLaserReceiveX = receive_string.Split(',')[1];
-                        Project.Instance.RobotManagerInstance.m_strLaserReceiveY = receive_string.Split(',')[2];
-
-                        if (Project.Instance.RobotManagerInstance.m_strLaserReceiveTragger.Contains('T'))
+						LogHelper.Info("收到激光触发：" + receive_string);
+						receive_string.Split(',');
+                        TriggerEventArgs _e = new TriggerEventArgs
                         {
-                            LogHelper.Info("收到激光触发：" + receive_string);
-                            string[] str = receive_string.Split(',');
-                            RobotSignals.CCD1Receive = str[0];
-                            if (str[0].Contains(RobotSignals.CCD1RobotTrigger1) || str[0].Contains(RobotSignals.CCD1RobotTrigger2))
-                            {
-                                //1号相机
-                                TriggerEventArgs _e = new TriggerEventArgs();
-                                _e.Index = 0;
-                                _e.PorcMode = 0;
-                                _taskQueueList[0].Enqueue(_e);
-                            }
-                        }
-                    }
+                            FlowIdx = 0,
+                            eMode = Model.EnumModel.eProcessMode.produce,
+                            NozzleIdx = str[0].Contains("T1") ? 0 : 1
+                        };
+                        _taskQueueList[0].Enqueue(_e);
+					}
                 }
-
-
-                if ((this._localEndPoint.Port).ToString() == Project.Instance.RobotManagerInstance.L_Robot[3]._localEndPoint.Port.ToString())
-                {
-                    if (receive_string.Contains("Get"))
-                    {
-                        LogHelper.Info("收到激光Get");
-
-
-                        Project.Instance.RobotManagerInstance.L_Robot[3].SendText(Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3") + ";", 0);
-                        //string WeldLgth = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3");
-                        NoticeHelper.OutputMessageSend("给到激光整体长度" + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3"), OutputLevelModel.INFO);
-                        LogHelper.Info("给激光整体长度：" + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.weldlength[0].ToString("f3"));
-
-                    }
-                }
-
             }
         }
 

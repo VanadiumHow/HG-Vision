@@ -144,7 +144,7 @@ namespace HG_Vision.Manager.Manager_PLC
                     else
                     {
                         Connect();
-                        LogHelper.Fatal("读取二维码出现异常");
+                        LogHelper.Error("读取PLC寄存器异常");
                         return null;
                     }
                 }
@@ -162,7 +162,7 @@ namespace HG_Vision.Manager.Manager_PLC
                         else
                         {
                             Connect();
-                            LogHelper.Fatal("读取二维码出现异常");
+                            LogHelper.Error("读取PLC寄存器异常");
                             return null;
                         }
                     }
@@ -170,10 +170,10 @@ namespace HG_Vision.Manager.Manager_PLC
             }
             catch
             {
-                LogHelper.Fatal("读取二维码出现异常");
+                LogHelper.Error("读取PLC寄存器异常");
                 return null;
             }
-            LogHelper.Fatal("读取二维码出现异常");
+            LogHelper.Error("读取PLC寄存器异常");
             return null;
         }
         public string ReadString(string address, ushort length)

@@ -40,8 +40,8 @@ namespace DataCollection.UI.UIHome.RightForm
             _chartList.Add(InitChart(Chart1,
                xDatas[0],
                 new List<double>() {
-                Project.Instance.ProductionDataManagerInstance.L_ProductionStationOKCount[0],
-                Project.Instance.ProductionDataManagerInstance.L_ProductionStationNGCount[0]
+                Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0],
+                Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]
             }));
 
         }
@@ -114,8 +114,8 @@ namespace DataCollection.UI.UIHome.RightForm
         /// <param name="chart"></param>
         private void UpdateChart(int index)
         {
-            double[] yValues = {   Project.Instance.ProductionDataManagerInstance.L_ProductionStationOKCount[index],
-                                    Project.Instance.ProductionDataManagerInstance.L_ProductionStationNGCount[index]};
+            double[] yValues = {   Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[index],
+                                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[index]};
             string[] xValues = xDatas[index].ToArray();
             _chartList[index].Series["Series1"].Points.DataBindXY(xValues, yValues);
 

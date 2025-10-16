@@ -54,8 +54,6 @@ namespace HG_Vision.Manager.Manager_System
         /// 定时任务管理类
         /// </summary>
         public ScheduledTaskManager ScheduledTaskManagerInstance = null;
-
-
         /// <summary>
         /// Robot服务器管理类
         /// </summary>

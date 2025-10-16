@@ -9,34 +9,33 @@ using Cognex.VisionPro.CalibFix;
 using Obj.Obj_File;
 using Obj.Obj_Queue;
 using HG_Vision.Manager.Manager_System;
+using Model.EnumModel;
+using System.Reflection;
+using log4net.Repository.Hierarchy;
+using Model.ConstantModel;
 
 /****************************************************************
 
 *****************************************************************/
 namespace HG_Vision.Contol.Control_Vision
 {
-    {
-        public int Index { get; set; } = 0;
-        public bool IsAcquire { get; set; }
-        public int CalibMode { get; set; } //标定模式
-        public string Filename { get; set; }
-        /// <summary>
-        ///  脚本运行模式
-        /// 0为正常运行检测
-        /// 1为获取基准数据
-        /// </summary>
-        public int PorcMode { get; set; }
-        public bool IsShowResults { get; set; }
-        public System.Drawing.Image ig { get; set; }//存结果图片
-        public CogRecordsDisplay resultImage { get; set; }//存结果图片
-        public ICogImage rawImage { get; set; }//存原图
-        public ICogImage inputImage { get; set; }//存原图
-        public bool results { get; set; }//处理结果
-        public string imageName { get; set; }//图片名
-        public string Code { get; set; }
-    }
 
-    public class WorkFlow
+    internal class TriggerEventArgs : EventArgs
+    {
+        internal int FlowIdx { get; set; }
+        internal int NozzleIdx {  get; set; } // 振镜位置
+        internal eProcessMode eMode { get; set; } // 流程模式
+        internal CogRecordsDisplay DisplayObj { get; set; } // 存结果图片
+        internal ICogImage rawImage { get; set; } // 存原图
+        internal bool results { get; set; } // 处理结果
+        internal string imageName { get; set; } // 图片名
+        internal BasePose ResultOffset { get; set; } // 机器人位姿
+		internal double X { get; set; } // 结果X
+        internal double Y { get; set; } // 结果Y
+        internal double R { get; set; } // 结果R
+	}
+
+    public class WorkFlow1
     {
         //当前流程索引
         private string _vppName;
@@ -57,6 +56,7 @@ namespace HG_Vision.Contol.Control_Vision
         protected ICogTransform2D LinearTransform2;  //laser1九点线性坐标转换关系
         protected ICogTransform2D LinearTransform3;  //laser2九点线性坐标转换关系
         protected ICogTransform2D DistortionTransform; //畸变坐标转换关系
+        //已标定标志位
         bool calibflag = false;
 
         public static readonly object obj = new object();
@@ -173,7 +173,7 @@ namespace HG_Vision.Contol.Control_Vision
         /// 构造函数
         /// </summary>
         /// <param name="p"></param> 特征索引 区分不同流程
-        public WorkFlow(string p)
+        public WorkFlow1(string p)
         {
             _vppName = p;
             _vppIndex = Convert.ToInt16(_vppName) - 1;
@@ -200,17 +200,16 @@ namespace HG_Vision.Contol.Control_Vision
                 m_RotationCalibBlock = CogSerializer.LoadObjectFromFile(_rotationcalibBlockpath) as CogToolBlock;
                 m_VerificatecalibBlock = CogSerializer.LoadObjectFromFile(_VerificatecalibBlockpath) as CogToolBlock;
 
-                m_AcquireTool = m_AcquireBlock.Tools["相机工具*"] as CogAcqFifoTool;
+                m_AcquireTool = m_AcquireBlock.Tools["相机取像工具*"] as CogAcqFifoTool;
 
                 try
                 {
+                    //待完成：如果不启用则不加载校正结果
                     DistortionTransform = DistortionCalibBlock.Outputs["DistortionTransform"].Value as ICogTransform2D;
-                    LinearTransform = LinearCalibBlock.Outputs["LinearTransform"].Value as ICogTransform2D;
-                    LinearTransform1 = LinearCalibBlock.Outputs["LinearTransform2"].Value as ICogTransform2D;
-                    LinearTransform2 = LinearCalibBlock.Outputs["LinearTransform3"].Value as ICogTransform2D;
-                    LinearTransform3 = LinearCalibBlock.Outputs["LinearTransform4"].Value as ICogTransform2D;
-
-
+                    LinearTransform = LinearCalibBlock.Outputs["LinearTransformBo"].Value as ICogTransform2D;
+                    LinearTransform1 = LinearCalibBlock.Outputs["LinearTransformBo2"].Value as ICogTransform2D;
+                    LinearTransform2 = LinearCalibBlock.Outputs["LinearTransformLa"].Value as ICogTransform2D;
+                    LinearTransform3 = LinearCalibBlock.Outputs["LinearTransformLa2"].Value as ICogTransform2D;
                     calibflag = true;
                 }
                 catch (System.Exception ex)
@@ -219,7 +218,7 @@ namespace HG_Vision.Contol.Control_Vision
                     calibflag = false;
                 }
                 m_SettingBlock = new CogToolBlock();
-                SettingBlock.Tools.Add(AcquireBlock);
+                SettingBlock.Tools.Add(m_AcquireBlock);
                 if (calibflag)
                 {
                     SettingBlock.Tools.Add(DistortionCalibBlock);
@@ -247,7 +246,7 @@ namespace HG_Vision.Contol.Control_Vision
         {
             try
             {
-                CogSerializer.SaveObjectToFile(AcquireBlock, _acquireBlockpath,
+                CogSerializer.SaveObjectToFile(m_AcquireBlock, _acquireBlockpath,
                 typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
                 CogSerializationOptionsConstants.Minimum);
             }
@@ -268,7 +267,7 @@ namespace HG_Vision.Contol.Control_Vision
         {
             try
             {
-                CogSerializer.SaveObjectToFile(AcquireBlock, _acquireBlockpath,
+                CogSerializer.SaveObjectToFile(m_AcquireBlock, _acquireBlockpath,
                     typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter),
                     CogSerializationOptionsConstants.Minimum);
                 CogSerializer.SaveObjectToFile(ProcessBlock, _processBlockpath,
@@ -288,17 +287,17 @@ namespace HG_Vision.Contol.Control_Vision
                     CogSerializationOptionsConstants.Minimum);
                 try
                 {
+                    //待完成：如果不启用则不加载校正结果
                     DistortionTransform = DistortionCalibBlock.Outputs["DistortionTransform"].Value as ICogTransform2D;
-                    LinearTransform = LinearCalibBlock.Outputs["LinearTransform"].Value as ICogTransform2D;
-                    LinearTransform1 = LinearCalibBlock.Outputs["LinearTransform2"].Value as ICogTransform2D;
-                    LinearTransform2 = LinearCalibBlock.Outputs["LinearTransform3"].Value as ICogTransform2D;
-                    LinearTransform3 = LinearCalibBlock.Outputs["LinearTransform4"].Value as ICogTransform2D;
-
+                    LinearTransform = LinearCalibBlock.Outputs["LinearTransformRo"].Value as ICogTransform2D;
+                    LinearTransform1 = LinearCalibBlock.Outputs["LinearTransformRo2"].Value as ICogTransform2D;
+                    LinearTransform2 = LinearCalibBlock.Outputs["LinearTransformLa"].Value as ICogTransform2D;
+                    LinearTransform3 = LinearCalibBlock.Outputs["LinearTransformLa2"].Value as ICogTransform2D;
                 }
                 catch { }
 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 LogHelper.Error("保存视觉工具出现异常", ex);
@@ -308,7 +307,7 @@ namespace HG_Vision.Contol.Control_Vision
         }
 
         /// <summary>
-        /// 运行取向模块
+        /// 运行取像模块
         /// </summary>
         /// <param name="img"></param>
         /// <returns></returns>
@@ -316,115 +315,132 @@ namespace HG_Vision.Contol.Control_Vision
         {
             try
             {
-                if ((m_AcquireTool.Operator.FrameGrabber != null))
-                {
-                    Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.SaveExprosure(0, Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.CameraParams.L_camExprosure[0]);
-                    m_AcquireBlock.Run();
-                    img = m_AcquireBlock.Outputs["OutputImage"].Value as ICogImage;
-                    return (bool)(AcquireBlock.Outputs["bAccept"].Value);
-                }
-                else
+                if (m_AcquireTool.Operator.FrameGrabber == null) //检查视频格式是否为空，为空则相机未连接
                 {
                     img = null;
-                    MessageBox.Show("控件CamOperator属性未赋值.", "取像时...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("控件CamOperator属性未赋值.", "取像失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-            }
-            catch { }
-
-            img = null;
-            return false;
-        }
-
-
-        /// <summary>
-        /// 运行处理模块
-        /// </summary>
-        /// <param name="e"></param>
-        /// <param name="img"></param>
-        /// <returns></returns>
-        public bool RunProcessBlock(ref ICogImage img)
-        {
-            try
-            {
-                ProcessBlock.Inputs["InputImage"].Value = img;
-                if (calibflag)
+                Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.SaveExprosure
+                (0, Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.Exprosure);
+                m_AcquireBlock.Run();
+                if (m_AcquireBlock.RunStatus.Result != CogToolResultConstants.Accept)
                 {
-                    ProcessBlock.Inputs["LinearTransform"].Value = LinearTransform;
-                    ProcessBlock.Inputs["LinearTransform1"].Value = LinearTransform1;
-                    ProcessBlock.Inputs["LinearTransform2"].Value = LinearTransform2;
-                    ProcessBlock.Inputs["LinearTransform3"].Value = LinearTransform3;
-                    ProcessBlock.Inputs["DistortionTransform"].Value = DistortionTransform;
+                    LogHelper.Error($"取像工具块运行输出非可接受结果:{m_AcquireBlock.RunStatus.Message}");
+                    img = null;
+                    return false;
                 }
-                ProcessBlock.Run();
+                img = m_AcquireBlock.Outputs["OutputImage"].Value as ICogImage;
+                if (img == null)
+                {
+                    LogHelper.Error("取像工具块运行输出图像为空");
+                    return false;
+                }
                 return true;
             }
             catch (Exception ex)
             {
-                LogHelper.Error("运行处理模块工具出现异常", ex);
-                MessageBox.Show(ex.Message);
+                LogHelper.Error("取像工具块出现异常", ex);
+                img = null;
+                return false;
             }
-            return false;
-
         }
         /// <summary>
         /// 运行畸变标定模块
         /// </summary>
-        /// <param name="img"></param>
+        /// <param name="img">引用类型的图像</param>
         /// <returns></returns>
         public bool RunDistortionCalibBlock(ref ICogImage img)
         {
             try
             {
-                DistortionCalibBlock.Inputs["InputImage"].Value = img;
-                CogCalibCheckerboardTool tool = DistortionCalibBlock.Tools["CogCalibCheckerboardTool1"] as CogCalibCheckerboardTool;
-                CogCalibCheckerboard board = new CogCalibCheckerboard
+                m_DistortionCalibBlock.Inputs["InputImage"].Value = img;
+                m_DistortionCalibBlock.Run();
+                if (m_DistortionCalibBlock.RunStatus.Result != CogToolResultConstants.Accept)
                 {
-                    CalibrationImage = img,
-                    ComputationMode = CogCalibFixComputationModeConstants.PerspectiveAndRadialWarp,
-                    FeatureFinder = CogCalibCheckerboardFeatureFinderConstants.Checkerboard,//棋盘格
-                    FiducialMark = CogCalibCheckerboardFiducialConstants.DataMatrix,
-                    PhysicalTileSizeX = 4,    //4mm标定版
-                    PhysicalTileSizeY = 4      //4mm标定版
-                };
-                board.Calibrate();
-                tool.Calibration = board;
-                DistortionCalibBlock.Run();
-                DistortionCalibBlock.Outputs["DistortionTransform"].Value = tool.Calibration.GetComputedUncalibratedFromCalibratedTransform();
+                    LogHelper.Error($"畸变校正块运行输出非可接受结果:{m_DistortionCalibBlock.RunStatus.Message}");
+                    return false;
+                }
                 return true;
             }
             catch (Exception ex)
             {
-                LogHelper.Error("运行畸变标定模块工具出现异常", ex);
-                MessageBox.Show(ex.Message);
+                LogHelper.Error("畸变校正块出现异常", ex);
+                return false;
             }
-            return false;
         }
-
         /// <summary>
         /// 运行九点线性标定模块
         /// </summary>
         /// <param name="img"></param>
-        /// <param name="calibimg"></param>
         /// <returns></returns>
-        public bool RunLinearCalibBlock(ref ICogImage img)
+        public bool RunLinearCalibBlock(eLinearCalib_Step step, eLinearCalib_Link type = eLinearCalib_Link.useless, ICogImage img = null)
         {
-            try
+            if (step == eLinearCalib_Step.clear)
             {
-                LinearCalibBlock.Inputs["InputImage"].Value = img;
-                LinearCalibBlock.Inputs["DistortionTransform"].Value = DistortionTransform;
-                LinearCalibBlock.Run();
-                return true;
+                if (type == eLinearCalib_Link.useless)
+                {
+                    LogHelper.Error($"代码块异常：当前{step.ToString()}的对象枚举不能为{type.ToString()}");
+                    return false;
+                }
+                if (MessageBox.Show($"将要清除{type.ToString()}标定数据，是否继续？", "询问", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    m_LinearCalibBlock.Inputs["Index"].Value = (int)type;
+                    m_LinearCalibBlock.Run();
+                    return true;
+                }
+                return false;
             }
-            catch (Exception ex)
+            else if (step == eLinearCalib_Step.FindCircle)
             {
-                LogHelper.Error("运行九点线性标定模块工具出现异常", ex);
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    if (img == null)
+                    {
+                        LogHelper.Error($"代码块异常：当前{step.ToString()}的输入图像不能为null");
+                        return false;
+                    }
+                    m_LinearCalibBlock.Inputs["InputImage"].Value = img;
+                    m_LinearCalibBlock.Inputs["Index"].Value = 4;
+                    m_LinearCalibBlock.Inputs["DistortionTransform"].Value = DistortionTransform;
+                    m_LinearCalibBlock.Run();
+                    if (m_LinearCalibBlock.RunStatus.Result != CogToolResultConstants.Accept)
+                    {
+                        LogHelper.Error($"九点线性标定块运行输出非可接受结果:{m_LinearCalibBlock.RunStatus.Message}");
+                        return false;
+                    }
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Error("九点线性标定块出现异常", ex);
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else if (step == eLinearCalib_Step.insert)
+            {
+                if (type == eLinearCalib_Link.useless)
+                {
+                    LogHelper.Error($"代码块异常：当前{step.ToString()}的对象枚举不能为{type.ToString()}");
+                    return false;
+                }
+                m_LinearCalibBlock.Inputs["Index"].Value = type + 5;
+                m_LinearCalibBlock.Run();
+            }
+            else if (step == eLinearCalib_Step.calculate)
+            {
+                if (type == eLinearCalib_Link.useless)
+                {
+                    LogHelper.Error($"代码块异常：当前{step.ToString()}的对象枚举不能为{type.ToString()}");
+                    return false;
+                }
+                m_LinearCalibBlock.Inputs["Index"].Value = type + 9;
+                m_LinearCalibBlock.Run();
             }
             return false;
         }
         /// <summary>
-        /// 运行旋转中心标定模块
+        /// 运行旋转中心标定模块(功能未完善，结构未优化，后续使用需继续开发)
         /// </summary>
         /// <param name="img"></param>
         /// <returns></returns>
@@ -452,14 +468,24 @@ namespace HG_Vision.Contol.Control_Vision
         /// <param name="img"></param>
         /// <param name="calibimg"></param>
         /// <returns></returns>
-        public bool RunVerificatecalibBlock(ref ICogImage img)
+        public bool RunVerificatecalibBlock(ref ICogImage img, eLinearCalib_Link type)
         {
             try
             {
                 VerificatecalibBlock.Inputs["InputImage"].Value = img;
-                VerificatecalibBlock.Inputs["LinearTransform"].Value = LinearTransform;
-                VerificatecalibBlock.Inputs["LinearTransform1"].Value = LinearTransform1;
-
+                if (type == eLinearCalib_Link.Robot1)
+                {
+                    VerificatecalibBlock.Inputs["LinearTransform"].Value = LinearTransform;
+                }
+                else if (type == eLinearCalib_Link.Robot2)
+                {
+                    VerificatecalibBlock.Inputs["LinearTransform"].Value = LinearTransform1;
+                }
+                else
+                {
+                    LogHelper.Error($"代码块异常：当前标定验证的对象枚举不能为{type.ToString()}");
+                    return false;
+                }
                 VerificatecalibBlock.Run();
                 return true;
             }
@@ -470,28 +496,51 @@ namespace HG_Vision.Contol.Control_Vision
             }
             return false;
         }
-        /// <summary>
-        /// 运行取向+处理模块
-        /// </summary>
-        /// <returns></returns>
-        public bool RunAProc()
-        {
-            ICogImage img;
-            RunAcquireBlock(out img);
-            return RunProcessBlock(ref img);
-        }
 
         /// <summary>
-        /// 运行取向+标定模块
+        /// 运行处理模块
         /// </summary>
+        /// <param name="e"></param>
+        /// <param name="img"></param>
         /// <returns></returns>
-        public bool RunACalib()
+        public bool RunProcessBlock(ref ICogImage img, out string mError)
         {
-            ICogImage img;
-            RunAcquireBlock(out img);
-            return RunLinearCalibBlock(ref img);
+            try
+            {
+                m_ProcessBlock.Inputs["InputImage"].Value = img;
+                if (!calibflag)
+                {                     
+                    LogHelper.Error("当前处理模块未加载标定结果，无法运行");
+                    mError = "当前处理模块未加载标定结果，无法运行";
+                    return false;
+                }
+                else
+                {
+                    m_ProcessBlock.Inputs["DistortionTransform"].Value = DistortionTransform;
+                    m_ProcessBlock.Inputs["LinearTransformBo"].Value = LinearTransform;
+                    m_ProcessBlock.Inputs["LinearTransformBo2"].Value = LinearTransform1;
+                    m_ProcessBlock.Inputs["LinearTransformLa"].Value = LinearTransform2;
+                    m_ProcessBlock.Inputs["LinearTransformLa2"].Value = LinearTransform3;
+                }
+                m_ProcessBlock.Run();
+                //此流程CogToolResultConstants具有三态，Accept,Reject,Error
+                if (m_ProcessBlock.RunStatus.Result != CogToolResultConstants.Accept)
+                {
+                    LogHelper.Error($"运行处理模块运行输出非可接受结果:{m_ProcessBlock.RunStatus.Message}");
+                    mError = m_ProcessBlock.RunStatus.Message;
+                    return false;
+                }
+                mError = "";
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("运行处理模块工具出现异常", ex);
+                MessageBox.Show(ex.Message);
+                mError = ex.Message;
+            }
+            return false;
         }
-
         /// <summary>
         /// 刷新界面显示
         /// </summary>
@@ -500,57 +549,75 @@ namespace HG_Vision.Contol.Control_Vision
         /// <returns></returns>
         public bool UpdateGraphicResult(CogRecordsDisplay _cd)
         {
-            if (!(bool)(AcquireBlock.Outputs["bAccept"].Value))
+            bool _result;
+            _result = (bool)_cd.Invoke(new Func<bool>(() =>
             {
-                return false;
-            }
-            _cd.Invoke((MethodInvoker)delegate
-            {
-                ICogRecord r = null;
-                _cd.Display.Image = null;
-                _cd.Display.InteractiveGraphics.Clear();
-                _cd.Display.StaticGraphics.Clear();
-                if (!(bool)(AcquireBlock.Outputs["bAccept"].Value))
+                try
                 {
-                    r = AcquireBlock.CreateLastRunRecord();
-                    _cd.Subject = r.SubRecords["CogAcqFifoTool1.OutputImage"];
+                    ICogRecord r = null;
+                    _cd.Display.Image = null;
+                    _cd.Display.InteractiveGraphics.Clear();
+                    _cd.Display.StaticGraphics.Clear();
+                    //流程运行失败只展示相机取像结果
+                    if (ProcessBlock.RunStatus.Result == CogToolResultConstants.Error)
+                    {
+                        r = m_AcquireBlock.CreateLastRunRecord();
+                        _cd.Subject = r.SubRecords["图像算法处理.OutputImage"];
+                    }
+                    else
+                    {
+                        r = ProcessBlock.CreateLastRunRecord();
+                        _cd.Subject = r.SubRecords["图像算法处理*.OutputImage"];
+                    }
+                    _cd.Display.Fit(false);
+                    _cd.Display.BackColor = Color.Black;
+                    _cd.Display.GridColor = Color.Black;//网格颜色
+                    return true;
                 }
-                else
+                catch (Exception ex)
                 {
-                    r = ProcessBlock.CreateLastRunRecord();
-                    //显示结果
-                    _cd.Subject = r.SubRecords["CogFixtureTool1.OutputImage"];
+                    LogHelper.Error($"跨线程更新Record控件失败:", ex);
+                    return false;
                 }
-                _cd.Display.Fit(false);
-                _cd.Display.BackColor = Color.Black;
-                _cd.Display.GridColor = Color.Black;
-            });
-            return true;
+            }));
+            return _result;
         }
 
-        /// <summary>
-        /// 图片显示到CogRecordDisplay
-        /// </summary>
-        /// <param name="_cd"></param>
-        /// <param name="img"></param>
-        /// <returns></returns>
-        public bool UpdateImage(CogRecordsDisplay _cd, ref ICogImage img)
+        //窗体显示文字信息
+        public static void DisplayLabelCogDisplay(CogRecordsDisplay mydisplay, CogColorConstants Color, Single x, Single y, string text, Int16 fontSize = 15)
         {
-            if (!(bool)(AcquireBlock.Outputs["bAccept"].Value))
+            // 定义实际执行的操作
+            void AddLabel()
             {
-                return false;
-            }
-            _cd.Display.DrawingEnabled = false;
-            _cd.Display.InteractiveGraphics.Clear();
-            _cd.Display.StaticGraphics.Clear();
-            if ((bool)(AcquireBlock.Outputs["bAccept"].Value))
-            {
-                _cd.Display.Image = img;
+                try
+                {
+                    mydisplay.Invoke((MethodInvoker)delegate
+                    {
+                        CogGraphicLabel GraphicLabel = new CogGraphicLabel();
+                        GraphicLabel.SetXYText(fontSize * x, fontSize * y, text);
+                        Font font = new Font("微软雅黑", fontSize, FontStyle.Bold);
+                        GraphicLabel.Font = font;
+                        GraphicLabel.Alignment = CogGraphicLabelAlignmentConstants.TopLeft;
+                        GraphicLabel.SelectedSpaceName = mydisplay.Display.UserDisplayTree.RootName;
+                        GraphicLabel.Color = Color;
+                        mydisplay.Display.InteractiveGraphics.Add(GraphicLabel, "me", true);
+                    });
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Error("Label加载异常", ex);
+                }
             }
 
-            _cd.Display.DrawingEnabled = true;
-
-            return true;
+            // 线程安全调用
+            if (mydisplay.InvokeRequired)
+            {
+                mydisplay.Invoke(new Action(AddLabel));
+            }
+            else
+            {
+                AddLabel(); // 直接调用，无需锁或Action.Invoke()
+            }
         }
 
         /// <summary>
@@ -591,40 +658,6 @@ namespace HG_Vision.Contol.Control_Vision
             catch (Exception)
             {
                 return false;
-            }
-        }
-
-        //窗体显示文字信息
-        public static void DisplayLabelCogDisplay(CogRecordsDisplay mydisplay, CogColorConstants Color, System.Single x, System.Single y, string text, System.Int16 fontSize)
-        {
-            // 定义实际执行的操作
-            void AddLabel()
-            {
-                try
-                {
-                        CogGraphicLabel GraphicLabel = new CogGraphicLabel();
-                        GraphicLabel.SetXYText(x, y, text);
-                        Font font = new System.Drawing.Font("微软雅黑", fontSize, FontStyle.Bold);
-                        GraphicLabel.Font = font;
-                        GraphicLabel.Alignment = CogGraphicLabelAlignmentConstants.TopLeft;
-                        GraphicLabel.SelectedSpaceName = mydisplay.Display.UserDisplayTree.RootName;
-                        GraphicLabel.Color = Color;
-                        mydisplay.Display.InteractiveGraphics.Add(GraphicLabel, "me", true);
-                }
-                catch (Exception ex)
-                {
-                    LogHelper.Error("Label加载异常", ex);
-                }
-            }
-
-            // 线程安全调用
-            if (mydisplay.InvokeRequired)
-            {
-                mydisplay.Invoke(new Action(AddLabel));
-            }
-            else
-            {
-                AddLabel(); // 直接调用，无需锁或Action.Invoke()
             }
         }
 

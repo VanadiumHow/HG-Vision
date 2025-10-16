@@ -41,7 +41,7 @@ namespace HG_Vision.Manager.Manager_System
             for (int i = 0; i < Project.Instance.VisionManagerInstance.CameraNum; i++)
             {
                 L_ccdState.Add(false);
-                L_ccdState[i] = Project.Instance.VisionManagerInstance.CameraManagerInstance.L_workFlowList[i].connected();
+                L_ccdState[i] = Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[i].connected();
             }
 
 

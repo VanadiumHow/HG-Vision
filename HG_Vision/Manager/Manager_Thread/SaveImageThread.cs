@@ -37,9 +37,9 @@ namespace HG_Vision.Manager.Manager_Thread
                 TriggerEventArgs e = new TriggerEventArgs();
                 if (mSaveImageQueue.TryDequeue(out e))
                 {
-                    ImageParamsModel _imageParams = Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageParams[e.Index];
-                    ImageStoreHelper.SaveRawImage(e.rawImage, e.imageName, e.results, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH-mm-ss-fff"), e.Index, _imageParams);
-                    ImageStoreHelper.SaveResultImage(e.resultImage, e.imageName, e.results, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH-mm-ss-fff"), e.Index, _imageParams);
+                    ImageParamsModel _imageParams = Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageParams[e.FlowIdx];
+                    ImageStoreHelper.SaveRawImage(e.rawImage, e.imageName, e.results, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH-mm-ss-fff"), e.FlowIdx, _imageParams);
+                    ImageStoreHelper.SaveResultImage(e.DisplayObj, e.imageName, e.results, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH-mm-ss-fff"), e.FlowIdx, _imageParams);
                 }
             }
             catch (Exception ex)

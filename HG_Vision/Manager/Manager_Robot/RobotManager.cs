@@ -105,9 +105,6 @@ namespace HG_Vision.Manager.Manager_Robot
         public string m_strRobot1Receive = "";
         public string m_strRobot2Receive = "";
         public string m_strLaserReceive = "";
-        public string m_strLaserReceiveTragger = "";
-        public string m_strLaserReceiveX = "0";
-        public string m_strLaserReceiveY = "0";
         public bool m_Stop = false;
         public bool WaitStringN(string strDes, int nSeconds)
         {

@@ -20,11 +20,11 @@ namespace HG_Vision.UIHome.RightForm
         private delegate void UpdateControls(string msg, int i);
         private UpdateControls _upd = null;
 
-        private Color[] _outPutItemColorArray = new Color[]
+        private readonly Color[] _outPutItemColorArray = new Color[]
         {
-            Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40))))),
-            Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(150)))), ((int)(((byte)(40))))),
-            Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))))
+            Color.FromArgb(110, 190, 40),
+            Color.FromArgb(220, 150, 40),
+            Color.FromArgb(230, 80, 80)
         };
 
         private FrmOutput()

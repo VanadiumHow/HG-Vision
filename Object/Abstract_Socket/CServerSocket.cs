@@ -303,7 +303,7 @@ namespace BaseSocket
         }
 
         /// <summary>
-        /// Send a text messageby connecting selected
+        /// 发送消息到指定连接
         /// </summary>
         /// <param name="mens">Message</param>
         /// <param name="SocketIndex">Index of connection</param>

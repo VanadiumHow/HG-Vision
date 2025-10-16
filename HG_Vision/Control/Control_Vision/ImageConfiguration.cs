@@ -100,7 +100,7 @@ namespace HG_Vision.Contol.Control_Vision
     public class ImageSave
     {
         //存图队列
-        public List<BlockQueue<TriggerEventArgs>> saveImageQueueList = new List<BlockQueue<TriggerEventArgs>>();
+        internal List<BlockQueue<TriggerEventArgs>> saveImageQueueList = new List<BlockQueue<TriggerEventArgs>>();
         private Control_Thread[] _Threads;
         public void InitSaveImage()
         {

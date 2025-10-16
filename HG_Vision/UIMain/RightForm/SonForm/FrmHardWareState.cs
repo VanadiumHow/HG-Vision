@@ -397,7 +397,7 @@ namespace HG_Vision.UIHome.RightForm
                 {
                     if (!Project.Instance.HardWareStateManagerInstance.L_ccdState[i])
                     {
-                        Project.Instance.HardWareStateManagerInstance.L_ccdState[i] = Project.Instance.VisionManagerInstance.CameraManagerInstance.L_workFlowList[i].connected();
+                        Project.Instance.HardWareStateManagerInstance.L_ccdState[i] = Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[i].connected();
                         //未连接
                         if (_ccdLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
                         {

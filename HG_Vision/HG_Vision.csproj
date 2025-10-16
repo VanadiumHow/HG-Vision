@@ -72,6 +72,9 @@
   <PropertyGroup>
     <ApplicationIcon>HG-logo.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cognex.VisionPro, Version=59.2.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
@@ -435,6 +438,7 @@
     <EmbeddedResource Include="UIMain\VisionForm\FrmVpVisionControl.resx">
       <DependentUpon>FrmVpVisionControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -31,29 +31,29 @@ namespace HG_Vision.Manager.Manager_Thread
 
         public override void Deinitialize() => base.Stop();
         //客户端断开IP
-        private List<string> _listDisconnetIPs = new List<string>();
+        private List<string> _listDisconnectIPs = new List<string>();
         //临时客户端IP
-        private List<string> _listTempConnetIPs = new List<string>();
+        private List<string> _listTempconnectIPs = new List<string>();
         protected override void Run()
         {
             if (clientIPNum < listConnectIPs.Count)
             {
-                _listDisconnetIPs.Clear();
-                _listTempConnetIPs.Clear();
+                _listDisconnectIPs.Clear();
+                _listTempconnectIPs.Clear();
                 for (int i = 0; i < clientIPNum; i++)
                 {
-                    _listTempConnetIPs.Add(Project.Instance.RobotManagerInstance.L_Robot[i].RemoteAddress(i));
+                    _listTempconnectIPs.Add(Project.Instance.RobotManagerInstance.L_Robot[i].RemoteAddress(i));
                 }
                 foreach (var item in listConnectIPs)
                 {
-                    if (!_listTempConnetIPs.Contains(item))
+                    if (!_listTempconnectIPs.Contains(item))
                     {
-                        _listDisconnetIPs.Add(item);
+                        _listDisconnectIPs.Add(item);
                     }
                 }
-                for (int i = 0; i < _listDisconnetIPs.Count; i++)
+                for (int i = 0; i < _listDisconnectIPs.Count; i++)
                 {
-                    if (_listDisconnetIPs[i] == listConnectIPs[i])
+                    if (_listDisconnectIPs[i] == listConnectIPs[i])
                     {
                         Project.Instance.RobotManagerInstance.L_Robot[i].SetIsConnectedRobot(0, false);
                     }

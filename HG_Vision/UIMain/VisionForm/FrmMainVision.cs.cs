@@ -49,21 +49,17 @@ namespace HG_Vision.UIVision
             LoadCameraForm(Project.Instance.GlobalManagerInstance.GlobalParamModel.MaxWorkNum, Project.Instance.VisionManagerInstance.CameraNum);
 
         }
-
-        //
         /// <summary>
         /// 初始化图像窗口LIST
         /// </summary>
-        /// 
         public void InitialFrmVisionControlList(int workFlowNum)
         {
             if (workFlowNum <= 0) return;
 
-            //动态加载相机窗口，填充到L_frmVisionControl
             _frmVisionControlList.Clear();
             //传递窗体显示display
             GlobalCameraParams.cameraVisionControlList.Clear();
-
+            //动态加载相机窗口，填充到L_frmVisionControl
             for (int i = 0; i < workFlowNum; i++)
             {
                 if (Project.Instance.VisionManagerInstance.CameraManagerInstance.A_CameraAttributes[i].ImageWindowType == "VP")
@@ -72,7 +68,6 @@ namespace HG_Vision.UIVision
                     _frmVisionControlList.Add(frmVisionControl1);
                     GlobalCameraParams.cameraVisionControlList.Add(frmVisionControl1.RecordDisplay);
                 }
-
             }
         }
 
@@ -119,16 +114,16 @@ namespace HG_Vision.UIVision
             tlp.RowStyles.Clear();
             for (int i = 0; i < newColCount; i++)
             {
-                tlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F / newColCount));
+                tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / newColCount));
             }
             for (int i = 0; i < newRowCount; i++)
             {
-                tlp.RowStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F / newRowCount));
+                tlp.RowStyles.Add(new ColumnStyle(SizeType.Percent, 100F / newRowCount));
             }
             //窗体布局
             for (int i = 0; i < workFlowNum; i++)
             {
-                _frmVisionControlList[i].Dock = System.Windows.Forms.DockStyle.Fill;
+                _frmVisionControlList[i].Dock = DockStyle.Fill;
                 tlp.Controls.Add(_frmVisionControlList[i], i % newColCount, i / newColCount);
                 _frmVisionControlList[i].Show();
             }
