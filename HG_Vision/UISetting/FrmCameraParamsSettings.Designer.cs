@@ -35,14 +35,14 @@ namespace HG_Vision.UIVision
             this.uiTabControlAll = new System.Windows.Forms.TabControl();
             this.uiTabPage1 = new System.Windows.Forms.TabPage();
             this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
-            this.tb_Cam1L2CenterY = new System.Windows.Forms.TextBox();
-            this.lb_Cam1L2CenterY = new System.Windows.Forms.Label();
-            this.tb_Cam1L2CenterX = new System.Windows.Forms.TextBox();
-            this.lb_Cam1L2CenterX = new System.Windows.Forms.Label();
-            this.lb_Cam1L1CenterY = new System.Windows.Forms.Label();
-            this.tb_Cam1L1CenterY = new System.Windows.Forms.TextBox();
-            this.lb_Cam1L1CenterX = new System.Windows.Forms.Label();
-            this.tb_Cam1L1CenterX = new System.Windows.Forms.TextBox();
+            this.tb_Cam1CenterLa2Y = new System.Windows.Forms.TextBox();
+            this.lb_Cam1CenterLa2Y = new System.Windows.Forms.Label();
+            this.tb_Cam1CenterLa2X = new System.Windows.Forms.TextBox();
+            this.lb_Cam1CenterLa2X = new System.Windows.Forms.Label();
+            this.lb_Cam1CenterLa1Y = new System.Windows.Forms.Label();
+            this.tb_Cam1CenterLa1X = new System.Windows.Forms.TextBox();
+            this.lb_Cam1CenterLa1X = new System.Windows.Forms.Label();
+            this.tb_Cam1CenterLa1Y = new System.Windows.Forms.TextBox();
             this.tb_Cam1AngleMax = new System.Windows.Forms.TextBox();
             this.tb_Cam1AngleMin = new System.Windows.Forms.TextBox();
             this.tb_Cam1LimitMax = new System.Windows.Forms.TextBox();
@@ -681,14 +681,12 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.140408F));
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1L2CenterY, 12, 5);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1L2CenterY, 11, 5);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1L2CenterX, 12, 4);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1L2CenterX, 11, 4);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1L1CenterY, 11, 3);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1L1CenterY, 12, 3);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1L1CenterX, 11, 2);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1L1CenterX, 12, 2);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa2Y, 12, 5);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa2Y, 11, 5);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa2X, 12, 4);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa2X, 11, 4);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa1Y, 11, 3);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa1X, 11, 2);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleMax, 10, 2);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleMin, 10, 3);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LimitMax, 10, 4);
@@ -771,6 +769,8 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1P4byP3X, 6, 9);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1P4byP3Y, 7, 10);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1P4byP3Y, 6, 10);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa1Y, 12, 3);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa1X, 12, 2);
             this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTableLayoutPanel1.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -792,93 +792,93 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.TabIndex = 2;
             this.uiTableLayoutPanel1.TagString = null;
             // 
-            // tb_Cam1L2CenterY
+            // tb_Cam1CenterLa2Y
             // 
-            this.tb_Cam1L2CenterY.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1L2CenterY.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1L2CenterY.Location = new System.Drawing.Point(1108, 235);
-            this.tb_Cam1L2CenterY.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1L2CenterY.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1L2CenterY.Name = "tb_Cam1L2CenterY";
-            this.tb_Cam1L2CenterY.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1L2CenterY.TabIndex = 131;
+            this.tb_Cam1CenterLa2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1CenterLa2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1CenterLa2Y.Location = new System.Drawing.Point(1108, 235);
+            this.tb_Cam1CenterLa2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1CenterLa2Y.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1CenterLa2Y.Name = "tb_Cam1CenterLa2Y";
+            this.tb_Cam1CenterLa2Y.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1CenterLa2Y.TabIndex = 131;
             // 
-            // lb_Cam1L2CenterY
+            // lb_Cam1CenterLa2Y
             // 
-            this.lb_Cam1L2CenterY.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1L2CenterY.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1L2CenterY.Location = new System.Drawing.Point(1015, 230);
-            this.lb_Cam1L2CenterY.Name = "lb_Cam1L2CenterY";
-            this.lb_Cam1L2CenterY.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1L2CenterY.TabIndex = 66;
-            this.lb_Cam1L2CenterY.Text = "L2标定中心位Y";
-            this.lb_Cam1L2CenterY.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_Cam1CenterLa2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1CenterLa2Y.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1CenterLa2Y.Location = new System.Drawing.Point(1015, 230);
+            this.lb_Cam1CenterLa2Y.Name = "lb_Cam1CenterLa2Y";
+            this.lb_Cam1CenterLa2Y.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1CenterLa2Y.TabIndex = 66;
+            this.lb_Cam1CenterLa2Y.Text = "L2标定中心位Y";
+            this.lb_Cam1CenterLa2Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tb_Cam1L2CenterX
+            // tb_Cam1CenterLa2X
             // 
-            this.tb_Cam1L2CenterX.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1L2CenterX.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1L2CenterX.Location = new System.Drawing.Point(1108, 189);
-            this.tb_Cam1L2CenterX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1L2CenterX.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1L2CenterX.Name = "tb_Cam1L2CenterX";
-            this.tb_Cam1L2CenterX.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1L2CenterX.TabIndex = 120;
+            this.tb_Cam1CenterLa2X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1CenterLa2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1CenterLa2X.Location = new System.Drawing.Point(1108, 189);
+            this.tb_Cam1CenterLa2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1CenterLa2X.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1CenterLa2X.Name = "tb_Cam1CenterLa2X";
+            this.tb_Cam1CenterLa2X.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1CenterLa2X.TabIndex = 120;
             // 
-            // lb_Cam1L2CenterX
+            // lb_Cam1CenterLa2X
             // 
-            this.lb_Cam1L2CenterX.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1L2CenterX.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1L2CenterX.Location = new System.Drawing.Point(1015, 184);
-            this.lb_Cam1L2CenterX.Name = "lb_Cam1L2CenterX";
-            this.lb_Cam1L2CenterX.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1L2CenterX.TabIndex = 65;
-            this.lb_Cam1L2CenterX.Text = "L2标定中心位X";
-            this.lb_Cam1L2CenterX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_Cam1CenterLa2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1CenterLa2X.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1CenterLa2X.Location = new System.Drawing.Point(1015, 184);
+            this.lb_Cam1CenterLa2X.Name = "lb_Cam1CenterLa2X";
+            this.lb_Cam1CenterLa2X.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1CenterLa2X.TabIndex = 65;
+            this.lb_Cam1CenterLa2X.Text = "L2标定中心位X";
+            this.lb_Cam1CenterLa2X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lb_Cam1L1CenterY
+            // lb_Cam1CenterLa1Y
             // 
-            this.lb_Cam1L1CenterY.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1L1CenterY.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1L1CenterY.Location = new System.Drawing.Point(1015, 138);
-            this.lb_Cam1L1CenterY.Name = "lb_Cam1L1CenterY";
-            this.lb_Cam1L1CenterY.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1L1CenterY.TabIndex = 53;
-            this.lb_Cam1L1CenterY.Text = "L1标定中心位Y";
-            this.lb_Cam1L1CenterY.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_Cam1CenterLa1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1CenterLa1Y.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1CenterLa1Y.Location = new System.Drawing.Point(1015, 138);
+            this.lb_Cam1CenterLa1Y.Name = "lb_Cam1CenterLa1Y";
+            this.lb_Cam1CenterLa1Y.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1CenterLa1Y.TabIndex = 53;
+            this.lb_Cam1CenterLa1Y.Text = "L1标定中心位Y";
+            this.lb_Cam1CenterLa1Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tb_Cam1L1CenterY
+            // tb_Cam1CenterLa1X
             // 
-            this.tb_Cam1L1CenterY.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1L1CenterY.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1L1CenterY.Location = new System.Drawing.Point(1108, 143);
-            this.tb_Cam1L1CenterY.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1L1CenterY.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1L1CenterY.Name = "tb_Cam1L1CenterY";
-            this.tb_Cam1L1CenterY.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1L1CenterY.TabIndex = 113;
+            this.tb_Cam1CenterLa1X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1CenterLa1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1CenterLa1X.Location = new System.Drawing.Point(1108, 97);
+            this.tb_Cam1CenterLa1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1CenterLa1X.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1CenterLa1X.Name = "tb_Cam1CenterLa1X";
+            this.tb_Cam1CenterLa1X.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1CenterLa1X.TabIndex = 113;
             // 
-            // lb_Cam1L1CenterX
+            // lb_Cam1CenterLa1X
             // 
-            this.lb_Cam1L1CenterX.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1L1CenterX.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1L1CenterX.Location = new System.Drawing.Point(1015, 92);
-            this.lb_Cam1L1CenterX.Name = "lb_Cam1L1CenterX";
-            this.lb_Cam1L1CenterX.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1L1CenterX.TabIndex = 52;
-            this.lb_Cam1L1CenterX.Text = "L1标定中心位X";
-            this.lb_Cam1L1CenterX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_Cam1CenterLa1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1CenterLa1X.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1CenterLa1X.Location = new System.Drawing.Point(1015, 92);
+            this.lb_Cam1CenterLa1X.Name = "lb_Cam1CenterLa1X";
+            this.lb_Cam1CenterLa1X.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1CenterLa1X.TabIndex = 52;
+            this.lb_Cam1CenterLa1X.Text = "L1标定中心位X";
+            this.lb_Cam1CenterLa1X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tb_Cam1L1CenterX
+            // tb_Cam1CenterLa1Y
             // 
-            this.tb_Cam1L1CenterX.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1L1CenterX.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1L1CenterX.Location = new System.Drawing.Point(1108, 97);
-            this.tb_Cam1L1CenterX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1L1CenterX.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1L1CenterX.Name = "tb_Cam1L1CenterX";
-            this.tb_Cam1L1CenterX.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1L1CenterX.TabIndex = 103;
+            this.tb_Cam1CenterLa1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1CenterLa1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1CenterLa1Y.Location = new System.Drawing.Point(1108, 143);
+            this.tb_Cam1CenterLa1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1CenterLa1Y.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1CenterLa1Y.Name = "tb_Cam1CenterLa1Y";
+            this.tb_Cam1CenterLa1Y.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1CenterLa1Y.TabIndex = 103;
             // 
             // tb_Cam1AngleMax
             // 
@@ -7951,14 +7951,14 @@ namespace HG_Vision.UIVision
         private Label lb_Cam1LimitMax;
         private TextBox tb_Cam1LimitMin;
         private TextBox tb_Cam1LimitMax;
-        private Label lb_Cam1L1CenterX;
-        private Label lb_Cam1L1CenterY;
-        private Label lb_Cam1L2CenterX;
-        private Label lb_Cam1L2CenterY;
-        private TextBox tb_Cam1L1CenterX;
-        private TextBox tb_Cam1L1CenterY;
-        private TextBox tb_Cam1L2CenterX;
-        private TextBox tb_Cam1L2CenterY;
+        private Label lb_Cam1CenterLa1X;
+        private Label lb_Cam1CenterLa1Y;
+        private Label lb_Cam1CenterLa2X;
+        private Label lb_Cam1CenterLa2Y;
+        private TextBox tb_Cam1CenterLa1Y;
+        private TextBox tb_Cam1CenterLa1X;
+        private TextBox tb_Cam1CenterLa2X;
+        private TextBox tb_Cam1CenterLa2Y;
         private TabPage tabPage1;
         private UITableLayoutPanel tableLayoutPanel1;
         private TextBox tb_Cam1Jig1Bo1X;

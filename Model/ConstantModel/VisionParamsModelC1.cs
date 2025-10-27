@@ -88,19 +88,22 @@ namespace Model.ConstantModel
     }
     public class JigAdd
     {
-        public int LaserPointNum;
+        public int LaserPointNum = 4;
         public PointAxis Bo1Axis { get; set; } = new PointAxis();
         public PointAxis Bo2Axis { get; set; } = new PointAxis();
-        public List<PointAxis> L_La1Axis { get; set; } = new List<PointAxis>();
-        public List<PointAxis> L_La2Axis { get; set; } = new List<PointAxis>();
+
+        // 将List改为数组，并预填充4个元素
+        public PointAxis[] L_La1Axis { get; set; } = new PointAxis[4];
+        public PointAxis[] L_La2Axis { get; set; } = new PointAxis[4];
+
+        // 构造函数，确保数组中的每个元素都被初始化
         public JigAdd()
         {
-            this.LaserPointNum = 4;
-            // 决定激光点的数量，此处设为4个
-            for (int i = 0; i < LaserPointNum; i++)
+            // 初始化数组中的每个元素
+            for (int i = 0; i < 4; i++)
             {
-                L_La1Axis.Add(new PointAxis());
-                L_La2Axis.Add(new PointAxis());
+                L_La1Axis[i] = new PointAxis();
+                L_La2Axis[i] = new PointAxis();
             }
         }
     }

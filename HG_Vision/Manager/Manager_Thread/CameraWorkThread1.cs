@@ -285,7 +285,7 @@ namespace HG_Vision.Manager.Manager_Thread
 							if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
 								sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
 							else
-								sendToLas = CreatSentToLas(false, currentPose, offset_in_jig);
+								sendToLas = CreatSentToLas(false, currentPose, offset_in_jig, 0);
 							Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
 						}
 						else
@@ -299,7 +299,7 @@ namespace HG_Vision.Manager.Manager_Thread
 							if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
 								sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
 							else
-								sendToLas = CreatSentToLas(true, currentPose, offset_in_jig);
+								sendToLas = CreatSentToLas(true, currentPose, offset_in_jig, 0);
 							Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0]++;
 						}
 						Project.Instance.RobotManagerInstance.L_Robot[0].SendText(sendToRob, 0);
@@ -519,7 +519,7 @@ namespace HG_Vision.Manager.Manager_Thread
 							if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
 								sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
 							else
-								sendToLas = CreatSentToLas(false, currentPose, offset_in_jig);
+								sendToLas = CreatSentToLas(false, currentPose, offset_in_jig, 1);
 							Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
 						}
 						else
@@ -533,7 +533,7 @@ namespace HG_Vision.Manager.Manager_Thread
 							if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
 								sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
 							else
-								sendToLas = CreatSentToLas(true, currentPose, offset_in_jig);
+								sendToLas = CreatSentToLas(true, currentPose, offset_in_jig, 1);
 							Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0]++;
 						}
 						Project.Instance.RobotManagerInstance.L_Robot[1].SendText(sendToRob, 0);
@@ -641,22 +641,33 @@ namespace HG_Vision.Manager.Manager_Thread
 				LogHelper.Error($"处理{e.FlowIdx + 1}相机检测出现异常", ex);  //写日志
 			}
 		}
-		private static string CreatSentToLas(bool isOK, BasePose currentPose, JigAdd in_offset)
+		private static string CreatSentToLas(bool isOK, BasePose currentPose, JigAdd in_offset,int LaserIdx)
 		{
 			string sendToLas;
 			if (isOK)
-			{
 				sendToLas = "_OK;";
-			}
+			else
+				sendToLas = "_NG;";
+
+            if (LaserIdx == 0)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    sendToLas += $"{in_offset.L_La1Axis[i].X:f3}%{in_offset.L_La1Axis[i].Y:f3}%0.000%{currentPose.La1Axis.X}%{currentPose.La1Axis.Y}%10%10%10#";
+                }
+            }
+			else if (LaserIdx == 1)
+			{
+                for (int i = 0; i < 4; i++)
+                {
+                    sendToLas += $"{in_offset.L_La2Axis[i].X:f3}%{in_offset.L_La2Axis[i].Y:f3}%0.000%{currentPose.La2Axis.X}%{currentPose.La2Axis.Y}%10%10%10#";
+                }
+            }
 			else
 			{
-				sendToLas = "_NG;";
-			}
-			for (int i = 0; i < 4; i++)
-			{
-				sendToLas += $"{in_offset.L_La1Axis[i].X:f3}%{in_offset.L_La1Axis[i].Y:f3}%0.000%{currentPose.La1Axis.X}%{currentPose.La1Axis.Y}%10%10%10#";
-			}
-			sendToLas = sendToLas.Remove(sendToLas.Length - 1); //去掉最后一个#
+				LogHelper.Error($"CreatSentToLas方法中的形参LaserIdx输入非可接受类型");
+            }
+				sendToLas = sendToLas.Remove(sendToLas.Length - 1); //去掉最后一个#
 			return sendToLas;
 		}
 	}

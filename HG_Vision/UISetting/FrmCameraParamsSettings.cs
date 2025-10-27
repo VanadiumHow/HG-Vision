@@ -63,102 +63,102 @@ namespace HG_Vision.UIVision
         }
 
 
-        private Dictionary<string, (TextBox outputTextBox, TextBox addendTextBox)> textBoxMappings;
+        private Dictionary<TextBox, (TextBox outputTextBox, TextBox addendTextBox)> textBoxMappings;
 
         private void FrmCCDParamSettings_Load(object sender, EventArgs e)
         {
-            textBoxMappings = new Dictionary<string, (TextBox, TextBox)>
+            textBoxMappings = new Dictionary<TextBox, (TextBox, TextBox)>
             {
                 // J1
-                { "tb_Cam1AddL1J1X1", (tb_Cam1Jig1La12X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL1J1Y1", (tb_Cam1Jig1La12Y, tb_Cam1P2byP1Y) },
-                { "tb_Cam1AddL2J1X1", (tb_Cam1Jig1La22X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL2J1Y1", (tb_Cam1Jig1La22Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig1La11X, (tb_Cam1Jig1La12X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig1La11Y, (tb_Cam1Jig1La12Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig1La21X, (tb_Cam1Jig1La22X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig1La21Y, (tb_Cam1Jig1La22Y, tb_Cam1P2byP1Y) },
 
-                { "tb_Cam1AddL1J1X3", (tb_Cam1Jig1La14X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL1J1Y3", (tb_Cam1Jig1La14Y, tb_Cam1P4byP3Y) },
-                { "tb_Cam1AddL2J1X3", (tb_Cam1Jig1La24X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL2J1Y3", (tb_Cam1Jig1La24Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig1La13X, (tb_Cam1Jig1La14X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig1La13Y, (tb_Cam1Jig1La14Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig1La23X, (tb_Cam1Jig1La24X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig1La23Y, (tb_Cam1Jig1La24Y, tb_Cam1P4byP3Y) },
                 // J2
-                { "tb_Cam1AddL1J2X1", (tb_Cam1Jig2La12X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL1J2Y1", (tb_Cam1Jig2La12Y, tb_Cam1P2byP1Y) },
-                { "tb_Cam1AddL2J2X1", (tb_Cam1Jig2La22X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL2J2Y1", (tb_Cam1Jig2La22Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig2La11X, (tb_Cam1Jig2La12X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig2La11Y, (tb_Cam1Jig2La12Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig2La21X, (tb_Cam1Jig2La22X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig2La21Y, (tb_Cam1Jig2La22Y, tb_Cam1P2byP1Y) },
 
-                { "tb_Cam1AddL1J2X3", (tb_Cam1Jig2La14X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL1J2Y3", (tb_Cam1Jig2La14Y, tb_Cam1P4byP3Y) },
-                { "tb_Cam1AddL2J2X3", (tb_Cam1Jig2La24X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL2J2Y3", (tb_Cam1Jig2La24Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig2La13X, (tb_Cam1Jig2La14X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig2La13Y, (tb_Cam1Jig2La14Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig2La23X, (tb_Cam1Jig2La24X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig2La23Y, (tb_Cam1Jig2La24Y, tb_Cam1P4byP3Y) },
                 // J3
-                { "tb_Cam1AddL1J3X1", (tb_Cam1Jig3La12X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL1J3Y1", (tb_Cam1Jig3La12Y, tb_Cam1P2byP1Y) },
-                { "tb_Cam1AddL2J3X1", (tb_Cam1Jig3La22X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL2J3Y1", (tb_Cam1Jig3La22Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig3La11X, (tb_Cam1Jig3La12X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig3La11Y, (tb_Cam1Jig3La12Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig3La21X, (tb_Cam1Jig3La22X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig3La21Y, (tb_Cam1Jig3La22Y, tb_Cam1P2byP1Y) },
 
-                { "tb_Cam1AddL1J3X3", (tb_Cam1Jig3La14X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL1J3Y3", (tb_Cam1Jig3La14Y, tb_Cam1P4byP3Y) },
-                { "tb_Cam1AddL2J3X3", (tb_Cam1Jig3La24X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL2J3Y3", (tb_Cam1Jig3La24Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig3La13X, (tb_Cam1Jig3La14X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig3La13Y, (tb_Cam1Jig3La14Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig3La23X, (tb_Cam1Jig3La24X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig3La23Y, (tb_Cam1Jig3La24Y, tb_Cam1P4byP3Y) },
                 // J4
-                { "tb_Cam1AddL1J4X1", (tb_Cam1Jig4La12X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL1J4Y1", (tb_Cam1Jig4La12Y, tb_Cam1P2byP1Y) },
-                { "tb_Cam1AddL2J4X1", (tb_Cam1Jig4La22X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL2J4Y1", (tb_Cam1Jig4La22Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig4La11X, (tb_Cam1Jig4La12X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig4La11Y, (tb_Cam1Jig4La12Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig4La21X, (tb_Cam1Jig4La22X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig4La21Y, (tb_Cam1Jig4La22Y, tb_Cam1P2byP1Y) },
 
-                { "tb_Cam1AddL1J4X3", (tb_Cam1Jig4La14X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL1J4Y3", (tb_Cam1Jig4La14Y, tb_Cam1P4byP3Y) },
-                { "tb_Cam1AddL2J4X3", (tb_Cam1Jig4La24X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL2J4Y3", (tb_Cam1Jig4La24Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig4La13X, (tb_Cam1Jig4La14X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig4La13Y, (tb_Cam1Jig4La14Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig4La23X, (tb_Cam1Jig4La24X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig4La23Y, (tb_Cam1Jig4La24Y, tb_Cam1P4byP3Y) },
                 // J5
-                { "tb_Cam1AddL1J5X1", (tb_Cam1Jig5La12X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL1J5Y1", (tb_Cam1Jig5La12Y, tb_Cam1P2byP1Y) },
-                { "tb_Cam1AddL2J5X1", (tb_Cam1Jig5La22X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL2J5Y1", (tb_Cam1Jig5La22Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig5La11X, (tb_Cam1Jig5La12X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig5La11Y, (tb_Cam1Jig5La12Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig5La21X, (tb_Cam1Jig5La22X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig5La21Y, (tb_Cam1Jig5La22Y, tb_Cam1P2byP1Y) },
 
-                { "tb_Cam1AddL1J5X3", (tb_Cam1Jig5La14X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL1J5Y3", (tb_Cam1Jig5La14Y, tb_Cam1P4byP3Y) },
-                { "tb_Cam1AddL2J5X3", (tb_Cam1Jig5La24X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL2J5Y3", (tb_Cam1Jig5La24Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig5La13X, (tb_Cam1Jig5La14X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig5La13Y, (tb_Cam1Jig5La14Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig5La23X, (tb_Cam1Jig5La24X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig5La23Y, (tb_Cam1Jig5La24Y, tb_Cam1P4byP3Y) },
                 // J6
-                { "tb_Cam1AddL1J6X1", (tb_Cam1Jig6La12X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL1J6Y1", (tb_Cam1Jig6La12Y, tb_Cam1P2byP1Y) },
-                { "tb_Cam1AddL2J6X1", (tb_Cam1Jig6La22X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL2J6Y1", (tb_Cam1Jig6La22Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig6La11X, (tb_Cam1Jig6La12X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig6La11Y, (tb_Cam1Jig6La12Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig6La21X, (tb_Cam1Jig6La22X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig6La21Y, (tb_Cam1Jig6La22Y, tb_Cam1P2byP1Y) },
 
-                { "tb_Cam1AddL1J6X3", (tb_Cam1Jig6La14X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL1J6Y3", (tb_Cam1Jig6La14Y, tb_Cam1P4byP3Y) },
-                { "tb_Cam1AddL2J6X3", (tb_Cam1Jig6La24X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL2J6Y3", (tb_Cam1Jig6La24Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig6La13X, (tb_Cam1Jig6La14X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig6La13Y, (tb_Cam1Jig6La14Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig6La23X, (tb_Cam1Jig6La24X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig6La23Y, (tb_Cam1Jig6La24Y, tb_Cam1P4byP3Y) },
                 // J7
-                { "tb_Cam1AddL1J7X1", (tb_Cam1Jig7La12X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL1J7Y1", (tb_Cam1Jig7La12Y, tb_Cam1P2byP1Y) },
-                { "tb_Cam1AddL2J7X1", (tb_Cam1Jig7La22X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL2J7Y1", (tb_Cam1Jig7La22Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig7La11X, (tb_Cam1Jig7La12X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig7La11Y, (tb_Cam1Jig7La12Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig7La21X, (tb_Cam1Jig7La22X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig7La21Y, (tb_Cam1Jig7La22Y, tb_Cam1P2byP1Y) },
 
-                { "tb_Cam1AddL1J7X3", (tb_Cam1Jig7La14X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL1J7Y3", (tb_Cam1Jig7La14Y, tb_Cam1P4byP3Y) },
-                { "tb_Cam1AddL2J7X3", (tb_Cam1Jig7La24X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL2J7Y3", (tb_Cam1Jig7La24Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig7La13X, (tb_Cam1Jig7La14X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig7La13Y, (tb_Cam1Jig7La14Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig7La23X, (tb_Cam1Jig7La24X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig7La23Y, (tb_Cam1Jig7La24Y, tb_Cam1P4byP3Y) },
                 // J8
-                { "tb_Cam1AddL1J8X1", (tb_Cam1Jig8La12X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL1J8Y1", (tb_Cam1Jig8La12Y, tb_Cam1P2byP1Y) },
-                { "tb_Cam1AddL2J8X1", (tb_Cam1Jig8La22X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL2J8Y1", (tb_Cam1Jig8La22Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig8La11X, (tb_Cam1Jig8La12X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig8La11Y, (tb_Cam1Jig8La12Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig8La21X, (tb_Cam1Jig8La22X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig8La21Y, (tb_Cam1Jig8La22Y, tb_Cam1P2byP1Y) },
 
-                { "tb_Cam1AddL1J8X3", (tb_Cam1Jig8La14X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL1J8Y3", (tb_Cam1Jig8La14Y, tb_Cam1P4byP3Y) },
-                { "tb_Cam1AddL2J8X3", (tb_Cam1Jig8La24X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL2J8Y3", (tb_Cam1Jig8La24Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig8La13X, (tb_Cam1Jig8La14X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig8La13Y, (tb_Cam1Jig8La14Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig8La23X, (tb_Cam1Jig8La24X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig8La23Y, (tb_Cam1Jig8La24Y, tb_Cam1P4byP3Y) },
                 // J9
-                { "tb_Cam1AddL1J9X1", (tb_Cam1Jig9La12X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL1J9Y1", (tb_Cam1Jig9La12Y, tb_Cam1P2byP1Y) },
-                { "tb_Cam1AddL2J9X1", (tb_Cam1Jig9La22X, tb_Cam1P2byP1X) },
-                { "tb_Cam1AddL2J9Y1", (tb_Cam1Jig9La22Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig9La11X, (tb_Cam1Jig9La12X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig9La11Y, (tb_Cam1Jig9La12Y, tb_Cam1P2byP1Y) },
+                { tb_Cam1Jig9La21X, (tb_Cam1Jig9La22X, tb_Cam1P2byP1X) },
+                { tb_Cam1Jig9La21Y, (tb_Cam1Jig9La22Y, tb_Cam1P2byP1Y) },
 
-                { "tb_Cam1AddL1J9X3", (tb_Cam1Jig9La14X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL1J9Y3", (tb_Cam1Jig9La14Y, tb_Cam1P4byP3Y) },
-                { "tb_Cam1AddL2J9X3", (tb_Cam1Jig9La24X, tb_Cam1P4byP3X) },
-                { "tb_Cam1AddL2J9Y3", (tb_Cam1Jig9La24Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig9La13X, (tb_Cam1Jig9La14X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig9La13Y, (tb_Cam1Jig9La14Y, tb_Cam1P4byP3Y) },
+                { tb_Cam1Jig9La23X, (tb_Cam1Jig9La24X, tb_Cam1P4byP3X) },
+                { tb_Cam1Jig9La23Y, (tb_Cam1Jig9La24Y, tb_Cam1P4byP3Y) },
             };
             Control[] controls = {
                                     tb_Cam1StdBo1X,tb_Cam1StdBo1Y,tb_Cam1StdBo1R,
@@ -170,11 +170,12 @@ namespace HG_Vision.UIVision
                                     tb_Cam1AddBo2X,tb_Cam1AddBo2Y,tb_Cam1AddBo2R,
                                     tb_Cam1AddLa1X,tb_Cam1AddLa1Y,tb_Cam1AddLa1R,
                                     tb_Cam1AddLa2X,tb_Cam1AddLa2Y,tb_Cam1AddLa2R,
+
                                     tb_Cam1AngleMax,tb_Cam1AngleMin,
                                     tb_Cam1LimitMax,tb_Cam1LimitMin,tb_Cam1Exprosure,
 
-                                    tb_Cam1L1CenterX,tb_Cam1L1CenterY,
-                                    tb_Cam1L2CenterX,tb_Cam1L2CenterY,
+                                    tb_Cam1CenterLa1X,tb_Cam1CenterLa1Y,
+                                    tb_Cam1CenterLa2X,tb_Cam1CenterLa2Y,
 
                                     tb_Cam1P2byP1X,tb_Cam1P2byP1Y,tb_Cam1P4byP3X,tb_Cam1P4byP3Y,
                                     tb_Cam1RobotStep,tb_Cam1LaserStep,
@@ -563,16 +564,39 @@ namespace HG_Vision.UIVision
                         if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
                             Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.SpacingUse = (int)_newValue;
                         break;
-                    case "BoUse":
+                    case "RobotUse":
                         _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse;
                         if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
                             Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse = (int)_newValue;
                         break;
-                    case "LaUse":
+                    case "LaserUse":
                         _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse;
                         if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
                             Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse = (int)_newValue;
                         break;
+
+                    // 激光九点标定中心(控制振镜偏移坐标)
+                    case "P2byP1X":
+                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.P2byP1.X;
+                        if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.P2byP1.X = _newValue;
+                        break;
+                    case "P2byP1Y":
+                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.P2byP1.Y;
+                        if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.P2byP1.Y = _newValue;
+                        break;
+                    case "P4byP3X":
+                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.P4byP3.X;
+                        if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.P4byP3.X = _newValue;
+                        break;
+                    case "P4byP3Y":
+                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.P4byP3.Y;
+                        if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.P4byP3.Y = _newValue;
+                        break;
+
                     case "NozzleNum":
                         _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.NozzleNum;
                         if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
@@ -582,11 +606,12 @@ namespace HG_Vision.UIVision
                 // 夹具补偿对应参数较多，由此按名称查询，缩短运行时间
                 if (item.Contains("Jig"))
                 {
+                    bool shouldBreak = false;
                     if (item.Contains("Bo1"))
                     {
                         for (int i = 0; i < Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations.Length; i++)
                         {
-                            if (item == $"Jig{i+1}Bo1X")
+                            if (item == $"Jig{i + 1}Bo1X")
                             {
                                 _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].Bo1Axis.X;
                                 if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
@@ -595,12 +620,14 @@ namespace HG_Vision.UIVision
                                     break;
                                 }
                             }
-                            if (item == $"Jig{i+1}Bo1Y")
+                            if (item == $"Jig{i + 1}Bo1Y")
                             {
                                 _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].Bo1Axis.Y;
                                 if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                                {
                                     Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].Bo1Axis.Y = _newValue;
-                                break;
+                                    break;
+                                }
                             }
                         }
                     }
@@ -612,15 +639,19 @@ namespace HG_Vision.UIVision
                             {
                                 _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].Bo2Axis.X;
                                 if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                                {
                                     Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].Bo2Axis.X = _newValue;
-                                break;
+                                    break;
+                                }
                             }
                             if (item == $"Jig{i + 1}Bo2Y")
                             {
                                 _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].Bo2Axis.Y;
                                 if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                                {
                                     Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].Bo2Axis.Y = _newValue;
-                                break;
+                                    break;
+                                }
                             }
                         }
                     }
@@ -634,14 +665,26 @@ namespace HG_Vision.UIVision
                                 {
                                     _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].L_La1Axis[j].X;
                                     if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                                    {
                                         Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].L_La1Axis[j].X = _newValue;
+                                        shouldBreak = true;
+                                        break;
+                                    }
                                 }
                                 if (item == $"Jig{i + 1}La1{j + 1}Y")
                                 {
                                     _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].L_La1Axis[j].Y;
                                     if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                                    {
                                         Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].L_La1Axis[j].Y = _newValue;
+                                        shouldBreak = true;
+                                        break;
+                                    }
                                 }
+                            }
+                            if (shouldBreak)
+                            {
+                                break;
                             }
                         }
                     }
@@ -655,21 +698,32 @@ namespace HG_Vision.UIVision
                                 {
                                     _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].L_La2Axis[j].X;
                                     if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                                    {
                                         Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].L_La2Axis[j].X = _newValue;
+                                        shouldBreak = true;
+                                        break;
+                                    }
                                 }
-                                if (item == $"Jig{i + 1} La2 {j + 1}Y")
+                                if (item == $"Jig{i + 1}La2{j + 1}Y")
                                 {
                                     _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].L_La2Axis[j].Y;
                                     if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                                    {
                                         Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations[i].L_La2Axis[j].Y = _newValue;
+                                        shouldBreak = true;
+                                        break;
+                                    }
                                 }
+                            }
+                            if (shouldBreak)
+                            {
+                                break;
                             }
                         }
                     }
                     else
                         LogHelper.Error("相机参数设置窗体CheckAndSave函数中，Jig补偿参数名称解析错误！" + item);
                 }
-                Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.SaveAllParams();
             }
             #endregion
         }
@@ -710,7 +764,7 @@ namespace HG_Vision.UIVision
             string productName = Project.Instance.GlobalManagerInstance.GlobalParamModel.useProductModel ? Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel : "通用产品";
             foreach (TextBox tb in _textBoxes)
                 CheckAndSave(tb, productName, ref oldCameraParamObjects);
-
+            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.SaveAllParams();
             if (oldCameraParamObjects.Count > 0)
             {
                 System.Windows.MessageBox.Show("相机设置参数修改成功！");
@@ -960,7 +1014,7 @@ namespace HG_Vision.UIVision
         {
             TextBox triggeringTextBox = (TextBox)sender;
 
-            if (textBoxMappings.TryGetValue(triggeringTextBox.Name, out var mapping))
+            if (textBoxMappings.TryGetValue(triggeringTextBox, out var mapping))
             {
                 if (double.TryParse(triggeringTextBox.Text, out double addValue) &&
                     double.TryParse(mapping.addendTextBox.Text, out double addendValue))
