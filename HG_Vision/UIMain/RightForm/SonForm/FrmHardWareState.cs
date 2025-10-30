@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Obj.Obj_File;
 using HG_Vision.Manager.Manager_System;
@@ -12,6 +11,9 @@ using VisionProgram.UserControls.UILamp;
 *****************************************************************/
 namespace HG_Vision.UIHome.RightForm
 {
+    /// <summary>
+    /// 硬件状态显示窗体
+    /// </summary>
     public partial class FrmHardWareState : Form
     {
         /// <summary>
@@ -36,17 +38,6 @@ namespace HG_Vision.UIHome.RightForm
             this.FormBorderStyle = FormBorderStyle.None;
             this.Dock = DockStyle.Fill;
         }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;    //避免闪屏
-                return cp;
-            }
-        }
-
         /// <summary>
         /// Load
         /// </summary>

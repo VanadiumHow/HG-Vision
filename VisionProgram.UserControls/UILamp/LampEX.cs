@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Drawing.Text;
+using System.Windows.Forms;
 using VisionProgram.UserControls.Datas;
 
 /****************************************************************
@@ -16,6 +12,11 @@ namespace VisionProgram.UserControls.UILamp
 {
     public partial class LampEX : UserControl
     {
+        private Timer _timer = new Timer();
+        private int _intColorIndex = 0;
+        /// <summary>
+        /// 指示灯控件的所有逻辑和绘制代码类
+        /// </summary>
         public LampEX()
         {
 
@@ -23,12 +24,7 @@ namespace VisionProgram.UserControls.UILamp
 
             #region 【1】设置双缓冲等属性
 
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            this.SetStyle(ControlStyles.DoubleBuffer, true);
-            this.SetStyle(ControlStyles.ResizeRedraw, true);
-            this.SetStyle(ControlStyles.Selectable, true);
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.SetStyle(ControlStyles.UserPaint, true);
+
 
             _timer.Enabled = true;
             _timer.Tick += Timer_Tick;
@@ -36,7 +32,11 @@ namespace VisionProgram.UserControls.UILamp
             #endregion
 
         }
-
+        /// <summary>
+        /// 计时器事件，用于闪烁
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
 
@@ -55,21 +55,19 @@ namespace VisionProgram.UserControls.UILamp
         private Pen _p;
         private SolidBrush _sb;
 
-        private Timer _timer = new Timer();
-        private int _intColorIndex = 0;
-
         #endregion
 
         #region 【3】添加一个设置Graphics的方法
-
+        /// <summary>
+        /// 设置画布的属性
+        /// </summary>
+        /// <param name="g"></param>
         private void SetGraphics(Graphics g)
         {
-            //设置画布的属性
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-
-            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            // 设置图形为高质量抗锯齿
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            // 设置文本为ClearType渲染
+            g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
         }
 
         #endregion

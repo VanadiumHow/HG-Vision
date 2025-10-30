@@ -12,6 +12,7 @@ using Obj.Obj_File;
 using Obj.Obj_Message;
 using HG_Vision.Manager.Manager_System;
 using HG_Vision.Contol.Control_Sql;
+using System.Linq;
 
 /****************************************************************
 
@@ -21,6 +22,7 @@ namespace HG_Vision.UIHome
     public partial class FrmHome : Form
     {
         #region 变量
+        DateTime starttime = DateTime.Now;
         internal FrmMainVision FrmMainVision;
         internal FrmRightMain FrmRightMain;
         private volatile bool _isRunningFlag = false;//程序运行标志位
@@ -106,8 +108,6 @@ namespace HG_Vision.UIHome
             PanelRightMain.Controls.Add(FrmRightMain);
             FrmRightMain.ShowForm();
         }
-
-
         /// <summary>
         /// 刷新时间定时器
         /// </summary>
@@ -115,14 +115,17 @@ namespace HG_Vision.UIHome
         /// <param name="e"></param>
         private void timerRefreshDate_Tick(object sender, EventArgs e)
         {
-            //刷新时间显示
-            string date = DateTime.Now.ToString("yyyy/MM/dd");
-            string time = DateTime.Now.ToString("HH:mm:ss");
-            ToolStripStatusLabelDate.Text = date;
-            ToolStripStatusLabelTime.Text = time;
-            ToolStripStatusLabelWeek.Text = "";
+            //获取当前系统时间-软件开启时间 = 运行时间
+            DateTime _time = DateTime.Now;
+            TimeSpan _runtimespan = (_time - starttime);
+            // 计算总小时数（小时累加，不重置）
+            int totalHours = (_runtimespan.Days * 24) + _runtimespan.Hours; // 将天数转换为小时并加上剩余小时
+            int minutes = _runtimespan.Minutes; // 分钟部分（0-59）
+            int seconds = _runtimespan.Seconds; // 秒部分（0-59）
 
-
+            // 格式化时间为"小时:分钟:秒"，消除毫秒
+            string _runtimespanstr = $"{totalHours}:{minutes:D2}:{seconds:D2}";
+            StripStatusLabelTime.Text = "软件运行时间：" + _runtimespanstr;
         }
 
         /// <summary>
@@ -189,13 +192,13 @@ namespace HG_Vision.UIHome
                 {
                     if (!_isRunningFlag)
                     {
-                        ToolStripStatusLabelRunMode.Text = "暂停";
-                        ToolStripStatusLabelRunMode.ForeColor = Color.OrangeRed;
+                        StripStatusLabelStatus.Text = "暂停";
+                        StripStatusLabelStatus.ForeColor = Color.OrangeRed;
                     }
                     else
                     {
-                        ToolStripStatusLabelRunMode.Text = "启动";
-                        ToolStripStatusLabelRunMode.ForeColor = Color.LimeGreen;
+                        StripStatusLabelStatus.Text = "启动";
+                        StripStatusLabelStatus.ForeColor = Color.LimeGreen;
                     }
                 }));
             }
@@ -208,7 +211,7 @@ namespace HG_Vision.UIHome
         private void FrmLogin_AfterChangeUserLevel(string oldRoleName)
         {
             OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName, OperationLogParamModel.LogCTypes[0], null, null, null, string.Format("{0}", "用户登录")));
-            ToolStripStatusLabelUserRole.Text = Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName;
+            StripStatusLabelUser.Text = "当前角色：" + Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName;
 
             if (oldRoleName != Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName)
             {
@@ -384,8 +387,6 @@ namespace HG_Vision.UIHome
             //设置程序标题
             LabelProgramTitle.Text = Project.Instance.GlobalManagerInstance.GlobalParamModel.programTitle + (Project.Instance.GlobalManagerInstance.GlobalParamModel.useProductModel ? "  产品型号：" + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel : "");
             NotifyIcon1.Text = LabelProgramTitle.Text;
-            //刷新软件开启时间
-            ToolStripStatusLabelStartTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             StartScheduledTask();//实例化定时器类         
             TimerRefreshDate.Start();//刷新时间显示         
             FrmLoginSetEvent();//登录窗体注册事件            
@@ -436,6 +437,7 @@ namespace HG_Vision.UIHome
                         //关闭实时取向
                         FrmMainVision.stopLiveDisplay();
                         ToolTip1.SetToolTip(ButtonStart, "暂停");
+                        StripStatusLabelStatus.Text = "运行中";
                         //ButtonStart.Image = Resources.功能栏_程序开启56;
                         _isRunningFlag = true;
                         //登录权限控件初始化
@@ -462,6 +464,7 @@ namespace HG_Vision.UIHome
                 try
                 {
                     ToolTip1.SetToolTip(ButtonStart, "启动");
+                    StripStatusLabelStatus.Text = "暂停中";
                     //ButtonStart.Image = Resources.功能栏_程序暂停56;
                     _isRunningFlag = false;
                     UserLevelControlEnabled();

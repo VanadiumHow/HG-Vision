@@ -39,22 +39,15 @@ namespace HG_Vision.UIHome
             this.ButtonClose = new System.Windows.Forms.Button();
             this.ButtonMin = new System.Windows.Forms.Button();
             this.StatusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.ToolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabelUserRole = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabelGuodu4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabelRunMode = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabelGuodu2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabelStartTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabelGuodu3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabelDate = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabelWeek = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ToolStripStatusLabelTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StripStatusLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StripStatusLabelBreak1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StripStatusLabelUser = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StripStatusLabelBreak2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StripStatusLabelTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StripStatusLabelBreak3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.TimerRefreshDate = new System.Windows.Forms.Timer(this.components);
-            this.TableLayoutPanelAll = new UITableLayoutPanel();
-            this.TableLayoutPanelMain = new UITableLayoutPanel();
+            this.TableLayoutPanelAll = new Sunny.UI.UITableLayoutPanel();
+            this.TableLayoutPanelMain = new Sunny.UI.UITableLayoutPanel();
             this.PanelMain = new System.Windows.Forms.Panel();
             this.SplitContainer1 = new System.Windows.Forms.SplitContainer();
             this.PanelVisionMain = new System.Windows.Forms.Panel();
@@ -66,6 +59,7 @@ namespace HG_Vision.UIHome
             this.Panel1 = new System.Windows.Forms.Panel();
             this.LabelProgramTitle = new System.Windows.Forms.Label();
             this.NotifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.StatusStrip1.SuspendLayout();
             this.TableLayoutPanelAll.SuspendLayout();
             this.TableLayoutPanelMain.SuspendLayout();
             this.PanelMain.SuspendLayout();
@@ -185,6 +179,12 @@ namespace HG_Vision.UIHome
             // 
             this.StatusStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(241)))), ((int)(((byte)(255)))));
             this.StatusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.StatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StripStatusLabelStatus,
+            this.StripStatusLabelBreak1,
+            this.StripStatusLabelUser,
+            this.StripStatusLabelBreak2,
+            this.StripStatusLabelTime});
             this.StatusStrip1.Location = new System.Drawing.Point(0, 938);
             this.StatusStrip1.Name = "StatusStrip1";
             this.StatusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 7, 0);
@@ -192,99 +192,46 @@ namespace HG_Vision.UIHome
             this.StatusStrip1.TabIndex = 28;
             this.StatusStrip1.Text = "statusStrip1";
             // 
-            // ToolStripStatusLabel1
+            // StripStatusLabelStatus
             // 
-            this.ToolStripStatusLabel1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ToolStripStatusLabel1.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripStatusLabel1.Image")));
-            this.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1";
-            this.ToolStripStatusLabel1.Size = new System.Drawing.Size(94, 24);
-            this.ToolStripStatusLabel1.Text = "当前角色：";
+            this.StripStatusLabelStatus.Font = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.StripStatusLabelStatus.ForeColor = System.Drawing.Color.Orange;
+            this.StripStatusLabelStatus.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.StripStatusLabelStatus.Name = "StripStatusLabelStatus";
+            this.StripStatusLabelStatus.Size = new System.Drawing.Size(43, 17);
+            this.StripStatusLabelStatus.Text = "暂停中";
             // 
-            // ToolStripStatusLabelUserRole
+            // StripStatusLabelBreak1
             // 
-            this.ToolStripStatusLabelUserRole.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ToolStripStatusLabelUserRole.Name = "ToolStripStatusLabelUserRole";
-            this.ToolStripStatusLabelUserRole.Size = new System.Drawing.Size(44, 24);
-            this.ToolStripStatusLabelUserRole.Text = "操作员";
+            this.StripStatusLabelBreak1.Name = "StripStatusLabelBreak1";
+            this.StripStatusLabelBreak1.Size = new System.Drawing.Size(30, 17);
+            this.StripStatusLabelBreak1.Text = "  ||  ";
             // 
-            // ToolStripStatusLabelGuodu4
+            // StripStatusLabelUser
             // 
-            this.ToolStripStatusLabelGuodu4.Name = "ToolStripStatusLabelGuodu4";
-            this.ToolStripStatusLabelGuodu4.Size = new System.Drawing.Size(14, 24);
-            this.ToolStripStatusLabelGuodu4.Text = "||";
+            this.StripStatusLabelUser.Font = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.StripStatusLabelUser.Name = "StripStatusLabelUser";
+            this.StripStatusLabelUser.Size = new System.Drawing.Size(67, 17);
+            this.StripStatusLabelUser.Text = "当前角色：";
             // 
-            // ToolStripStatusLabel2
+            // StripStatusLabelBreak2
             // 
-            this.ToolStripStatusLabel2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ToolStripStatusLabel2.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripStatusLabel2.Image")));
-            this.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2";
-            this.ToolStripStatusLabel2.Size = new System.Drawing.Size(94, 24);
-            this.ToolStripStatusLabel2.Text = "当前模式：";
+            this.StripStatusLabelBreak2.Name = "StripStatusLabelBreak2";
+            this.StripStatusLabelBreak2.Size = new System.Drawing.Size(30, 17);
+            this.StripStatusLabelBreak2.Text = "  ||  ";
             // 
-            // ToolStripStatusLabelRunMode
+            // StripStatusLabelTime
             // 
-            this.ToolStripStatusLabelRunMode.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ToolStripStatusLabelRunMode.ForeColor = System.Drawing.Color.OrangeRed;
-            this.ToolStripStatusLabelRunMode.LinkColor = System.Drawing.Color.Red;
-            this.ToolStripStatusLabelRunMode.Name = "ToolStripStatusLabelRunMode";
-            this.ToolStripStatusLabelRunMode.Size = new System.Drawing.Size(31, 24);
-            this.ToolStripStatusLabelRunMode.Text = "暂停";
+            this.StripStatusLabelTime.Font = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.StripStatusLabelTime.Name = "StripStatusLabelTime";
+            this.StripStatusLabelTime.Size = new System.Drawing.Size(91, 17);
+            this.StripStatusLabelTime.Text = "软件运行时间：";
             // 
-            // ToolStripStatusLabelGuodu2
+            // StripStatusLabelBreak3
             // 
-            this.ToolStripStatusLabelGuodu2.Name = "ToolStripStatusLabelGuodu2";
-            this.ToolStripStatusLabelGuodu2.Size = new System.Drawing.Size(30, 24);
-            this.ToolStripStatusLabelGuodu2.Text = "  ||  ";
-            // 
-            // ToolStripStatusLabel3
-            // 
-            this.ToolStripStatusLabel3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ToolStripStatusLabel3.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripStatusLabel3.Image")));
-            this.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3";
-            this.ToolStripStatusLabel3.Size = new System.Drawing.Size(120, 24);
-            this.ToolStripStatusLabel3.Text = "软件开启时间：";
-            // 
-            // ToolStripStatusLabelStartTime
-            // 
-            this.ToolStripStatusLabelStartTime.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ToolStripStatusLabelStartTime.Name = "ToolStripStatusLabelStartTime";
-            this.ToolStripStatusLabelStartTime.Size = new System.Drawing.Size(19, 24);
-            this.ToolStripStatusLabelStartTime.Text = "xx";
-            // 
-            // ToolStripStatusLabelGuodu3
-            // 
-            this.ToolStripStatusLabelGuodu3.Name = "ToolStripStatusLabelGuodu3";
-            this.ToolStripStatusLabelGuodu3.Size = new System.Drawing.Size(30, 24);
-            this.ToolStripStatusLabelGuodu3.Text = "  ||  ";
-            // 
-            // ToolStripStatusLabel4
-            // 
-            this.ToolStripStatusLabel4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ToolStripStatusLabel4.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripStatusLabel4.Image")));
-            this.ToolStripStatusLabel4.Name = "ToolStripStatusLabel4";
-            this.ToolStripStatusLabel4.Size = new System.Drawing.Size(68, 24);
-            this.ToolStripStatusLabel4.Text = "时间：";
-            // 
-            // ToolStripStatusLabelDate
-            // 
-            this.ToolStripStatusLabelDate.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ToolStripStatusLabelDate.Name = "ToolStripStatusLabelDate";
-            this.ToolStripStatusLabelDate.Size = new System.Drawing.Size(19, 24);
-            this.ToolStripStatusLabelDate.Text = "xx";
-            // 
-            // ToolStripStatusLabelWeek
-            // 
-            this.ToolStripStatusLabelWeek.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ToolStripStatusLabelWeek.Name = "ToolStripStatusLabelWeek";
-            this.ToolStripStatusLabelWeek.Size = new System.Drawing.Size(19, 24);
-            this.ToolStripStatusLabelWeek.Text = "xx";
-            // 
-            // ToolStripStatusLabelTime
-            // 
-            this.ToolStripStatusLabelTime.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ToolStripStatusLabelTime.Name = "ToolStripStatusLabelTime";
-            this.ToolStripStatusLabelTime.Size = new System.Drawing.Size(19, 24);
-            this.ToolStripStatusLabelTime.Text = "xx";
+            this.StripStatusLabelBreak3.Name = "StripStatusLabelBreak3";
+            this.StripStatusLabelBreak3.Size = new System.Drawing.Size(14, 24);
+            this.StripStatusLabelBreak3.Text = "||";
             // 
             // TimerRefreshDate
             // 
@@ -306,6 +253,7 @@ namespace HG_Vision.UIHome
             this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayoutPanelAll.Size = new System.Drawing.Size(1280, 938);
             this.TableLayoutPanelAll.TabIndex = 31;
+            this.TableLayoutPanelAll.TagString = null;
             // 
             // TableLayoutPanelMain
             // 
@@ -324,6 +272,7 @@ namespace HG_Vision.UIHome
             this.TableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayoutPanelMain.Size = new System.Drawing.Size(1280, 915);
             this.TableLayoutPanelMain.TabIndex = 30;
+            this.TableLayoutPanelMain.TagString = null;
             // 
             // PanelMain
             // 
@@ -493,6 +442,8 @@ namespace HG_Vision.UIHome
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmHome_FormClosed);
             this.Load += new System.EventHandler(this.FrmHome_Load);
             this.Resize += new System.EventHandler(this.FrmHome_Resize);
+            this.StatusStrip1.ResumeLayout(false);
+            this.StatusStrip1.PerformLayout();
             this.TableLayoutPanelAll.ResumeLayout(false);
             this.TableLayoutPanelMain.ResumeLayout(false);
             this.PanelMain.ResumeLayout(false);
@@ -515,19 +466,12 @@ namespace HG_Vision.UIHome
         #endregion
         private System.Windows.Forms.ToolTip ToolTip1;
         private System.Windows.Forms.StatusStrip StatusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelUserRole;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelGuodu4;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelRunMode;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelGuodu2;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelStartTime;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelGuodu3;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabel4;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelDate;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelWeek;
-        private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabelTime;
+        private System.Windows.Forms.ToolStripStatusLabel StripStatusLabelUser;
+        private System.Windows.Forms.ToolStripStatusLabel StripStatusLabelBreak3;
+        private System.Windows.Forms.ToolStripStatusLabel StripStatusLabelStatus;
+        private System.Windows.Forms.ToolStripStatusLabel StripStatusLabelBreak1;
+        private System.Windows.Forms.ToolStripStatusLabel StripStatusLabelTime;
+        private System.Windows.Forms.ToolStripStatusLabel StripStatusLabelBreak2;
         private System.Windows.Forms.Timer TimerRefreshDate;
         private UITableLayoutPanel TableLayoutPanelAll;
         private System.Windows.Forms.Button ButtonClose;
