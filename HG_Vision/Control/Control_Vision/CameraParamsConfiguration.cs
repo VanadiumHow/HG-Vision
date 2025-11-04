@@ -19,56 +19,36 @@ namespace HG_Vision.Contol.Control_Vision
         /// <summary>
         /// Ini读写对象
         /// </summary>
-        private readonly static string _xmldirctory = Project.Instance.VisionManagerInstance._visionParamPath + @"\Config";
-        private readonly static string _xml = _xmldirctory + @"\ParamsModelC1.xml";
-        
+        private readonly static string _xml = Project.Instance.VisionManagerInstance._visionParamPath + @"\Config\ParamsModelC1.xml";
         /// <summary>
         /// 读取.xml文件参数
         /// </summary>
-        public void AnalysisCameraParamsCommConfig(ref ParamsModelC1 cameraParams)
+        public void AnalysisCameraParamsConfig(ref ParamsModelC1 cameraParams)
         {
-            //配置文件夹
-            if (!Directory.Exists(_xmldirctory))
-                Directory.CreateDirectory(_xmldirctory);
-            //主配置文件ini
-            cameraParams = XmlHelper.Deserialize<ParamsModelC1>(_xml);
-            if (!File.Exists(_xml))
+            try
             {
-                File.Create(_xml).Close();
-                XmlHelper.Serialize(cameraParams, _xml);
+                //反序列化.xml文件
+                cameraParams = XmlHelper.Deserialize<ParamsModelC1>(_xml);
             }
-
+            catch(Exception ex)
+            {
+                LogHelper.Error("AnalysisCameraParamsConfig方法调用Deserialize方法失败", ex);
+            }
         }
         /// <summary>
         /// 保存参数至.xml文件
         /// </summary>
         public void SaveAllParams(ParamsModelC1 cameraParams)
         {
-            //配置文件夹
-            if (!Directory.Exists(_xmldirctory))
-                Directory.CreateDirectory(_xmldirctory);
-            //主配置文件ini
-            if (!File.Exists(_xml))
-                File.Create(_xml).Close();
-            XmlHelper.Serialize(cameraParams, _xml);
+            try
+            {
+                //序列化保存.xml文件
+                XmlHelper.Serialize(_xml, cameraParams);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("SaveAllParams方法调用Serialize方法失败", ex);
+            }
         }
-        /// <summary>
-        /// 存单个参数
-        /// </summary>
-        /// <param name="section"></param>
-        /// <param name="node"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        //public void SaveOneParams(string section, string node, string value)
-        //{
-        //    try
-        //    {
-        //        _ini.WriteIniKey(section, node, value);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception($"{section}段 {node} 节点 写入{value}出现异常：{ex.Message}");
-        //    }
-        //}
     }
 }

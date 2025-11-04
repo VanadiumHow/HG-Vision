@@ -912,7 +912,7 @@ namespace HG_Vision.UIVision
         }
         private void btn_GetStd1_Click(object sender, EventArgs e)
         {
-            if (Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
+            if (Project.Instance.UserManagerInstance.CurrentUser.UserRoleName == "工程师")
             {
                 if (MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
@@ -935,7 +935,7 @@ namespace HG_Vision.UIVision
         }
         private void btn_GetStd2_Click(object sender, EventArgs e)
         {
-            if (Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
+            if (Project.Instance.UserManagerInstance.CurrentUser.UserRoleName == "工程师")
             {
                 if (MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
@@ -960,7 +960,7 @@ namespace HG_Vision.UIVision
 
         private void btn_GetStd3_Click(object sender, EventArgs e)
         {
-            if (Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
+            if (Project.Instance.UserManagerInstance.CurrentUser.UserRoleName == "工程师")
             {
                 if (MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
@@ -986,7 +986,7 @@ namespace HG_Vision.UIVision
 
         private void btn_GetStd4_Click(object sender, EventArgs e)
         {
-            if (Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName == "工程师")
+            if (Project.Instance.UserManagerInstance.CurrentUser.UserRoleName == "工程师")
             {
                 if (MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {

@@ -19,6 +19,7 @@ namespace HG_Vision
         {
             bool createdNew; //返回是否赋予了使用线程的互斥体初始所属权
             System.Threading.Mutex instance = new System.Threading.Mutex(true, "VisionProgram", out createdNew); 
+
             if (createdNew)
             {
                 Application.EnableVisualStyles();

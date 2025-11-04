@@ -12,6 +12,7 @@ using Obj.Obj_File;
 using Obj.Obj_Message;
 using HG_Vision.Manager.Manager_System;
 using HG_Vision.Contol.Control_Sql;
+using Microsoft.Win32;
 
 /****************************************************************
 
@@ -36,7 +37,6 @@ namespace HG_Vision.UIHome
             InitializeComponent();
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             this.WindowState = FormWindowState.Maximized;
-
 
             //判断操作日志是否打印在数据库，若不是，则操作日志查询功能按钮动态消失，并其后面的按钮位置往前移动
             //框架中默认数据库是有的，所以操作日志查询按钮默认是在窗体上在的。        
@@ -65,15 +65,6 @@ namespace HG_Vision.UIHome
   new Lazy<FrmHome>(() => new FrmHome(), isThreadSafe: true);
         public static FrmHome Instance => _lazyInstance.Value;
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;    //避免闪屏
-                return cp;
-            }
-        }
 
         /// <summary>
         /// 禁止回车键触发了上次点击按钮的事件
@@ -89,14 +80,6 @@ namespace HG_Vision.UIHome
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-
-        #region  方法
-        private void FrmLoginSetEvent()
-        {
-            FrmLogin.Instance.OnAfterChangeUserRole += FrmLogin_AfterChangeUserLevel;
-        }
-
         /// <summary>
         /// 初始化加载右侧窗口集
         /// </summary>
@@ -205,12 +188,12 @@ namespace HG_Vision.UIHome
         /// <summary>
         /// 登录权限更新事件
         /// </summary>
-        private void FrmLogin_AfterChangeUserLevel(string oldRoleName)
+        private void AfterChangeUserLevel(string oldRoleName)
         {
-            OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName, OperationLogParamModel.LogCTypes[0], null, null, null, string.Format("{0}", "用户登录")));
-            ToolStripStatusLabelUserRole.Text = Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName;
-
-            if (oldRoleName != Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName)
+            OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserManagerInstance.CurrentUser.UserRoleName, OperationLogParamModel.LogCTypes[0], null, null, null, string.Format("{0}", "用户登录")));
+            ToolStripStatusLabelUserRole.Text = Project.Instance.UserManagerInstance.CurrentUser.UserRoleName;
+            TimerLogout.Start();
+            if (oldRoleName != Project.Instance.UserManagerInstance.CurrentUser.UserRoleName)
             {
                 UserLevelControlEnabled();
             }
@@ -316,39 +299,30 @@ namespace HG_Vision.UIHome
         private void UserLevelControlEnabled()
         {
             //设置 相机参数设置 图像菜单栏 扫码菜单栏
-            switch (Project.Instance.UserInfoManagerInstance.LoginUser.UserRole)
+            switch (Project.Instance.UserManagerInstance.CurrentUser.UserRoleName)
             {
-                case "A-Operator":
+                case "操作者":
                     {
-                        controlFrmVisionControl(false);
                         ButtonSetting.Enabled = false;
-                        //ButtonPlcTest.Enabled = false;
-                        //ButtonPlcMonitor.Enabled = false;
                         for (int i = 0; i < GlobalCameraParams.toolStripMenuItem.Count; i++)
                         {
                             GlobalCameraParams.toolStripMenuItem[i].Enabled = false;
                         }
                     }
                     break;
-                case "B-Admin":
+                case "管理员":
                     {
                         //不允许
-                        controlFrmVisionControl(false);
                         ButtonSetting.Enabled = !_isRunningFlag;
-                        //ButtonPlcTest.Enabled = false;
-                        //ButtonPlcMonitor.Enabled = _isRunningFlag;
                         for (int i = 0; i < GlobalCameraParams.toolStripMenuItem.Count; i++)
                         {
                             GlobalCameraParams.toolStripMenuItem[i].Enabled = !_isRunningFlag;
                         }
                     }
                     break;
-                case "C-Technician":
+                case "工程师":
                     {
-                        controlFrmVisionControl(!_isRunningFlag);
                         ButtonSetting.Enabled = !_isRunningFlag;
-                        //ButtonPlcTest.Enabled = !_isRunningFlag;
-                        //ButtonPlcMonitor.Enabled = _isRunningFlag;
                         for (int i = 0; i < GlobalCameraParams.toolStripMenuItem.Count; i++)
                         {
                             GlobalCameraParams.toolStripMenuItem[i].Enabled = !_isRunningFlag;
@@ -357,18 +331,6 @@ namespace HG_Vision.UIHome
                     break;
             }
         }
-
-        /// <summary>
-        /// 视觉图像菜单栏按钮权限控制
-        /// </summary>
-        /// <param name="isEnabled"></param>
-        public void controlFrmVisionControl(bool isEnabled)
-        {
-
-        }
-
-        #endregion
-
         #region 控件事件
 
         private void FrmHome_Load(object sender, EventArgs e)
@@ -387,8 +349,7 @@ namespace HG_Vision.UIHome
             //刷新软件开启时间
             ToolStripStatusLabelStartTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             StartScheduledTask();//实例化定时器类         
-            TimerRefreshDate.Start();//刷新时间显示         
-            FrmLoginSetEvent();//登录窗体注册事件            
+            TimerRefreshDate.Start();//刷新时间显示
             StartSaveImage();//启动存图线程        
             StartSaveLog4Log();//启动log4net日志处理线程           
             StartSaveOperationLog();//判断启动操作日志记录线程
@@ -439,7 +400,6 @@ namespace HG_Vision.UIHome
                         //ButtonStart.Image = Resources.功能栏_程序开启56;
                         _isRunningFlag = true;
                         //登录权限控件初始化
-                        UserLevelControlEnabled();
                         UpdateRunStateShow();
                         //开启线程
                         //StartPLCThread(true);
@@ -464,7 +424,6 @@ namespace HG_Vision.UIHome
                     ToolTip1.SetToolTip(ButtonStart, "启动");
                     //ButtonStart.Image = Resources.功能栏_程序暂停56;
                     _isRunningFlag = false;
-                    UserLevelControlEnabled();
                     UpdateRunStateShow();
                     //开启线程
                     //StartPLCThread(false);
@@ -499,19 +458,9 @@ namespace HG_Vision.UIHome
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {
+            FrmLogin.Instance.OnAfterChangeUserRole += AfterChangeUserLevel;//登录窗体注册事件
             FrmLogin.Instance.ShowDialog();
         }
-
-        //private void ButtonSearchOpLog_Click(object sender, EventArgs e)
-        //{
-        //    if (FrmOperationLogQuery.Instance.IsFormOpen)
-        //    {
-        //        this.ConfirmErrorDialog("操作日志查询窗体已打开！");
-        //        return;
-        //    }
-        //    FrmOperationLogQuery.Instance.Show();
-        //}
-
         private void ButtonMin_Click(object sender, EventArgs e)
         {
             ChanggeWindowMin();
@@ -555,7 +504,7 @@ namespace HG_Vision.UIHome
             {
                 //1.保存退出程序操作记录
                 {
-                    OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName, OperationLogParamModel.LogCTypes[1], null, null, null, string.Format("{0}", "退出系统")));
+                    OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserManagerInstance.CurrentUser.UserRoleName, OperationLogParamModel.LogCTypes[1], null, null, null, string.Format("{0}", "退出系统")));
                 }
                 //2.
                 {
@@ -632,5 +581,22 @@ namespace HG_Vision.UIHome
             this.Refresh();
         }
         #endregion
+
+        private void TimerLogout_Tick(object sender, EventArgs e)
+        {
+            TimerLogout.Stop();
+            Project.Instance.UserManagerInstance.CurrentUser = Project.Instance.UserManagerInstance.DefultUser;
+            ToolStripStatusLabelUserRole.Text = Project.Instance.UserManagerInstance.CurrentUser.UserRoleName;
+            UserLevelControlEnabled();
+        }
+        private void FrmHome_Activated(object sender, EventArgs e)
+        {
+            TimerLogout.Enabled = true;
+        }
+
+        private void FrmHome_Deactivate(object sender, EventArgs e)
+        {
+            TimerLogout.Enabled = false;
+        }
     }
 }

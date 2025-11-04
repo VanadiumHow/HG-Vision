@@ -222,7 +222,6 @@
     <Compile Include="Control\Control_System\DataCheckConfiguration.cs" />
     <Compile Include="Control\Control_System\GlobalConfiguration.cs" />
     <Compile Include="Control\Control_Laser\LeaserClientConfiguration.cs" />
-    <Compile Include="Control\Control_System\MD5Encrypt.cs" />
     <Compile Include="Control\Control_Sql\OperationLogDataBll.cs" />
     <Compile Include="Control\Control_Robot\RobotSeverConfiguration.cs" />
     <Compile Include="Control\Control_System\UserConfiguration.cs" />
@@ -252,7 +251,7 @@
     <Compile Include="Manager\Manager_Process\ProductionDataManager.cs" />
     <Compile Include="Manager\Manager_System\Project.cs" />
     <Compile Include="Manager\Manager_Sql\SqlInfoManager.cs" />
-    <Compile Include="Manager\Manager_System\UserInfoManager.cs" />
+    <Compile Include="Manager\Manager_User\UserManager.cs" />
     <Compile Include="Manager\Manager_Vision\VisionManager.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
@@ -553,6 +552,14 @@
       <Project>{08f48cb2-bee8-41c4-8efe-baa3eae1cb8d}</Project>
       <Name>Obj_Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Obj_User\Obj_User.csproj">
+      <Project>{49119092-0ff4-4eaa-9c4c-5037ac689672}</Project>
+      <Name>Obj_User</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserModel\UserModel.csproj">
+      <Project>{ce23dec1-9690-4c17-bc3b-6f101a1c07aa}</Project>
+      <Name>UserModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VisionProgram.UserControls\VisionProgram.UserControls.csproj">
       <Project>{f2b31baf-5300-4840-a356-438444fb8a17}</Project>
       <Name>VisionProgram.UserControls</Name>
@@ -569,6 +576,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Control\Control_User\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

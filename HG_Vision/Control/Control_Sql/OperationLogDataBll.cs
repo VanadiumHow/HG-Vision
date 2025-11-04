@@ -90,7 +90,7 @@ namespace HG_Vision.Contol.Control_Sql
                 foreach (OperationLogParamModel.OldParam item in oldParamObjects)
                 {
                     OperationLogProcessFactory(new OperationLogDataModel(
-                    Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName,
+                    Project.Instance.UserManagerInstance.CurrentUser.UserRoleName,
                     OperationLogParamModel.LogCTypes[2], item.Field, item.OldValue, item.NewValue, string.Format("触发{0}，将{1}从{2}变成{3}", $"修改{tag}参数", item.Text,
                     item.OldValue, item.NewValue)));
                 }

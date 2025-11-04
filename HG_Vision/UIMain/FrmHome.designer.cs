@@ -53,8 +53,8 @@ namespace HG_Vision.UIHome
             this.ToolStripStatusLabelWeek = new System.Windows.Forms.ToolStripStatusLabel();
             this.ToolStripStatusLabelTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.TimerRefreshDate = new System.Windows.Forms.Timer(this.components);
-            this.TableLayoutPanelAll = new UITableLayoutPanel();
-            this.TableLayoutPanelMain = new UITableLayoutPanel();
+            this.TableLayoutPanelAll = new Sunny.UI.UITableLayoutPanel();
+            this.TableLayoutPanelMain = new Sunny.UI.UITableLayoutPanel();
             this.PanelMain = new System.Windows.Forms.Panel();
             this.SplitContainer1 = new System.Windows.Forms.SplitContainer();
             this.PanelVisionMain = new System.Windows.Forms.Panel();
@@ -66,6 +66,7 @@ namespace HG_Vision.UIHome
             this.Panel1 = new System.Windows.Forms.Panel();
             this.LabelProgramTitle = new System.Windows.Forms.Label();
             this.NotifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.TimerLogout = new System.Windows.Forms.Timer(this.components);
             this.TableLayoutPanelAll.SuspendLayout();
             this.TableLayoutPanelMain.SuspendLayout();
             this.PanelMain.SuspendLayout();
@@ -306,6 +307,7 @@ namespace HG_Vision.UIHome
             this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayoutPanelAll.Size = new System.Drawing.Size(1280, 938);
             this.TableLayoutPanelAll.TabIndex = 31;
+            this.TableLayoutPanelAll.TagString = null;
             // 
             // TableLayoutPanelMain
             // 
@@ -324,6 +326,7 @@ namespace HG_Vision.UIHome
             this.TableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayoutPanelMain.Size = new System.Drawing.Size(1280, 915);
             this.TableLayoutPanelMain.TabIndex = 30;
+            this.TableLayoutPanelMain.TagString = null;
             // 
             // PanelMain
             // 
@@ -475,6 +478,11 @@ namespace HG_Vision.UIHome
             this.NotifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon1.Icon")));
             this.NotifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1_MouseClick);
             // 
+            // TimerLogout
+            // 
+            this.TimerLogout.Interval = 5000;
+            this.TimerLogout.Tick += new System.EventHandler(this.TimerLogout_Tick);
+            // 
             // FrmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -492,6 +500,8 @@ namespace HG_Vision.UIHome
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmHome_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmHome_FormClosed);
             this.Load += new System.EventHandler(this.FrmHome_Load);
+            this.Activated += new System.EventHandler(this.FrmHome_Activated);
+            this.Deactivate += new System.EventHandler(this.FrmHome_Deactivate);
             this.Resize += new System.EventHandler(this.FrmHome_Resize);
             this.TableLayoutPanelAll.ResumeLayout(false);
             this.TableLayoutPanelMain.ResumeLayout(false);
@@ -547,5 +557,6 @@ namespace HG_Vision.UIHome
         private System.Windows.Forms.Panel Panel1;
         internal System.Windows.Forms.NotifyIcon NotifyIcon1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Timer TimerLogout;
     }
 }

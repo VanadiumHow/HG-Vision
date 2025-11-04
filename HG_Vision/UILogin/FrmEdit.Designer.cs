@@ -200,7 +200,7 @@
             this.ButtonClose.TabIndex = 21;
             this.ButtonClose.Text = "关闭";
             this.ButtonClose.UseVisualStyleBackColor = false;
-            this.ButtonClose.Click += new System.EventHandler(this.btClose_Click);
+            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
             // ButtonOK
             // 
@@ -215,7 +215,7 @@
             this.ButtonOK.TabIndex = 22;
             this.ButtonOK.Text = "确认";
             this.ButtonOK.UseVisualStyleBackColor = false;
-            this.ButtonOK.Click += new System.EventHandler(this.btOK_Click);
+            this.ButtonOK.Click += new System.EventHandler(this.ButtonOK_Click);
             // 
             // PanelMain
             // 

@@ -46,14 +46,11 @@ namespace Model.ConstantModel
         //程序Laser参数LaserComm.ini加载路径
         public static string LaserCommPath = DataPath + "\\Config\\LaserComm.ini";
 
-        /// <summary>
-        /// User文件夹路径
-        /// </summary>
-        public static string UserPath = DataPath + @"\\User";
-
         //程序用户登录信息UserInfo.json加载路径
-        public static string UserInfoFilePath = DataPath + @"\\User\\UserInfo.txt";//尽量放到某磁盘某个文件夹，不随程序而动
+        public static string UsersFilePath = DataPath + @"\\User\\Users.xml";
 
+        //ParamsModelC1.xml加载路径
+        //由于参数文件会随产品型号变化，所以放到Product文件夹下的不同目录中，因此无法在此处定义，由VisionManager动态赋值
         /// <summary>
         /// 程序默认视觉工具文件夹路径
         /// </summary>

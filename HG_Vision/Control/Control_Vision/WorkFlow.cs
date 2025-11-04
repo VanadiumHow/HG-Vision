@@ -19,7 +19,9 @@ using Model.ConstantModel;
 *****************************************************************/
 namespace HG_Vision.Contol.Control_Vision
 {
-
+    /// <summary>
+    /// 流程触发事件参数
+    /// </summary>
     internal class TriggerEventArgs : EventArgs
     {
         internal int FlowIdx { get; set; }

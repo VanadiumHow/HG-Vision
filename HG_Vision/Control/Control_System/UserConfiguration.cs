@@ -1,9 +1,11 @@
-﻿using Obj.Obj_File;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using Model.ConstantModel;
+using Model.EnumModel;
+using Model.UserModel;
+using Obj.Obj_File;
 using Obj_Serialize;
-using Model.ConstantModel;
+using System;
+using Obj.Obj_User;
+using HG_Vision.Manager.Manager_System;
 
 /****************************************************************
 
@@ -12,63 +14,59 @@ namespace HG_Vision.Contol.Control_System
 {
     public class UserConfiguration
     {
-        internal UserConfiguration() { }
-
+        private UsersModel usersModel;
+        public UserHelper userHelper;
         /// <summary>
-        /// 检查各配置文件
+        /// 解析.xml文件反序列化成用户类
         /// </summary>
-        private void InitConfigDirctory()
+        public void AnalysisUserInfoConfig(ref UsersModel usersModel)
         {
             try
             {
-                //配置文件夹
-                if (!Directory.Exists(FilePathModel.UserPath))
-                    Directory.CreateDirectory(FilePathModel.UserPath);
-                //主配置文件ini
-                if (!File.Exists(FilePathModel.UserInfoFilePath))
-                    File.Create(FilePathModel.UserInfoFilePath).Close();
+                var deserializedModel = XmlHelper.Deserialize<UsersModel>(FilePathModel.UsersFilePath);
+                userHelper = new UserHelper(ref deserializedModel);
+                usersModel = deserializedModel;
+                this.usersModel = deserializedModel; // 同时更新两个引用
             }
             catch (Exception ex)
             {
-                LogHelper.Error("检查用户信息配置文件路径出现异常", ex);
+                LogHelper.Error("AnalysisUserInfoConfig方法调用Deserialize方法失败", ex);
             }
         }
-
-
         /// <summary>
-        /// 解析UserInfo,初始化userInfoDic
-        /// </summary>
-        public void AnalysisUserInfoConfig(SortedDictionary<string, string> userRoleDic, ref Dictionary<string, UserInfoModel> userInfoDic)
-        {
-            try
-            {
-                InitConfigDirctory();
-
-                Dictionary<string, string> dic = SerializeHelper.BinaryDeserialize<Dictionary<string, string>>(FilePathModel.UserInfoFilePath);
-                List<UserInfoModel> userList = new List<UserInfoModel>();
-
-                foreach (String s in dic.Keys)
-                {
-                    userInfoDic.Add(userRoleDic[s], new UserInfoModel(dic[s], s, userRoleDic[s]));
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error("解析用户信息配置文件出现异常", ex);
-            }
-        }
-
-        /// <summary>
-        /// 注册或者修改时调用写入二进制文件
+        /// 序列化成.xml文件保存用户类
         /// </summary>
         /// <param name="section"></param>
         /// <param name="node"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public void SaveOrUpdate(Dictionary<string, string> dic)
+        public void SaveUserInfoConfig(UsersModel usersModel)
         {
-            SerializeHelper.BinarySerialize<Dictionary<string, string>>(FilePathModel.UserInfoFilePath, dic);
+            try
+            {
+                //序列化保存.xml文件
+                XmlHelper.Serialize(FilePathModel.UsersFilePath, usersModel);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("SaveUserInfoConfig方法调用Serialize方法失败", ex);
+            }
         }
-
+        public eLoginStatus UserLogin(UserInfoModel user)
+        {
+            eLoginStatus eLoginStatus = userHelper.CheckPassword(user);
+            if (eLoginStatus == eLoginStatus.LoginSuccessTag)
+                Project.Instance.UserManagerInstance.CurrentUser = user;
+            return eLoginStatus;
+        }
+        public bool AlterPassWord(string UserRoleName, string oldpwd, string newpwd)
+        {
+            if (userHelper.AlterPassWord(UserRoleName, oldpwd, newpwd))
+            {
+                SaveUserInfoConfig(usersModel);
+                return true;
+            }
+            return false;
+        }
     }
 }
