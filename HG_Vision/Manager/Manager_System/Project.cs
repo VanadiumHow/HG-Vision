@@ -6,7 +6,7 @@ using HG_Vision.Manager.Manager_Process;
 using HG_Vision.Manager.Manager_Robot;
 using HG_Vision.Manager.Manager_Laser;
 using HG_Vision.Manager.Manager_PLC;
-
+using HG_Vision.Manager.Manager_User;
 /****************************************************************
 
 *****************************************************************/
@@ -23,7 +23,7 @@ namespace HG_Vision.Manager.Manager_System
         /// <summary>
         /// 用户信息管理类
         /// </summary>
-        public UserInfoManager UserInfoManagerInstance = null;
+        public UserManager UserManagerInstance = null;
 
         /// <summary>
         /// 数据库管理类
@@ -93,7 +93,7 @@ namespace HG_Vision.Manager.Manager_System
         {
             GlobalManagerInstance = new GlobalManager();
 
-            UserInfoManagerInstance = new UserInfoManager();
+            UserManagerInstance = new UserManager();
 
             SqlInfoManagerInstance = new SqlInfoManager();
 
@@ -175,7 +175,7 @@ namespace HG_Vision.Manager.Manager_System
         {
             try
             {
-                Project.Instance.UserInfoManagerInstance.Initial();
+                Project.Instance.UserManagerInstance.Initial();
             }
             catch (Exception ex)
             {
@@ -202,7 +202,7 @@ namespace HG_Vision.Manager.Manager_System
         }
 
         /// <summary>
-        /// 
+        /// 加载视觉参数
         /// </summary>
         public void LoadVisionInfo()
         {

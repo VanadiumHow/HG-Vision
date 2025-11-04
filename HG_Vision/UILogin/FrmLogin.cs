@@ -4,6 +4,7 @@ using Obj.Obj_Message;
 using Model.EnumModel;
 using Model.UIModel;
 using HG_Vision.Manager.Manager_System;
+using System.Windows.Controls;
 
 /****************************************************************
 
@@ -39,47 +40,14 @@ namespace HG_Vision.UILogin
         {
             this.TextBoxEXPwd.Clear();
             this.ComboBoxEXUser.Items.Clear();
-            this.ComboBoxEXUser.Items.AddRange(Project.Instance.UserInfoManagerInstance.GetRoleNames().ToArray());
+            this.ComboBoxEXUser.Items.AddRange(Project.Instance.UserManagerInstance.userConfiguration.userHelper.GetAllRoleNames().ToArray());
             this.ComboBoxEXUser.SelectedIndex = 0;
             this.ActiveControl = TextBoxEXPwd;
         }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;    //避免闪屏
-                return cp;
-            }
-        }
-
         private void btClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void ComboBoxEXUser_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.TextBoxEXPwd.Focus();
-        }
-
-        private void ComboBoxEXUser_KeyDown(object sender, KeyEventArgs e)
-        {
-            this.TextBoxEXPwd.Focus();
-        }
-
-        private void timerLogin_Tick(object sender, EventArgs e)
-        {
-            //关闭定时器
-            TimerLogin.Stop();
-            string oldRoleName = Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName;
-            //切换到操作员
-            Project.Instance.UserInfoManagerInstance.SwitchToOperatorUser();
-            //角色切换后响应事件
-            OnAfterChangeUserRole?.Invoke(oldRoleName);
-        }
-
         private void TextBoxEXPwd_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -98,39 +66,24 @@ namespace HG_Vision.UILogin
                 this.ConfirmErrorDialog("请输入登录的密码！");
                 return;
             }
-            string oldRoleName = Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName;
-            LoginSituationModels tag = Project.Instance.UserInfoManagerInstance.UserLogin(roleName, loginPwd);
+            string oldRoleName = Project.Instance.UserManagerInstance.CurrentUser.UserRoleName;
+            eLoginStatus tag = Project.Instance.UserManagerInstance.userConfiguration.UserLogin(new Model.UserModel.UserInfoModel { UserRoleName = roleName, UserPassword = loginPwd });
             switch (tag)
             {
-                case LoginSituationModels.LoginPawErrorTag:
+                case eLoginStatus.LoginPswErrorTag:
                     this.ConfirmErrorDialog("输入密码错误！");
                     break;
-                case LoginSituationModels.LoginSuccessTag:
+                case eLoginStatus.LoginSuccessTag:
                     this.ConfirmInfoDialog($"角色【{roleName}】登录成功！");
-                    this.LoginSuccess(oldRoleName);
+                    //登录成功之后触发FrmHome中定义的事件，并退出关闭当前窗体
+                    OnAfterChangeUserRole?.Invoke(oldRoleName);
+                    this.Close();
+                    this.Dispose();
+                    break;
+                case eLoginStatus.LoginUserNotExistTag:
+                    this.ConfirmErrorDialog("选择的角色不存在！");
                     break;
             }
-        }
-
-        /// <summary>
-        /// 登录成功之后
-        /// </summary>
-        /// <param name="oldRoleName"></param>
-        private void LoginSuccess(string oldRoleName)
-        {
-            //角色切换后响应事件
-            if (TimerLogin.Enabled)
-            {
-                NoticeHelper.OutputMessageSend($"停止登录旧计时，开启当前角色【{Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName}】登录新计时", OutputLevelModel.INFO);
-                TimerLogin.Stop();
-            }
-            else
-                NoticeHelper.OutputMessageSend($"开启当前角色【{Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName}】登录计时", OutputLevelModel.INFO);
-
-            TimerLogin.Start();
-            OnAfterChangeUserRole?.Invoke(oldRoleName);
-            this.Close();
-            this.Dispose();
         }
 
         private void btModify_Click(object sender, EventArgs e)

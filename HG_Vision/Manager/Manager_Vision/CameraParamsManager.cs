@@ -40,8 +40,7 @@ namespace HG_Vision.Manager.Manager_Vision
         /// </summary>
         public void Initial()
         {
-            _cameraParams = new ParamsModelC1();
-            CameraParamsConfiguration.AnalysisCameraParamsCommConfig(ref _cameraParams);
+            CameraParamsConfiguration.AnalysisCameraParamsConfig(ref _cameraParams);
         }
         /// <summary>
         /// 存单个参数(此处增加对应用层的调用接口，以简化调用方法的代码长度)

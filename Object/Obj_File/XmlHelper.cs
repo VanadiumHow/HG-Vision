@@ -27,10 +27,16 @@ namespace Obj.Obj_File
         {
             try
             {
+                // 确保目录存在
+                var directory = Path.GetDirectoryName(filePath);
+                if (!Directory.Exists(directory))
+                    Directory.CreateDirectory(directory);
                 if (!File.Exists(filePath))
                 {
-                    LogHelper.Error($"路径文件不存在: {filePath}");
-                    return new T(); // 文件不存在时返回新实例
+                    File.Create(filePath).Close();
+                    var _aimObj = new T(); // 文件不存在时返回新实例
+                    XmlHelper.Serialize(filePath, _aimObj);
+                    return _aimObj;
                 }
 
                 var serializer = GetSerializer(typeof(T));
@@ -46,7 +52,7 @@ namespace Obj.Obj_File
             }
         }
 
-        public static void Serialize<T>(T obj, string filePath) where T : class, new()
+        public static void Serialize<T>(string filePath, T obj) where T : class, new()
         {
             var serializer = GetSerializer(typeof(T));
             // 确保目录存在
@@ -57,6 +63,9 @@ namespace Obj.Obj_File
             {
                 serializer.Serialize(writer, obj);
             }
+            //主配置文件ini
+            if (!File.Exists(filePath))
+                LogHelper.Error("序列化保存filePath失败，请检查文件目录与相关代码！");
         }
     }
 }

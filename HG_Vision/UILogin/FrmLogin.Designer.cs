@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.Label1 = new System.Windows.Forms.Label();
-            this.TimerLogin = new System.Windows.Forms.Timer(this.components);
             this.Label5 = new System.Windows.Forms.Label();
             this.ButtonModify = new System.Windows.Forms.Button();
             this.ButtonLogin = new System.Windows.Forms.Button();
@@ -57,11 +55,6 @@
             this.Label1.Size = new System.Drawing.Size(69, 19);
             this.Label1.TabIndex = 0;
             this.Label1.Text = "欢迎登录";
-            // 
-            // TimerLogin
-            // 
-            this.TimerLogin.Interval = 600000;
-            this.TimerLogin.Tick += new System.EventHandler(this.timerLogin_Tick);
             // 
             // Label5
             // 
@@ -248,7 +241,6 @@
         #endregion
         private System.Windows.Forms.Label Label1;
         private System.Windows.Forms.Label Label5;
-        private System.Windows.Forms.Timer TimerLogin;
         private System.Windows.Forms.Button ButtonModify;
         private System.Windows.Forms.Button ButtonLogin;
         private System.Windows.Forms.Label Label2;

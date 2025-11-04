@@ -148,7 +148,7 @@ namespace HG_Vision.UISetting
                     FrmHome.Instance.LabelProgramTitle.Text = Project.Instance.GlobalManagerInstance.GlobalParamModel.programTitle + (Project.Instance.GlobalManagerInstance.GlobalParamModel.useProductModel ? "  产品型号：" + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel : "");
                     FrmHome.Instance.NotifyIcon1.Text = FrmHome.Instance.LabelProgramTitle.Text;
                 }));
-                OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName,
+                OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserManagerInstance.CurrentUser.UserRoleName,
                     OperationLogParamModel.LogCTypes[2], "ChangeProduct", oldValue, newValue, string.Format("触发{0}，将{1}从{2}变成{3}", "切换产品", "产品型号", oldValue, newValue)));
             }
             catch (Exception ex)
@@ -166,7 +166,7 @@ namespace HG_Vision.UISetting
         {
             try
             {
-                OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName,
+                OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserManagerInstance.CurrentUser.UserRoleName,
                     OperationLogParamModel.LogCTypes[2], "DeleteProduct", old, null, $"触发删除产品型号{old}"));
             }
             catch (Exception ex)

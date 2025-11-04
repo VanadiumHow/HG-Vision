@@ -19,10 +19,11 @@
     /// <summary>
     /// 登录情况
     /// </summary>
-    public enum LoginSituationModels
+    public enum eLoginStatus
     {
-        LoginPawErrorTag = 1,//密码错误
-        LoginSuccessTag = 2,//成功
+        LoginUserNotExistTag = 0,//用户不存在
+        LoginPswErrorTag = -1,//密码错误
+        LoginSuccessTag = 1,//成功
     }
 
 
