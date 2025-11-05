@@ -39,25 +39,6 @@ namespace HG_Vision.UIHome
             InitializeComponent();
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             this.WindowState = FormWindowState.Maximized;
-
-            //判断操作日志是否打印在数据库，若不是，则操作日志查询功能按钮动态消失，并其后面的按钮位置往前移动
-            //框架中默认数据库是有的，所以操作日志查询按钮默认是在窗体上在的。        
-            if (!Project.Instance.GlobalManagerInstance.GlobalParamModel.saveOperationLogsByDB)
-            {
-                //若图标栏上还要在最后追加功能按钮，则需要将新增的Button的tag进行赋值（值是在图标栏中按钮的顺序索引），则添加之后，请把添加的button再添加到下面的集合中。
-                //Button[] arrayIconBarButton = new Button[Panel2.Controls.Count];
-                //for (int i = 0; i < Panel2.Controls.Count; i++)
-                //{
-                //    Button button = (Button)(Panel2.Controls[i]);
-                //    arrayIconBarButton[Convert.ToInt32(button.Tag)] = button;
-                //}
-                //List<Button> listButton = new List<Button>();
-                //listButton.AddRange(arrayIconBarButton);
-                //int index = listButton.IndexOf(ButtonSearchOpLog);
-                //Panel2.Controls.Remove(ButtonSearchOpLog);
-                //for (int i = listButton.Count - 1; i > index; i--)
-                //    listButton[i].Location = listButton[i - 1].Location;
-            }
         }
 
         /// <summary>
@@ -193,10 +174,10 @@ namespace HG_Vision.UIHome
         /// </summary>
         private void AfterChangeUserLevel(string oldRoleName)
         {
-            OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName, OperationLogParamModel.LogCTypes[0], null, null, null, string.Format("{0}", "用户登录")));
-            StripStatusLabelUser.Text = "当前角色：" + Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName;
-
-            if (oldRoleName != Project.Instance.UserInfoManagerInstance.LoginUser.UserRoleName)
+            OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserManagerInstance.CurrentUser.UserRoleName, OperationLogParamModel.LogCTypes[0], null, null, null, string.Format("{0}", "用户登录")));
+            StripStatusLabelUser.Text = "当前角色：" + Project.Instance.UserManagerInstance.CurrentUser.UserRoleName;
+            TimerLogout.Start();
+            if (oldRoleName != Project.Instance.UserManagerInstance.CurrentUser.UserRoleName)
             {
                 UserLevelControlEnabled();
             }
@@ -589,17 +570,19 @@ namespace HG_Vision.UIHome
         {
             TimerLogout.Stop();
             Project.Instance.UserManagerInstance.CurrentUser = Project.Instance.UserManagerInstance.DefultUser;
-            ToolStripStatusLabelUserRole.Text = Project.Instance.UserManagerInstance.CurrentUser.UserRoleName;
+            StripStatusLabelUser.Text = "当前角色：" + Project.Instance.UserManagerInstance.CurrentUser.UserRoleName;
             UserLevelControlEnabled();
         }
         private void FrmHome_Activated(object sender, EventArgs e)
         {
-            TimerLogout.Enabled = true;
+            if (Project.Instance.UserManagerInstance.CurrentUser != Project.Instance.UserManagerInstance.DefultUser)
+                TimerLogout.Start();
         }
 
         private void FrmHome_Deactivate(object sender, EventArgs e)
         {
-            TimerLogout.Enabled = false;
+            if (Project.Instance.UserManagerInstance.CurrentUser != Project.Instance.UserManagerInstance.DefultUser)
+                TimerLogout.Stop();
         }
     }
 }

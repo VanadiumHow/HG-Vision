@@ -70,7 +70,7 @@
             // 
             // ButtonModify
             // 
-            this.ButtonModify.BackColor = System.Drawing.Color.CadetBlue;
+            this.ButtonModify.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(40)))), ((int)(((byte)(55)))));
             this.ButtonModify.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonModify.FlatAppearance.BorderSize = 0;
             this.ButtonModify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -86,7 +86,7 @@
             // 
             // ButtonLogin
             // 
-            this.ButtonLogin.BackColor = System.Drawing.Color.CadetBlue;
+            this.ButtonLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(40)))), ((int)(((byte)(55)))));
             this.ButtonLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonLogin.FlatAppearance.BorderSize = 0;
             this.ButtonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -113,7 +113,7 @@
             // 
             // PanelHeader
             // 
-            this.PanelHeader.BackColor = System.Drawing.Color.CadetBlue;
+            this.PanelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(19)))), ((int)(((byte)(44)))));
             this.PanelHeader.Controls.Add(this.ButtonClose);
             this.PanelHeader.Controls.Add(this.Label1);
             this.PanelHeader.Dock = System.Windows.Forms.DockStyle.Top;

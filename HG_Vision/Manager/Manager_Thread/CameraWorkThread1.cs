@@ -156,7 +156,6 @@ namespace HG_Vision.Manager.Manager_Thread
 				string _code2 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD100_45, 42, 40))).Trim().Replace(":", "-");
 				double _spacing1 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD100_45, 82, 4), 0);
 				double _spacing2 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD100_45, 86, 4), 0);
-
 				if (e.NozzleIdx.Equals(0))
 				{
 					if (!processOK)

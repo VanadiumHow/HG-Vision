@@ -33,18 +33,18 @@ namespace HG_Vision.UISetting
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSetting));
             this.PanelForm = new System.Windows.Forms.Panel();
             this.PanelAll = new System.Windows.Forms.Panel();
-            this.TableLayoutPanelAll = new UITableLayoutPanel();
+            this.TableLayoutPanelAll = new Sunny.UI.UITableLayoutPanel();
             this.PanelTitle = new System.Windows.Forms.Panel();
-            this.ButtonMin = new System.Windows.Forms.Button();
-            this.ButtonClose = new System.Windows.Forms.Button();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.PanelMain = new System.Windows.Forms.Panel();
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.ButtonGeneralSet = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ButtonMin = new System.Windows.Forms.Button();
+            this.ButtonClose = new System.Windows.Forms.Button();
             this.ButtonProductChangeSet = new System.Windows.Forms.Button();
             this.ButtonCameraParamsSetting = new System.Windows.Forms.Button();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.PanelAll.SuspendLayout();
             this.TableLayoutPanelAll.SuspendLayout();
             this.PanelTitle.SuspendLayout();
@@ -87,14 +87,15 @@ namespace HG_Vision.UISetting
             this.TableLayoutPanelAll.Location = new System.Drawing.Point(0, 0);
             this.TableLayoutPanelAll.Name = "TableLayoutPanelAll";
             this.TableLayoutPanelAll.RowCount = 2;
-            this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayoutPanelAll.Size = new System.Drawing.Size(1468, 748);
             this.TableLayoutPanelAll.TabIndex = 0;
+            this.TableLayoutPanelAll.TagString = null;
             // 
             // PanelTitle
             // 
-            this.PanelTitle.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.PanelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(19)))), ((int)(((byte)(44)))));
             this.PanelTitle.Controls.Add(this.ButtonMin);
             this.PanelTitle.Controls.Add(this.ButtonClose);
             this.PanelTitle.Controls.Add(this.LabelTitle);
@@ -102,57 +103,18 @@ namespace HG_Vision.UISetting
             this.PanelTitle.Location = new System.Drawing.Point(0, 0);
             this.PanelTitle.Margin = new System.Windows.Forms.Padding(0);
             this.PanelTitle.Name = "PanelTitle";
-            this.PanelTitle.Size = new System.Drawing.Size(1468, 40);
+            this.PanelTitle.Size = new System.Drawing.Size(1468, 36);
             this.PanelTitle.TabIndex = 0;
-            // 
-            // ButtonMin
-            // 
-            this.ButtonMin.BackColor = System.Drawing.Color.SlateGray;
-            this.ButtonMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ButtonMin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonMin.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ButtonMin.FlatAppearance.BorderSize = 0;
-            this.ButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMin.ForeColor = System.Drawing.Color.White;
-            this.ButtonMin.Image = global::HG_Vision.Properties.Resources.向下;
-            this.ButtonMin.Location = new System.Drawing.Point(1360, 0);
-            this.ButtonMin.Margin = new System.Windows.Forms.Padding(0);
-            this.ButtonMin.Name = "ButtonMin";
-            this.ButtonMin.Size = new System.Drawing.Size(54, 40);
-            this.ButtonMin.TabIndex = 14;
-            this.ButtonMin.UseVisualStyleBackColor = false;
-            this.ButtonMin.Click += new System.EventHandler(this.ButtonMin_Click);
-            // 
-            // ButtonClose
-            // 
-            this.ButtonClose.BackColor = System.Drawing.Color.SlateGray;
-            this.ButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ButtonClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonClose.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ButtonClose.FlatAppearance.BorderSize = 0;
-            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.ForeColor = System.Drawing.Color.White;
-            this.ButtonClose.Image = global::HG_Vision.Properties.Resources.错误;
-            this.ButtonClose.Location = new System.Drawing.Point(1414, 0);
-            this.ButtonClose.Margin = new System.Windows.Forms.Padding(0);
-            this.ButtonClose.Name = "ButtonClose";
-            this.ButtonClose.Size = new System.Drawing.Size(54, 40);
-            this.ButtonClose.TabIndex = 13;
-            this.ButtonClose.UseVisualStyleBackColor = false;
-            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
             // LabelTitle
             // 
-            this.LabelTitle.BackColor = System.Drawing.Color.SlateGray;
-            this.LabelTitle.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LabelTitle.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LabelTitle.BackColor = System.Drawing.Color.Transparent;
+            this.LabelTitle.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Bold);
             this.LabelTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelTitle.Location = new System.Drawing.Point(0, 0);
+            this.LabelTitle.Location = new System.Drawing.Point(-3, 1);
             this.LabelTitle.Margin = new System.Windows.Forms.Padding(0);
             this.LabelTitle.Name = "LabelTitle";
-            this.LabelTitle.Size = new System.Drawing.Size(1371, 40);
+            this.LabelTitle.Size = new System.Drawing.Size(100, 33);
             this.LabelTitle.TabIndex = 0;
             this.LabelTitle.Text = " 系统设置";
             this.LabelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -164,10 +126,10 @@ namespace HG_Vision.UISetting
             this.PanelBottom.Controls.Add(this.PanelMain);
             this.PanelBottom.Controls.Add(this.PanelLeft);
             this.PanelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelBottom.Location = new System.Drawing.Point(0, 40);
+            this.PanelBottom.Location = new System.Drawing.Point(0, 36);
             this.PanelBottom.Margin = new System.Windows.Forms.Padding(0);
             this.PanelBottom.Name = "PanelBottom";
-            this.PanelBottom.Size = new System.Drawing.Size(1468, 709);
+            this.PanelBottom.Size = new System.Drawing.Size(1468, 712);
             this.PanelBottom.TabIndex = 1;
             // 
             // PanelMain
@@ -176,12 +138,12 @@ namespace HG_Vision.UISetting
             this.PanelMain.Location = new System.Drawing.Point(151, 0);
             this.PanelMain.Margin = new System.Windows.Forms.Padding(0);
             this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(1317, 709);
+            this.PanelMain.Size = new System.Drawing.Size(1317, 712);
             this.PanelMain.TabIndex = 2;
             // 
             // PanelLeft
             // 
-            this.PanelLeft.BackColor = System.Drawing.Color.SlateGray;
+            this.PanelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(55)))), ((int)(((byte)(89)))));
             this.PanelLeft.Controls.Add(this.ButtonGeneralSet);
             this.PanelLeft.Controls.Add(this.ButtonProductChangeSet);
             this.PanelLeft.Controls.Add(this.ButtonCameraParamsSetting);
@@ -189,7 +151,7 @@ namespace HG_Vision.UISetting
             this.PanelLeft.Location = new System.Drawing.Point(0, 0);
             this.PanelLeft.Margin = new System.Windows.Forms.Padding(0);
             this.PanelLeft.Name = "PanelLeft";
-            this.PanelLeft.Size = new System.Drawing.Size(151, 709);
+            this.PanelLeft.Size = new System.Drawing.Size(151, 712);
             this.PanelLeft.TabIndex = 0;
             // 
             // ButtonGeneralSet
@@ -198,13 +160,13 @@ namespace HG_Vision.UISetting
             this.ButtonGeneralSet.BackColor = System.Drawing.Color.Transparent;
             this.ButtonGeneralSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonGeneralSet.FlatAppearance.BorderSize = 0;
-            this.ButtonGeneralSet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.ButtonGeneralSet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(67)))), ((int)(((byte)(76)))));
             this.ButtonGeneralSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonGeneralSet.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonGeneralSet.ForeColor = System.Drawing.SystemColors.Window;
-            this.ButtonGeneralSet.Image = global::HG_Vision.Properties.Resources.打印;
+            this.ButtonGeneralSet.Image = global::HG_Vision.Properties.Resources.系统;
             this.ButtonGeneralSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonGeneralSet.Location = new System.Drawing.Point(0, 85);
+            this.ButtonGeneralSet.Location = new System.Drawing.Point(0, 87);
             this.ButtonGeneralSet.Name = "ButtonGeneralSet";
             this.ButtonGeneralSet.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.ButtonGeneralSet.Size = new System.Drawing.Size(151, 35);
@@ -213,19 +175,60 @@ namespace HG_Vision.UISetting
             this.ButtonGeneralSet.UseVisualStyleBackColor = false;
             this.ButtonGeneralSet.Click += new System.EventHandler(this.ButtonGeneralSet_Click);
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // ButtonMin
+            // 
+            this.ButtonMin.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonMin.BackgroundImage = global::HG_Vision.Properties.Resources.缩小;
+            this.ButtonMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonMin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonMin.FlatAppearance.BorderSize = 0;
+            this.ButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonMin.ForeColor = System.Drawing.Color.White;
+            this.ButtonMin.Location = new System.Drawing.Point(1389, 3);
+            this.ButtonMin.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonMin.Name = "ButtonMin";
+            this.ButtonMin.Size = new System.Drawing.Size(38, 29);
+            this.ButtonMin.TabIndex = 14;
+            this.ButtonMin.UseVisualStyleBackColor = false;
+            this.ButtonMin.Click += new System.EventHandler(this.ButtonMin_Click);
+            // 
+            // ButtonClose
+            // 
+            this.ButtonClose.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonClose.BackgroundImage = global::HG_Vision.Properties.Resources.退出;
+            this.ButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonClose.FlatAppearance.BorderSize = 0;
+            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonClose.Location = new System.Drawing.Point(1430, 3);
+            this.ButtonClose.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonClose.Name = "ButtonClose";
+            this.ButtonClose.Size = new System.Drawing.Size(38, 29);
+            this.ButtonClose.TabIndex = 13;
+            this.ButtonClose.UseVisualStyleBackColor = false;
+            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            // 
             // ButtonProductChangeSet
             // 
             this.ButtonProductChangeSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonProductChangeSet.BackColor = System.Drawing.Color.Transparent;
             this.ButtonProductChangeSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonProductChangeSet.FlatAppearance.BorderSize = 0;
-            this.ButtonProductChangeSet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.ButtonProductChangeSet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(67)))), ((int)(((byte)(76)))));
             this.ButtonProductChangeSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonProductChangeSet.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonProductChangeSet.ForeColor = System.Drawing.SystemColors.Window;
-            this.ButtonProductChangeSet.Image = global::HG_Vision.Properties.Resources.卡券标签;
+            this.ButtonProductChangeSet.Image = global::HG_Vision.Properties.Resources.标签;
             this.ButtonProductChangeSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonProductChangeSet.Location = new System.Drawing.Point(0, 44);
+            this.ButtonProductChangeSet.Location = new System.Drawing.Point(0, 46);
             this.ButtonProductChangeSet.Name = "ButtonProductChangeSet";
             this.ButtonProductChangeSet.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.ButtonProductChangeSet.Size = new System.Drawing.Size(151, 35);
@@ -238,15 +241,15 @@ namespace HG_Vision.UISetting
             // 
             this.ButtonCameraParamsSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonCameraParamsSetting.BackColor = System.Drawing.Color.Transparent;
-            this.ButtonCameraParamsSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonCameraParamsSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ButtonCameraParamsSetting.FlatAppearance.BorderSize = 0;
-            this.ButtonCameraParamsSetting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.ButtonCameraParamsSetting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(67)))), ((int)(((byte)(76)))));
             this.ButtonCameraParamsSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonCameraParamsSetting.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ButtonCameraParamsSetting.ForeColor = System.Drawing.SystemColors.Window;
-            this.ButtonCameraParamsSetting.Image = global::HG_Vision.Properties.Resources.系统;
+            this.ButtonCameraParamsSetting.Image = global::HG_Vision.Properties.Resources.参数;
             this.ButtonCameraParamsSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonCameraParamsSetting.Location = new System.Drawing.Point(0, 3);
+            this.ButtonCameraParamsSetting.Location = new System.Drawing.Point(0, 5);
             this.ButtonCameraParamsSetting.Name = "ButtonCameraParamsSetting";
             this.ButtonCameraParamsSetting.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.ButtonCameraParamsSetting.Size = new System.Drawing.Size(151, 35);
@@ -254,13 +257,6 @@ namespace HG_Vision.UISetting
             this.ButtonCameraParamsSetting.Text = "相机参数";
             this.ButtonCameraParamsSetting.UseVisualStyleBackColor = false;
             this.ButtonCameraParamsSetting.Click += new System.EventHandler(this.ButtonCameraParamsSetting_Click);
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
             // FrmSetting
             // 

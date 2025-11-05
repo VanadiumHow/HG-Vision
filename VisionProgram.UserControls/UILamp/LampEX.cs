@@ -26,7 +26,7 @@ namespace VisionProgram.UserControls.UILamp
 
 
 
-            _timer.Enabled = true;
+            _timer.Enabled = false;
             _timer.Tick += Timer_Tick;
 
             #endregion

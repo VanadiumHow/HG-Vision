@@ -67,7 +67,7 @@ namespace ProgramGerneral
             this.Opacity = 0.0;
             UpdateTimer.Interval = TIMER_INTERVAL;
             UpdateTimer.Start();
-            this.Title.Text = ProgramName;
+            //this.Title.Text = ProgramName;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
             progressBarEX.Value = 0;
         }
@@ -76,8 +76,8 @@ namespace ProgramGerneral
         {
             base.OnResize(e);
 
-            int ProgressbarEX_X = (int)(0.5 * (this.Width - progressBarEX.Width));
-            progressBarEX.Location = new System.Drawing.Point(ProgressbarEX_X, progressBarEX.Location.Y);
+            //int ProgressbarEX_X = (int)(0.5 * (this.Width - progressBarEX.Width));
+            //progressBarEX.Location = new System.Drawing.Point(ProgressbarEX_X, progressBarEX.Location.Y);
         }
 
         #region Public Static Methods
@@ -257,7 +257,6 @@ namespace ProgramGerneral
         }
 
         #endregion Event Handlers
-
     }
 
     #region Auxiliary Classes 

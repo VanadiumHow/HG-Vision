@@ -435,10 +435,13 @@ namespace HG_Vision.UIVision
 
         private void 处理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.FlowIdx = 0;
-            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.NozzleIdx = 0;
-            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.eMode = Model.EnumModel.eProcessMode.debug;
-			CameraWorkThrad1.VisionProcess(Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs);
+            TriggerEventArgs args = new TriggerEventArgs()
+            {
+                FlowIdx = 0,
+                NozzleIdx = 0,
+                eMode = Model.EnumModel.eProcessMode.debug
+            };
+         CameraWorkThrad1.VisionProcess(args);
 		}
 
         private void 工具设置ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -620,10 +623,13 @@ namespace HG_Vision.UIVision
 
         private void 处理2工位ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.FlowIdx = 0;
-			Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.NozzleIdx = 1;
-			Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.eMode = Model.EnumModel.eProcessMode.debug;
-			CameraWorkThrad1.VisionProcess(Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs);
+            TriggerEventArgs args = new TriggerEventArgs()
+            {
+                FlowIdx = 0,
+                NozzleIdx = 1,
+                eMode = Model.EnumModel.eProcessMode.debug
+            };
+           CameraWorkThrad1.VisionProcess(args);
 		}
 
         private void 单帧2工位ToolStripMenuItem_Click(object sender, EventArgs e)

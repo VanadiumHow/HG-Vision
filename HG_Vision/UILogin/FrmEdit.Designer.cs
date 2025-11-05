@@ -59,6 +59,7 @@
             this.TextBoxOldPwd.Name = "TextBoxOldPwd";
             this.TextBoxOldPwd.Padding = new System.Windows.Forms.Padding(4);
             this.TextBoxOldPwd.PasswordChar = false;
+            this.TextBoxOldPwd.ReadOnly = false;
             this.TextBoxOldPwd.Size = new System.Drawing.Size(340, 34);
             this.TextBoxOldPwd.TabIndex = 0;
             this.TextBoxOldPwd.UnderlinedStyle = false;
@@ -91,6 +92,7 @@
             this.TextBoxFinalPwd.Name = "TextBoxFinalPwd";
             this.TextBoxFinalPwd.Padding = new System.Windows.Forms.Padding(4);
             this.TextBoxFinalPwd.PasswordChar = true;
+            this.TextBoxFinalPwd.ReadOnly = false;
             this.TextBoxFinalPwd.Size = new System.Drawing.Size(340, 34);
             this.TextBoxFinalPwd.TabIndex = 6;
             this.TextBoxFinalPwd.UnderlinedStyle = false;
@@ -136,6 +138,7 @@
             this.TextBoxNewPwd.Name = "TextBoxNewPwd";
             this.TextBoxNewPwd.Padding = new System.Windows.Forms.Padding(4);
             this.TextBoxNewPwd.PasswordChar = false;
+            this.TextBoxNewPwd.ReadOnly = false;
             this.TextBoxNewPwd.Size = new System.Drawing.Size(340, 34);
             this.TextBoxNewPwd.TabIndex = 17;
             this.TextBoxNewPwd.UnderlinedStyle = false;
@@ -167,7 +170,7 @@
             // 
             // PanelTitle
             // 
-            this.PanelTitle.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.PanelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(19)))), ((int)(((byte)(44)))));
             this.PanelTitle.Controls.Add(this.LabelTile);
             this.PanelTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelTitle.Location = new System.Drawing.Point(0, 0);

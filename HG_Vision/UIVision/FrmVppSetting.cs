@@ -185,7 +185,7 @@ namespace HG_Vision
         private void FrmVppSetting_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult _result = MessageBox.Show("退出之前是否保存设置", "提示", MessageBoxButtons.YesNoCancel);
-            if (_result == DialogResult.OK)
+            if (_result == DialogResult.Yes)
             {
                 //关闭服务器接收事件
                 RobotSignalsModel.CCDProcess = 0;
@@ -221,7 +221,7 @@ namespace HG_Vision
                     timer2 = null;
                 }
             }
-            else if(_result == DialogResult.No)
+            else if (_result == DialogResult.No)
             {
                 //关闭服务器接收事件
                 RobotSignalsModel.CCDProcess = 0;
@@ -253,6 +253,12 @@ namespace HG_Vision
                     timer2 = null;
                 }
                 //e.Cancel = true;
+            }
+            else if (_result == DialogResult.Cancel)
+            {
+                // 取消关闭操作，窗体保持打开
+                e.Cancel = true;
+                return; // 直接返回，无需执行资源清理
             }
         }
         /// <summary>

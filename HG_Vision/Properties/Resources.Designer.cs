@@ -73,9 +73,19 @@ namespace HG_Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 加载界面 {
+        internal static System.Drawing.Bitmap 华工科技图标 {
             get {
-                object obj = ResourceManager.GetObject("加载界面", resourceCulture);
+                object obj = ResourceManager.GetObject("华工科技图标", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 华工科技图标1 {
+            get {
+                object obj = ResourceManager.GetObject("华工科技图标1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,19 +103,9 @@ namespace HG_Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 双人 {
+        internal static System.Drawing.Bitmap 参数 {
             get {
-                object obj = ResourceManager.GetObject("双人", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap 向上 {
-            get {
-                object obj = ResourceManager.GetObject("向上", resourceCulture);
+                object obj = ResourceManager.GetObject("参数", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +116,16 @@ namespace HG_Vision.Properties {
         internal static System.Drawing.Bitmap 向下 {
             get {
                 object obj = ResourceManager.GetObject("向下", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 多用户 {
+            get {
+                object obj = ResourceManager.GetObject("多用户", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,29 +173,9 @@ namespace HG_Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 打印 {
-            get {
-                object obj = ResourceManager.GetObject("打印", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         internal static System.Drawing.Bitmap 搜索商家 {
             get {
                 object obj = ResourceManager.GetObject("搜索商家", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap 播放 {
-            get {
-                object obj = ResourceManager.GetObject("播放", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +203,9 @@ namespace HG_Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 用户 {
+        internal static System.Drawing.Bitmap 标签 {
             get {
-                object obj = ResourceManager.GetObject("用户", resourceCulture);
+                object obj = ResourceManager.GetObject("标签", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,9 +303,29 @@ namespace HG_Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 缩小 {
+            get {
+                object obj = ResourceManager.GetObject("缩小", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 货币 {
             get {
                 object obj = ResourceManager.GetObject("货币", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 退出 {
+            get {
+                object obj = ResourceManager.GetObject("退出", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,9 +353,9 @@ namespace HG_Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 错误 {
+        internal static System.Drawing.Bitmap 饼图 {
             get {
-                object obj = ResourceManager.GetObject("错误", resourceCulture);
+                object obj = ResourceManager.GetObject("饼图", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -353,9 +363,9 @@ namespace HG_Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 饼图 {
+        internal static System.Drawing.Bitmap 齿轮 {
             get {
-                object obj = ResourceManager.GetObject("饼图", resourceCulture);
+                object obj = ResourceManager.GetObject("齿轮", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

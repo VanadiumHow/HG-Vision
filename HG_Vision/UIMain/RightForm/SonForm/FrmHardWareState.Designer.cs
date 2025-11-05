@@ -68,7 +68,7 @@ namespace HG_Vision.UIHome.RightForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.FromArgb(31, 40, 55);
             this.ClientSize = new System.Drawing.Size(257, 143);
             this.Controls.Add(this.TableLayoutPanelAll);
             this.DoubleBuffered = true;

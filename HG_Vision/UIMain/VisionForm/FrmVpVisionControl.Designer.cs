@@ -56,7 +56,7 @@ namespace HG_Vision.UIVision
             // 
             // menuStrip
             // 
-            this.menuStrip.BackColor = System.Drawing.Color.Lavender;
+            this.menuStrip.BackColor = System.Drawing.Color.White;
             this.menuStrip.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -72,7 +72,7 @@ namespace HG_Vision.UIVision
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(2, 1, 0, 1);
-            this.menuStrip.Size = new System.Drawing.Size(889, 26);
+            this.menuStrip.Size = new System.Drawing.Size(1500, 26);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "打开图片";
             // 
@@ -88,7 +88,10 @@ namespace HG_Vision.UIVision
             // 
             // 单帧2工位ToolStripMenuItem
             // 
+            this.单帧2工位ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F);
+            this.单帧2工位ToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.单帧2工位ToolStripMenuItem.Name = "单帧2工位ToolStripMenuItem";
+            this.单帧2工位ToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
             this.单帧2工位ToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
             this.单帧2工位ToolStripMenuItem.Text = "单帧2工位";
             this.单帧2工位ToolStripMenuItem.Click += new System.EventHandler(this.单帧2工位ToolStripMenuItem_Click);
@@ -125,7 +128,10 @@ namespace HG_Vision.UIVision
             // 
             // 处理2工位ToolStripMenuItem
             // 
+            this.处理2工位ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F);
+            this.处理2工位ToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.处理2工位ToolStripMenuItem.Name = "处理2工位ToolStripMenuItem";
+            this.处理2工位ToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
             this.处理2工位ToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
             this.处理2工位ToolStripMenuItem.Text = "处理2工位";
             this.处理2工位ToolStripMenuItem.Click += new System.EventHandler(this.处理2工位ToolStripMenuItem_Click);
@@ -142,15 +148,20 @@ namespace HG_Vision.UIVision
             // 
             // 图片保存ToolStripMenuItem
             // 
+            this.图片保存ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F);
             this.图片保存ToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.图片保存ToolStripMenuItem.Name = "图片保存ToolStripMenuItem";
+            this.图片保存ToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
             this.图片保存ToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
             this.图片保存ToolStripMenuItem.Text = "存图设置";
             this.图片保存ToolStripMenuItem.Click += new System.EventHandler(this.图片保存ToolStripMenuItem_Click);
             // 
             // 查看图片ToolStripMenuItem
             // 
+            this.查看图片ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F);
+            this.查看图片ToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.查看图片ToolStripMenuItem.Name = "查看图片ToolStripMenuItem";
+            this.查看图片ToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
             this.查看图片ToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
             this.查看图片ToolStripMenuItem.Text = "查看图片";
             this.查看图片ToolStripMenuItem.Click += new System.EventHandler(this.查看图片ToolStripMenuItem_Click);
@@ -163,7 +174,7 @@ namespace HG_Vision.UIVision
             this.panel1.Location = new System.Drawing.Point(0, 26);
             this.panel1.Margin = new System.Windows.Forms.Padding(1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(889, 455);
+            this.panel1.Size = new System.Drawing.Size(1500, 932);
             this.panel1.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -180,7 +191,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(889, 455);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1500, 932);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.TagString = null;
             // 
@@ -200,7 +211,7 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
             this.uiTableLayoutPanel1.RowCount = 1;
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(885, 13);
+            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1496, 13);
             this.uiTableLayoutPanel1.TabIndex = 1;
             this.uiTableLayoutPanel1.TagString = null;
             // 
@@ -210,7 +221,7 @@ namespace HG_Vision.UIVision
             this.lbSerialNum.Dock = System.Windows.Forms.DockStyle.Left;
             this.lbSerialNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbSerialNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lbSerialNum.Location = new System.Drawing.Point(266, 0);
+            this.lbSerialNum.Location = new System.Drawing.Point(449, 0);
             this.lbSerialNum.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lbSerialNum.Name = "lbSerialNum";
             this.lbSerialNum.Size = new System.Drawing.Size(46, 13);
@@ -240,25 +251,26 @@ namespace HG_Vision.UIVision
             this.cogRecordDisplay1.Name = "cogRecordDisplay1";
             this.cogRecordDisplay1.SelectedRecordKey = null;
             this.cogRecordDisplay1.ShowRecordsDropDown = true;
-            this.cogRecordDisplay1.Size = new System.Drawing.Size(885, 434);
+            this.cogRecordDisplay1.Size = new System.Drawing.Size(1496, 911);
             this.cogRecordDisplay1.Subject = null;
             this.cogRecordDisplay1.TabIndex = 2;
             // 
             // tbExposeReal
             // 
             this.tbExposeReal.BackColor = System.Drawing.Color.White;
-            this.tbExposeReal.Location = new System.Drawing.Point(754, 0);
+            this.tbExposeReal.Font = new System.Drawing.Font("宋体", 9F);
+            this.tbExposeReal.Location = new System.Drawing.Point(849, 1);
             this.tbExposeReal.Name = "tbExposeReal";
-            this.tbExposeReal.Size = new System.Drawing.Size(73, 21);
+            this.tbExposeReal.Size = new System.Drawing.Size(54, 21);
             this.tbExposeReal.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Lavender;
+            this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(704, 2);
+            this.label1.Location = new System.Drawing.Point(799, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 4;
@@ -268,8 +280,8 @@ namespace HG_Vision.UIVision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(889, 481);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1500, 958);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbExposeReal);
             this.Controls.Add(this.panel1);

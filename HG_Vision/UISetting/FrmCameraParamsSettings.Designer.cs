@@ -35,34 +35,6 @@ namespace HG_Vision.UIVision
             this.uiTabControlAll = new System.Windows.Forms.TabControl();
             this.uiTabPage1 = new System.Windows.Forms.TabPage();
             this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
-            this.tb_Cam1CenterLa2Y = new System.Windows.Forms.TextBox();
-            this.lb_Cam1CenterLa2Y = new System.Windows.Forms.Label();
-            this.tb_Cam1CenterLa2X = new System.Windows.Forms.TextBox();
-            this.lb_Cam1CenterLa2X = new System.Windows.Forms.Label();
-            this.lb_Cam1CenterLa1Y = new System.Windows.Forms.Label();
-            this.tb_Cam1CenterLa1X = new System.Windows.Forms.TextBox();
-            this.lb_Cam1CenterLa1X = new System.Windows.Forms.Label();
-            this.tb_Cam1CenterLa1Y = new System.Windows.Forms.TextBox();
-            this.tb_Cam1AngleMax = new System.Windows.Forms.TextBox();
-            this.tb_Cam1AngleMin = new System.Windows.Forms.TextBox();
-            this.tb_Cam1LimitMax = new System.Windows.Forms.TextBox();
-            this.tb_Cam1LimitMin = new System.Windows.Forms.TextBox();
-            this.tb_Cam1RobotStep = new System.Windows.Forms.TextBox();
-            this.lb_Cam1RobotStep = new System.Windows.Forms.Label();
-            this.lb_Cam1LimitMin = new System.Windows.Forms.Label();
-            this.lb_Cam1LimitMax = new System.Windows.Forms.Label();
-            this.lb_Cam1AngleMin = new System.Windows.Forms.Label();
-            this.lb_Cam1AngleMax = new System.Windows.Forms.Label();
-            this.lb_Cam1LaserUse = new System.Windows.Forms.Label();
-            this.tb_Cam1LaserUse = new System.Windows.Forms.TextBox();
-            this.lb_Cam1Spacing = new System.Windows.Forms.Label();
-            this.tb_Cam1Spacing = new System.Windows.Forms.TextBox();
-            this.lb_Cam1SpacingUse = new System.Windows.Forms.Label();
-            this.tb_Cam1SpacingUse = new System.Windows.Forms.TextBox();
-            this.lb_Cam1LaserStep = new System.Windows.Forms.Label();
-            this.tb_Cam1LaserStep = new System.Windows.Forms.TextBox();
-            this.lb_Cam1RobotUse = new System.Windows.Forms.Label();
-            this.tb_Cam1RobotUse = new System.Windows.Forms.TextBox();
             this.lb_Cam1StdBo1X = new System.Windows.Forms.Label();
             this.tb_Cam1StdBo1X = new System.Windows.Forms.TextBox();
             this.lb_Cam1StdBo2X = new System.Windows.Forms.Label();
@@ -125,6 +97,34 @@ namespace HG_Vision.UIVision
             this.lb_Cam1P4byP3X = new System.Windows.Forms.Label();
             this.tb_Cam1P4byP3Y = new System.Windows.Forms.TextBox();
             this.lb_Cam1P4byP3Y = new System.Windows.Forms.Label();
+            this.lb_Cam1AngleMax = new System.Windows.Forms.Label();
+            this.tb_Cam1AngleMax = new System.Windows.Forms.TextBox();
+            this.lb_Cam1CenterLa1X = new System.Windows.Forms.Label();
+            this.tb_Cam1CenterLa1X = new System.Windows.Forms.TextBox();
+            this.lb_Cam1CenterLa1Y = new System.Windows.Forms.Label();
+            this.tb_Cam1CenterLa1Y = new System.Windows.Forms.TextBox();
+            this.lb_Cam1AngleMin = new System.Windows.Forms.Label();
+            this.tb_Cam1AngleMin = new System.Windows.Forms.TextBox();
+            this.lb_Cam1LimitMax = new System.Windows.Forms.Label();
+            this.tb_Cam1LimitMax = new System.Windows.Forms.TextBox();
+            this.lb_Cam1CenterLa2X = new System.Windows.Forms.Label();
+            this.tb_Cam1CenterLa2X = new System.Windows.Forms.TextBox();
+            this.lb_Cam1CenterLa2Y = new System.Windows.Forms.Label();
+            this.tb_Cam1CenterLa2Y = new System.Windows.Forms.TextBox();
+            this.tb_Cam1LimitMin = new System.Windows.Forms.TextBox();
+            this.lb_Cam1LimitMin = new System.Windows.Forms.Label();
+            this.lb_Cam1Spacing = new System.Windows.Forms.Label();
+            this.lb_Cam1SpacingUse = new System.Windows.Forms.Label();
+            this.tb_Cam1SpacingUse = new System.Windows.Forms.TextBox();
+            this.lb_Cam1RobotStep = new System.Windows.Forms.Label();
+            this.lb_Cam1RobotUse = new System.Windows.Forms.Label();
+            this.tb_Cam1RobotUse = new System.Windows.Forms.TextBox();
+            this.tb_Cam1LaserUse = new System.Windows.Forms.TextBox();
+            this.lb_Cam1LaserUse = new System.Windows.Forms.Label();
+            this.lb_Cam1LaserStep = new System.Windows.Forms.Label();
+            this.tb_Cam1LaserStep = new System.Windows.Forms.TextBox();
+            this.tb_Cam1Spacing = new System.Windows.Forms.TextBox();
+            this.tb_Cam1RobotStep = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1Jig1Bo2Y = new System.Windows.Forms.Label();
@@ -651,15 +651,16 @@ namespace HG_Vision.UIVision
             // 
             // uiTabPage1
             // 
-            this.uiTabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
+            this.uiTabPage1.BackColor = System.Drawing.Color.Transparent;
             this.uiTabPage1.Controls.Add(this.uiTableLayoutPanel1);
             this.uiTabPage1.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTabPage1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.uiTabPage1.ForeColor = System.Drawing.Color.Black;
             this.uiTabPage1.Location = new System.Drawing.Point(4, 44);
             this.uiTabPage1.Name = "uiTabPage1";
             this.uiTabPage1.Size = new System.Drawing.Size(1300, 552);
             this.uiTabPage1.TabIndex = 0;
             this.uiTabPage1.Text = "相机1";
+            this.uiTabPage1.UseVisualStyleBackColor = true;
             // 
             // uiTableLayoutPanel1
             // 
@@ -681,32 +682,6 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.140408F));
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa2Y, 12, 5);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa2Y, 11, 5);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa2X, 12, 4);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa2X, 11, 4);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa1Y, 11, 3);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa1X, 11, 2);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleMax, 10, 2);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleMin, 10, 3);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LimitMax, 10, 4);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LimitMin, 10, 5);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1RobotStep, 10, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1RobotStep, 9, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LimitMin, 9, 5);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LimitMax, 9, 4);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleMin, 9, 3);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleMax, 9, 2);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LaserUse, 11, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LaserUse, 12, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1Spacing, 9, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1Spacing, 10, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1SpacingUse, 11, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1SpacingUse, 12, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LaserStep, 9, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LaserStep, 10, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1RobotUse, 11, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1RobotUse, 12, 7);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1StdBo1X, 0, 1);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1StdBo1X, 1, 1);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1StdBo2X, 2, 1);
@@ -769,11 +744,38 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1P4byP3X, 6, 9);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1P4byP3Y, 7, 10);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1P4byP3Y, 6, 10);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa1Y, 12, 3);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa1X, 12, 2);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleMax, 9, 1);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleMax, 10, 1);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa1X, 11, 1);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa1X, 12, 1);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa1Y, 11, 2);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa1Y, 12, 2);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleMin, 9, 2);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleMin, 10, 2);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LimitMax, 9, 3);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LimitMax, 10, 3);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa2X, 11, 3);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa2X, 12, 3);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa2Y, 11, 4);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa2Y, 12, 4);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LimitMin, 10, 4);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LimitMin, 9, 4);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1Spacing, 9, 5);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1SpacingUse, 11, 5);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1SpacingUse, 12, 5);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1RobotStep, 9, 6);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1RobotUse, 11, 6);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1RobotUse, 12, 6);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LaserUse, 12, 7);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LaserUse, 11, 7);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LaserStep, 9, 7);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LaserStep, 10, 7);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1Spacing, 10, 5);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1RobotStep, 10, 6);
             this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTableLayoutPanel1.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.uiTableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
             this.uiTableLayoutPanel1.RowCount = 12;
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333332F));
@@ -792,323 +794,9 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.TabIndex = 2;
             this.uiTableLayoutPanel1.TagString = null;
             // 
-            // tb_Cam1CenterLa2Y
-            // 
-            this.tb_Cam1CenterLa2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1CenterLa2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1CenterLa2Y.Location = new System.Drawing.Point(1108, 235);
-            this.tb_Cam1CenterLa2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1CenterLa2Y.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1CenterLa2Y.Name = "tb_Cam1CenterLa2Y";
-            this.tb_Cam1CenterLa2Y.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1CenterLa2Y.TabIndex = 131;
-            // 
-            // lb_Cam1CenterLa2Y
-            // 
-            this.lb_Cam1CenterLa2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1CenterLa2Y.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1CenterLa2Y.Location = new System.Drawing.Point(1015, 230);
-            this.lb_Cam1CenterLa2Y.Name = "lb_Cam1CenterLa2Y";
-            this.lb_Cam1CenterLa2Y.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1CenterLa2Y.TabIndex = 66;
-            this.lb_Cam1CenterLa2Y.Text = "L2标定中心位Y";
-            this.lb_Cam1CenterLa2Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1CenterLa2X
-            // 
-            this.tb_Cam1CenterLa2X.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1CenterLa2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1CenterLa2X.Location = new System.Drawing.Point(1108, 189);
-            this.tb_Cam1CenterLa2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1CenterLa2X.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1CenterLa2X.Name = "tb_Cam1CenterLa2X";
-            this.tb_Cam1CenterLa2X.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1CenterLa2X.TabIndex = 120;
-            // 
-            // lb_Cam1CenterLa2X
-            // 
-            this.lb_Cam1CenterLa2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1CenterLa2X.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1CenterLa2X.Location = new System.Drawing.Point(1015, 184);
-            this.lb_Cam1CenterLa2X.Name = "lb_Cam1CenterLa2X";
-            this.lb_Cam1CenterLa2X.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1CenterLa2X.TabIndex = 65;
-            this.lb_Cam1CenterLa2X.Text = "L2标定中心位X";
-            this.lb_Cam1CenterLa2X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1CenterLa1Y
-            // 
-            this.lb_Cam1CenterLa1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1CenterLa1Y.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1CenterLa1Y.Location = new System.Drawing.Point(1015, 138);
-            this.lb_Cam1CenterLa1Y.Name = "lb_Cam1CenterLa1Y";
-            this.lb_Cam1CenterLa1Y.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1CenterLa1Y.TabIndex = 53;
-            this.lb_Cam1CenterLa1Y.Text = "L1标定中心位Y";
-            this.lb_Cam1CenterLa1Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1CenterLa1X
-            // 
-            this.tb_Cam1CenterLa1X.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1CenterLa1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1CenterLa1X.Location = new System.Drawing.Point(1108, 97);
-            this.tb_Cam1CenterLa1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1CenterLa1X.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1CenterLa1X.Name = "tb_Cam1CenterLa1X";
-            this.tb_Cam1CenterLa1X.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1CenterLa1X.TabIndex = 113;
-            // 
-            // lb_Cam1CenterLa1X
-            // 
-            this.lb_Cam1CenterLa1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1CenterLa1X.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1CenterLa1X.Location = new System.Drawing.Point(1015, 92);
-            this.lb_Cam1CenterLa1X.Name = "lb_Cam1CenterLa1X";
-            this.lb_Cam1CenterLa1X.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1CenterLa1X.TabIndex = 52;
-            this.lb_Cam1CenterLa1X.Text = "L1标定中心位X";
-            this.lb_Cam1CenterLa1X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1CenterLa1Y
-            // 
-            this.tb_Cam1CenterLa1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1CenterLa1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1CenterLa1Y.Location = new System.Drawing.Point(1108, 143);
-            this.tb_Cam1CenterLa1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1CenterLa1Y.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1CenterLa1Y.Name = "tb_Cam1CenterLa1Y";
-            this.tb_Cam1CenterLa1Y.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1CenterLa1Y.TabIndex = 103;
-            // 
-            // tb_Cam1AngleMax
-            // 
-            this.tb_Cam1AngleMax.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1AngleMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AngleMax.Location = new System.Drawing.Point(924, 97);
-            this.tb_Cam1AngleMax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1AngleMax.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1AngleMax.Name = "tb_Cam1AngleMax";
-            this.tb_Cam1AngleMax.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1AngleMax.TabIndex = 140;
-            this.tb_Cam1AngleMax.Tag = "";
-            // 
-            // tb_Cam1AngleMin
-            // 
-            this.tb_Cam1AngleMin.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1AngleMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AngleMin.Location = new System.Drawing.Point(924, 143);
-            this.tb_Cam1AngleMin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1AngleMin.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1AngleMin.Name = "tb_Cam1AngleMin";
-            this.tb_Cam1AngleMin.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1AngleMin.TabIndex = 139;
-            this.tb_Cam1AngleMin.Tag = "";
-            // 
-            // tb_Cam1LimitMax
-            // 
-            this.tb_Cam1LimitMax.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1LimitMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1LimitMax.Location = new System.Drawing.Point(924, 189);
-            this.tb_Cam1LimitMax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1LimitMax.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1LimitMax.Name = "tb_Cam1LimitMax";
-            this.tb_Cam1LimitMax.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1LimitMax.TabIndex = 144;
-            this.tb_Cam1LimitMax.Tag = "";
-            // 
-            // tb_Cam1LimitMin
-            // 
-            this.tb_Cam1LimitMin.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1LimitMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1LimitMin.Location = new System.Drawing.Point(924, 235);
-            this.tb_Cam1LimitMin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1LimitMin.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1LimitMin.Name = "tb_Cam1LimitMin";
-            this.tb_Cam1LimitMin.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1LimitMin.TabIndex = 143;
-            this.tb_Cam1LimitMin.Tag = "";
-            // 
-            // tb_Cam1RobotStep
-            // 
-            this.tb_Cam1RobotStep.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1RobotStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1RobotStep.Location = new System.Drawing.Point(924, 327);
-            this.tb_Cam1RobotStep.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1RobotStep.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1RobotStep.Name = "tb_Cam1RobotStep";
-            this.tb_Cam1RobotStep.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1RobotStep.TabIndex = 158;
-            this.tb_Cam1RobotStep.Tag = "";
-            // 
-            // lb_Cam1RobotStep
-            // 
-            this.lb_Cam1RobotStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1RobotStep.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1RobotStep.Location = new System.Drawing.Point(831, 322);
-            this.lb_Cam1RobotStep.Name = "lb_Cam1RobotStep";
-            this.lb_Cam1RobotStep.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1RobotStep.TabIndex = 160;
-            this.lb_Cam1RobotStep.Text = "机械手标定偏移";
-            this.lb_Cam1RobotStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1LimitMin
-            // 
-            this.lb_Cam1LimitMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1LimitMin.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1LimitMin.Location = new System.Drawing.Point(831, 230);
-            this.lb_Cam1LimitMin.Name = "lb_Cam1LimitMin";
-            this.lb_Cam1LimitMin.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1LimitMin.TabIndex = 141;
-            this.lb_Cam1LimitMin.Text = "偏移范围Min";
-            this.lb_Cam1LimitMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1LimitMax
-            // 
-            this.lb_Cam1LimitMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1LimitMax.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1LimitMax.Location = new System.Drawing.Point(831, 184);
-            this.lb_Cam1LimitMax.Name = "lb_Cam1LimitMax";
-            this.lb_Cam1LimitMax.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1LimitMax.TabIndex = 142;
-            this.lb_Cam1LimitMax.Text = "偏移范围Max";
-            this.lb_Cam1LimitMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1AngleMin
-            // 
-            this.lb_Cam1AngleMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1AngleMin.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1AngleMin.Location = new System.Drawing.Point(831, 138);
-            this.lb_Cam1AngleMin.Name = "lb_Cam1AngleMin";
-            this.lb_Cam1AngleMin.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1AngleMin.TabIndex = 137;
-            this.lb_Cam1AngleMin.Text = "钢片与壳角度Min";
-            this.lb_Cam1AngleMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1AngleMax
-            // 
-            this.lb_Cam1AngleMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1AngleMax.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1AngleMax.Location = new System.Drawing.Point(831, 92);
-            this.lb_Cam1AngleMax.Name = "lb_Cam1AngleMax";
-            this.lb_Cam1AngleMax.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1AngleMax.TabIndex = 138;
-            this.lb_Cam1AngleMax.Text = "钢片与壳角度Max";
-            this.lb_Cam1AngleMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1LaserUse
-            // 
-            this.lb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1LaserUse.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1LaserUse.Location = new System.Drawing.Point(1015, 368);
-            this.lb_Cam1LaserUse.Name = "lb_Cam1LaserUse";
-            this.lb_Cam1LaserUse.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1LaserUse.TabIndex = 164;
-            this.lb_Cam1LaserUse.Text = "屏蔽激光补偿（1启用0屏蔽）";
-            this.lb_Cam1LaserUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1LaserUse
-            // 
-            this.tb_Cam1LaserUse.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1LaserUse.Location = new System.Drawing.Point(1108, 373);
-            this.tb_Cam1LaserUse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1LaserUse.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1LaserUse.Name = "tb_Cam1LaserUse";
-            this.tb_Cam1LaserUse.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1LaserUse.TabIndex = 168;
-            // 
-            // lb_Cam1Spacing
-            // 
-            this.lb_Cam1Spacing.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1Spacing.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1Spacing.Location = new System.Drawing.Point(831, 276);
-            this.lb_Cam1Spacing.Name = "lb_Cam1Spacing";
-            this.lb_Cam1Spacing.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1Spacing.TabIndex = 162;
-            this.lb_Cam1Spacing.Text = "极耳间距设定标准值";
-            this.lb_Cam1Spacing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1Spacing
-            // 
-            this.tb_Cam1Spacing.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1Spacing.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Spacing.Location = new System.Drawing.Point(924, 281);
-            this.tb_Cam1Spacing.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1Spacing.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1Spacing.Name = "tb_Cam1Spacing";
-            this.tb_Cam1Spacing.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1Spacing.TabIndex = 167;
-            this.tb_Cam1Spacing.Tag = "";
-            // 
-            // lb_Cam1SpacingUse
-            // 
-            this.lb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1SpacingUse.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1SpacingUse.Location = new System.Drawing.Point(1015, 276);
-            this.lb_Cam1SpacingUse.Name = "lb_Cam1SpacingUse";
-            this.lb_Cam1SpacingUse.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1SpacingUse.TabIndex = 161;
-            this.lb_Cam1SpacingUse.Text = "屏蔽间距补偿（1启用0屏蔽）";
-            this.lb_Cam1SpacingUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1SpacingUse
-            // 
-            this.tb_Cam1SpacingUse.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1SpacingUse.Location = new System.Drawing.Point(1108, 281);
-            this.tb_Cam1SpacingUse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1SpacingUse.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1SpacingUse.Name = "tb_Cam1SpacingUse";
-            this.tb_Cam1SpacingUse.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1SpacingUse.TabIndex = 166;
-            // 
-            // lb_Cam1LaserStep
-            // 
-            this.lb_Cam1LaserStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1LaserStep.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1LaserStep.Location = new System.Drawing.Point(831, 368);
-            this.lb_Cam1LaserStep.Name = "lb_Cam1LaserStep";
-            this.lb_Cam1LaserStep.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1LaserStep.TabIndex = 157;
-            this.lb_Cam1LaserStep.Text = "激光标定偏移";
-            this.lb_Cam1LaserStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1LaserStep
-            // 
-            this.tb_Cam1LaserStep.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1LaserStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1LaserStep.Location = new System.Drawing.Point(924, 380);
-            this.tb_Cam1LaserStep.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1LaserStep.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1LaserStep.Name = "tb_Cam1LaserStep";
-            this.tb_Cam1LaserStep.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1LaserStep.TabIndex = 159;
-            this.tb_Cam1LaserStep.Tag = "";
-            // 
-            // lb_Cam1RobotUse
-            // 
-            this.lb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1RobotUse.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1RobotUse.Location = new System.Drawing.Point(1015, 322);
-            this.lb_Cam1RobotUse.Name = "lb_Cam1RobotUse";
-            this.lb_Cam1RobotUse.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1RobotUse.TabIndex = 163;
-            this.lb_Cam1RobotUse.Text = "屏蔽机械手补偿（1启用0屏蔽）";
-            this.lb_Cam1RobotUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1RobotUse
-            // 
-            this.tb_Cam1RobotUse.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1RobotUse.Location = new System.Drawing.Point(1108, 327);
-            this.tb_Cam1RobotUse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_Cam1RobotUse.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1RobotUse.Name = "tb_Cam1RobotUse";
-            this.tb_Cam1RobotUse.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1RobotUse.TabIndex = 165;
-            // 
             // lb_Cam1StdBo1X
             // 
+            this.lb_Cam1StdBo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdBo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdBo1X.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdBo1X.Location = new System.Drawing.Point(3, 46);
@@ -1121,9 +809,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdBo1X
             // 
             this.tb_Cam1StdBo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdBo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdBo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdBo1X.Location = new System.Drawing.Point(96, 51);
-            this.tb_Cam1StdBo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdBo1X.Location = new System.Drawing.Point(96, 58);
+            this.tb_Cam1StdBo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdBo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdBo1X.Name = "tb_Cam1StdBo1X";
             this.tb_Cam1StdBo1X.ReadOnly = true;
@@ -1133,6 +822,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdBo2X
             // 
+            this.lb_Cam1StdBo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdBo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdBo2X.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdBo2X.Location = new System.Drawing.Point(187, 46);
@@ -1145,9 +835,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdBo2X
             // 
             this.tb_Cam1StdBo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdBo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdBo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdBo2X.Location = new System.Drawing.Point(280, 51);
-            this.tb_Cam1StdBo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdBo2X.Location = new System.Drawing.Point(280, 58);
+            this.tb_Cam1StdBo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdBo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdBo2X.Name = "tb_Cam1StdBo2X";
             this.tb_Cam1StdBo2X.ReadOnly = true;
@@ -1157,6 +848,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdLa1X
             // 
+            this.lb_Cam1StdLa1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdLa1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdLa1X.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdLa1X.Location = new System.Drawing.Point(371, 46);
@@ -1169,9 +861,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdLa1X
             // 
             this.tb_Cam1StdLa1X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdLa1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdLa1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdLa1X.Location = new System.Drawing.Point(464, 51);
-            this.tb_Cam1StdLa1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdLa1X.Location = new System.Drawing.Point(464, 58);
+            this.tb_Cam1StdLa1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdLa1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdLa1X.Name = "tb_Cam1StdLa1X";
             this.tb_Cam1StdLa1X.ReadOnly = true;
@@ -1181,6 +874,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdLa2X
             // 
+            this.lb_Cam1StdLa2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdLa2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdLa2X.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdLa2X.Location = new System.Drawing.Point(555, 46);
@@ -1193,9 +887,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdLa2X
             // 
             this.tb_Cam1StdLa2X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdLa2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdLa2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdLa2X.Location = new System.Drawing.Point(648, 51);
-            this.tb_Cam1StdLa2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdLa2X.Location = new System.Drawing.Point(648, 58);
+            this.tb_Cam1StdLa2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdLa2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdLa2X.Name = "tb_Cam1StdLa2X";
             this.tb_Cam1StdLa2X.ReadOnly = true;
@@ -1205,6 +900,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdBo1Y
             // 
+            this.lb_Cam1StdBo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdBo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdBo1Y.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdBo1Y.Location = new System.Drawing.Point(3, 92);
@@ -1217,9 +913,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdBo1Y
             // 
             this.tb_Cam1StdBo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdBo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdBo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdBo1Y.Location = new System.Drawing.Point(96, 97);
-            this.tb_Cam1StdBo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdBo1Y.Location = new System.Drawing.Point(96, 104);
+            this.tb_Cam1StdBo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdBo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdBo1Y.Name = "tb_Cam1StdBo1Y";
             this.tb_Cam1StdBo1Y.ReadOnly = true;
@@ -1229,6 +926,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdBo2Y
             // 
+            this.lb_Cam1StdBo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdBo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdBo2Y.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdBo2Y.Location = new System.Drawing.Point(187, 92);
@@ -1241,9 +939,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdBo2Y
             // 
             this.tb_Cam1StdBo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdBo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdBo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdBo2Y.Location = new System.Drawing.Point(280, 97);
-            this.tb_Cam1StdBo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdBo2Y.Location = new System.Drawing.Point(280, 104);
+            this.tb_Cam1StdBo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdBo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdBo2Y.Name = "tb_Cam1StdBo2Y";
             this.tb_Cam1StdBo2Y.ReadOnly = true;
@@ -1253,6 +952,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdLa1Y
             // 
+            this.lb_Cam1StdLa1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdLa1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdLa1Y.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdLa1Y.Location = new System.Drawing.Point(371, 92);
@@ -1265,9 +965,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdLa1Y
             // 
             this.tb_Cam1StdLa1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdLa1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdLa1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdLa1Y.Location = new System.Drawing.Point(464, 97);
-            this.tb_Cam1StdLa1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdLa1Y.Location = new System.Drawing.Point(464, 104);
+            this.tb_Cam1StdLa1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdLa1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdLa1Y.Name = "tb_Cam1StdLa1Y";
             this.tb_Cam1StdLa1Y.ReadOnly = true;
@@ -1277,6 +978,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdLa2Y
             // 
+            this.lb_Cam1StdLa2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdLa2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdLa2Y.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdLa2Y.Location = new System.Drawing.Point(555, 92);
@@ -1289,9 +991,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdLa2Y
             // 
             this.tb_Cam1StdLa2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdLa2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdLa2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdLa2Y.Location = new System.Drawing.Point(648, 97);
-            this.tb_Cam1StdLa2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdLa2Y.Location = new System.Drawing.Point(648, 104);
+            this.tb_Cam1StdLa2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdLa2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdLa2Y.Name = "tb_Cam1StdLa2Y";
             this.tb_Cam1StdLa2Y.ReadOnly = true;
@@ -1302,9 +1005,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdLa2R
             // 
             this.tb_Cam1StdLa2R.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdLa2R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdLa2R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdLa2R.Location = new System.Drawing.Point(648, 143);
-            this.tb_Cam1StdLa2R.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdLa2R.Location = new System.Drawing.Point(648, 150);
+            this.tb_Cam1StdLa2R.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdLa2R.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdLa2R.Name = "tb_Cam1StdLa2R";
             this.tb_Cam1StdLa2R.ReadOnly = true;
@@ -1314,6 +1018,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdLa1R
             // 
+            this.lb_Cam1StdLa1R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdLa1R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdLa1R.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdLa1R.Location = new System.Drawing.Point(371, 138);
@@ -1325,6 +1030,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdLa2R
             // 
+            this.lb_Cam1StdLa2R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdLa2R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdLa2R.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdLa2R.Location = new System.Drawing.Point(555, 138);
@@ -1337,9 +1043,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdLa1R
             // 
             this.tb_Cam1StdLa1R.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdLa1R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdLa1R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdLa1R.Location = new System.Drawing.Point(464, 143);
-            this.tb_Cam1StdLa1R.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdLa1R.Location = new System.Drawing.Point(464, 150);
+            this.tb_Cam1StdLa1R.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdLa1R.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdLa1R.Name = "tb_Cam1StdLa1R";
             this.tb_Cam1StdLa1R.ReadOnly = true;
@@ -1350,9 +1057,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdBo2R
             // 
             this.tb_Cam1StdBo2R.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdBo2R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdBo2R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdBo2R.Location = new System.Drawing.Point(280, 143);
-            this.tb_Cam1StdBo2R.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdBo2R.Location = new System.Drawing.Point(280, 150);
+            this.tb_Cam1StdBo2R.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdBo2R.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdBo2R.Name = "tb_Cam1StdBo2R";
             this.tb_Cam1StdBo2R.ReadOnly = true;
@@ -1362,6 +1070,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdBo2R
             // 
+            this.lb_Cam1StdBo2R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdBo2R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdBo2R.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdBo2R.Location = new System.Drawing.Point(187, 138);
@@ -1374,9 +1083,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1StdBo1R
             // 
             this.tb_Cam1StdBo1R.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdBo1R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1StdBo1R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdBo1R.Location = new System.Drawing.Point(96, 143);
-            this.tb_Cam1StdBo1R.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1StdBo1R.Location = new System.Drawing.Point(96, 150);
+            this.tb_Cam1StdBo1R.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1StdBo1R.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1StdBo1R.Name = "tb_Cam1StdBo1R";
             this.tb_Cam1StdBo1R.ReadOnly = true;
@@ -1386,6 +1096,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1StdBo1R
             // 
+            this.lb_Cam1StdBo1R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1StdBo1R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1StdBo1R.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1StdBo1R.Location = new System.Drawing.Point(3, 138);
@@ -1397,36 +1108,44 @@ namespace HG_Vision.UIVision
             // 
             // btn_GetStd1
             // 
+            this.btn_GetStd1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_GetStd1.ForeColor = System.Drawing.Color.Black;
             this.btn_GetStd1.Location = new System.Drawing.Point(95, 187);
             this.btn_GetStd1.Name = "btn_GetStd1";
-            this.btn_GetStd1.Size = new System.Drawing.Size(75, 39);
+            this.btn_GetStd1.Size = new System.Drawing.Size(86, 40);
             this.btn_GetStd1.TabIndex = 24;
             this.btn_GetStd1.Text = "获取基准";
             this.btn_GetStd1.UseVisualStyleBackColor = true;
             // 
             // btn_GetStd2
             // 
+            this.btn_GetStd2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_GetStd2.ForeColor = System.Drawing.Color.Black;
             this.btn_GetStd2.Location = new System.Drawing.Point(279, 187);
             this.btn_GetStd2.Name = "btn_GetStd2";
-            this.btn_GetStd2.Size = new System.Drawing.Size(75, 39);
+            this.btn_GetStd2.Size = new System.Drawing.Size(86, 40);
             this.btn_GetStd2.TabIndex = 49;
             this.btn_GetStd2.Text = "获取基准";
             this.btn_GetStd2.UseVisualStyleBackColor = true;
             // 
             // btn_GetStd3
             // 
+            this.btn_GetStd3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_GetStd3.ForeColor = System.Drawing.Color.Black;
             this.btn_GetStd3.Location = new System.Drawing.Point(463, 187);
             this.btn_GetStd3.Name = "btn_GetStd3";
-            this.btn_GetStd3.Size = new System.Drawing.Size(75, 39);
+            this.btn_GetStd3.Size = new System.Drawing.Size(86, 40);
             this.btn_GetStd3.TabIndex = 50;
             this.btn_GetStd3.Text = "获取基准";
             this.btn_GetStd3.UseVisualStyleBackColor = true;
             // 
             // btn_GetStd4
             // 
+            this.btn_GetStd4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_GetStd4.ForeColor = System.Drawing.Color.Black;
             this.btn_GetStd4.Location = new System.Drawing.Point(647, 187);
             this.btn_GetStd4.Name = "btn_GetStd4";
-            this.btn_GetStd4.Size = new System.Drawing.Size(75, 39);
+            this.btn_GetStd4.Size = new System.Drawing.Size(86, 40);
             this.btn_GetStd4.TabIndex = 51;
             this.btn_GetStd4.Text = "获取基准";
             this.btn_GetStd4.UseVisualStyleBackColor = true;
@@ -1434,9 +1153,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddLa2X
             // 
             this.tb_Cam1AddLa2X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddLa2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddLa2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddLa2X.Location = new System.Drawing.Point(648, 235);
-            this.tb_Cam1AddLa2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddLa2X.Location = new System.Drawing.Point(648, 242);
+            this.tb_Cam1AddLa2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddLa2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddLa2X.Name = "tb_Cam1AddLa2X";
             this.tb_Cam1AddLa2X.Size = new System.Drawing.Size(84, 21);
@@ -1445,6 +1165,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddLa2X
             // 
+            this.lb_Cam1AddLa2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddLa2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddLa2X.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddLa2X.Location = new System.Drawing.Point(555, 230);
@@ -1457,9 +1178,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddLa1X
             // 
             this.tb_Cam1AddLa1X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddLa1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddLa1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddLa1X.Location = new System.Drawing.Point(464, 235);
-            this.tb_Cam1AddLa1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddLa1X.Location = new System.Drawing.Point(464, 242);
+            this.tb_Cam1AddLa1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddLa1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddLa1X.Name = "tb_Cam1AddLa1X";
             this.tb_Cam1AddLa1X.Size = new System.Drawing.Size(84, 21);
@@ -1468,6 +1190,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddLa1X
             // 
+            this.lb_Cam1AddLa1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddLa1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddLa1X.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddLa1X.Location = new System.Drawing.Point(371, 230);
@@ -1480,9 +1203,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddBo2X
             // 
             this.tb_Cam1AddBo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddBo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddBo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddBo2X.Location = new System.Drawing.Point(280, 235);
-            this.tb_Cam1AddBo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddBo2X.Location = new System.Drawing.Point(280, 242);
+            this.tb_Cam1AddBo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddBo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddBo2X.Name = "tb_Cam1AddBo2X";
             this.tb_Cam1AddBo2X.Size = new System.Drawing.Size(84, 21);
@@ -1491,6 +1215,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddBo2X
             // 
+            this.lb_Cam1AddBo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddBo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddBo2X.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddBo2X.Location = new System.Drawing.Point(187, 230);
@@ -1503,9 +1228,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddBo1X
             // 
             this.tb_Cam1AddBo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddBo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddBo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddBo1X.Location = new System.Drawing.Point(96, 235);
-            this.tb_Cam1AddBo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddBo1X.Location = new System.Drawing.Point(96, 242);
+            this.tb_Cam1AddBo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddBo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddBo1X.Name = "tb_Cam1AddBo1X";
             this.tb_Cam1AddBo1X.Size = new System.Drawing.Size(84, 21);
@@ -1514,6 +1240,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddBo1X
             // 
+            this.lb_Cam1AddBo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddBo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddBo1X.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddBo1X.Location = new System.Drawing.Point(3, 230);
@@ -1525,6 +1252,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddBo1Y
             // 
+            this.lb_Cam1AddBo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddBo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddBo1Y.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddBo1Y.Location = new System.Drawing.Point(3, 276);
@@ -1537,9 +1265,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddBo1Y
             // 
             this.tb_Cam1AddBo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddBo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddBo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddBo1Y.Location = new System.Drawing.Point(96, 281);
-            this.tb_Cam1AddBo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddBo1Y.Location = new System.Drawing.Point(96, 288);
+            this.tb_Cam1AddBo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddBo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddBo1Y.Name = "tb_Cam1AddBo1Y";
             this.tb_Cam1AddBo1Y.Size = new System.Drawing.Size(84, 21);
@@ -1548,6 +1277,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddBo2Y
             // 
+            this.lb_Cam1AddBo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddBo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddBo2Y.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddBo2Y.Location = new System.Drawing.Point(187, 276);
@@ -1560,9 +1290,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddBo2Y
             // 
             this.tb_Cam1AddBo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddBo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddBo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddBo2Y.Location = new System.Drawing.Point(280, 281);
-            this.tb_Cam1AddBo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddBo2Y.Location = new System.Drawing.Point(280, 288);
+            this.tb_Cam1AddBo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddBo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddBo2Y.Name = "tb_Cam1AddBo2Y";
             this.tb_Cam1AddBo2Y.Size = new System.Drawing.Size(84, 21);
@@ -1571,6 +1302,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddLa1Y
             // 
+            this.lb_Cam1AddLa1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddLa1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddLa1Y.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddLa1Y.Location = new System.Drawing.Point(371, 276);
@@ -1583,9 +1315,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddLa1Y
             // 
             this.tb_Cam1AddLa1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddLa1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddLa1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddLa1Y.Location = new System.Drawing.Point(464, 281);
-            this.tb_Cam1AddLa1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddLa1Y.Location = new System.Drawing.Point(464, 288);
+            this.tb_Cam1AddLa1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddLa1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddLa1Y.Name = "tb_Cam1AddLa1Y";
             this.tb_Cam1AddLa1Y.Size = new System.Drawing.Size(84, 21);
@@ -1594,6 +1327,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddLa2Y
             // 
+            this.lb_Cam1AddLa2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddLa2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddLa2Y.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddLa2Y.Location = new System.Drawing.Point(555, 276);
@@ -1606,9 +1340,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddLa2Y
             // 
             this.tb_Cam1AddLa2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddLa2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddLa2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddLa2Y.Location = new System.Drawing.Point(648, 281);
-            this.tb_Cam1AddLa2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddLa2Y.Location = new System.Drawing.Point(648, 288);
+            this.tb_Cam1AddLa2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddLa2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddLa2Y.Name = "tb_Cam1AddLa2Y";
             this.tb_Cam1AddLa2Y.Size = new System.Drawing.Size(84, 21);
@@ -1617,6 +1352,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddLa2R
             // 
+            this.lb_Cam1AddLa2R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddLa2R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddLa2R.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddLa2R.Location = new System.Drawing.Point(555, 322);
@@ -1629,9 +1365,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddLa2R
             // 
             this.tb_Cam1AddLa2R.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddLa2R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddLa2R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddLa2R.Location = new System.Drawing.Point(648, 327);
-            this.tb_Cam1AddLa2R.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddLa2R.Location = new System.Drawing.Point(648, 334);
+            this.tb_Cam1AddLa2R.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddLa2R.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddLa2R.Name = "tb_Cam1AddLa2R";
             this.tb_Cam1AddLa2R.Size = new System.Drawing.Size(84, 21);
@@ -1641,9 +1378,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddLa1R
             // 
             this.tb_Cam1AddLa1R.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddLa1R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddLa1R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddLa1R.Location = new System.Drawing.Point(464, 327);
-            this.tb_Cam1AddLa1R.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddLa1R.Location = new System.Drawing.Point(464, 334);
+            this.tb_Cam1AddLa1R.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddLa1R.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddLa1R.Name = "tb_Cam1AddLa1R";
             this.tb_Cam1AddLa1R.Size = new System.Drawing.Size(84, 21);
@@ -1652,6 +1390,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddLa1R
             // 
+            this.lb_Cam1AddLa1R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddLa1R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddLa1R.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddLa1R.Location = new System.Drawing.Point(371, 322);
@@ -1664,9 +1403,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddBo2R
             // 
             this.tb_Cam1AddBo2R.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddBo2R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddBo2R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddBo2R.Location = new System.Drawing.Point(280, 327);
-            this.tb_Cam1AddBo2R.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddBo2R.Location = new System.Drawing.Point(280, 334);
+            this.tb_Cam1AddBo2R.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddBo2R.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddBo2R.Name = "tb_Cam1AddBo2R";
             this.tb_Cam1AddBo2R.Size = new System.Drawing.Size(84, 21);
@@ -1675,6 +1415,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddBo2R
             // 
+            this.lb_Cam1AddBo2R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddBo2R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddBo2R.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddBo2R.Location = new System.Drawing.Point(187, 322);
@@ -1687,9 +1428,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1AddBo1R
             // 
             this.tb_Cam1AddBo1R.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AddBo1R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1AddBo1R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1AddBo1R.Location = new System.Drawing.Point(96, 327);
-            this.tb_Cam1AddBo1R.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1AddBo1R.Location = new System.Drawing.Point(96, 334);
+            this.tb_Cam1AddBo1R.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1AddBo1R.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1AddBo1R.Name = "tb_Cam1AddBo1R";
             this.tb_Cam1AddBo1R.Size = new System.Drawing.Size(84, 21);
@@ -1698,6 +1440,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1AddBo1R
             // 
+            this.lb_Cam1AddBo1R.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1AddBo1R.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1AddBo1R.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1AddBo1R.Location = new System.Drawing.Point(3, 322);
@@ -1709,6 +1452,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1Exprosure
             // 
+            this.lb_Cam1Exprosure.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1Exprosure.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1Exprosure.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1Exprosure.Location = new System.Drawing.Point(3, 414);
@@ -1721,9 +1465,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1Exprosure
             // 
             this.tb_Cam1Exprosure.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1Exprosure.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Exprosure.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Exprosure.Location = new System.Drawing.Point(96, 419);
-            this.tb_Cam1Exprosure.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Exprosure.Location = new System.Drawing.Point(96, 426);
+            this.tb_Cam1Exprosure.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Exprosure.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Exprosure.Name = "tb_Cam1Exprosure";
             this.tb_Cam1Exprosure.Size = new System.Drawing.Size(84, 21);
@@ -1731,6 +1476,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1P2byP1X
             // 
+            this.lb_Cam1P2byP1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1P2byP1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1P2byP1X.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1P2byP1X.Location = new System.Drawing.Point(279, 414);
@@ -1743,9 +1489,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1P2byP1X
             // 
             this.tb_Cam1P2byP1X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1P2byP1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1P2byP1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1P2byP1X.Location = new System.Drawing.Point(372, 419);
-            this.tb_Cam1P2byP1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1P2byP1X.Location = new System.Drawing.Point(372, 426);
+            this.tb_Cam1P2byP1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1P2byP1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1P2byP1X.Name = "tb_Cam1P2byP1X";
             this.tb_Cam1P2byP1X.Size = new System.Drawing.Size(84, 21);
@@ -1755,9 +1502,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1P2byP1Y
             // 
             this.tb_Cam1P2byP1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1P2byP1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1P2byP1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1P2byP1Y.Location = new System.Drawing.Point(372, 465);
-            this.tb_Cam1P2byP1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1P2byP1Y.Location = new System.Drawing.Point(372, 472);
+            this.tb_Cam1P2byP1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1P2byP1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1P2byP1Y.Name = "tb_Cam1P2byP1Y";
             this.tb_Cam1P2byP1Y.Size = new System.Drawing.Size(84, 21);
@@ -1766,6 +1514,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1P2byP1Y
             // 
+            this.lb_Cam1P2byP1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1P2byP1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1P2byP1Y.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1P2byP1Y.Location = new System.Drawing.Point(279, 460);
@@ -1778,9 +1527,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1P4byP3X
             // 
             this.tb_Cam1P4byP3X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1P4byP3X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1P4byP3X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1P4byP3X.Location = new System.Drawing.Point(648, 419);
-            this.tb_Cam1P4byP3X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1P4byP3X.Location = new System.Drawing.Point(648, 426);
+            this.tb_Cam1P4byP3X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1P4byP3X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1P4byP3X.Name = "tb_Cam1P4byP3X";
             this.tb_Cam1P4byP3X.Size = new System.Drawing.Size(84, 21);
@@ -1789,6 +1539,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1P4byP3X
             // 
+            this.lb_Cam1P4byP3X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1P4byP3X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1P4byP3X.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1P4byP3X.Location = new System.Drawing.Point(555, 414);
@@ -1801,9 +1552,10 @@ namespace HG_Vision.UIVision
             // tb_Cam1P4byP3Y
             // 
             this.tb_Cam1P4byP3Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1P4byP3Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1P4byP3Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1P4byP3Y.Location = new System.Drawing.Point(648, 465);
-            this.tb_Cam1P4byP3Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1P4byP3Y.Location = new System.Drawing.Point(648, 472);
+            this.tb_Cam1P4byP3Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1P4byP3Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1P4byP3Y.Name = "tb_Cam1P4byP3Y";
             this.tb_Cam1P4byP3Y.Size = new System.Drawing.Size(84, 21);
@@ -1812,6 +1564,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1P4byP3Y
             // 
+            this.lb_Cam1P4byP3Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1P4byP3Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1P4byP3Y.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1P4byP3Y.Location = new System.Drawing.Point(555, 460);
@@ -1820,6 +1573,349 @@ namespace HG_Vision.UIVision
             this.lb_Cam1P4byP3Y.TabIndex = 175;
             this.lb_Cam1P4byP3Y.Text = "固定点4随点3自动修改差值Y";
             this.lb_Cam1P4byP3Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb_Cam1AngleMax
+            // 
+            this.lb_Cam1AngleMax.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1AngleMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1AngleMax.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1AngleMax.Location = new System.Drawing.Point(831, 46);
+            this.lb_Cam1AngleMax.Name = "lb_Cam1AngleMax";
+            this.lb_Cam1AngleMax.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1AngleMax.TabIndex = 138;
+            this.lb_Cam1AngleMax.Text = "钢片与壳角度Max";
+            this.lb_Cam1AngleMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1AngleMax
+            // 
+            this.tb_Cam1AngleMax.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AngleMax.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1AngleMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1AngleMax.Location = new System.Drawing.Point(924, 58);
+            this.tb_Cam1AngleMax.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1AngleMax.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1AngleMax.Name = "tb_Cam1AngleMax";
+            this.tb_Cam1AngleMax.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1AngleMax.TabIndex = 140;
+            this.tb_Cam1AngleMax.Tag = "";
+            // 
+            // lb_Cam1CenterLa1X
+            // 
+            this.lb_Cam1CenterLa1X.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1CenterLa1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1CenterLa1X.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1CenterLa1X.Location = new System.Drawing.Point(1015, 46);
+            this.lb_Cam1CenterLa1X.Name = "lb_Cam1CenterLa1X";
+            this.lb_Cam1CenterLa1X.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1CenterLa1X.TabIndex = 52;
+            this.lb_Cam1CenterLa1X.Text = "L1标定中心位X";
+            this.lb_Cam1CenterLa1X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1CenterLa1X
+            // 
+            this.tb_Cam1CenterLa1X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1CenterLa1X.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1CenterLa1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1CenterLa1X.Location = new System.Drawing.Point(1108, 58);
+            this.tb_Cam1CenterLa1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1CenterLa1X.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1CenterLa1X.Name = "tb_Cam1CenterLa1X";
+            this.tb_Cam1CenterLa1X.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1CenterLa1X.TabIndex = 113;
+            // 
+            // lb_Cam1CenterLa1Y
+            // 
+            this.lb_Cam1CenterLa1Y.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1CenterLa1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1CenterLa1Y.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1CenterLa1Y.Location = new System.Drawing.Point(1015, 92);
+            this.lb_Cam1CenterLa1Y.Name = "lb_Cam1CenterLa1Y";
+            this.lb_Cam1CenterLa1Y.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1CenterLa1Y.TabIndex = 53;
+            this.lb_Cam1CenterLa1Y.Text = "L1标定中心位Y";
+            this.lb_Cam1CenterLa1Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1CenterLa1Y
+            // 
+            this.tb_Cam1CenterLa1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1CenterLa1Y.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1CenterLa1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1CenterLa1Y.Location = new System.Drawing.Point(1108, 104);
+            this.tb_Cam1CenterLa1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1CenterLa1Y.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1CenterLa1Y.Name = "tb_Cam1CenterLa1Y";
+            this.tb_Cam1CenterLa1Y.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1CenterLa1Y.TabIndex = 103;
+            // 
+            // lb_Cam1AngleMin
+            // 
+            this.lb_Cam1AngleMin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1AngleMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1AngleMin.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1AngleMin.Location = new System.Drawing.Point(831, 92);
+            this.lb_Cam1AngleMin.Name = "lb_Cam1AngleMin";
+            this.lb_Cam1AngleMin.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1AngleMin.TabIndex = 137;
+            this.lb_Cam1AngleMin.Text = "钢片与壳角度Min";
+            this.lb_Cam1AngleMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1AngleMin
+            // 
+            this.tb_Cam1AngleMin.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1AngleMin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1AngleMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1AngleMin.Location = new System.Drawing.Point(924, 104);
+            this.tb_Cam1AngleMin.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1AngleMin.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1AngleMin.Name = "tb_Cam1AngleMin";
+            this.tb_Cam1AngleMin.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1AngleMin.TabIndex = 139;
+            this.tb_Cam1AngleMin.Tag = "";
+            // 
+            // lb_Cam1LimitMax
+            // 
+            this.lb_Cam1LimitMax.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1LimitMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1LimitMax.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1LimitMax.Location = new System.Drawing.Point(831, 138);
+            this.lb_Cam1LimitMax.Name = "lb_Cam1LimitMax";
+            this.lb_Cam1LimitMax.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1LimitMax.TabIndex = 142;
+            this.lb_Cam1LimitMax.Text = "偏移范围Max";
+            this.lb_Cam1LimitMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1LimitMax
+            // 
+            this.tb_Cam1LimitMax.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1LimitMax.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1LimitMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1LimitMax.Location = new System.Drawing.Point(924, 150);
+            this.tb_Cam1LimitMax.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1LimitMax.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1LimitMax.Name = "tb_Cam1LimitMax";
+            this.tb_Cam1LimitMax.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1LimitMax.TabIndex = 144;
+            this.tb_Cam1LimitMax.Tag = "";
+            // 
+            // lb_Cam1CenterLa2X
+            // 
+            this.lb_Cam1CenterLa2X.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1CenterLa2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1CenterLa2X.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1CenterLa2X.Location = new System.Drawing.Point(1015, 138);
+            this.lb_Cam1CenterLa2X.Name = "lb_Cam1CenterLa2X";
+            this.lb_Cam1CenterLa2X.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1CenterLa2X.TabIndex = 65;
+            this.lb_Cam1CenterLa2X.Text = "L2标定中心位X";
+            this.lb_Cam1CenterLa2X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1CenterLa2X
+            // 
+            this.tb_Cam1CenterLa2X.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1CenterLa2X.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1CenterLa2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1CenterLa2X.Location = new System.Drawing.Point(1108, 150);
+            this.tb_Cam1CenterLa2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1CenterLa2X.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1CenterLa2X.Name = "tb_Cam1CenterLa2X";
+            this.tb_Cam1CenterLa2X.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1CenterLa2X.TabIndex = 120;
+            // 
+            // lb_Cam1CenterLa2Y
+            // 
+            this.lb_Cam1CenterLa2Y.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1CenterLa2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1CenterLa2Y.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1CenterLa2Y.Location = new System.Drawing.Point(1015, 184);
+            this.lb_Cam1CenterLa2Y.Name = "lb_Cam1CenterLa2Y";
+            this.lb_Cam1CenterLa2Y.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1CenterLa2Y.TabIndex = 66;
+            this.lb_Cam1CenterLa2Y.Text = "L2标定中心位Y";
+            this.lb_Cam1CenterLa2Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1CenterLa2Y
+            // 
+            this.tb_Cam1CenterLa2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1CenterLa2Y.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1CenterLa2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1CenterLa2Y.Location = new System.Drawing.Point(1108, 196);
+            this.tb_Cam1CenterLa2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1CenterLa2Y.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1CenterLa2Y.Name = "tb_Cam1CenterLa2Y";
+            this.tb_Cam1CenterLa2Y.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1CenterLa2Y.TabIndex = 131;
+            // 
+            // tb_Cam1LimitMin
+            // 
+            this.tb_Cam1LimitMin.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1LimitMin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1LimitMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1LimitMin.Location = new System.Drawing.Point(924, 196);
+            this.tb_Cam1LimitMin.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1LimitMin.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1LimitMin.Name = "tb_Cam1LimitMin";
+            this.tb_Cam1LimitMin.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1LimitMin.TabIndex = 143;
+            this.tb_Cam1LimitMin.Tag = "";
+            // 
+            // lb_Cam1LimitMin
+            // 
+            this.lb_Cam1LimitMin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1LimitMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1LimitMin.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1LimitMin.Location = new System.Drawing.Point(831, 184);
+            this.lb_Cam1LimitMin.Name = "lb_Cam1LimitMin";
+            this.lb_Cam1LimitMin.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1LimitMin.TabIndex = 141;
+            this.lb_Cam1LimitMin.Text = "偏移范围Min";
+            this.lb_Cam1LimitMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb_Cam1Spacing
+            // 
+            this.lb_Cam1Spacing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1Spacing.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1Spacing.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1Spacing.Location = new System.Drawing.Point(831, 230);
+            this.lb_Cam1Spacing.Name = "lb_Cam1Spacing";
+            this.lb_Cam1Spacing.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1Spacing.TabIndex = 162;
+            this.lb_Cam1Spacing.Text = "极耳间距设定标准值";
+            this.lb_Cam1Spacing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb_Cam1SpacingUse
+            // 
+            this.lb_Cam1SpacingUse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1SpacingUse.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1SpacingUse.Location = new System.Drawing.Point(1015, 230);
+            this.lb_Cam1SpacingUse.Name = "lb_Cam1SpacingUse";
+            this.lb_Cam1SpacingUse.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1SpacingUse.TabIndex = 161;
+            this.lb_Cam1SpacingUse.Text = "屏蔽间距补偿（1启用0屏蔽）";
+            this.lb_Cam1SpacingUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1SpacingUse
+            // 
+            this.tb_Cam1SpacingUse.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1SpacingUse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1SpacingUse.Location = new System.Drawing.Point(1108, 242);
+            this.tb_Cam1SpacingUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1SpacingUse.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1SpacingUse.Name = "tb_Cam1SpacingUse";
+            this.tb_Cam1SpacingUse.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1SpacingUse.TabIndex = 166;
+            // 
+            // lb_Cam1RobotStep
+            // 
+            this.lb_Cam1RobotStep.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1RobotStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1RobotStep.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1RobotStep.Location = new System.Drawing.Point(831, 276);
+            this.lb_Cam1RobotStep.Name = "lb_Cam1RobotStep";
+            this.lb_Cam1RobotStep.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1RobotStep.TabIndex = 160;
+            this.lb_Cam1RobotStep.Text = "机械手标定偏移";
+            this.lb_Cam1RobotStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb_Cam1RobotUse
+            // 
+            this.lb_Cam1RobotUse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1RobotUse.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1RobotUse.Location = new System.Drawing.Point(1015, 276);
+            this.lb_Cam1RobotUse.Name = "lb_Cam1RobotUse";
+            this.lb_Cam1RobotUse.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1RobotUse.TabIndex = 163;
+            this.lb_Cam1RobotUse.Text = "屏蔽机械手补偿（1启用0屏蔽）";
+            this.lb_Cam1RobotUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1RobotUse
+            // 
+            this.tb_Cam1RobotUse.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1RobotUse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1RobotUse.Location = new System.Drawing.Point(1108, 288);
+            this.tb_Cam1RobotUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1RobotUse.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1RobotUse.Name = "tb_Cam1RobotUse";
+            this.tb_Cam1RobotUse.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1RobotUse.TabIndex = 165;
+            // 
+            // tb_Cam1LaserUse
+            // 
+            this.tb_Cam1LaserUse.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1LaserUse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1LaserUse.Location = new System.Drawing.Point(1108, 334);
+            this.tb_Cam1LaserUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1LaserUse.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1LaserUse.Name = "tb_Cam1LaserUse";
+            this.tb_Cam1LaserUse.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1LaserUse.TabIndex = 168;
+            // 
+            // lb_Cam1LaserUse
+            // 
+            this.lb_Cam1LaserUse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1LaserUse.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1LaserUse.Location = new System.Drawing.Point(1015, 322);
+            this.lb_Cam1LaserUse.Name = "lb_Cam1LaserUse";
+            this.lb_Cam1LaserUse.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1LaserUse.TabIndex = 164;
+            this.lb_Cam1LaserUse.Text = "屏蔽激光补偿（1启用0屏蔽）";
+            this.lb_Cam1LaserUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb_Cam1LaserStep
+            // 
+            this.lb_Cam1LaserStep.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_Cam1LaserStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1LaserStep.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1LaserStep.Location = new System.Drawing.Point(831, 322);
+            this.lb_Cam1LaserStep.Name = "lb_Cam1LaserStep";
+            this.lb_Cam1LaserStep.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1LaserStep.TabIndex = 157;
+            this.lb_Cam1LaserStep.Text = "激光标定偏移";
+            this.lb_Cam1LaserStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1LaserStep
+            // 
+            this.tb_Cam1LaserStep.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1LaserStep.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1LaserStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1LaserStep.Location = new System.Drawing.Point(924, 334);
+            this.tb_Cam1LaserStep.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1LaserStep.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1LaserStep.Name = "tb_Cam1LaserStep";
+            this.tb_Cam1LaserStep.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1LaserStep.TabIndex = 159;
+            this.tb_Cam1LaserStep.Tag = "";
+            // 
+            // tb_Cam1Spacing
+            // 
+            this.tb_Cam1Spacing.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1Spacing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1Spacing.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1Spacing.Location = new System.Drawing.Point(924, 242);
+            this.tb_Cam1Spacing.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1Spacing.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1Spacing.Name = "tb_Cam1Spacing";
+            this.tb_Cam1Spacing.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1Spacing.TabIndex = 167;
+            this.tb_Cam1Spacing.Tag = "";
+            // 
+            // tb_Cam1RobotStep
+            // 
+            this.tb_Cam1RobotStep.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1RobotStep.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_Cam1RobotStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1RobotStep.Location = new System.Drawing.Point(924, 288);
+            this.tb_Cam1RobotStep.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1RobotStep.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1RobotStep.Name = "tb_Cam1RobotStep";
+            this.tb_Cam1RobotStep.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1RobotStep.TabIndex = 158;
+            this.tb_Cam1RobotStep.Tag = "";
             // 
             // tabPage1
             // 
@@ -1996,8 +2092,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1Bo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1Bo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1Bo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1Bo2Y.Location = new System.Drawing.Point(85, 275);
-            this.tb_Cam1Jig1Bo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1Bo2Y.Location = new System.Drawing.Point(85, 282);
+            this.tb_Cam1Jig1Bo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1Bo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1Bo2Y.Name = "tb_Cam1Jig1Bo2Y";
             this.tb_Cam1Jig1Bo2Y.Size = new System.Drawing.Size(73, 21);
@@ -2008,8 +2104,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1Bo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1Bo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1Bo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1Bo2X.Location = new System.Drawing.Point(85, 230);
-            this.tb_Cam1Jig1Bo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1Bo2X.Location = new System.Drawing.Point(85, 237);
+            this.tb_Cam1Jig1Bo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1Bo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1Bo2X.Name = "tb_Cam1Jig1Bo2X";
             this.tb_Cam1Jig1Bo2X.Size = new System.Drawing.Size(73, 21);
@@ -2020,8 +2116,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1Bo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1Bo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1Bo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1Bo1Y.Location = new System.Drawing.Point(85, 140);
-            this.tb_Cam1Jig1Bo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1Bo1Y.Location = new System.Drawing.Point(85, 147);
+            this.tb_Cam1Jig1Bo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1Bo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1Bo1Y.Name = "tb_Cam1Jig1Bo1Y";
             this.tb_Cam1Jig1Bo1Y.Size = new System.Drawing.Size(73, 21);
@@ -2032,8 +2128,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1Bo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1Bo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1Bo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1Bo1X.Location = new System.Drawing.Point(85, 95);
-            this.tb_Cam1Jig1Bo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1Bo1X.Location = new System.Drawing.Point(85, 102);
+            this.tb_Cam1Jig1Bo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1Bo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1Bo1X.Name = "tb_Cam1Jig1Bo1X";
             this.tb_Cam1Jig1Bo1X.Size = new System.Drawing.Size(73, 21);
@@ -2116,8 +2212,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La21Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La21Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La21Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La21Y.Location = new System.Drawing.Point(328, 275);
-            this.tb_Cam1Jig1La21Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La21Y.Location = new System.Drawing.Point(328, 282);
+            this.tb_Cam1Jig1La21Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La21Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La21Y.Name = "tb_Cam1Jig1La21Y";
             this.tb_Cam1Jig1La21Y.Size = new System.Drawing.Size(73, 21);
@@ -2129,8 +2225,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La21X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La21X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La21X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La21X.Location = new System.Drawing.Point(328, 230);
-            this.tb_Cam1Jig1La21X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La21X.Location = new System.Drawing.Point(328, 237);
+            this.tb_Cam1Jig1La21X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La21X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La21X.Name = "tb_Cam1Jig1La21X";
             this.tb_Cam1Jig1La21X.Size = new System.Drawing.Size(73, 21);
@@ -2142,8 +2238,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La11Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La11Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La11Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La11Y.Location = new System.Drawing.Point(328, 140);
-            this.tb_Cam1Jig1La11Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La11Y.Location = new System.Drawing.Point(328, 147);
+            this.tb_Cam1Jig1La11Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La11Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La11Y.Name = "tb_Cam1Jig1La11Y";
             this.tb_Cam1Jig1La11Y.Size = new System.Drawing.Size(73, 21);
@@ -2155,8 +2251,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La11X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La11X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La11X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La11X.Location = new System.Drawing.Point(328, 95);
-            this.tb_Cam1Jig1La11X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La11X.Location = new System.Drawing.Point(328, 102);
+            this.tb_Cam1Jig1La11X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La11X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La11X.Name = "tb_Cam1Jig1La11X";
             this.tb_Cam1Jig1La11X.Size = new System.Drawing.Size(73, 21);
@@ -2216,8 +2312,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La22Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La22Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La22Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La22Y.Location = new System.Drawing.Point(490, 275);
-            this.tb_Cam1Jig1La22Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La22Y.Location = new System.Drawing.Point(490, 282);
+            this.tb_Cam1Jig1La22Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La22Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La22Y.Name = "tb_Cam1Jig1La22Y";
             this.tb_Cam1Jig1La22Y.Size = new System.Drawing.Size(73, 21);
@@ -2228,8 +2324,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La22X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La22X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La22X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La22X.Location = new System.Drawing.Point(490, 230);
-            this.tb_Cam1Jig1La22X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La22X.Location = new System.Drawing.Point(490, 237);
+            this.tb_Cam1Jig1La22X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La22X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La22X.Name = "tb_Cam1Jig1La22X";
             this.tb_Cam1Jig1La22X.Size = new System.Drawing.Size(73, 21);
@@ -2240,8 +2336,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La12Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La12Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La12Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La12Y.Location = new System.Drawing.Point(490, 140);
-            this.tb_Cam1Jig1La12Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La12Y.Location = new System.Drawing.Point(490, 147);
+            this.tb_Cam1Jig1La12Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La12Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La12Y.Name = "tb_Cam1Jig1La12Y";
             this.tb_Cam1Jig1La12Y.Size = new System.Drawing.Size(73, 21);
@@ -2252,8 +2348,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La12X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La12X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La12X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La12X.Location = new System.Drawing.Point(490, 95);
-            this.tb_Cam1Jig1La12X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La12X.Location = new System.Drawing.Point(490, 102);
+            this.tb_Cam1Jig1La12X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La12X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La12X.Name = "tb_Cam1Jig1La12X";
             this.tb_Cam1Jig1La12X.Size = new System.Drawing.Size(73, 21);
@@ -2312,8 +2408,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La23Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La23Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La23Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La23Y.Location = new System.Drawing.Point(652, 275);
-            this.tb_Cam1Jig1La23Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La23Y.Location = new System.Drawing.Point(652, 282);
+            this.tb_Cam1Jig1La23Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La23Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La23Y.Name = "tb_Cam1Jig1La23Y";
             this.tb_Cam1Jig1La23Y.Size = new System.Drawing.Size(73, 21);
@@ -2325,8 +2421,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La23X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La23X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La23X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La23X.Location = new System.Drawing.Point(652, 230);
-            this.tb_Cam1Jig1La23X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La23X.Location = new System.Drawing.Point(652, 237);
+            this.tb_Cam1Jig1La23X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La23X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La23X.Name = "tb_Cam1Jig1La23X";
             this.tb_Cam1Jig1La23X.Size = new System.Drawing.Size(73, 21);
@@ -2338,8 +2434,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La13Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La13Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La13Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La13Y.Location = new System.Drawing.Point(652, 140);
-            this.tb_Cam1Jig1La13Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La13Y.Location = new System.Drawing.Point(652, 147);
+            this.tb_Cam1Jig1La13Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La13Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La13Y.Name = "tb_Cam1Jig1La13Y";
             this.tb_Cam1Jig1La13Y.Size = new System.Drawing.Size(73, 21);
@@ -2351,8 +2447,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La13X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La13X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La13X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La13X.Location = new System.Drawing.Point(652, 95);
-            this.tb_Cam1Jig1La13X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La13X.Location = new System.Drawing.Point(652, 102);
+            this.tb_Cam1Jig1La13X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La13X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La13X.Name = "tb_Cam1Jig1La13X";
             this.tb_Cam1Jig1La13X.Size = new System.Drawing.Size(73, 21);
@@ -2412,8 +2508,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La24Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La24Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La24Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La24Y.Location = new System.Drawing.Point(814, 275);
-            this.tb_Cam1Jig1La24Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La24Y.Location = new System.Drawing.Point(814, 282);
+            this.tb_Cam1Jig1La24Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La24Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La24Y.Name = "tb_Cam1Jig1La24Y";
             this.tb_Cam1Jig1La24Y.Size = new System.Drawing.Size(73, 21);
@@ -2424,8 +2520,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La24X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La24X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La24X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La24X.Location = new System.Drawing.Point(814, 230);
-            this.tb_Cam1Jig1La24X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La24X.Location = new System.Drawing.Point(814, 237);
+            this.tb_Cam1Jig1La24X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La24X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La24X.Name = "tb_Cam1Jig1La24X";
             this.tb_Cam1Jig1La24X.Size = new System.Drawing.Size(73, 21);
@@ -2436,8 +2532,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La14Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La14Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La14Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La14Y.Location = new System.Drawing.Point(814, 140);
-            this.tb_Cam1Jig1La14Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La14Y.Location = new System.Drawing.Point(814, 147);
+            this.tb_Cam1Jig1La14Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La14Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La14Y.Name = "tb_Cam1Jig1La14Y";
             this.tb_Cam1Jig1La14Y.Size = new System.Drawing.Size(73, 21);
@@ -2448,8 +2544,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig1La14X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig1La14X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig1La14X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig1La14X.Location = new System.Drawing.Point(814, 95);
-            this.tb_Cam1Jig1La14X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig1La14X.Location = new System.Drawing.Point(814, 102);
+            this.tb_Cam1Jig1La14X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig1La14X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig1La14X.Name = "tb_Cam1Jig1La14X";
             this.tb_Cam1Jig1La14X.Size = new System.Drawing.Size(73, 21);
@@ -2567,6 +2663,7 @@ namespace HG_Vision.UIVision
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 12;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
@@ -2662,8 +2759,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2Bo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2Bo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2Bo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2Bo2Y.Location = new System.Drawing.Point(85, 275);
-            this.tb_Cam1Jig2Bo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2Bo2Y.Location = new System.Drawing.Point(85, 282);
+            this.tb_Cam1Jig2Bo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2Bo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2Bo2Y.Name = "tb_Cam1Jig2Bo2Y";
             this.tb_Cam1Jig2Bo2Y.Size = new System.Drawing.Size(73, 21);
@@ -2674,8 +2771,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2Bo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2Bo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2Bo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2Bo2X.Location = new System.Drawing.Point(85, 230);
-            this.tb_Cam1Jig2Bo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2Bo2X.Location = new System.Drawing.Point(85, 237);
+            this.tb_Cam1Jig2Bo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2Bo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2Bo2X.Name = "tb_Cam1Jig2Bo2X";
             this.tb_Cam1Jig2Bo2X.Size = new System.Drawing.Size(73, 21);
@@ -2686,8 +2783,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2Bo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2Bo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2Bo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2Bo1Y.Location = new System.Drawing.Point(85, 140);
-            this.tb_Cam1Jig2Bo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2Bo1Y.Location = new System.Drawing.Point(85, 147);
+            this.tb_Cam1Jig2Bo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2Bo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2Bo1Y.Name = "tb_Cam1Jig2Bo1Y";
             this.tb_Cam1Jig2Bo1Y.Size = new System.Drawing.Size(73, 21);
@@ -2698,8 +2795,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2Bo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2Bo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2Bo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2Bo1X.Location = new System.Drawing.Point(85, 95);
-            this.tb_Cam1Jig2Bo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2Bo1X.Location = new System.Drawing.Point(85, 102);
+            this.tb_Cam1Jig2Bo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2Bo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2Bo1X.Name = "tb_Cam1Jig2Bo1X";
             this.tb_Cam1Jig2Bo1X.Size = new System.Drawing.Size(73, 21);
@@ -2782,8 +2879,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La21Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La21Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La21Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La21Y.Location = new System.Drawing.Point(328, 275);
-            this.tb_Cam1Jig2La21Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La21Y.Location = new System.Drawing.Point(328, 282);
+            this.tb_Cam1Jig2La21Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La21Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La21Y.Name = "tb_Cam1Jig2La21Y";
             this.tb_Cam1Jig2La21Y.Size = new System.Drawing.Size(73, 21);
@@ -2795,8 +2892,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La21X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La21X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La21X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La21X.Location = new System.Drawing.Point(328, 230);
-            this.tb_Cam1Jig2La21X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La21X.Location = new System.Drawing.Point(328, 237);
+            this.tb_Cam1Jig2La21X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La21X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La21X.Name = "tb_Cam1Jig2La21X";
             this.tb_Cam1Jig2La21X.Size = new System.Drawing.Size(73, 21);
@@ -2808,8 +2905,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La11Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La11Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La11Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La11Y.Location = new System.Drawing.Point(328, 140);
-            this.tb_Cam1Jig2La11Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La11Y.Location = new System.Drawing.Point(328, 147);
+            this.tb_Cam1Jig2La11Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La11Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La11Y.Name = "tb_Cam1Jig2La11Y";
             this.tb_Cam1Jig2La11Y.Size = new System.Drawing.Size(73, 21);
@@ -2821,8 +2918,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La11X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La11X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La11X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La11X.Location = new System.Drawing.Point(328, 95);
-            this.tb_Cam1Jig2La11X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La11X.Location = new System.Drawing.Point(328, 102);
+            this.tb_Cam1Jig2La11X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La11X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La11X.Name = "tb_Cam1Jig2La11X";
             this.tb_Cam1Jig2La11X.Size = new System.Drawing.Size(73, 21);
@@ -2882,8 +2979,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La22Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La22Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La22Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La22Y.Location = new System.Drawing.Point(490, 275);
-            this.tb_Cam1Jig2La22Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La22Y.Location = new System.Drawing.Point(490, 282);
+            this.tb_Cam1Jig2La22Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La22Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La22Y.Name = "tb_Cam1Jig2La22Y";
             this.tb_Cam1Jig2La22Y.Size = new System.Drawing.Size(73, 21);
@@ -2894,8 +2991,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La22X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La22X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La22X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La22X.Location = new System.Drawing.Point(490, 230);
-            this.tb_Cam1Jig2La22X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La22X.Location = new System.Drawing.Point(490, 237);
+            this.tb_Cam1Jig2La22X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La22X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La22X.Name = "tb_Cam1Jig2La22X";
             this.tb_Cam1Jig2La22X.Size = new System.Drawing.Size(73, 21);
@@ -2906,8 +3003,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La12Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La12Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La12Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La12Y.Location = new System.Drawing.Point(490, 140);
-            this.tb_Cam1Jig2La12Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La12Y.Location = new System.Drawing.Point(490, 147);
+            this.tb_Cam1Jig2La12Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La12Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La12Y.Name = "tb_Cam1Jig2La12Y";
             this.tb_Cam1Jig2La12Y.Size = new System.Drawing.Size(73, 21);
@@ -2918,8 +3015,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La12X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La12X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La12X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La12X.Location = new System.Drawing.Point(490, 95);
-            this.tb_Cam1Jig2La12X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La12X.Location = new System.Drawing.Point(490, 102);
+            this.tb_Cam1Jig2La12X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La12X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La12X.Name = "tb_Cam1Jig2La12X";
             this.tb_Cam1Jig2La12X.Size = new System.Drawing.Size(73, 21);
@@ -2954,8 +3051,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La23Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La23Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La23Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La23Y.Location = new System.Drawing.Point(652, 275);
-            this.tb_Cam1Jig2La23Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La23Y.Location = new System.Drawing.Point(652, 282);
+            this.tb_Cam1Jig2La23Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La23Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La23Y.Name = "tb_Cam1Jig2La23Y";
             this.tb_Cam1Jig2La23Y.Size = new System.Drawing.Size(73, 21);
@@ -2967,8 +3064,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La23X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La23X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La23X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La23X.Location = new System.Drawing.Point(652, 230);
-            this.tb_Cam1Jig2La23X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La23X.Location = new System.Drawing.Point(652, 237);
+            this.tb_Cam1Jig2La23X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La23X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La23X.Name = "tb_Cam1Jig2La23X";
             this.tb_Cam1Jig2La23X.Size = new System.Drawing.Size(73, 21);
@@ -3004,8 +3101,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La13Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La13Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La13Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La13Y.Location = new System.Drawing.Point(652, 140);
-            this.tb_Cam1Jig2La13Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La13Y.Location = new System.Drawing.Point(652, 147);
+            this.tb_Cam1Jig2La13Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La13Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La13Y.Name = "tb_Cam1Jig2La13Y";
             this.tb_Cam1Jig2La13Y.Size = new System.Drawing.Size(73, 21);
@@ -3017,8 +3114,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La13X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La13X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La13X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La13X.Location = new System.Drawing.Point(652, 95);
-            this.tb_Cam1Jig2La13X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La13X.Location = new System.Drawing.Point(652, 102);
+            this.tb_Cam1Jig2La13X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La13X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La13X.Name = "tb_Cam1Jig2La13X";
             this.tb_Cam1Jig2La13X.Size = new System.Drawing.Size(73, 21);
@@ -3078,8 +3175,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La24Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La24Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La24Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La24Y.Location = new System.Drawing.Point(814, 275);
-            this.tb_Cam1Jig2La24Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La24Y.Location = new System.Drawing.Point(814, 282);
+            this.tb_Cam1Jig2La24Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La24Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La24Y.Name = "tb_Cam1Jig2La24Y";
             this.tb_Cam1Jig2La24Y.Size = new System.Drawing.Size(73, 21);
@@ -3090,8 +3187,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La24X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La24X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La24X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La24X.Location = new System.Drawing.Point(814, 230);
-            this.tb_Cam1Jig2La24X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La24X.Location = new System.Drawing.Point(814, 237);
+            this.tb_Cam1Jig2La24X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La24X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La24X.Name = "tb_Cam1Jig2La24X";
             this.tb_Cam1Jig2La24X.Size = new System.Drawing.Size(73, 21);
@@ -3102,8 +3199,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La14Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La14Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La14Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La14Y.Location = new System.Drawing.Point(814, 140);
-            this.tb_Cam1Jig2La14Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La14Y.Location = new System.Drawing.Point(814, 147);
+            this.tb_Cam1Jig2La14Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La14Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La14Y.Name = "tb_Cam1Jig2La14Y";
             this.tb_Cam1Jig2La14Y.Size = new System.Drawing.Size(73, 21);
@@ -3114,8 +3211,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig2La14X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig2La14X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig2La14X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig2La14X.Location = new System.Drawing.Point(814, 95);
-            this.tb_Cam1Jig2La14X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig2La14X.Location = new System.Drawing.Point(814, 102);
+            this.tb_Cam1Jig2La14X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig2La14X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig2La14X.Name = "tb_Cam1Jig2La14X";
             this.tb_Cam1Jig2La14X.Size = new System.Drawing.Size(73, 21);
@@ -3328,8 +3425,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3Bo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3Bo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3Bo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3Bo2Y.Location = new System.Drawing.Point(85, 275);
-            this.tb_Cam1Jig3Bo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3Bo2Y.Location = new System.Drawing.Point(85, 282);
+            this.tb_Cam1Jig3Bo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3Bo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3Bo2Y.Name = "tb_Cam1Jig3Bo2Y";
             this.tb_Cam1Jig3Bo2Y.Size = new System.Drawing.Size(73, 21);
@@ -3340,8 +3437,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3Bo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3Bo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3Bo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3Bo2X.Location = new System.Drawing.Point(85, 230);
-            this.tb_Cam1Jig3Bo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3Bo2X.Location = new System.Drawing.Point(85, 237);
+            this.tb_Cam1Jig3Bo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3Bo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3Bo2X.Name = "tb_Cam1Jig3Bo2X";
             this.tb_Cam1Jig3Bo2X.Size = new System.Drawing.Size(73, 21);
@@ -3352,8 +3449,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3Bo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3Bo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3Bo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3Bo1Y.Location = new System.Drawing.Point(85, 140);
-            this.tb_Cam1Jig3Bo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3Bo1Y.Location = new System.Drawing.Point(85, 147);
+            this.tb_Cam1Jig3Bo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3Bo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3Bo1Y.Name = "tb_Cam1Jig3Bo1Y";
             this.tb_Cam1Jig3Bo1Y.Size = new System.Drawing.Size(73, 21);
@@ -3364,8 +3461,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3Bo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3Bo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3Bo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3Bo1X.Location = new System.Drawing.Point(85, 95);
-            this.tb_Cam1Jig3Bo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3Bo1X.Location = new System.Drawing.Point(85, 102);
+            this.tb_Cam1Jig3Bo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3Bo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3Bo1X.Name = "tb_Cam1Jig3Bo1X";
             this.tb_Cam1Jig3Bo1X.Size = new System.Drawing.Size(73, 21);
@@ -3448,8 +3545,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La21Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La21Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La21Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La21Y.Location = new System.Drawing.Point(328, 275);
-            this.tb_Cam1Jig3La21Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La21Y.Location = new System.Drawing.Point(328, 282);
+            this.tb_Cam1Jig3La21Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La21Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La21Y.Name = "tb_Cam1Jig3La21Y";
             this.tb_Cam1Jig3La21Y.Size = new System.Drawing.Size(73, 21);
@@ -3461,8 +3558,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La21X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La21X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La21X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La21X.Location = new System.Drawing.Point(328, 230);
-            this.tb_Cam1Jig3La21X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La21X.Location = new System.Drawing.Point(328, 237);
+            this.tb_Cam1Jig3La21X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La21X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La21X.Name = "tb_Cam1Jig3La21X";
             this.tb_Cam1Jig3La21X.Size = new System.Drawing.Size(73, 21);
@@ -3474,8 +3571,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La11Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La11Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La11Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La11Y.Location = new System.Drawing.Point(328, 140);
-            this.tb_Cam1Jig3La11Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La11Y.Location = new System.Drawing.Point(328, 147);
+            this.tb_Cam1Jig3La11Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La11Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La11Y.Name = "tb_Cam1Jig3La11Y";
             this.tb_Cam1Jig3La11Y.Size = new System.Drawing.Size(73, 21);
@@ -3487,8 +3584,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La11X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La11X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La11X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La11X.Location = new System.Drawing.Point(328, 95);
-            this.tb_Cam1Jig3La11X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La11X.Location = new System.Drawing.Point(328, 102);
+            this.tb_Cam1Jig3La11X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La11X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La11X.Name = "tb_Cam1Jig3La11X";
             this.tb_Cam1Jig3La11X.Size = new System.Drawing.Size(73, 21);
@@ -3548,8 +3645,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La22Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La22Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La22Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La22Y.Location = new System.Drawing.Point(490, 275);
-            this.tb_Cam1Jig3La22Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La22Y.Location = new System.Drawing.Point(490, 282);
+            this.tb_Cam1Jig3La22Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La22Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La22Y.Name = "tb_Cam1Jig3La22Y";
             this.tb_Cam1Jig3La22Y.Size = new System.Drawing.Size(73, 21);
@@ -3560,8 +3657,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La22X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La22X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La22X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La22X.Location = new System.Drawing.Point(490, 230);
-            this.tb_Cam1Jig3La22X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La22X.Location = new System.Drawing.Point(490, 237);
+            this.tb_Cam1Jig3La22X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La22X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La22X.Name = "tb_Cam1Jig3La22X";
             this.tb_Cam1Jig3La22X.Size = new System.Drawing.Size(73, 21);
@@ -3572,8 +3669,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La12Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La12Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La12Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La12Y.Location = new System.Drawing.Point(490, 140);
-            this.tb_Cam1Jig3La12Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La12Y.Location = new System.Drawing.Point(490, 147);
+            this.tb_Cam1Jig3La12Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La12Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La12Y.Name = "tb_Cam1Jig3La12Y";
             this.tb_Cam1Jig3La12Y.Size = new System.Drawing.Size(73, 21);
@@ -3584,8 +3681,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La12X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La12X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La12X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La12X.Location = new System.Drawing.Point(490, 95);
-            this.tb_Cam1Jig3La12X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La12X.Location = new System.Drawing.Point(490, 102);
+            this.tb_Cam1Jig3La12X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La12X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La12X.Name = "tb_Cam1Jig3La12X";
             this.tb_Cam1Jig3La12X.Size = new System.Drawing.Size(73, 21);
@@ -3644,8 +3741,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La23Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La23Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La23Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La23Y.Location = new System.Drawing.Point(652, 275);
-            this.tb_Cam1Jig3La23Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La23Y.Location = new System.Drawing.Point(652, 282);
+            this.tb_Cam1Jig3La23Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La23Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La23Y.Name = "tb_Cam1Jig3La23Y";
             this.tb_Cam1Jig3La23Y.Size = new System.Drawing.Size(73, 21);
@@ -3657,8 +3754,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La23X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La23X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La23X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La23X.Location = new System.Drawing.Point(652, 230);
-            this.tb_Cam1Jig3La23X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La23X.Location = new System.Drawing.Point(652, 237);
+            this.tb_Cam1Jig3La23X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La23X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La23X.Name = "tb_Cam1Jig3La23X";
             this.tb_Cam1Jig3La23X.Size = new System.Drawing.Size(73, 21);
@@ -3670,8 +3767,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La13Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La13Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La13Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La13Y.Location = new System.Drawing.Point(652, 140);
-            this.tb_Cam1Jig3La13Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La13Y.Location = new System.Drawing.Point(652, 147);
+            this.tb_Cam1Jig3La13Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La13Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La13Y.Name = "tb_Cam1Jig3La13Y";
             this.tb_Cam1Jig3La13Y.Size = new System.Drawing.Size(73, 21);
@@ -3683,8 +3780,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La13X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La13X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La13X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La13X.Location = new System.Drawing.Point(652, 95);
-            this.tb_Cam1Jig3La13X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La13X.Location = new System.Drawing.Point(652, 102);
+            this.tb_Cam1Jig3La13X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La13X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La13X.Name = "tb_Cam1Jig3La13X";
             this.tb_Cam1Jig3La13X.Size = new System.Drawing.Size(73, 21);
@@ -3744,8 +3841,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La24Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La24Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La24Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La24Y.Location = new System.Drawing.Point(814, 275);
-            this.tb_Cam1Jig3La24Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La24Y.Location = new System.Drawing.Point(814, 282);
+            this.tb_Cam1Jig3La24Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La24Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La24Y.Name = "tb_Cam1Jig3La24Y";
             this.tb_Cam1Jig3La24Y.Size = new System.Drawing.Size(73, 21);
@@ -3756,8 +3853,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La24X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La24X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La24X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La24X.Location = new System.Drawing.Point(814, 230);
-            this.tb_Cam1Jig3La24X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La24X.Location = new System.Drawing.Point(814, 237);
+            this.tb_Cam1Jig3La24X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La24X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La24X.Name = "tb_Cam1Jig3La24X";
             this.tb_Cam1Jig3La24X.Size = new System.Drawing.Size(73, 21);
@@ -3768,8 +3865,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La14Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La14Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La14Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La14Y.Location = new System.Drawing.Point(814, 140);
-            this.tb_Cam1Jig3La14Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La14Y.Location = new System.Drawing.Point(814, 147);
+            this.tb_Cam1Jig3La14Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La14Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La14Y.Name = "tb_Cam1Jig3La14Y";
             this.tb_Cam1Jig3La14Y.Size = new System.Drawing.Size(73, 21);
@@ -3780,8 +3877,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig3La14X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig3La14X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig3La14X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig3La14X.Location = new System.Drawing.Point(814, 95);
-            this.tb_Cam1Jig3La14X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig3La14X.Location = new System.Drawing.Point(814, 102);
+            this.tb_Cam1Jig3La14X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig3La14X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig3La14X.Name = "tb_Cam1Jig3La14X";
             this.tb_Cam1Jig3La14X.Size = new System.Drawing.Size(73, 21);
@@ -3934,8 +4031,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4Bo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4Bo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4Bo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4Bo2Y.Location = new System.Drawing.Point(85, 275);
-            this.tb_Cam1Jig4Bo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4Bo2Y.Location = new System.Drawing.Point(85, 282);
+            this.tb_Cam1Jig4Bo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4Bo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4Bo2Y.Name = "tb_Cam1Jig4Bo2Y";
             this.tb_Cam1Jig4Bo2Y.Size = new System.Drawing.Size(73, 21);
@@ -3946,8 +4043,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4Bo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4Bo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4Bo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4Bo2X.Location = new System.Drawing.Point(85, 230);
-            this.tb_Cam1Jig4Bo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4Bo2X.Location = new System.Drawing.Point(85, 237);
+            this.tb_Cam1Jig4Bo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4Bo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4Bo2X.Name = "tb_Cam1Jig4Bo2X";
             this.tb_Cam1Jig4Bo2X.Size = new System.Drawing.Size(73, 21);
@@ -3994,8 +4091,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4Bo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4Bo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4Bo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4Bo1Y.Location = new System.Drawing.Point(85, 140);
-            this.tb_Cam1Jig4Bo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4Bo1Y.Location = new System.Drawing.Point(85, 147);
+            this.tb_Cam1Jig4Bo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4Bo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4Bo1Y.Name = "tb_Cam1Jig4Bo1Y";
             this.tb_Cam1Jig4Bo1Y.Size = new System.Drawing.Size(73, 21);
@@ -4006,8 +4103,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4Bo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4Bo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4Bo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4Bo1X.Location = new System.Drawing.Point(85, 95);
-            this.tb_Cam1Jig4Bo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4Bo1X.Location = new System.Drawing.Point(85, 102);
+            this.tb_Cam1Jig4Bo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4Bo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4Bo1X.Name = "tb_Cam1Jig4Bo1X";
             this.tb_Cam1Jig4Bo1X.Size = new System.Drawing.Size(73, 21);
@@ -4054,8 +4151,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La21Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La21Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La21Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La21Y.Location = new System.Drawing.Point(328, 275);
-            this.tb_Cam1Jig4La21Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La21Y.Location = new System.Drawing.Point(328, 282);
+            this.tb_Cam1Jig4La21Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La21Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La21Y.Name = "tb_Cam1Jig4La21Y";
             this.tb_Cam1Jig4La21Y.Size = new System.Drawing.Size(73, 21);
@@ -4067,8 +4164,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La21X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La21X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La21X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La21X.Location = new System.Drawing.Point(328, 230);
-            this.tb_Cam1Jig4La21X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La21X.Location = new System.Drawing.Point(328, 237);
+            this.tb_Cam1Jig4La21X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La21X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La21X.Name = "tb_Cam1Jig4La21X";
             this.tb_Cam1Jig4La21X.Size = new System.Drawing.Size(73, 21);
@@ -4140,8 +4237,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La11Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La11Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La11Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La11Y.Location = new System.Drawing.Point(328, 140);
-            this.tb_Cam1Jig4La11Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La11Y.Location = new System.Drawing.Point(328, 147);
+            this.tb_Cam1Jig4La11Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La11Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La11Y.Name = "tb_Cam1Jig4La11Y";
             this.tb_Cam1Jig4La11Y.Size = new System.Drawing.Size(73, 21);
@@ -4153,8 +4250,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La11X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La11X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La11X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La11X.Location = new System.Drawing.Point(328, 95);
-            this.tb_Cam1Jig4La11X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La11X.Location = new System.Drawing.Point(328, 102);
+            this.tb_Cam1Jig4La11X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La11X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La11X.Name = "tb_Cam1Jig4La11X";
             this.tb_Cam1Jig4La11X.Size = new System.Drawing.Size(73, 21);
@@ -4178,8 +4275,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La22Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La22Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La22Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La22Y.Location = new System.Drawing.Point(490, 275);
-            this.tb_Cam1Jig4La22Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La22Y.Location = new System.Drawing.Point(490, 282);
+            this.tb_Cam1Jig4La22Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La22Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La22Y.Name = "tb_Cam1Jig4La22Y";
             this.tb_Cam1Jig4La22Y.Size = new System.Drawing.Size(73, 21);
@@ -4202,8 +4299,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La23Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La23Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La23Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La23Y.Location = new System.Drawing.Point(652, 275);
-            this.tb_Cam1Jig4La23Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La23Y.Location = new System.Drawing.Point(652, 282);
+            this.tb_Cam1Jig4La23Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La23Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La23Y.Name = "tb_Cam1Jig4La23Y";
             this.tb_Cam1Jig4La23Y.Size = new System.Drawing.Size(73, 21);
@@ -4227,8 +4324,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La24Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La24Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La24Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La24Y.Location = new System.Drawing.Point(814, 275);
-            this.tb_Cam1Jig4La24Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La24Y.Location = new System.Drawing.Point(814, 282);
+            this.tb_Cam1Jig4La24Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La24Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La24Y.Name = "tb_Cam1Jig4La24Y";
             this.tb_Cam1Jig4La24Y.Size = new System.Drawing.Size(73, 21);
@@ -4251,8 +4348,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La22X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La22X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La22X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La22X.Location = new System.Drawing.Point(490, 230);
-            this.tb_Cam1Jig4La22X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La22X.Location = new System.Drawing.Point(490, 237);
+            this.tb_Cam1Jig4La22X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La22X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La22X.Name = "tb_Cam1Jig4La22X";
             this.tb_Cam1Jig4La22X.Size = new System.Drawing.Size(73, 21);
@@ -4275,8 +4372,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La23X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La23X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La23X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La23X.Location = new System.Drawing.Point(652, 230);
-            this.tb_Cam1Jig4La23X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La23X.Location = new System.Drawing.Point(652, 237);
+            this.tb_Cam1Jig4La23X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La23X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La23X.Name = "tb_Cam1Jig4La23X";
             this.tb_Cam1Jig4La23X.Size = new System.Drawing.Size(73, 21);
@@ -4300,8 +4397,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La24X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La24X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La24X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La24X.Location = new System.Drawing.Point(814, 230);
-            this.tb_Cam1Jig4La24X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La24X.Location = new System.Drawing.Point(814, 237);
+            this.tb_Cam1Jig4La24X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La24X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La24X.Name = "tb_Cam1Jig4La24X";
             this.tb_Cam1Jig4La24X.Size = new System.Drawing.Size(73, 21);
@@ -4336,8 +4433,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La12Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La12Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La12Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La12Y.Location = new System.Drawing.Point(490, 140);
-            this.tb_Cam1Jig4La12Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La12Y.Location = new System.Drawing.Point(490, 147);
+            this.tb_Cam1Jig4La12Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La12Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La12Y.Name = "tb_Cam1Jig4La12Y";
             this.tb_Cam1Jig4La12Y.Size = new System.Drawing.Size(73, 21);
@@ -4348,8 +4445,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La12X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La12X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La12X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La12X.Location = new System.Drawing.Point(490, 95);
-            this.tb_Cam1Jig4La12X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La12X.Location = new System.Drawing.Point(490, 102);
+            this.tb_Cam1Jig4La12X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La12X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La12X.Name = "tb_Cam1Jig4La12X";
             this.tb_Cam1Jig4La12X.Size = new System.Drawing.Size(73, 21);
@@ -4384,8 +4481,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La13Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La13Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La13Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La13Y.Location = new System.Drawing.Point(652, 140);
-            this.tb_Cam1Jig4La13Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La13Y.Location = new System.Drawing.Point(652, 147);
+            this.tb_Cam1Jig4La13Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La13Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La13Y.Name = "tb_Cam1Jig4La13Y";
             this.tb_Cam1Jig4La13Y.Size = new System.Drawing.Size(73, 21);
@@ -4397,8 +4494,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La13X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La13X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La13X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La13X.Location = new System.Drawing.Point(652, 95);
-            this.tb_Cam1Jig4La13X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La13X.Location = new System.Drawing.Point(652, 102);
+            this.tb_Cam1Jig4La13X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La13X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La13X.Name = "tb_Cam1Jig4La13X";
             this.tb_Cam1Jig4La13X.Size = new System.Drawing.Size(73, 21);
@@ -4434,8 +4531,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La14Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La14Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La14Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La14Y.Location = new System.Drawing.Point(814, 140);
-            this.tb_Cam1Jig4La14Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La14Y.Location = new System.Drawing.Point(814, 147);
+            this.tb_Cam1Jig4La14Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La14Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La14Y.Name = "tb_Cam1Jig4La14Y";
             this.tb_Cam1Jig4La14Y.Size = new System.Drawing.Size(73, 21);
@@ -4446,8 +4543,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig4La14X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig4La14X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig4La14X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig4La14X.Location = new System.Drawing.Point(814, 95);
-            this.tb_Cam1Jig4La14X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig4La14X.Location = new System.Drawing.Point(814, 102);
+            this.tb_Cam1Jig4La14X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig4La14X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig4La14X.Name = "tb_Cam1Jig4La14X";
             this.tb_Cam1Jig4La14X.Size = new System.Drawing.Size(73, 21);
@@ -4600,8 +4697,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5Bo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5Bo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5Bo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5Bo2Y.Location = new System.Drawing.Point(85, 275);
-            this.tb_Cam1Jig5Bo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5Bo2Y.Location = new System.Drawing.Point(85, 282);
+            this.tb_Cam1Jig5Bo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5Bo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5Bo2Y.Name = "tb_Cam1Jig5Bo2Y";
             this.tb_Cam1Jig5Bo2Y.Size = new System.Drawing.Size(73, 21);
@@ -4612,8 +4709,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5Bo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5Bo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5Bo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5Bo2X.Location = new System.Drawing.Point(85, 230);
-            this.tb_Cam1Jig5Bo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5Bo2X.Location = new System.Drawing.Point(85, 237);
+            this.tb_Cam1Jig5Bo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5Bo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5Bo2X.Name = "tb_Cam1Jig5Bo2X";
             this.tb_Cam1Jig5Bo2X.Size = new System.Drawing.Size(73, 21);
@@ -4660,8 +4757,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5Bo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5Bo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5Bo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5Bo1Y.Location = new System.Drawing.Point(85, 140);
-            this.tb_Cam1Jig5Bo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5Bo1Y.Location = new System.Drawing.Point(85, 147);
+            this.tb_Cam1Jig5Bo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5Bo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5Bo1Y.Name = "tb_Cam1Jig5Bo1Y";
             this.tb_Cam1Jig5Bo1Y.Size = new System.Drawing.Size(73, 21);
@@ -4672,8 +4769,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5Bo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5Bo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5Bo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5Bo1X.Location = new System.Drawing.Point(85, 95);
-            this.tb_Cam1Jig5Bo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5Bo1X.Location = new System.Drawing.Point(85, 102);
+            this.tb_Cam1Jig5Bo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5Bo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5Bo1X.Name = "tb_Cam1Jig5Bo1X";
             this.tb_Cam1Jig5Bo1X.Size = new System.Drawing.Size(73, 21);
@@ -4720,8 +4817,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La21Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La21Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La21Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La21Y.Location = new System.Drawing.Point(328, 275);
-            this.tb_Cam1Jig5La21Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La21Y.Location = new System.Drawing.Point(328, 282);
+            this.tb_Cam1Jig5La21Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La21Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La21Y.Name = "tb_Cam1Jig5La21Y";
             this.tb_Cam1Jig5La21Y.Size = new System.Drawing.Size(73, 21);
@@ -4733,8 +4830,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La21X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La21X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La21X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La21X.Location = new System.Drawing.Point(328, 230);
-            this.tb_Cam1Jig5La21X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La21X.Location = new System.Drawing.Point(328, 237);
+            this.tb_Cam1Jig5La21X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La21X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La21X.Name = "tb_Cam1Jig5La21X";
             this.tb_Cam1Jig5La21X.Size = new System.Drawing.Size(73, 21);
@@ -4806,8 +4903,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La11Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La11Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La11Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La11Y.Location = new System.Drawing.Point(328, 140);
-            this.tb_Cam1Jig5La11Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La11Y.Location = new System.Drawing.Point(328, 147);
+            this.tb_Cam1Jig5La11Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La11Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La11Y.Name = "tb_Cam1Jig5La11Y";
             this.tb_Cam1Jig5La11Y.Size = new System.Drawing.Size(73, 21);
@@ -4819,8 +4916,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La11X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La11X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La11X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La11X.Location = new System.Drawing.Point(328, 95);
-            this.tb_Cam1Jig5La11X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La11X.Location = new System.Drawing.Point(328, 102);
+            this.tb_Cam1Jig5La11X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La11X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La11X.Name = "tb_Cam1Jig5La11X";
             this.tb_Cam1Jig5La11X.Size = new System.Drawing.Size(73, 21);
@@ -4844,8 +4941,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La22Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La22Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La22Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La22Y.Location = new System.Drawing.Point(490, 275);
-            this.tb_Cam1Jig5La22Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La22Y.Location = new System.Drawing.Point(490, 282);
+            this.tb_Cam1Jig5La22Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La22Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La22Y.Name = "tb_Cam1Jig5La22Y";
             this.tb_Cam1Jig5La22Y.Size = new System.Drawing.Size(73, 21);
@@ -4868,8 +4965,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La23Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La23Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La23Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La23Y.Location = new System.Drawing.Point(652, 275);
-            this.tb_Cam1Jig5La23Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La23Y.Location = new System.Drawing.Point(652, 282);
+            this.tb_Cam1Jig5La23Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La23Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La23Y.Name = "tb_Cam1Jig5La23Y";
             this.tb_Cam1Jig5La23Y.Size = new System.Drawing.Size(73, 21);
@@ -4893,8 +4990,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La24Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La24Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La24Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La24Y.Location = new System.Drawing.Point(814, 275);
-            this.tb_Cam1Jig5La24Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La24Y.Location = new System.Drawing.Point(814, 282);
+            this.tb_Cam1Jig5La24Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La24Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La24Y.Name = "tb_Cam1Jig5La24Y";
             this.tb_Cam1Jig5La24Y.Size = new System.Drawing.Size(73, 21);
@@ -4917,8 +5014,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La22X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La22X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La22X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La22X.Location = new System.Drawing.Point(490, 230);
-            this.tb_Cam1Jig5La22X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La22X.Location = new System.Drawing.Point(490, 237);
+            this.tb_Cam1Jig5La22X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La22X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La22X.Name = "tb_Cam1Jig5La22X";
             this.tb_Cam1Jig5La22X.Size = new System.Drawing.Size(73, 21);
@@ -4941,8 +5038,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La23X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La23X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La23X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La23X.Location = new System.Drawing.Point(652, 230);
-            this.tb_Cam1Jig5La23X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La23X.Location = new System.Drawing.Point(652, 237);
+            this.tb_Cam1Jig5La23X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La23X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La23X.Name = "tb_Cam1Jig5La23X";
             this.tb_Cam1Jig5La23X.Size = new System.Drawing.Size(73, 21);
@@ -4966,8 +5063,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La24X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La24X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La24X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La24X.Location = new System.Drawing.Point(814, 230);
-            this.tb_Cam1Jig5La24X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La24X.Location = new System.Drawing.Point(814, 237);
+            this.tb_Cam1Jig5La24X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La24X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La24X.Name = "tb_Cam1Jig5La24X";
             this.tb_Cam1Jig5La24X.Size = new System.Drawing.Size(73, 21);
@@ -5002,8 +5099,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La12Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La12Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La12Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La12Y.Location = new System.Drawing.Point(490, 140);
-            this.tb_Cam1Jig5La12Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La12Y.Location = new System.Drawing.Point(490, 147);
+            this.tb_Cam1Jig5La12Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La12Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La12Y.Name = "tb_Cam1Jig5La12Y";
             this.tb_Cam1Jig5La12Y.Size = new System.Drawing.Size(73, 21);
@@ -5014,8 +5111,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La12X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La12X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La12X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La12X.Location = new System.Drawing.Point(490, 95);
-            this.tb_Cam1Jig5La12X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La12X.Location = new System.Drawing.Point(490, 102);
+            this.tb_Cam1Jig5La12X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La12X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La12X.Name = "tb_Cam1Jig5La12X";
             this.tb_Cam1Jig5La12X.Size = new System.Drawing.Size(73, 21);
@@ -5050,8 +5147,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La13Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La13Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La13Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La13Y.Location = new System.Drawing.Point(652, 140);
-            this.tb_Cam1Jig5La13Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La13Y.Location = new System.Drawing.Point(652, 147);
+            this.tb_Cam1Jig5La13Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La13Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La13Y.Name = "tb_Cam1Jig5La13Y";
             this.tb_Cam1Jig5La13Y.Size = new System.Drawing.Size(73, 21);
@@ -5063,8 +5160,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La13X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La13X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La13X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La13X.Location = new System.Drawing.Point(652, 95);
-            this.tb_Cam1Jig5La13X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La13X.Location = new System.Drawing.Point(652, 102);
+            this.tb_Cam1Jig5La13X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La13X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La13X.Name = "tb_Cam1Jig5La13X";
             this.tb_Cam1Jig5La13X.Size = new System.Drawing.Size(73, 21);
@@ -5100,8 +5197,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La14Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La14Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La14Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La14Y.Location = new System.Drawing.Point(814, 140);
-            this.tb_Cam1Jig5La14Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La14Y.Location = new System.Drawing.Point(814, 147);
+            this.tb_Cam1Jig5La14Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La14Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La14Y.Name = "tb_Cam1Jig5La14Y";
             this.tb_Cam1Jig5La14Y.Size = new System.Drawing.Size(73, 21);
@@ -5112,8 +5209,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig5La14X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig5La14X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig5La14X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig5La14X.Location = new System.Drawing.Point(814, 95);
-            this.tb_Cam1Jig5La14X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig5La14X.Location = new System.Drawing.Point(814, 102);
+            this.tb_Cam1Jig5La14X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig5La14X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig5La14X.Name = "tb_Cam1Jig5La14X";
             this.tb_Cam1Jig5La14X.Size = new System.Drawing.Size(73, 21);
@@ -5266,8 +5363,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6Bo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6Bo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6Bo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6Bo2Y.Location = new System.Drawing.Point(85, 275);
-            this.tb_Cam1Jig6Bo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6Bo2Y.Location = new System.Drawing.Point(85, 282);
+            this.tb_Cam1Jig6Bo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6Bo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6Bo2Y.Name = "tb_Cam1Jig6Bo2Y";
             this.tb_Cam1Jig6Bo2Y.Size = new System.Drawing.Size(73, 21);
@@ -5278,8 +5375,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6Bo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6Bo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6Bo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6Bo2X.Location = new System.Drawing.Point(85, 230);
-            this.tb_Cam1Jig6Bo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6Bo2X.Location = new System.Drawing.Point(85, 237);
+            this.tb_Cam1Jig6Bo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6Bo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6Bo2X.Name = "tb_Cam1Jig6Bo2X";
             this.tb_Cam1Jig6Bo2X.Size = new System.Drawing.Size(73, 21);
@@ -5326,8 +5423,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6Bo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6Bo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6Bo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6Bo1Y.Location = new System.Drawing.Point(85, 140);
-            this.tb_Cam1Jig6Bo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6Bo1Y.Location = new System.Drawing.Point(85, 147);
+            this.tb_Cam1Jig6Bo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6Bo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6Bo1Y.Name = "tb_Cam1Jig6Bo1Y";
             this.tb_Cam1Jig6Bo1Y.Size = new System.Drawing.Size(73, 21);
@@ -5338,8 +5435,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6Bo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6Bo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6Bo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6Bo1X.Location = new System.Drawing.Point(85, 95);
-            this.tb_Cam1Jig6Bo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6Bo1X.Location = new System.Drawing.Point(85, 102);
+            this.tb_Cam1Jig6Bo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6Bo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6Bo1X.Name = "tb_Cam1Jig6Bo1X";
             this.tb_Cam1Jig6Bo1X.Size = new System.Drawing.Size(73, 21);
@@ -5386,8 +5483,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La21Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La21Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La21Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La21Y.Location = new System.Drawing.Point(328, 275);
-            this.tb_Cam1Jig6La21Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La21Y.Location = new System.Drawing.Point(328, 282);
+            this.tb_Cam1Jig6La21Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La21Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La21Y.Name = "tb_Cam1Jig6La21Y";
             this.tb_Cam1Jig6La21Y.Size = new System.Drawing.Size(73, 21);
@@ -5399,8 +5496,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La21X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La21X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La21X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La21X.Location = new System.Drawing.Point(328, 230);
-            this.tb_Cam1Jig6La21X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La21X.Location = new System.Drawing.Point(328, 237);
+            this.tb_Cam1Jig6La21X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La21X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La21X.Name = "tb_Cam1Jig6La21X";
             this.tb_Cam1Jig6La21X.Size = new System.Drawing.Size(73, 21);
@@ -5472,8 +5569,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La11Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La11Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La11Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La11Y.Location = new System.Drawing.Point(328, 140);
-            this.tb_Cam1Jig6La11Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La11Y.Location = new System.Drawing.Point(328, 147);
+            this.tb_Cam1Jig6La11Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La11Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La11Y.Name = "tb_Cam1Jig6La11Y";
             this.tb_Cam1Jig6La11Y.Size = new System.Drawing.Size(73, 21);
@@ -5485,8 +5582,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La11X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La11X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La11X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La11X.Location = new System.Drawing.Point(328, 95);
-            this.tb_Cam1Jig6La11X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La11X.Location = new System.Drawing.Point(328, 102);
+            this.tb_Cam1Jig6La11X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La11X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La11X.Name = "tb_Cam1Jig6La11X";
             this.tb_Cam1Jig6La11X.Size = new System.Drawing.Size(73, 21);
@@ -5510,8 +5607,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La22Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La22Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La22Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La22Y.Location = new System.Drawing.Point(490, 275);
-            this.tb_Cam1Jig6La22Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La22Y.Location = new System.Drawing.Point(490, 282);
+            this.tb_Cam1Jig6La22Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La22Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La22Y.Name = "tb_Cam1Jig6La22Y";
             this.tb_Cam1Jig6La22Y.Size = new System.Drawing.Size(73, 21);
@@ -5534,8 +5631,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La23Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La23Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La23Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La23Y.Location = new System.Drawing.Point(652, 275);
-            this.tb_Cam1Jig6La23Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La23Y.Location = new System.Drawing.Point(652, 282);
+            this.tb_Cam1Jig6La23Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La23Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La23Y.Name = "tb_Cam1Jig6La23Y";
             this.tb_Cam1Jig6La23Y.Size = new System.Drawing.Size(73, 21);
@@ -5559,8 +5656,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La24Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La24Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La24Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La24Y.Location = new System.Drawing.Point(814, 275);
-            this.tb_Cam1Jig6La24Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La24Y.Location = new System.Drawing.Point(814, 282);
+            this.tb_Cam1Jig6La24Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La24Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La24Y.Name = "tb_Cam1Jig6La24Y";
             this.tb_Cam1Jig6La24Y.Size = new System.Drawing.Size(73, 21);
@@ -5583,8 +5680,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La22X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La22X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La22X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La22X.Location = new System.Drawing.Point(490, 230);
-            this.tb_Cam1Jig6La22X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La22X.Location = new System.Drawing.Point(490, 237);
+            this.tb_Cam1Jig6La22X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La22X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La22X.Name = "tb_Cam1Jig6La22X";
             this.tb_Cam1Jig6La22X.Size = new System.Drawing.Size(73, 21);
@@ -5607,8 +5704,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La23X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La23X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La23X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La23X.Location = new System.Drawing.Point(652, 230);
-            this.tb_Cam1Jig6La23X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La23X.Location = new System.Drawing.Point(652, 237);
+            this.tb_Cam1Jig6La23X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La23X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La23X.Name = "tb_Cam1Jig6La23X";
             this.tb_Cam1Jig6La23X.Size = new System.Drawing.Size(73, 21);
@@ -5632,8 +5729,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La24X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La24X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La24X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La24X.Location = new System.Drawing.Point(814, 230);
-            this.tb_Cam1Jig6La24X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La24X.Location = new System.Drawing.Point(814, 237);
+            this.tb_Cam1Jig6La24X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La24X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La24X.Name = "tb_Cam1Jig6La24X";
             this.tb_Cam1Jig6La24X.Size = new System.Drawing.Size(73, 21);
@@ -5668,8 +5765,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La12Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La12Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La12Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La12Y.Location = new System.Drawing.Point(490, 140);
-            this.tb_Cam1Jig6La12Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La12Y.Location = new System.Drawing.Point(490, 147);
+            this.tb_Cam1Jig6La12Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La12Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La12Y.Name = "tb_Cam1Jig6La12Y";
             this.tb_Cam1Jig6La12Y.Size = new System.Drawing.Size(73, 21);
@@ -5680,8 +5777,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La12X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La12X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La12X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La12X.Location = new System.Drawing.Point(490, 95);
-            this.tb_Cam1Jig6La12X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La12X.Location = new System.Drawing.Point(490, 102);
+            this.tb_Cam1Jig6La12X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La12X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La12X.Name = "tb_Cam1Jig6La12X";
             this.tb_Cam1Jig6La12X.Size = new System.Drawing.Size(73, 21);
@@ -5716,8 +5813,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La13Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La13Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La13Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La13Y.Location = new System.Drawing.Point(652, 140);
-            this.tb_Cam1Jig6La13Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La13Y.Location = new System.Drawing.Point(652, 147);
+            this.tb_Cam1Jig6La13Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La13Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La13Y.Name = "tb_Cam1Jig6La13Y";
             this.tb_Cam1Jig6La13Y.Size = new System.Drawing.Size(73, 21);
@@ -5729,8 +5826,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La13X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La13X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La13X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La13X.Location = new System.Drawing.Point(652, 95);
-            this.tb_Cam1Jig6La13X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La13X.Location = new System.Drawing.Point(652, 102);
+            this.tb_Cam1Jig6La13X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La13X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La13X.Name = "tb_Cam1Jig6La13X";
             this.tb_Cam1Jig6La13X.Size = new System.Drawing.Size(73, 21);
@@ -5766,8 +5863,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La14Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La14Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La14Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La14Y.Location = new System.Drawing.Point(814, 140);
-            this.tb_Cam1Jig6La14Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La14Y.Location = new System.Drawing.Point(814, 147);
+            this.tb_Cam1Jig6La14Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La14Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La14Y.Name = "tb_Cam1Jig6La14Y";
             this.tb_Cam1Jig6La14Y.Size = new System.Drawing.Size(73, 21);
@@ -5778,8 +5875,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig6La14X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig6La14X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig6La14X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig6La14X.Location = new System.Drawing.Point(814, 95);
-            this.tb_Cam1Jig6La14X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig6La14X.Location = new System.Drawing.Point(814, 102);
+            this.tb_Cam1Jig6La14X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig6La14X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig6La14X.Name = "tb_Cam1Jig6La14X";
             this.tb_Cam1Jig6La14X.Size = new System.Drawing.Size(73, 21);
@@ -5932,8 +6029,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7Bo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7Bo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7Bo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7Bo2Y.Location = new System.Drawing.Point(85, 275);
-            this.tb_Cam1Jig7Bo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7Bo2Y.Location = new System.Drawing.Point(85, 282);
+            this.tb_Cam1Jig7Bo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7Bo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7Bo2Y.Name = "tb_Cam1Jig7Bo2Y";
             this.tb_Cam1Jig7Bo2Y.Size = new System.Drawing.Size(73, 21);
@@ -5944,8 +6041,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7Bo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7Bo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7Bo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7Bo2X.Location = new System.Drawing.Point(85, 230);
-            this.tb_Cam1Jig7Bo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7Bo2X.Location = new System.Drawing.Point(85, 237);
+            this.tb_Cam1Jig7Bo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7Bo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7Bo2X.Name = "tb_Cam1Jig7Bo2X";
             this.tb_Cam1Jig7Bo2X.Size = new System.Drawing.Size(73, 21);
@@ -5992,8 +6089,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7Bo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7Bo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7Bo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7Bo1Y.Location = new System.Drawing.Point(85, 140);
-            this.tb_Cam1Jig7Bo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7Bo1Y.Location = new System.Drawing.Point(85, 147);
+            this.tb_Cam1Jig7Bo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7Bo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7Bo1Y.Name = "tb_Cam1Jig7Bo1Y";
             this.tb_Cam1Jig7Bo1Y.Size = new System.Drawing.Size(73, 21);
@@ -6004,8 +6101,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7Bo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7Bo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7Bo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7Bo1X.Location = new System.Drawing.Point(85, 95);
-            this.tb_Cam1Jig7Bo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7Bo1X.Location = new System.Drawing.Point(85, 102);
+            this.tb_Cam1Jig7Bo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7Bo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7Bo1X.Name = "tb_Cam1Jig7Bo1X";
             this.tb_Cam1Jig7Bo1X.Size = new System.Drawing.Size(73, 21);
@@ -6052,8 +6149,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La21Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La21Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La21Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La21Y.Location = new System.Drawing.Point(328, 275);
-            this.tb_Cam1Jig7La21Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La21Y.Location = new System.Drawing.Point(328, 282);
+            this.tb_Cam1Jig7La21Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La21Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La21Y.Name = "tb_Cam1Jig7La21Y";
             this.tb_Cam1Jig7La21Y.Size = new System.Drawing.Size(73, 21);
@@ -6065,8 +6162,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La21X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La21X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La21X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La21X.Location = new System.Drawing.Point(328, 230);
-            this.tb_Cam1Jig7La21X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La21X.Location = new System.Drawing.Point(328, 237);
+            this.tb_Cam1Jig7La21X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La21X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La21X.Name = "tb_Cam1Jig7La21X";
             this.tb_Cam1Jig7La21X.Size = new System.Drawing.Size(73, 21);
@@ -6138,8 +6235,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La11Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La11Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La11Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La11Y.Location = new System.Drawing.Point(328, 140);
-            this.tb_Cam1Jig7La11Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La11Y.Location = new System.Drawing.Point(328, 147);
+            this.tb_Cam1Jig7La11Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La11Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La11Y.Name = "tb_Cam1Jig7La11Y";
             this.tb_Cam1Jig7La11Y.Size = new System.Drawing.Size(73, 21);
@@ -6151,8 +6248,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La11X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La11X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La11X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La11X.Location = new System.Drawing.Point(328, 95);
-            this.tb_Cam1Jig7La11X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La11X.Location = new System.Drawing.Point(328, 102);
+            this.tb_Cam1Jig7La11X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La11X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La11X.Name = "tb_Cam1Jig7La11X";
             this.tb_Cam1Jig7La11X.Size = new System.Drawing.Size(73, 21);
@@ -6176,8 +6273,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La22Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La22Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La22Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La22Y.Location = new System.Drawing.Point(490, 275);
-            this.tb_Cam1Jig7La22Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La22Y.Location = new System.Drawing.Point(490, 282);
+            this.tb_Cam1Jig7La22Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La22Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La22Y.Name = "tb_Cam1Jig7La22Y";
             this.tb_Cam1Jig7La22Y.Size = new System.Drawing.Size(73, 21);
@@ -6200,8 +6297,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La23Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La23Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La23Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La23Y.Location = new System.Drawing.Point(652, 275);
-            this.tb_Cam1Jig7La23Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La23Y.Location = new System.Drawing.Point(652, 282);
+            this.tb_Cam1Jig7La23Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La23Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La23Y.Name = "tb_Cam1Jig7La23Y";
             this.tb_Cam1Jig7La23Y.Size = new System.Drawing.Size(73, 21);
@@ -6225,8 +6322,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La24Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La24Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La24Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La24Y.Location = new System.Drawing.Point(814, 275);
-            this.tb_Cam1Jig7La24Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La24Y.Location = new System.Drawing.Point(814, 282);
+            this.tb_Cam1Jig7La24Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La24Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La24Y.Name = "tb_Cam1Jig7La24Y";
             this.tb_Cam1Jig7La24Y.Size = new System.Drawing.Size(73, 21);
@@ -6249,8 +6346,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La22X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La22X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La22X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La22X.Location = new System.Drawing.Point(490, 230);
-            this.tb_Cam1Jig7La22X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La22X.Location = new System.Drawing.Point(490, 237);
+            this.tb_Cam1Jig7La22X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La22X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La22X.Name = "tb_Cam1Jig7La22X";
             this.tb_Cam1Jig7La22X.Size = new System.Drawing.Size(73, 21);
@@ -6273,8 +6370,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La23X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La23X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La23X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La23X.Location = new System.Drawing.Point(652, 230);
-            this.tb_Cam1Jig7La23X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La23X.Location = new System.Drawing.Point(652, 237);
+            this.tb_Cam1Jig7La23X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La23X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La23X.Name = "tb_Cam1Jig7La23X";
             this.tb_Cam1Jig7La23X.Size = new System.Drawing.Size(73, 21);
@@ -6298,8 +6395,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La24X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La24X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La24X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La24X.Location = new System.Drawing.Point(814, 230);
-            this.tb_Cam1Jig7La24X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La24X.Location = new System.Drawing.Point(814, 237);
+            this.tb_Cam1Jig7La24X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La24X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La24X.Name = "tb_Cam1Jig7La24X";
             this.tb_Cam1Jig7La24X.Size = new System.Drawing.Size(73, 21);
@@ -6334,8 +6431,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La12Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La12Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La12Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La12Y.Location = new System.Drawing.Point(490, 140);
-            this.tb_Cam1Jig7La12Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La12Y.Location = new System.Drawing.Point(490, 147);
+            this.tb_Cam1Jig7La12Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La12Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La12Y.Name = "tb_Cam1Jig7La12Y";
             this.tb_Cam1Jig7La12Y.Size = new System.Drawing.Size(73, 21);
@@ -6346,8 +6443,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La12X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La12X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La12X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La12X.Location = new System.Drawing.Point(490, 95);
-            this.tb_Cam1Jig7La12X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La12X.Location = new System.Drawing.Point(490, 102);
+            this.tb_Cam1Jig7La12X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La12X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La12X.Name = "tb_Cam1Jig7La12X";
             this.tb_Cam1Jig7La12X.Size = new System.Drawing.Size(73, 21);
@@ -6382,8 +6479,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La13Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La13Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La13Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La13Y.Location = new System.Drawing.Point(652, 140);
-            this.tb_Cam1Jig7La13Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La13Y.Location = new System.Drawing.Point(652, 147);
+            this.tb_Cam1Jig7La13Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La13Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La13Y.Name = "tb_Cam1Jig7La13Y";
             this.tb_Cam1Jig7La13Y.Size = new System.Drawing.Size(73, 21);
@@ -6395,8 +6492,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La13X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La13X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La13X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La13X.Location = new System.Drawing.Point(652, 95);
-            this.tb_Cam1Jig7La13X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La13X.Location = new System.Drawing.Point(652, 102);
+            this.tb_Cam1Jig7La13X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La13X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La13X.Name = "tb_Cam1Jig7La13X";
             this.tb_Cam1Jig7La13X.Size = new System.Drawing.Size(73, 21);
@@ -6432,8 +6529,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La14Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La14Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La14Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La14Y.Location = new System.Drawing.Point(814, 140);
-            this.tb_Cam1Jig7La14Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La14Y.Location = new System.Drawing.Point(814, 147);
+            this.tb_Cam1Jig7La14Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La14Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La14Y.Name = "tb_Cam1Jig7La14Y";
             this.tb_Cam1Jig7La14Y.Size = new System.Drawing.Size(73, 21);
@@ -6444,8 +6541,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig7La14X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig7La14X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig7La14X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig7La14X.Location = new System.Drawing.Point(814, 95);
-            this.tb_Cam1Jig7La14X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig7La14X.Location = new System.Drawing.Point(814, 102);
+            this.tb_Cam1Jig7La14X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig7La14X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig7La14X.Name = "tb_Cam1Jig7La14X";
             this.tb_Cam1Jig7La14X.Size = new System.Drawing.Size(73, 21);
@@ -6598,8 +6695,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8Bo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8Bo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8Bo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8Bo2Y.Location = new System.Drawing.Point(85, 275);
-            this.tb_Cam1Jig8Bo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8Bo2Y.Location = new System.Drawing.Point(85, 282);
+            this.tb_Cam1Jig8Bo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8Bo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8Bo2Y.Name = "tb_Cam1Jig8Bo2Y";
             this.tb_Cam1Jig8Bo2Y.Size = new System.Drawing.Size(73, 21);
@@ -6610,8 +6707,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8Bo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8Bo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8Bo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8Bo2X.Location = new System.Drawing.Point(85, 230);
-            this.tb_Cam1Jig8Bo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8Bo2X.Location = new System.Drawing.Point(85, 237);
+            this.tb_Cam1Jig8Bo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8Bo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8Bo2X.Name = "tb_Cam1Jig8Bo2X";
             this.tb_Cam1Jig8Bo2X.Size = new System.Drawing.Size(73, 21);
@@ -6658,8 +6755,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8Bo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8Bo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8Bo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8Bo1Y.Location = new System.Drawing.Point(85, 140);
-            this.tb_Cam1Jig8Bo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8Bo1Y.Location = new System.Drawing.Point(85, 147);
+            this.tb_Cam1Jig8Bo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8Bo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8Bo1Y.Name = "tb_Cam1Jig8Bo1Y";
             this.tb_Cam1Jig8Bo1Y.Size = new System.Drawing.Size(73, 21);
@@ -6670,8 +6767,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8Bo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8Bo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8Bo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8Bo1X.Location = new System.Drawing.Point(85, 95);
-            this.tb_Cam1Jig8Bo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8Bo1X.Location = new System.Drawing.Point(85, 102);
+            this.tb_Cam1Jig8Bo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8Bo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8Bo1X.Name = "tb_Cam1Jig8Bo1X";
             this.tb_Cam1Jig8Bo1X.Size = new System.Drawing.Size(73, 21);
@@ -6718,8 +6815,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La21Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La21Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La21Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La21Y.Location = new System.Drawing.Point(328, 275);
-            this.tb_Cam1Jig8La21Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La21Y.Location = new System.Drawing.Point(328, 282);
+            this.tb_Cam1Jig8La21Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La21Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La21Y.Name = "tb_Cam1Jig8La21Y";
             this.tb_Cam1Jig8La21Y.Size = new System.Drawing.Size(73, 21);
@@ -6731,8 +6828,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La21X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La21X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La21X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La21X.Location = new System.Drawing.Point(328, 230);
-            this.tb_Cam1Jig8La21X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La21X.Location = new System.Drawing.Point(328, 237);
+            this.tb_Cam1Jig8La21X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La21X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La21X.Name = "tb_Cam1Jig8La21X";
             this.tb_Cam1Jig8La21X.Size = new System.Drawing.Size(73, 21);
@@ -6804,8 +6901,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La11Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La11Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La11Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La11Y.Location = new System.Drawing.Point(328, 140);
-            this.tb_Cam1Jig8La11Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La11Y.Location = new System.Drawing.Point(328, 147);
+            this.tb_Cam1Jig8La11Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La11Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La11Y.Name = "tb_Cam1Jig8La11Y";
             this.tb_Cam1Jig8La11Y.Size = new System.Drawing.Size(73, 21);
@@ -6817,8 +6914,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La11X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La11X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La11X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La11X.Location = new System.Drawing.Point(328, 95);
-            this.tb_Cam1Jig8La11X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La11X.Location = new System.Drawing.Point(328, 102);
+            this.tb_Cam1Jig8La11X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La11X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La11X.Name = "tb_Cam1Jig8La11X";
             this.tb_Cam1Jig8La11X.Size = new System.Drawing.Size(73, 21);
@@ -6842,8 +6939,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La22Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La22Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La22Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La22Y.Location = new System.Drawing.Point(490, 275);
-            this.tb_Cam1Jig8La22Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La22Y.Location = new System.Drawing.Point(490, 282);
+            this.tb_Cam1Jig8La22Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La22Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La22Y.Name = "tb_Cam1Jig8La22Y";
             this.tb_Cam1Jig8La22Y.Size = new System.Drawing.Size(73, 21);
@@ -6866,8 +6963,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La23Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La23Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La23Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La23Y.Location = new System.Drawing.Point(652, 275);
-            this.tb_Cam1Jig8La23Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La23Y.Location = new System.Drawing.Point(652, 282);
+            this.tb_Cam1Jig8La23Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La23Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La23Y.Name = "tb_Cam1Jig8La23Y";
             this.tb_Cam1Jig8La23Y.Size = new System.Drawing.Size(73, 21);
@@ -6891,8 +6988,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La24Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La24Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La24Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La24Y.Location = new System.Drawing.Point(814, 275);
-            this.tb_Cam1Jig8La24Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La24Y.Location = new System.Drawing.Point(814, 282);
+            this.tb_Cam1Jig8La24Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La24Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La24Y.Name = "tb_Cam1Jig8La24Y";
             this.tb_Cam1Jig8La24Y.Size = new System.Drawing.Size(73, 21);
@@ -6915,8 +7012,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La22X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La22X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La22X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La22X.Location = new System.Drawing.Point(490, 230);
-            this.tb_Cam1Jig8La22X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La22X.Location = new System.Drawing.Point(490, 237);
+            this.tb_Cam1Jig8La22X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La22X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La22X.Name = "tb_Cam1Jig8La22X";
             this.tb_Cam1Jig8La22X.Size = new System.Drawing.Size(73, 21);
@@ -6939,8 +7036,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La23X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La23X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La23X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La23X.Location = new System.Drawing.Point(652, 230);
-            this.tb_Cam1Jig8La23X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La23X.Location = new System.Drawing.Point(652, 237);
+            this.tb_Cam1Jig8La23X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La23X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La23X.Name = "tb_Cam1Jig8La23X";
             this.tb_Cam1Jig8La23X.Size = new System.Drawing.Size(73, 21);
@@ -6964,8 +7061,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La24X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La24X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La24X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La24X.Location = new System.Drawing.Point(814, 230);
-            this.tb_Cam1Jig8La24X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La24X.Location = new System.Drawing.Point(814, 237);
+            this.tb_Cam1Jig8La24X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La24X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La24X.Name = "tb_Cam1Jig8La24X";
             this.tb_Cam1Jig8La24X.Size = new System.Drawing.Size(73, 21);
@@ -7000,8 +7097,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La12Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La12Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La12Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La12Y.Location = new System.Drawing.Point(490, 140);
-            this.tb_Cam1Jig8La12Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La12Y.Location = new System.Drawing.Point(490, 147);
+            this.tb_Cam1Jig8La12Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La12Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La12Y.Name = "tb_Cam1Jig8La12Y";
             this.tb_Cam1Jig8La12Y.Size = new System.Drawing.Size(73, 21);
@@ -7012,8 +7109,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La12X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La12X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La12X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La12X.Location = new System.Drawing.Point(490, 95);
-            this.tb_Cam1Jig8La12X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La12X.Location = new System.Drawing.Point(490, 102);
+            this.tb_Cam1Jig8La12X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La12X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La12X.Name = "tb_Cam1Jig8La12X";
             this.tb_Cam1Jig8La12X.Size = new System.Drawing.Size(73, 21);
@@ -7048,8 +7145,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La13Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La13Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La13Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La13Y.Location = new System.Drawing.Point(652, 140);
-            this.tb_Cam1Jig8La13Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La13Y.Location = new System.Drawing.Point(652, 147);
+            this.tb_Cam1Jig8La13Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La13Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La13Y.Name = "tb_Cam1Jig8La13Y";
             this.tb_Cam1Jig8La13Y.Size = new System.Drawing.Size(73, 21);
@@ -7061,8 +7158,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La13X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La13X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La13X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La13X.Location = new System.Drawing.Point(652, 95);
-            this.tb_Cam1Jig8La13X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La13X.Location = new System.Drawing.Point(652, 102);
+            this.tb_Cam1Jig8La13X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La13X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La13X.Name = "tb_Cam1Jig8La13X";
             this.tb_Cam1Jig8La13X.Size = new System.Drawing.Size(73, 21);
@@ -7098,8 +7195,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La14Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La14Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La14Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La14Y.Location = new System.Drawing.Point(814, 140);
-            this.tb_Cam1Jig8La14Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La14Y.Location = new System.Drawing.Point(814, 147);
+            this.tb_Cam1Jig8La14Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La14Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La14Y.Name = "tb_Cam1Jig8La14Y";
             this.tb_Cam1Jig8La14Y.Size = new System.Drawing.Size(73, 21);
@@ -7110,8 +7207,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig8La14X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig8La14X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig8La14X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig8La14X.Location = new System.Drawing.Point(814, 95);
-            this.tb_Cam1Jig8La14X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig8La14X.Location = new System.Drawing.Point(814, 102);
+            this.tb_Cam1Jig8La14X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig8La14X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig8La14X.Name = "tb_Cam1Jig8La14X";
             this.tb_Cam1Jig8La14X.Size = new System.Drawing.Size(73, 21);
@@ -7264,8 +7361,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9Bo2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9Bo2Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9Bo2Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9Bo2Y.Location = new System.Drawing.Point(85, 275);
-            this.tb_Cam1Jig9Bo2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9Bo2Y.Location = new System.Drawing.Point(85, 282);
+            this.tb_Cam1Jig9Bo2Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9Bo2Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9Bo2Y.Name = "tb_Cam1Jig9Bo2Y";
             this.tb_Cam1Jig9Bo2Y.Size = new System.Drawing.Size(73, 21);
@@ -7276,8 +7373,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9Bo2X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9Bo2X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9Bo2X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9Bo2X.Location = new System.Drawing.Point(85, 230);
-            this.tb_Cam1Jig9Bo2X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9Bo2X.Location = new System.Drawing.Point(85, 237);
+            this.tb_Cam1Jig9Bo2X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9Bo2X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9Bo2X.Name = "tb_Cam1Jig9Bo2X";
             this.tb_Cam1Jig9Bo2X.Size = new System.Drawing.Size(73, 21);
@@ -7324,8 +7421,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9Bo1Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9Bo1Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9Bo1Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9Bo1Y.Location = new System.Drawing.Point(85, 140);
-            this.tb_Cam1Jig9Bo1Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9Bo1Y.Location = new System.Drawing.Point(85, 147);
+            this.tb_Cam1Jig9Bo1Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9Bo1Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9Bo1Y.Name = "tb_Cam1Jig9Bo1Y";
             this.tb_Cam1Jig9Bo1Y.Size = new System.Drawing.Size(73, 21);
@@ -7336,8 +7433,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9Bo1X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9Bo1X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9Bo1X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9Bo1X.Location = new System.Drawing.Point(85, 95);
-            this.tb_Cam1Jig9Bo1X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9Bo1X.Location = new System.Drawing.Point(85, 102);
+            this.tb_Cam1Jig9Bo1X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9Bo1X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9Bo1X.Name = "tb_Cam1Jig9Bo1X";
             this.tb_Cam1Jig9Bo1X.Size = new System.Drawing.Size(73, 21);
@@ -7384,8 +7481,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La21Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La21Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La21Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La21Y.Location = new System.Drawing.Point(328, 275);
-            this.tb_Cam1Jig9La21Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La21Y.Location = new System.Drawing.Point(328, 282);
+            this.tb_Cam1Jig9La21Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La21Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La21Y.Name = "tb_Cam1Jig9La21Y";
             this.tb_Cam1Jig9La21Y.Size = new System.Drawing.Size(73, 21);
@@ -7397,8 +7494,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La21X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La21X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La21X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La21X.Location = new System.Drawing.Point(328, 230);
-            this.tb_Cam1Jig9La21X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La21X.Location = new System.Drawing.Point(328, 237);
+            this.tb_Cam1Jig9La21X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La21X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La21X.Name = "tb_Cam1Jig9La21X";
             this.tb_Cam1Jig9La21X.Size = new System.Drawing.Size(73, 21);
@@ -7470,8 +7567,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La11Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La11Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La11Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La11Y.Location = new System.Drawing.Point(328, 140);
-            this.tb_Cam1Jig9La11Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La11Y.Location = new System.Drawing.Point(328, 147);
+            this.tb_Cam1Jig9La11Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La11Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La11Y.Name = "tb_Cam1Jig9La11Y";
             this.tb_Cam1Jig9La11Y.Size = new System.Drawing.Size(73, 21);
@@ -7483,8 +7580,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La11X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La11X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La11X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La11X.Location = new System.Drawing.Point(328, 95);
-            this.tb_Cam1Jig9La11X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La11X.Location = new System.Drawing.Point(328, 102);
+            this.tb_Cam1Jig9La11X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La11X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La11X.Name = "tb_Cam1Jig9La11X";
             this.tb_Cam1Jig9La11X.Size = new System.Drawing.Size(73, 21);
@@ -7508,8 +7605,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La22Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La22Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La22Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La22Y.Location = new System.Drawing.Point(490, 275);
-            this.tb_Cam1Jig9La22Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La22Y.Location = new System.Drawing.Point(490, 282);
+            this.tb_Cam1Jig9La22Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La22Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La22Y.Name = "tb_Cam1Jig9La22Y";
             this.tb_Cam1Jig9La22Y.Size = new System.Drawing.Size(73, 21);
@@ -7532,8 +7629,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La23Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La23Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La23Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La23Y.Location = new System.Drawing.Point(652, 275);
-            this.tb_Cam1Jig9La23Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La23Y.Location = new System.Drawing.Point(652, 282);
+            this.tb_Cam1Jig9La23Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La23Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La23Y.Name = "tb_Cam1Jig9La23Y";
             this.tb_Cam1Jig9La23Y.Size = new System.Drawing.Size(73, 21);
@@ -7557,8 +7654,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La24Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La24Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La24Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La24Y.Location = new System.Drawing.Point(814, 275);
-            this.tb_Cam1Jig9La24Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La24Y.Location = new System.Drawing.Point(814, 282);
+            this.tb_Cam1Jig9La24Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La24Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La24Y.Name = "tb_Cam1Jig9La24Y";
             this.tb_Cam1Jig9La24Y.Size = new System.Drawing.Size(73, 21);
@@ -7581,8 +7678,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La22X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La22X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La22X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La22X.Location = new System.Drawing.Point(490, 230);
-            this.tb_Cam1Jig9La22X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La22X.Location = new System.Drawing.Point(490, 237);
+            this.tb_Cam1Jig9La22X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La22X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La22X.Name = "tb_Cam1Jig9La22X";
             this.tb_Cam1Jig9La22X.Size = new System.Drawing.Size(73, 21);
@@ -7605,8 +7702,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La23X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La23X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La23X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La23X.Location = new System.Drawing.Point(652, 230);
-            this.tb_Cam1Jig9La23X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La23X.Location = new System.Drawing.Point(652, 237);
+            this.tb_Cam1Jig9La23X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La23X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La23X.Name = "tb_Cam1Jig9La23X";
             this.tb_Cam1Jig9La23X.Size = new System.Drawing.Size(73, 21);
@@ -7630,8 +7727,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La24X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La24X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La24X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La24X.Location = new System.Drawing.Point(814, 230);
-            this.tb_Cam1Jig9La24X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La24X.Location = new System.Drawing.Point(814, 237);
+            this.tb_Cam1Jig9La24X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La24X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La24X.Name = "tb_Cam1Jig9La24X";
             this.tb_Cam1Jig9La24X.Size = new System.Drawing.Size(73, 21);
@@ -7666,8 +7763,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La12Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La12Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La12Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La12Y.Location = new System.Drawing.Point(490, 140);
-            this.tb_Cam1Jig9La12Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La12Y.Location = new System.Drawing.Point(490, 147);
+            this.tb_Cam1Jig9La12Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La12Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La12Y.Name = "tb_Cam1Jig9La12Y";
             this.tb_Cam1Jig9La12Y.Size = new System.Drawing.Size(73, 21);
@@ -7678,8 +7775,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La12X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La12X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La12X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La12X.Location = new System.Drawing.Point(490, 95);
-            this.tb_Cam1Jig9La12X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La12X.Location = new System.Drawing.Point(490, 102);
+            this.tb_Cam1Jig9La12X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La12X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La12X.Name = "tb_Cam1Jig9La12X";
             this.tb_Cam1Jig9La12X.Size = new System.Drawing.Size(73, 21);
@@ -7714,8 +7811,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La13Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La13Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La13Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La13Y.Location = new System.Drawing.Point(652, 140);
-            this.tb_Cam1Jig9La13Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La13Y.Location = new System.Drawing.Point(652, 147);
+            this.tb_Cam1Jig9La13Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La13Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La13Y.Name = "tb_Cam1Jig9La13Y";
             this.tb_Cam1Jig9La13Y.Size = new System.Drawing.Size(73, 21);
@@ -7727,8 +7824,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La13X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La13X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La13X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La13X.Location = new System.Drawing.Point(652, 95);
-            this.tb_Cam1Jig9La13X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La13X.Location = new System.Drawing.Point(652, 102);
+            this.tb_Cam1Jig9La13X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La13X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La13X.Name = "tb_Cam1Jig9La13X";
             this.tb_Cam1Jig9La13X.Size = new System.Drawing.Size(73, 21);
@@ -7764,8 +7861,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La14Y.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La14Y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La14Y.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La14Y.Location = new System.Drawing.Point(814, 140);
-            this.tb_Cam1Jig9La14Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La14Y.Location = new System.Drawing.Point(814, 147);
+            this.tb_Cam1Jig9La14Y.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La14Y.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La14Y.Name = "tb_Cam1Jig9La14Y";
             this.tb_Cam1Jig9La14Y.Size = new System.Drawing.Size(73, 21);
@@ -7776,8 +7873,8 @@ namespace HG_Vision.UIVision
             this.tb_Cam1Jig9La14X.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tb_Cam1Jig9La14X.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1Jig9La14X.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Jig9La14X.Location = new System.Drawing.Point(814, 95);
-            this.tb_Cam1Jig9La14X.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_Cam1Jig9La14X.Location = new System.Drawing.Point(814, 102);
+            this.tb_Cam1Jig9La14X.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1Jig9La14X.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1Jig9La14X.Name = "tb_Cam1Jig9La14X";
             this.tb_Cam1Jig9La14X.Size = new System.Drawing.Size(73, 21);
@@ -7817,13 +7914,11 @@ namespace HG_Vision.UIVision
             // 
             // uiSymbolButtonSave
             // 
-            this.uiSymbolButtonSave.BackColor = System.Drawing.Color.CadetBlue;
-            this.uiSymbolButtonSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiSymbolButtonSave.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButtonSave.ForeColor = System.Drawing.Color.White;
-            this.uiSymbolButtonSave.Location = new System.Drawing.Point(0, 0);
+            this.uiSymbolButtonSave.BackColor = System.Drawing.Color.Transparent;
+            this.uiSymbolButtonSave.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiSymbolButtonSave.Location = new System.Drawing.Point(1135, -1);
             this.uiSymbolButtonSave.Name = "uiSymbolButtonSave";
-            this.uiSymbolButtonSave.Size = new System.Drawing.Size(1308, 46);
+            this.uiSymbolButtonSave.Size = new System.Drawing.Size(168, 43);
             this.uiSymbolButtonSave.TabIndex = 10;
             this.uiSymbolButtonSave.Text = "应用参数";
             this.uiSymbolButtonSave.UseVisualStyleBackColor = false;

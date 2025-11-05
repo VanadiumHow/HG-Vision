@@ -86,7 +86,7 @@ namespace HG_Vision.UISetting
                 _newClickButton.BackColor = Color.Transparent;
             }
             //将新的按钮颜色变掉
-            button.BackColor = Color.Teal;
+            button.BackColor = Color.FromArgb(60,67,78);
             //将当前按钮对象指向现在这个按钮
             _newClickButton = button;
             if (this.PanelMain.Controls.Count > 0)

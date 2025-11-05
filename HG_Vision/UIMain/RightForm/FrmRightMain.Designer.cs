@@ -31,7 +31,7 @@ namespace HG_Vision.UIHome.RightForm
         private void InitializeComponent()
         {
             this.SplitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.TableLayoutPanelLamp = new UITableLayoutPanel();
+            this.TableLayoutPanelLamp = new Sunny.UI.UITableLayoutPanel();
             this.PanelLampTitle = new System.Windows.Forms.Panel();
             this.Panel5 = new System.Windows.Forms.Panel();
             this.TabControl1 = new VisionProgram.UserControls.UITabControl.TabControlEx();
@@ -81,10 +81,11 @@ namespace HG_Vision.UIHome.RightForm
             this.TableLayoutPanelLamp.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayoutPanelLamp.Size = new System.Drawing.Size(410, 180);
             this.TableLayoutPanelLamp.TabIndex = 2;
+            this.TableLayoutPanelLamp.TagString = null;
             // 
             // PanelLampTitle
             // 
-            this.PanelLampTitle.BackColor = System.Drawing.Color.CadetBlue;
+            this.PanelLampTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(55)))), ((int)(((byte)(89)))));
             this.PanelLampTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelLampTitle.Location = new System.Drawing.Point(0, 0);
             this.PanelLampTitle.Margin = new System.Windows.Forms.Padding(0);
