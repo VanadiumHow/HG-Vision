@@ -86,6 +86,8 @@ namespace Obj.Obj_File
              || (level == FlashLogLevel.Fatal && _logfatal.IsFatalEnabled)
              || (level == FlashLogLevel.Info && _loginfo.IsInfoEnabled))
             {
+                if (level != FlashLogLevel.Debug)
+                    NoticeHelper.OutputMessageSend(message, (int)level);
                 _flashLogQueue.TryEnqueue(new FlashLogModel
                 {
                     Message = message,

@@ -111,13 +111,13 @@ namespace HG_Vision.UIVision
                 return this.cogRecordDisplay1;
             }
         }
-		#endregion
+        #endregion
 
-		/// <summary>
-		/// 构造函数
-		/// </summary>
-		/// <param name="p">名称</param>
-		public FrmVpVisionControl(string p)
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="p">名称</param>
+        public FrmVpVisionControl(string p)
         {
             InitializeComponent();
             this.TopLevel = false;
@@ -441,8 +441,9 @@ namespace HG_Vision.UIVision
                 NozzleIdx = 0,
                 eMode = Model.EnumModel.eProcessMode.debug
             };
-         CameraWorkThrad1.VisionProcess(args);
-		}
+            CameraWorkThrad1.VisionProcess(args);
+            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.StandPose = args.ResultOffset;
+        }
 
         private void 工具设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -629,8 +630,8 @@ namespace HG_Vision.UIVision
                 NozzleIdx = 1,
                 eMode = Model.EnumModel.eProcessMode.debug
             };
-           CameraWorkThrad1.VisionProcess(args);
-		}
+            CameraWorkThrad1.VisionProcess(args);
+        }
 
         private void 单帧2工位ToolStripMenuItem_Click(object sender, EventArgs e)
         {

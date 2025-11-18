@@ -62,11 +62,6 @@ namespace HG_Vision.Contol.Control_Robot
         //服务器ip地址
         public IPEndPoint _localEndPoint;
 
-        //客户端IP
-        private List<string> listConnectIPs = new List<string>();
-        //客户端IP长度
-        private int clientIPNum = 0;
-
         #region 暂且每一个相机都是独立的，都有所属的自己的业务
         //阻塞队列执行用户线程
         internal List<BlockQueue<TriggerEventArgs>> _taskQueueList = new List<BlockQueue<TriggerEventArgs>>();//相机触发队列集合
@@ -155,13 +150,13 @@ namespace HG_Vision.Contol.Control_Robot
         /// <param name="soc"></param>
         private void Server_OnConnect(Socket soc)
         {
-            clientIPNum++;
-            if (!listConnectIPs.Contains((soc.RemoteEndPoint as IPEndPoint).Address.ToString()))
+            Threadwatch.ClientIPNum++;
+            if (!Threadwatch.ListConnectIPs.Contains((soc.RemoteEndPoint as IPEndPoint).Address.ToString()))
             {
-                listConnectIPs.Add((soc.RemoteEndPoint as IPEndPoint).Address.ToString());
+                Threadwatch.ListConnectIPs.Add((soc.RemoteEndPoint as IPEndPoint).Address.ToString());
             }
 
-            if ((soc.RemoteEndPoint as IPEndPoint).Address.ToString() == listConnectIPs[0])
+            if ((soc.RemoteEndPoint as IPEndPoint).Address.ToString() == Threadwatch.ListConnectIPs[0])
             {
                 SetIsConnectedRobot(0, true);
 
@@ -173,22 +168,21 @@ namespace HG_Vision.Contol.Control_Robot
         /// <param name="soc"></param>
         private void Server_OnDisconnect(Socket soc)
         {
-            clientIPNum--;
+            Threadwatch.ClientIPNum--;
         }
 
-
+        //负责监听客户端的线程:创建一个监听线程  
+        private WatchConnectingThread Threadwatch = new WatchConnectingThread();
         /// <summary>
         /// 服务器开始监听
         /// </summary>
         private void Server_OnListen()
         {
-            //负责监听客户端的线程:创建一个监听线程  
-            WatchConnectingThread threadwatch = new WatchConnectingThread();
             //将窗体线程设置为与后台同步，随着主线程结束而结束  
-            threadwatch.IsBackground = true;
+            Threadwatch.IsBackground = true;
 
             //启动线程     
-            threadwatch.Initialize();
+            Threadwatch.Initialize();
         }
         /// <summary>
         /// 服务器接收数据事件

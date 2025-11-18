@@ -252,6 +252,7 @@ namespace HG_Vision
             this.tab_C_VisionTool.SelectedIndex = 0;
             this.tab_C_VisionTool.Size = new System.Drawing.Size(1284, 761);
             this.tab_C_VisionTool.TabIndex = 6;
+            this.tab_C_VisionTool.SelectedIndexChanged += new System.EventHandler(this.tab_C_VisionTool_SelectedIndexChanged);
             // 
             // tab_EditVision
             // 
@@ -578,6 +579,7 @@ namespace HG_Vision
             this.rdo_Li_Laser2.TabIndex = 31;
             this.rdo_Li_Laser2.Text = "Laser2";
             this.rdo_Li_Laser2.UseVisualStyleBackColor = false;
+            this.rdo_Li_Laser2.CheckedChanged += new System.EventHandler(this.RedioColor);
             this.rdo_Li_Laser2.Click += new System.EventHandler(this.rdo_Li_Laser2_Click);
             // 
             // rdo_Li_Laser1
@@ -591,6 +593,7 @@ namespace HG_Vision
             this.rdo_Li_Laser1.TabIndex = 30;
             this.rdo_Li_Laser1.Text = "Laser1";
             this.rdo_Li_Laser1.UseVisualStyleBackColor = false;
+            this.rdo_Li_Laser1.CheckedChanged += new System.EventHandler(this.RedioColor);
             this.rdo_Li_Laser1.Click += new System.EventHandler(this.rdo_Li_Laser1_Click);
             // 
             // rdo_Li_Robot2
@@ -604,6 +607,7 @@ namespace HG_Vision
             this.rdo_Li_Robot2.TabIndex = 29;
             this.rdo_Li_Robot2.Text = "Robot2";
             this.rdo_Li_Robot2.UseVisualStyleBackColor = false;
+            this.rdo_Li_Robot2.CheckedChanged += new System.EventHandler(this.RedioColor);
             this.rdo_Li_Robot2.Click += new System.EventHandler(this.rdo_Li_Robot2_Click);
             // 
             // rdo_Li_Robot1
@@ -619,6 +623,7 @@ namespace HG_Vision
             this.rdo_Li_Robot1.TabStop = true;
             this.rdo_Li_Robot1.Text = "Robot1";
             this.rdo_Li_Robot1.UseVisualStyleBackColor = false;
+            this.rdo_Li_Robot1.CheckedChanged += new System.EventHandler(this.RedioColor);
             this.rdo_Li_Robot1.Click += new System.EventHandler(this.rdo_Li_Robot1_Click);
             // 
             // splitContainer_Li_8
@@ -1692,6 +1697,7 @@ namespace HG_Vision
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 761);
             this.Controls.Add(this.tab_C_VisionTool);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(1920, 1080);

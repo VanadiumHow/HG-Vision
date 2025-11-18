@@ -32,10 +32,10 @@
     /// </summary>
     public enum FlashLogLevel
     {
-        Debug,
-        Info,
-        Error,
-        Fatal
+        Debug = -1,
+        Info = 0,
+        Error = 1,
+        Fatal = 2
     }
 
     /// <summary>

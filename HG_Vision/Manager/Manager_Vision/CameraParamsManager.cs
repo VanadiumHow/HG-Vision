@@ -33,13 +33,13 @@ namespace HG_Vision.Manager.Manager_Vision
         /// <summary>
         /// 处理参数输入输出
         /// </summary>
-        internal TriggerEventArgs triggerEventArgs;
-
+        internal BasePose StandPose;
         /// <summary>
         /// 初始化
         /// </summary>
         public void Initial()
         {
+            StandPose = new BasePose();
             CameraParamsConfiguration.AnalysisCameraParamsConfig(ref _cameraParams);
         }
         /// <summary>

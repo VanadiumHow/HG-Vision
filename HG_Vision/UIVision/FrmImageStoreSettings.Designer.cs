@@ -33,10 +33,10 @@ namespace HG_Vision.UIVision
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.uiPanel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.uiTableLayoutPanel1 = new UITableLayoutPanel();
+            this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.uiSymbolButton1 = new System.Windows.Forms.Button();
             this.uiGroupBoxRaw = new System.Windows.Forms.GroupBox();
-            this.uiTableLayoutPanel2 = new UITableLayoutPanel();
+            this.uiTableLayoutPanel2 = new Sunny.UI.UITableLayoutPanel();
             this.numUDRawKeepingDays = new System.Windows.Forms.NumericUpDown();
             this.cbRawImagePattern = new System.Windows.Forms.ComboBox();
             this.uiPanelRawPath = new System.Windows.Forms.Panel();
@@ -47,7 +47,7 @@ namespace HG_Vision.UIVision
             this.uiLabel3 = new System.Windows.Forms.Label();
             this.radioChanceRawIsSave = new System.Windows.Forms.ListBox();
             this.uiGroupBoxResult = new System.Windows.Forms.GroupBox();
-            this.uiTableLayoutPanel3 = new UITableLayoutPanel();
+            this.uiTableLayoutPanel3 = new Sunny.UI.UITableLayoutPanel();
             this.numUDResultKeepingDays = new System.Windows.Forms.NumericUpDown();
             this.cbResultImagePattern = new System.Windows.Forms.ComboBox();
             this.uiLabel6 = new System.Windows.Forms.Label();
@@ -130,6 +130,7 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.19691F));
             this.uiTableLayoutPanel1.Size = new System.Drawing.Size(853, 414);
             this.uiTableLayoutPanel1.TabIndex = 0;
+            this.uiTableLayoutPanel1.TagString = null;
             // 
             // uiSymbolButton1
             // 
@@ -190,6 +191,7 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.uiTableLayoutPanel2.Size = new System.Drawing.Size(379, 318);
             this.uiTableLayoutPanel2.TabIndex = 0;
+            this.uiTableLayoutPanel2.TagString = null;
             // 
             // numUDRawKeepingDays
             // 
@@ -356,6 +358,7 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.uiTableLayoutPanel3.Size = new System.Drawing.Size(379, 318);
             this.uiTableLayoutPanel3.TabIndex = 1;
+            this.uiTableLayoutPanel3.TagString = null;
             // 
             // numUDResultKeepingDays
             // 

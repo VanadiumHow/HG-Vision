@@ -6,7 +6,7 @@ using System.Drawing.Imaging;
 using Cognex.VisionPro;
 using Model.ConstantModel;
 using Obj.Obj_File;
-
+using System.Linq;
 /****************************************************************
 
 *****************************************************************/
@@ -92,15 +92,31 @@ namespace Obj.Obj_Image
                 try
                 {
 
-                    string path = imageParams.RawImagePosition + @"\" + ymd + @"\" + "工位1" + (isOk ? "\\OK" : "\\NG");
+                    string path = imageParams.ResultImagePosition + @"\" + ymd + @"\" + "工位1" + (isOk ? "\\OK" : "\\NG");
                     string path1 = imageParams.ResultImagePosition + @"\" + ymd + @"\" + "工位2" + (isOk ? "\\OK" : "\\NG");
                     if (!Directory.Exists(path))
                     {
-                        Directory.CreateDirectory(path);
+                        //检查设置的地址是否有这个盘符
+                        bool driveExists = DriveInfo.GetDrives().Any(f => f.Name.StartsWith(Path.GetPathRoot(path)));
+                        if (driveExists)
+                            Directory.CreateDirectory(path);
+                        else
+                        {
+                            LogHelper.Error("盘符不存在请检查图像保存位置设置！");
+                            return;
+                        }
                     }
                     if (!Directory.Exists(path1))
                     {
-                        Directory.CreateDirectory(path1);
+                        //检查设置的地址是否有这个盘符
+                        bool driveExists = DriveInfo.GetDrives().Any(f => f.Name.StartsWith(Path.GetPathRoot(path1)));
+                        if (driveExists)
+                            Directory.CreateDirectory(path1);
+                        else
+                        {
+                            LogHelper.Error("盘符不存在请检查图像保存位置设置！");
+                            return;
+                        }
                     }
                     string str = path + @"\" + imageName + "-" + hms + imageParams.ResultImagePattern;//YBH
                     string str1 = path1 + @"\" + imageName + "-" + hms + imageParams.ResultImagePattern;
@@ -231,11 +247,27 @@ namespace Obj.Obj_Image
                     string path1 = imageParams.RawImagePosition + @"\" + ymd1 + @"\" + "工位2" + (isOk ? "\\OK" : "\\NG");
                     if (!Directory.Exists(path))//2021_07_26\CCD1
                     {
-                        Directory.CreateDirectory(path);
+                        //检查设置的地址是否有这个盘符
+                        bool driveExists = DriveInfo.GetDrives().Any(f => f.Name.StartsWith(Path.GetPathRoot(path)));
+                        if (driveExists)
+                            Directory.CreateDirectory(path);
+                        else
+                        {
+                            LogHelper.Error("盘符不存在请检查图像保存位置设置！");
+                            return;
+                        }
                     }
                     if (!Directory.Exists(path1))//ybh
                     {
-                        Directory.CreateDirectory(path1);
+                        //检查设置的地址是否有这个盘符
+                        bool driveExists = DriveInfo.GetDrives().Any(f => f.Name.StartsWith(Path.GetPathRoot(path1)));
+                        if (driveExists)
+                            Directory.CreateDirectory(path1);
+                        else
+                        {
+                            LogHelper.Error("盘符不存在请检查图像保存位置设置！");
+                            return;
+                        }
                     }
                     Cognex.VisionPro.ImageFile.CogImageFileTool a = new Cognex.VisionPro.ImageFile.CogImageFileTool();
                     a.InputImage = img1;

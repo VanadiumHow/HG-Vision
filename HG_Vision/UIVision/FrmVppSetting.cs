@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Net.Sockets;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -82,6 +83,7 @@ namespace HG_Vision
         private CancellationTokenSource cts1;                                       //设置取消操作
         private CancellationTokenSource cts2;                                      //设置取消操作
 
+        private event EventHandler HandlerButtonDisplay;
         #endregion
 
         #region 窗体
@@ -175,10 +177,11 @@ namespace HG_Vision
 
             RefleshLinearDataGridView();
             RefleshRotationDataGridView();
+            HandlerButtonDisplay += TextBoxDisplay;
             //刷新UI控件Timer_Task1定时器开启    
             if (timer1 == null)
             {
-                timer1 = new System.Threading.Timer(ControlFlush1, null, 0, Timeout.Infinite);
+                //timer1 = new System.Threading.Timer(ControlFlush1, null, 0, Timeout.Infinite);
             }
             Project.Instance.RobotManagerInstance.SetStop(false);
         }
@@ -261,20 +264,79 @@ namespace HG_Vision
                 return; // 直接返回，无需执行资源清理
             }
         }
-        /// <summary>
-        /// 重写窗体参数，防止闪烁(无需显式调用)
-        /// </summary>
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;    //避免闪屏
-                return cp;
-            }
-        }
         #endregion
         #region 控件刷新
+
+        private void TextBoxDisplay(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                // 如果是，则封送调用回UI线程
+                this.Invoke(new EventHandler(TextBoxDisplay), sender, e);
+            }
+            else
+            {
+                //在TextBox中更新显示坐标
+                //标定
+                if (rdo_Li_Auto.Checked || rdo_Li_Manual.Checked)
+                {
+                    tb_Li_X.Text = module_X;
+                    tb_Li_Y.Text = module_Y;
+                }
+                //验证
+                else if (rdo_Li_Verificate.Checked)
+                {
+                    tb_Li_X.Text = currunt_CenterX.ToString();
+                    tb_Li_Y.Text = currunt_CenterX.ToString();
+                }
+            }
+        }
+        private void TextBox_RMS_Step_Display()
+        {
+            if (rdo_Li_Robot1.Checked)
+            {
+                tb_Li_RMS.Text = _linear_calib_tool.Calibration.ComputedRMSError.ToString("f1");
+            }
+            else if (rdo_Li_Robot2.Checked)
+            {
+                tb_Li_RMS.Text = _linear_calib_tool1.Calibration.ComputedRMSError.ToString("f1");
+            }
+            else if (rdo_Li_Laser1.Checked)
+            {
+                tb_Li_RMS.Text = _linear_calib_tool2.Calibration.ComputedRMSError.ToString("f1");
+            }
+            else if (rdo_Li_Laser2.Checked)
+            {
+                tb_Li_RMS.Text = _linear_calib_tool3.Calibration.ComputedRMSError.ToString("f1");
+            }
+        }
+        private void RedioColor(object sender, EventArgs e)
+        {
+            System.Windows.Forms.RadioButton triggeredRadioButton = sender as System.Windows.Forms.RadioButton;
+            if (triggeredRadioButton != null && triggeredRadioButton.Checked)
+            {
+                //注意此处Laser1和Laser2只有振镜偏移位置作区分，实际只有一个激光器
+                if (rdo_Li_Laser1.Checked || rdo_Li_Laser2.Checked)
+                {
+                    tb_Li_Step.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaserStep.ToString("f3");
+                    if (!Project.Instance.RobotManagerInstance.L_Robot[0].GetIsConnectedRobot(0))
+                    {
+                        rdo_Li_Laser1.BackColor = Color.Red;
+                        rdo_Li_Laser2.BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        rdo_Li_Laser1.BackColor = Color.LimeGreen;
+                        rdo_Li_Laser2.BackColor = Color.LimeGreen;
+                    }
+                }
+                else
+                {
+                    rdo_Li_Laser1.BackColor = Color.Transparent;
+                    rdo_Li_Laser2.BackColor = Color.Transparent;
+                }
+            }
+        }
         /// <summary>
         /// UI线程控件刷新1
         /// </summary>
@@ -286,31 +348,10 @@ namespace HG_Vision
             {
                 if (tab_C_VisionTool.SelectedTab == tab_VisionLinear)
                 {
-                    //当前相机对应机器人是否连接成功
-                    if (rdo_Li_Robot1.Checked)
-                    {
-                        if (!Project.Instance.RobotManagerInstance.L_Robot[0].IsConnected)
-                            rdo_Li_Robot1.BackColor = Color.Red;
-                        else
-                            rdo_Li_Robot1.BackColor = Color.LimeGreen;
-                    }
-                    else
-                        rdo_Li_Robot1.BackColor = Color.Transparent;
-
-                    if (rdo_Li_Robot2.Checked)
-                    {
-                        if (!Project.Instance.RobotManagerInstance.L_Robot[1].IsConnected)
-                            rdo_Li_Robot2.BackColor = Color.Red;
-                        else
-                            rdo_Li_Robot2.BackColor = Color.LimeGreen;
-                    }
-                    else
-                        rdo_Li_Robot2.BackColor = Color.Transparent;
-
                     //注意此处Laser1和Laser2只有振镜偏移位置作区分，实际只有一个激光器
                     if (rdo_Li_Laser1.Checked || rdo_Li_Laser2.Checked)
                     {
-                        if (!Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser)
+                        if (!Project.Instance.RobotManagerInstance.L_Robot[0].IsConnected)
                         {
                             rdo_Li_Laser1.BackColor = Color.Red;
                             rdo_Li_Laser2.BackColor = Color.Red;
@@ -331,6 +372,7 @@ namespace HG_Vision
                     //标定
                     if (rdo_Li_Auto.Checked || rdo_Li_Manual.Checked)
                     {
+                        LogHelper.Info($"显示{module_X}，{module_Y}");
                         tb_Li_X.Text = module_X;
                         tb_Li_Y.Text = module_Y;
                     }
@@ -745,57 +787,80 @@ namespace HG_Vision
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_Li_AddMark_Click(object sender, EventArgs e)
+        private async void btn_Li_AddMark_Click(object sender, EventArgs e)
         {
-            int flag = 0;
-            if (rdo_Li_Robot1.Checked)
+            // 禁用按钮，防止重复点击
+            btn_Li_AddMark.Enabled = false;
+
+            // 使用Task.Run在后台线程执行耗时操作
+            await Task.Run(async () =>
             {
-                addMark_Linear(eLinearCalib_Link.Robot1);
-            }
-            else if (rdo_Li_Robot2.Checked)
-            {
-                addMark_Linear(eLinearCalib_Link.Robot1);
-            }
-            else if (rdo_Li_Laser1.Checked)
-            {
-                for (int i = 0; i < 9; i++)
+                int flag = 0;
+                if (rdo_Li_Robot1.Checked)
                 {
-
-                    if (Lsr_FindCircle(0, i) && addMark_Linear(eLinearCalib_Link.Robot1))
-                    {
-
-                        RefleshLinearTextMsgBox("Laser1结果：添加点对成功 ......");
-                    }
-                    else
-                    {
-                        RefleshLinearTextMsgBox("结果：添加点对失败 ......");
-                        i = 10;
-                        flag = 10;
-                    }
-
-                    Thread.Sleep(1000);
+                    // 注意：addMark_Linear如果涉及UI操作，内部也需要Invoke
+                    addMark_Linear(eLinearCalib_Link.Robot1);
                 }
-            }
-            else if (rdo_Li_Laser2.Checked)
-            {
-                for (int i = 0; i < 9; i++)
+                else if (rdo_Li_Robot2.Checked)
                 {
-
-
-                    if (Lsr_FindCircle(1, i) && addMark_Linear(eLinearCalib_Link.Robot2))
-                    {
-
-                        RefleshLinearTextMsgBox("Laser1结果：添加点对成功 ......");
-                    }
-                    else
-                    {
-                        RefleshLinearTextMsgBox("结果：添加点对失败 ......");
-                        i = 10;
-                        flag = 10;
-                    }
-                    Thread.Sleep(1000);
+                    addMark_Linear(eLinearCalib_Link.Robot1);
                 }
-            }
+                else if (rdo_Li_Laser1.Checked)
+                {
+                    for (int i = 0; i < 9; i++)
+                    {
+                        // 在后台线程执行Lsr_FindCircle和addMark_Linear
+                        bool findResult = Lsr_FindCircle(0, i);
+                        bool addResult = addMark_Linear(eLinearCalib_Link.Laser1);
+
+                        // 需要更新UI或显示消息时，封送回UI线程
+                        this.Invoke(new Action(() =>
+                        {
+                            if (findResult && addResult)
+                            {
+                                RefleshLinearTextMsgBox("Laser1结果：添加点对成功 ......");
+                            }
+                            else
+                            {
+                                RefleshLinearTextMsgBox("结果：添加点对失败 ......");
+                                flag = 10;
+                            }
+                        }));
+
+                        if (flag == 10) break;
+
+                        // 在后台线程上延迟，不阻塞UI
+                        await Task.Delay(1000);
+                    }
+                }
+                else if (rdo_Li_Laser2.Checked)
+                {
+                    for (int i = 0; i < 9; i++)
+                    {
+                        bool findResult = Lsr_FindCircle(1, i);
+                        bool addResult = addMark_Linear(eLinearCalib_Link.Laser2);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            if (findResult && addResult)
+                            {
+                                RefleshLinearTextMsgBox("Laser2结果：添加点对成功 ......");
+                            }
+                            else
+                            {
+                                RefleshLinearTextMsgBox("结果：添加点对失败 ......");
+                                flag = 10;
+                            }
+                        }));
+
+                        if (flag == 10) break;
+                        await Task.Delay(1000);
+                    }
+                }
+            });
+
+            // 重新启用按钮
+            btn_Li_AddMark.Enabled = true;
         }
         /// <summary>
         /// 开始标定
@@ -820,6 +885,7 @@ namespace HG_Vision
             {
                 linear(eLinearCalib_Link.Laser2);
             }
+            TextBox_RMS_Step_Display();
         }
         /// <summary>
         /// 九点标定保存结果
@@ -2220,7 +2286,7 @@ namespace HG_Vision
                     {
                         cogRecordDisplayLinear.Record = cur_WorkFlow.LinearCalibBlock.CreateLastRunRecord();
                         cogGraphicLabel2.Color = CogColorConstants.Blue;
-                        cogGraphicLabel2.SetXYText(100, 200, string.Format("当前像素坐标XY:({0},{1})", ((double)_linear_UnCalibrate_block.Outputs["X"].Value).ToString("F3"), ((double)_linear_UnCalibrate_block.Outputs["Y"].Value).ToString("F3")));
+                        cogGraphicLabel2.SetXYText(100, 200, string.Format("当前像素坐标XY:({0},{1})", ((double)_linear_UnCalibrate_block.Outputs["X"].Value).ToString("F2"), ((double)_linear_UnCalibrate_block.Outputs["Y"].Value).ToString("F2")));
                         cogRecordDisplayLinear.StaticGraphics.Add(cogGraphicLabel2, "");
                         cogRecordDisplayLinear.Fit(true);
                         _Linear_State = true;
@@ -2298,48 +2364,57 @@ namespace HG_Vision
                 double Step = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaserStep;
                 if (CircleIdx == 0)
                 {
-                    module_X = ( - Step).ToString();
+                    module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X - Step).ToString();
                     module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y + Step).ToString();
+                    HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 1)
                 {
                     module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X).ToString();
                     module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y + Step).ToString();
+                    HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 2)
                 {
                     module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X + Step).ToString();
                     module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y + Step).ToString();
+                    HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 3)
                 {
                     module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X + Step).ToString();
                     module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y).ToString();
+                    HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 4)
                 {
                     module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X).ToString();
                     module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y).ToString();
+                    HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 5)
                 {
                     module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X - Step).ToString();
                     module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y).ToString();
+                    HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 6)
                 {
                     module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X - Step).ToString();
                     module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y - Step).ToString();
+                    HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 7)
                 {
                     module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X).ToString();
                     module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y - Step).ToString();
+                    HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 8)
                 {
                     module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y + Step).ToString();
                     module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X - Step).ToString();
+                    HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
             }
             catch
@@ -2355,8 +2430,6 @@ namespace HG_Vision
             {
                 return false;
             }
-            module_X = tb_Li_X.Text;
-            module_Y = tb_Li_Y.Text;
             if ((!string.IsNullOrEmpty(module_X)) && (!string.IsNullOrEmpty(module_Y)))
             {
                 cur_WorkFlow.LinearCalibBlock.Inputs["R_X"].Value = double.Parse(module_X);
@@ -3265,7 +3338,30 @@ namespace HG_Vision
             }
         }
 
+        private void tab_C_VisionTool_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 获取当前选中的TabPage
+            TabPage currentPage = tab_C_VisionTool.SelectedTab;
 
+            // 根据当前页面的特定标识（如Name属性）来刷新对应的CogRecordDisplay
+            if (currentPage == tab_EditVision) // 假设tabPage1是您的第一个页面
+            {
+                // 方法1：调用Refresh或Invalidate方法强制重绘控件
+                cogToolBlockEditV21.Invalidate();
+            }
+            else if (currentPage == tab_VisionDistortion)
+            {
+                cogRecordDisplayDistortion.Invalidate();
+            }
+            else if (currentPage == tab_VisionLinear)
+            {
+                cogRecordDisplayLinear.Invalidate();
+            }
+            else if (currentPage == tab_VisionRotation)
+            {
+                cogRecordDisplayRotation.Invalidate();
+            }
+        }
         /// <summary>
         /// Rotation刷新  TextBox
         /// </summary>

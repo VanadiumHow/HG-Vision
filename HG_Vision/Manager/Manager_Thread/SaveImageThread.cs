@@ -20,12 +20,12 @@ namespace HG_Vision.Manager.Manager_Thread
             private get { return mSaveImageQueue; }
             set { mSaveImageQueue = value; }
         }
-        public override void Deinitialize()
+        public override void Initialize()
         {
             this.Start(10, "SaveImageThread");
         }
 
-        public override void Initialize()
+        public override void Deinitialize()
         {
             this.Stop();
         }
@@ -34,7 +34,7 @@ namespace HG_Vision.Manager.Manager_Thread
         {
             try
             {
-                TriggerEventArgs e = new TriggerEventArgs();
+                TriggerEventArgs e = null;
                 if (mSaveImageQueue.TryDequeue(out e))
                 {
                     ImageParamsModel _imageParams = Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageParams[e.FlowIdx];

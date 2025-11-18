@@ -316,7 +316,7 @@ namespace HG_Vision.UIVision
                 controls[i].TextChanged += tb__Validating;//此处注册事件
             }
             // 直接指定要显示的TabPage
-            uiTabControlAll.SelectedTab = tabPage1;
+            uiTabControlAll.SelectedTab = uiTabPage1;
         }
 
         private void FrmCameraParamsSettings_TextChanged(object sender, EventArgs e)
@@ -914,11 +914,12 @@ namespace HG_Vision.UIVision
         {
             if (Project.Instance.UserManagerInstance.CurrentUser.UserRoleName == "工程师")
             {
+                PointAxis _standPose = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.StandPose.Bo1Axis;
                 if (MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
-                    tb_Cam1StdBo1X.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.Bo1Axis.X.ToString("f3");
-                    tb_Cam1StdBo1Y.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.Bo1Axis.Y.ToString("f3");
-                    tb_Cam1StdBo1R.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.Bo1Axis.R.ToString("f3");
+                    tb_Cam1StdBo1X.Text = _standPose.X.ToString("f3");
+                    tb_Cam1StdBo1Y.Text = _standPose.Y.ToString("f3");
+                    tb_Cam1StdBo1R.Text = _standPose.R.ToString("f3");
 
                     //判断是否已在集合中
                     if (!_textBoxes.Contains(tb_Cam1StdBo1X))
@@ -937,12 +938,12 @@ namespace HG_Vision.UIVision
         {
             if (Project.Instance.UserManagerInstance.CurrentUser.UserRoleName == "工程师")
             {
+                PointAxis _standPose = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.StandPose.Bo2Axis;
                 if (MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
-                    tb_Cam1StdBo2X.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.Bo2Axis.X.ToString("f3");
-                    tb_Cam1StdBo2Y.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.Bo2Axis.Y.ToString("f3");
-                    tb_Cam1StdBo2R.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.Bo2Axis.R.ToString("f3");
-
+                    tb_Cam1StdBo2X.Text = _standPose.X.ToString("f3");
+                    tb_Cam1StdBo2Y.Text = _standPose.Y.ToString("f3");
+                    tb_Cam1StdBo2R.Text = _standPose.R.ToString("f3");
                     //判断是否已在集合中
                     if (!_textBoxes.Contains(tb_Cam1StdBo2X))
                         _textBoxes.Add(tb_Cam1StdBo2X);
@@ -962,12 +963,12 @@ namespace HG_Vision.UIVision
         {
             if (Project.Instance.UserManagerInstance.CurrentUser.UserRoleName == "工程师")
             {
+                PointAxis _standPose = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.StandPose.La1Axis;
                 if (MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
-                    tb_Cam1StdLa1X.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.La1Axis.X.ToString("f3");
-                    tb_Cam1StdLa1Y.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.La1Axis.Y.ToString("f3");
-                    tb_Cam1StdLa1R.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.La1Axis.R.ToString("f3");
-
+                    tb_Cam1StdLa1X.Text = _standPose.X.ToString("f3");
+                    tb_Cam1StdLa1Y.Text = _standPose.Y.ToString("f3");
+                    tb_Cam1StdLa1R.Text = _standPose.R.ToString("f3");
                     //判断是否已在集合中
                     if (!_textBoxes.Contains(tb_Cam1StdLa1X))
                         _textBoxes.Add(tb_Cam1StdLa1X);
@@ -988,12 +989,12 @@ namespace HG_Vision.UIVision
         {
             if (Project.Instance.UserManagerInstance.CurrentUser.UserRoleName == "工程师")
             {
+                PointAxis _standPose = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.StandPose.La2Axis;
                 if (MessageBox.Show("是否确定重新获取基准", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
-                    tb_Cam1StdLa2X.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.La2Axis.X.ToString("f3");
-                    tb_Cam1StdLa2Y.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.La2Axis.Y.ToString("f3");
-                    tb_Cam1StdLa2R.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.triggerEventArgs.ResultOffset.La2Axis.R.ToString("f3");
-
+                    tb_Cam1StdLa2X.Text = _standPose.X.ToString("f3");
+                    tb_Cam1StdLa2Y.Text = _standPose.Y.ToString("f3");
+                    tb_Cam1StdLa2R.Text = _standPose.R.ToString("f3");
                     //判断是否已在集合中
                     if (!_textBoxes.Contains(tb_Cam1StdLa2X))
                         _textBoxes.Add(tb_Cam1StdLa2X);

@@ -31,11 +31,16 @@ namespace HG_Vision.Contol.Control_Vision
         internal ICogImage rawImage { get; set; } // 存原图
         internal bool results { get; set; } // 处理结果
         internal string imageName { get; set; } // 图片名
-        internal BasePose ResultOffset { get; set; } // 机器人位姿
-		internal double X { get; set; } // 结果X
+        internal BasePose ResultOffset { get; set; } // 基准位置记录
+        internal double X { get; set; } // 结果X
         internal double Y { get; set; } // 结果Y
         internal double R { get; set; } // 结果R
-	}
+        //构造方法
+        internal TriggerEventArgs()
+        {
+            ResultOffset = new BasePose();
+        }
+    }
 
     public class WorkFlow1
     {

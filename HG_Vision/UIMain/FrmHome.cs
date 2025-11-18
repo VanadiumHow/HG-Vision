@@ -156,12 +156,12 @@ namespace HG_Vision.UIHome
                 {
                     if (!_isRunningFlag)
                     {
-                        StripStatusLabelStatus.Text = "暂停";
+                        StripStatusLabelStatus.Text = "暂停中";
                         StripStatusLabelStatus.ForeColor = Color.OrangeRed;
                     }
                     else
                     {
-                        StripStatusLabelStatus.Text = "启动";
+                        StripStatusLabelStatus.Text = "运行中";
                         StripStatusLabelStatus.ForeColor = Color.LimeGreen;
                     }
                 }));
@@ -176,6 +176,7 @@ namespace HG_Vision.UIHome
         {
             OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserManagerInstance.CurrentUser.UserRoleName, OperationLogParamModel.LogCTypes[0], null, null, null, string.Format("{0}", "用户登录")));
             StripStatusLabelUser.Text = "当前角色：" + Project.Instance.UserManagerInstance.CurrentUser.UserRoleName;
+            LogHelper.Info($"开启当前角色【{Project.Instance.UserManagerInstance.CurrentUser.UserRoleName}】登录计时");
             TimerLogout.Start();
             if (oldRoleName != Project.Instance.UserManagerInstance.CurrentUser.UserRoleName)
             {
@@ -379,11 +380,11 @@ namespace HG_Vision.UIHome
                         //关闭实时取向
                         FrmMainVision.stopLiveDisplay();
                         ToolTip1.SetToolTip(ButtonStart, "暂停");
-                        StripStatusLabelStatus.Text = "运行中";
                         //ButtonStart.Image = Resources.功能栏_程序开启56;
                         _isRunningFlag = true;
                         //登录权限控件初始化
                         UpdateRunStateShow();
+                        UserLevelControlEnabled();
                         //开启线程
                         //StartPLCThread(true);
                     }
@@ -405,10 +406,10 @@ namespace HG_Vision.UIHome
                 try
                 {
                     ToolTip1.SetToolTip(ButtonStart, "启动");
-                    StripStatusLabelStatus.Text = "暂停中";
                     //ButtonStart.Image = Resources.功能栏_程序暂停56;
                     _isRunningFlag = false;
                     UpdateRunStateShow();
+                    UserLevelControlEnabled();
                     //开启线程
                     //StartPLCThread(false);
                 }

@@ -10,18 +10,18 @@ namespace HG_Vision.Manager.Manager_Thread
     internal class WatchConnectingThread : Control_Thread
     {
 
-        //客户端IP
+        //所有客户端IP
         private List<string> listConnectIPs = new List<string>();
         public List<string> ListConnectIPs
         {
-            private get { return ListConnectIPs; }
-            set { ListConnectIPs = value; }
+            get { return listConnectIPs; }
+            set { listConnectIPs = value; }
         }
-        //客户端IP长度
+        //已连接的客户端IP数量
         private int clientIPNum = 0;
         public int ClientIPNum
         {
-            private get { return clientIPNum; }
+            get { return clientIPNum; }
             set { clientIPNum = value; }
         }
         public override void Initialize()

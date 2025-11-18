@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 /****************************************************************
 
@@ -144,7 +145,8 @@ namespace HG_Vision.Manager.Manager_Thread
 							Project.Instance.RobotManagerInstance.L_Robot[0].SendText(RobotSignalsModel.CCD1RobotResultNG, 0);//？信息内容待定
 						else
 							Project.Instance.RobotManagerInstance.L_Robot[1].SendText(RobotSignalsModel.CCD1RobotResultNG, 0);//？信息内容待定
-						Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
+                        Project.Instance.RobotManagerInstance.L_Robot[3].SendText("_NG;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10", 0);//？信息内容待定
+                        Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
 					}
 					return;
 				}
@@ -160,17 +162,19 @@ namespace HG_Vision.Manager.Manager_Thread
 				{
 					if (!processOK)
 					{
-						processOK = false;
+                        LogHelper.Error($"{workFlowIdx + 1}相机视觉流程运行失败！");
+                        processOK = false;
 						finalResult = false;
 					}
 					else
 					{
-						#region 读取vpp上的ResultArr
-						double[] ResultArrBo = (double[])Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[workFlowIdx].ProcessBlock.Outputs["ResultArrBo"].Value;
-						double[] ResultArrLa = (double[])Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[workFlowIdx].ProcessBlock.Outputs["ResultArrLa"].Value;
-						#endregion
-						#region 当前pos
-						currentPose.Bo1Axis.X = ResultArrBo[0];
+                        LogHelper.Info($"{workFlowIdx + 1}相机视觉流程运行成功！");
+                        #region 读取vpp上的ResultArr
+                        double[] ResultArrBo = (double[])Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[workFlowIdx].ProcessBlock.Outputs["ResultArrBo"].Value;
+                        double[] ResultArrLa = (double[])Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[workFlowIdx].ProcessBlock.Outputs["ResultArrLa"].Value;
+                        #endregion
+                        #region 当前pos
+                        currentPose.Bo1Axis.X = ResultArrBo[0];
 						currentPose.Bo1Axis.Y = ResultArrBo[1];
 						currentPose.La1Axis.X = ResultArrLa[0];
 						currentPose.La1Axis.Y = ResultArrLa[1];
@@ -301,14 +305,18 @@ namespace HG_Vision.Manager.Manager_Thread
 								sendToLas = CreatSentToLas(true, currentPose, offset_in_jig, 0);
 							Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0]++;
 						}
-						Project.Instance.RobotManagerInstance.L_Robot[0].SendText(sendToRob, 0);
+                        Project.Instance.RobotManagerInstance.L_Robot[0].SendText(sendToRob, 0);
 						Project.Instance.RobotManagerInstance.L_Robot[2].SendText(sendToLas, 0);
 						LogHelper.Info("给到机械手返回：" + sendToRob);
 						NoticeHelper.OutputMessageSend("给到机械手返回" + sendToRob, OutputLevelModel.INFO);
-					}
+                        if (Project.Instance.RobotManagerInstance.L_Robot[0].SendText(sendToLas, 0))
+                            LogHelper.Info("发送完成信号成功>>激光：" + sendToLas);
+						else
+                            LogHelper.Error("发送完成信号失败>>激光!");
+                    }
 					else
 					{
-						if (finalResult)
+						if (processOK)
 						{
 							e.ResultOffset.Bo1Axis.X = offset_dis_jig.Bo1Axis.X;
 							e.ResultOffset.Bo1Axis.Y = offset_dis_jig.Bo1Axis.Y;
@@ -318,7 +326,7 @@ namespace HG_Vision.Manager.Manager_Thread
 							e.ResultOffset.La1Axis.Y = offset_dis_jig.La1Axis.Y;
 							e.ResultOffset.La1Axis.R = offset_dis_jig.La1Axis.R;
 						}
-						else
+                        else
 						{
 							e.ResultOffset.Bo1Axis = null;
 							e.ResultOffset.La1Axis = null;
@@ -333,23 +341,23 @@ namespace HG_Vision.Manager.Manager_Thread
 					string nowTime = DateTime.Now.ToString("HH:mm:ss");
 					CogColorConstants Color = processOK ? CogColorConstants.Green : CogColorConstants.Red;
 					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], Color, 0, 0, "工位号:" + "1(面朝屏幕右手端)" + string.Format("{0}", finalResult ? "OK" : "NG"), fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 4, "夹具号:" + _jigIndex, fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 6, $"取像耗时:{mSeconds1:f2}ms", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 8, $"视觉总耗时:{totalTime:f2}ms", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 10, "(以下为 夹具补偿后X: Y: / 夹具补偿前X: Y: )", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 12, $"机械手1偏移 X:{offset_in_jig.Bo1Axis.X:f3} Y:{offset_in_jig.Bo1Axis.Y:f3} / X:{offset_dis_jig.Bo1Axis.X} Y:{offset_dis_jig.Bo1Axis.Y}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 14, $"机械手1当前 X:{currentPose.Bo1Axis.X:f3} Y:{currentPose.Bo1Axis.Y:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 16, $"焊点1偏移 X:{offset_in_jig.L_La1Axis[0].X:f3} Y:{offset_in_jig.L_La1Axis[0].Y:f3} / X:{offset_dis_jig.La1Axis.X:f3} Y:{offset_dis_jig.La1Axis.Y:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 18, $"焊点2偏移 X:{offset_in_jig.L_La1Axis[1].X:f3} Y:{offset_in_jig.L_La1Axis[1].Y:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 20, $"焊点3偏移 X:{offset_in_jig.L_La1Axis[2].X:f3} Y:{offset_in_jig.L_La1Axis[2].Y:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 22, $"焊点4偏移 X:{offset_in_jig.L_La1Axis[3].X:f3} Y:{offset_in_jig.L_La1Axis[3].Y:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 24, $"连接片角度:{offset_in_jig.Bo1Axis.R:f3}°", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 26, $"极耳间距:{_spacing1:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 28, "电池条码:" + _code1, fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 30, nowTime, fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, fontSize * 32, mError, fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 2, "夹具号:" + _jigIndex, fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 4, $"取像耗时:{mSeconds1:f2}ms", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 6, $"视觉总耗时:{totalTime:f2}ms", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 8, "(以下为 夹具补偿后X: Y: / 夹具补偿前X: Y: )", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 10, $"机械手1偏移 X:{offset_in_jig.Bo1Axis.X:f3} Y:{offset_in_jig.Bo1Axis.Y:f3} / X:{offset_dis_jig.Bo1Axis.X} Y:{offset_dis_jig.Bo1Axis.Y}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 12, $"机械手1当前 X:{currentPose.Bo1Axis.X:f3} Y:{currentPose.Bo1Axis.Y:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 14, $"焊点1偏移 X:{offset_in_jig.L_La1Axis[0].X:f3} Y:{offset_in_jig.L_La1Axis[0].Y:f3} / X:{offset_dis_jig.La1Axis.X:f3} Y:{offset_dis_jig.La1Axis.Y:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 16, $"焊点2偏移 X:{offset_in_jig.L_La1Axis[1].X:f3} Y:{offset_in_jig.L_La1Axis[1].Y:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 18, $"焊点3偏移 X:{offset_in_jig.L_La1Axis[2].X:f3} Y:{offset_in_jig.L_La1Axis[2].Y:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 20, $"焊点4偏移 X:{offset_in_jig.L_La1Axis[3].X:f3} Y:{offset_in_jig.L_La1Axis[3].Y:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 22, $"连接片角度:{offset_in_jig.Bo1Axis.R:f3}°", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 24, $"极耳间距:{_spacing1:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 26, "电池条码:" + _code1, fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 28, nowTime, fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, 30, mError, fontSize);
 					if (isOutLimit == true)
-						WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, fontSize * 34, NG_message, fontSize);
+						WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, 34, NG_message, fontSize);
 					#region 保存生产数据csv文件
 					string[] strLogData = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 					string strHead = "状态,工位,夹具,机械手偏移X,机械手偏移Y,焊点1X,焊点1Y,焊点2X,焊点2Y,焊点3X,焊点3Y,焊点4X,焊点4Y,弹夹角度,极耳间距,条码,时间";
@@ -379,7 +387,7 @@ namespace HG_Vision.Manager.Manager_Thread
 					if (e.eMode == eProcessMode.produce)
 						e.imageName = (e.FlowIdx + 1).ToString() + "-1-" + _jigIndex.ToString() + "-" + _code1.ToString();
 					else
-						e.imageName = (e.FlowIdx + 1).ToString() + "-1-" + DateTime.Now.ToString("HH:mm:ss") + "-" + e.eMode.ToString();
+						e.imageName = (e.FlowIdx + 1).ToString() + "-1-" + e.eMode.ToString();
 					e.results = finalResult;
 					Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageSave.saveImageQueueList[e.FlowIdx].Enqueue(e);
 					// 生成40个空格的字符串
@@ -542,7 +550,7 @@ namespace HG_Vision.Manager.Manager_Thread
 					}
 					else
 					{
-						if (finalResult)
+						if (processOK)
 						{
 							e.ResultOffset.Bo2Axis.X = offset_dis_jig.Bo2Axis.X;
 							e.ResultOffset.Bo2Axis.Y = offset_dis_jig.Bo2Axis.Y;
@@ -567,23 +575,23 @@ namespace HG_Vision.Manager.Manager_Thread
 					string nowTime = DateTime.Now.ToString("HH:mm:ss");
 					CogColorConstants Color = processOK ? CogColorConstants.Green : CogColorConstants.Red;
 					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], Color, 0, 0, "工位号:" + "2(面朝屏幕左手端)" + string.Format("{0}", finalResult ? "OK" : "NG"), fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 4, "夹具号:" + _jigIndex, fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 6, $"取像耗时:{mSeconds1:f2}ms", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 8, $"视觉总耗时:{totalTime:f2}ms", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 10, "(以下为 夹具补偿后X: Y: / 夹具补偿前X: Y: )", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 12, $"机械手1偏移 X:{offset_in_jig.Bo2Axis.X:f3} Y:{offset_in_jig.Bo2Axis.Y:f3} / X:{offset_dis_jig.Bo2Axis.X} Y:{offset_dis_jig.Bo2Axis.Y}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 14, $"机械手1当前 X:{currentPose.Bo2Axis.X:f3} Y:{currentPose.Bo2Axis.Y:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 16, $"焊点1偏移 X:{offset_in_jig.L_La2Axis[0].X:f3} Y:{offset_in_jig.L_La2Axis[0].Y:f3} / X:{offset_dis_jig.La2Axis.X:f3} Y:{offset_dis_jig.La2Axis.Y:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 18, $"焊点2偏移 X:{offset_in_jig.L_La2Axis[1].X:f3} Y:{offset_in_jig.L_La2Axis[1].Y:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 20, $"焊点3偏移 X:{offset_in_jig.L_La2Axis[2].X:f3} Y:{offset_in_jig.L_La2Axis[2].Y:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 22, $"焊点4偏移 X:{offset_in_jig.L_La2Axis[3].X:f3} Y:{offset_in_jig.L_La2Axis[3].Y:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 24, $"连接片角度:{offset_in_jig.Bo2Axis.R:f3}°", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 26, $"极耳间距:{_spacing2:f3}", fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 28, "电池条码:" + _code2, fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, fontSize * 30, nowTime, fontSize);
-					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, fontSize * 32, mError, fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 2, "夹具号:" + _jigIndex, fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 4, $"取像耗时:{mSeconds1:f2}ms", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 6, $"视觉总耗时:{totalTime:f2}ms", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 8, "(以下为 夹具补偿后X: Y: / 夹具补偿前X: Y: )", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 10, $"机械手1偏移 X:{offset_in_jig.Bo2Axis.X:f3} Y:{offset_in_jig.Bo2Axis.Y:f3} / X:{offset_dis_jig.Bo2Axis.X} Y:{offset_dis_jig.Bo2Axis.Y}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 12, $"机械手1当前 X:{currentPose.Bo2Axis.X:f3} Y:{currentPose.Bo2Axis.Y:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 14, $"焊点1偏移 X:{offset_in_jig.L_La2Axis[0].X:f3} Y:{offset_in_jig.L_La2Axis[0].Y:f3} / X:{offset_dis_jig.La2Axis.X:f3} Y:{offset_dis_jig.La2Axis.Y:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 16, $"焊点2偏移 X:{offset_in_jig.L_La2Axis[1].X:f3} Y:{offset_in_jig.L_La2Axis[1].Y:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 18, $"焊点3偏移 X:{offset_in_jig.L_La2Axis[2].X:f3} Y:{offset_in_jig.L_La2Axis[2].Y:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 20, $"焊点4偏移 X:{offset_in_jig.L_La2Axis[3].X:f3} Y:{offset_in_jig.L_La2Axis[3].Y:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 22, $"连接片角度:{offset_in_jig.Bo2Axis.R:f3}°", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 24, $"极耳间距:{_spacing2:f3}", fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 26, "电池条码:" + _code2, fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 28, nowTime, fontSize);
+					WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, 30, mError, fontSize);
 					if (isOutLimit == true)
-						WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, fontSize * 34, NG_message, fontSize);
+						WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, 34, NG_message, fontSize);
 					#region 保存生产数据csv文件
 					string[] strLogData = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 					string strHead = "状态,工位,夹具,机械手偏移X,机械手偏移Y,焊点1X,焊点1Y,焊点2X,焊点2Y,焊点3X,焊点3Y,焊点4X,焊点4Y,弹夹角度,极耳间距,条码,时间";
@@ -613,7 +621,7 @@ namespace HG_Vision.Manager.Manager_Thread
 					if (e.eMode == eProcessMode.produce)
 						e.imageName = (e.FlowIdx + 1).ToString() + "-2-" + _jigIndex.ToString() + "-" + _code2.ToString();
 					else
-						e.imageName = (e.FlowIdx + 1).ToString() + "-2-" + DateTime.Now.ToString("HH:mm:ss") + "-debug";
+						e.imageName = (e.FlowIdx + 1).ToString() + "-2-" + e.eMode.ToString();
 					e.results = finalResult;
 					Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageSave.saveImageQueueList[e.FlowIdx].Enqueue(e);
 					// 生成40个空格的字符串
@@ -629,12 +637,8 @@ namespace HG_Vision.Manager.Manager_Thread
 					NoticeHelper.UpdateYieldTableMessageSend(DeviceStatisticsModels.XCCD, e.FlowIdx);
 					NoticeHelper.UpdateCapaticyChartMessageSend(0);
 				};
-				if (!act.TryCatch($"相机{e.FlowIdx + 1}重新刷新良率统计出现异常！"))
-				{
-					//SendPLCMessage($"相机{e.Index + 1}重新刷新良率统计出现异常！", ConstantModel.NG);
-				}
-
-			}
+                act.TryCatch($"相机{e.FlowIdx + 1}重新刷新良率统计出现异常！");
+            }
 			catch (Exception ex)
 			{
 				LogHelper.Error($"处理{e.FlowIdx + 1}相机检测出现异常", ex);  //写日志

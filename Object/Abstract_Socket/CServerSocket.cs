@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections;
-using System.IO;
-using System.Text;
-using System.Net;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Text;
 
-/****************************************************************
-
-*****************************************************************/
 namespace BaseSocket
 {
     public abstract class CServerSocket
@@ -207,6 +204,12 @@ namespace BaseSocket
                         WaitForData(workSocket);
                         lock (this)
                         {
+                            if (Clients.Count > 0)
+                            {
+                                Socket oldsocket = (Socket)Clients[0];
+                                try { oldsocket.Close(); } catch { }
+                                Clients.RemoveAt(0);
+                            }
                             Clients.Add(workSocket);
                         }
                         if (OnConnect != null)
@@ -312,57 +315,61 @@ namespace BaseSocket
         private static readonly object obj = new object();
         public bool SendText(string mens, int SocketIndex)
         {
-            lock (obj)
+            if (SocketIndex >= 0 && SocketIndex < Clients.Count) // 修正索引检查
             {
-                if ((Clients.Count - 1) >= SocketIndex)
+                Socket workerSocket = (Socket)Clients[SocketIndex];
+                if (!workerSocket.Connected)
                 {
-                    Socket workerSocket = (Socket)Clients[SocketIndex];
-                    try
+                    return false; // 显式检查连接
+                }
+                try
+                {
+                    byte[] byData = System.Text.Encoding.UTF8.GetBytes(mens);
+                    int NumBytes = workerSocket.Send(byData);
+                    if (NumBytes == byData.Length)
                     {
-                        byte[] byData = System.Text.Encoding.UTF8.GetBytes(mens);
-                        int NumBytes = workerSocket.Send(byData);
-                        if (NumBytes == byData.Length)
+                        if (OnWrite != null)
                         {
-                            if (OnWrite != null)
-                            {
-                                mTextSent = mens;
-                                OnWrite(workerSocket);
-                            }
-                            return true;
+                            mTextSent = mens;
+                            OnWrite(workerSocket);
                         }
-                        else
-                            return false;
+                        return true;
                     }
-                    catch (ArgumentException ex)
+                    else
                     {
-                        if (OnError != null)
-                            OnError(ex.Message, null, 0);
+
                         return false;
-                    }
-                    catch (ObjectDisposedException ex)
-                    {
-                        if (OnError != null)
-                            OnError(ex.Message, null, 0);
-                        return false;
-                    }
-                    catch (SocketException se)
-                    {
-                        if (OnError != null)
-                            OnError(se.Message, null, 0);
-                        return false;
+
                     }
                 }
-                else
+                catch (ArgumentException ex)
                 {
                     if (OnError != null)
-                        OnError("Index was out of range. Must be non-negative and less than the size of the collection.", null, 0);
+                        OnError(ex.Message, null, 0);
                     return false;
                 }
-
+                catch (ObjectDisposedException ex)
+                {
+                    if (OnError != null)
+                        OnError(ex.Message, null, 0);
+                    return false;
+                }
+                catch (SocketException se)
+                {
+                    if (OnError != null)
+                        OnError(se.Message, null, 0);
+                    return false;
+                }
             }
-
-
+            else
+            {
+                if (OnError != null)
+                    OnError("Index was out of range. Must be non-negative and less than the size of the collection.", null, 0);
+                return false;
+            }
         }
+
+
 
         /// <summary>
         /// Send file by connecting selected

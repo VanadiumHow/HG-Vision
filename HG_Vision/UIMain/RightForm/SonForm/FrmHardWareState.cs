@@ -71,9 +71,8 @@ namespace HG_Vision.UIHome.RightForm
             //LoadLabelLight(0, 0, Project.Instance.SqlInfoManagerInstance.SqlNum, "SQL");
             LoadLabelLight(0, 0, Project.Instance.PLCManagerInstance.PLCNum, "PLC");
             //LoadLabelLight(0, Project.Instance.SqlInfoManagerInstance.SqlNum + Project.Instance.PLCManagerInstance.PLCNum, Project.Instance.RobotManagerInstance.RobotNum, "BOT");
-            LoadLabelLight(0, 2 * Project.Instance.PLCManagerInstance.PLCNum, Project.Instance.RobotManagerInstance.RobotNum, "BOT");
-            LoadLabelLight(0, 2 * Project.Instance.RobotManagerInstance.RobotNum + 2 * Project.Instance.PLCManagerInstance.PLCNum, Project.Instance.VisionManagerInstance.CameraNum, "CCD");
-
+            LoadLabelLight(0, 8, Project.Instance.RobotManagerInstance.RobotNum, "BOT");
+            LoadLabelLight(0, 6, Project.Instance.VisionManagerInstance.CameraNum, "CCD");
             //if (deviceCount > 0)
             //{
             //    List<Label> labs = new List<Label>();
@@ -116,23 +115,22 @@ namespace HG_Vision.UIHome.RightForm
                     p.Dock = DockStyle.Fill;
                     p.Name = $"uiPanel{"LSR" + 1}";
                     p.BackColor = Color.Transparent;
-                    p.Controls.Add(CreateUILabel(lbl, $"uiLbl{"LAS" + 1}"));
+                    p.Controls.Add(CreateUILabel(lbl, $"uiLbl激光"));
                     TableLayoutPanelAll.Controls.Add(p, col + i, row);
                     lamp = CreateUILight(lamp, $"uiLig{"LASER" + 1}");
                     TableLayoutPanelAll.Controls.Add(lamp, col + i, row);
                 }
-                else if (str == "BOT" && i == 3)
+                else if (str == "CCD" && i == 0)
                 {
                     p = new Panel();
                     p.Dock = DockStyle.Fill;
-                    p.Name = $"uiPanel{"LSR" + 1}";
+                    p.Name = $"uiPanel{"CCD" + 1}";
                     p.BackColor = Color.Transparent;
-                    p.Controls.Add(CreateUILabel(lbl, $"uiLbl{"LAS" + 2}"));
+                    p.Controls.Add(CreateUILabel(lbl, $"uiLbl{"相机"}"));
                     TableLayoutPanelAll.Controls.Add(p, col + i, row);
-                    lamp = CreateUILight(lamp, $"uiLig{"LASER" + 2}");
+                    lamp = CreateUILight(lamp, $"uiLig{str}");
                     TableLayoutPanelAll.Controls.Add(lamp, col + i, row);
                 }
-
                 else
                 {
                     p = new Panel();
@@ -211,12 +209,12 @@ namespace HG_Vision.UIHome.RightForm
         private Label CreateUILabel(Label lbl, string str)
         {
             lbl = new Label();
-            lbl.Font = new System.Drawing.Font("微软雅黑", 8.5F, System.Drawing.FontStyle.Bold);
-            lbl.ForeColor = Color.Black;
+            lbl.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            lbl.ForeColor = Color.White;
             lbl.AutoSize = false;
             lbl.BackColor = Color.Transparent;
             lbl.Dock = DockStyle.Fill;
-            lbl.TextAlign = ContentAlignment.MiddleLeft;
+            lbl.TextAlign = ContentAlignment.MiddleCenter;
             lbl.Location = new System.Drawing.Point(1, 0);
             lbl.Name = str;
             lbl.Size = new System.Drawing.Size(1, 1);
