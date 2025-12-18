@@ -33,6 +33,8 @@ namespace HG_Vision.UIHome
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHome));
             this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ButtonPictureSetting = new System.Windows.Forms.Button();
+            this.ButtonVisionTool = new System.Windows.Forms.Button();
             this.ButtonLogin = new System.Windows.Forms.Button();
             this.ButtonSetting = new System.Windows.Forms.Button();
             this.ButtonStart = new System.Windows.Forms.Button();
@@ -78,11 +80,53 @@ namespace HG_Vision.UIHome
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
+            // ButtonPictureSetting
+            // 
+            this.ButtonPictureSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonPictureSetting.BackgroundImage = global::HG_Vision.Properties.Resources.文件夹设置;
+            this.ButtonPictureSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonPictureSetting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonPictureSetting.Enabled = false;
+            this.ButtonPictureSetting.FlatAppearance.BorderSize = 0;
+            this.ButtonPictureSetting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(67)))), ((int)(((byte)(76)))));
+            this.ButtonPictureSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonPictureSetting.Location = new System.Drawing.Point(402, 5);
+            this.ButtonPictureSetting.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonPictureSetting.Name = "ButtonPictureSetting";
+            this.ButtonPictureSetting.Size = new System.Drawing.Size(100, 49);
+            this.ButtonPictureSetting.TabIndex = 35;
+            this.ButtonPictureSetting.Tag = "4";
+            this.ToolTip1.SetToolTip(this.ButtonPictureSetting, "存图设置");
+            this.ButtonPictureSetting.UseVisualStyleBackColor = true;
+            this.ButtonPictureSetting.Click += new System.EventHandler(this.ButtonPictureSetting_Click);
+            // 
+            // ButtonVisionTool
+            // 
+            this.ButtonVisionTool.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonVisionTool.BackgroundImage = global::HG_Vision.Properties.Resources.智能;
+            this.ButtonVisionTool.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonVisionTool.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonVisionTool.Enabled = false;
+            this.ButtonVisionTool.FlatAppearance.BorderSize = 0;
+            this.ButtonVisionTool.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(67)))), ((int)(((byte)(76)))));
+            this.ButtonVisionTool.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonVisionTool.Location = new System.Drawing.Point(302, 5);
+            this.ButtonVisionTool.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonVisionTool.Name = "ButtonVisionTool";
+            this.ButtonVisionTool.Size = new System.Drawing.Size(100, 49);
+            this.ButtonVisionTool.TabIndex = 34;
+            this.ButtonVisionTool.Tag = "4";
+            this.ToolTip1.SetToolTip(this.ButtonVisionTool, "视觉工具");
+            this.ButtonVisionTool.UseVisualStyleBackColor = true;
+            this.ButtonVisionTool.Click += new System.EventHandler(this.ButtonVisionTool_Click);
+            // 
             // ButtonLogin
             // 
             this.ButtonLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonLogin.BackgroundImage = global::HG_Vision.Properties.Resources.多用户;
+            this.ButtonLogin.BackgroundImage = global::HG_Vision.Properties.Resources.未登录;
             this.ButtonLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonLogin.FlatAppearance.BorderSize = 0;
@@ -102,20 +146,20 @@ namespace HG_Vision.UIHome
             // 
             this.ButtonSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonSetting.BackgroundImage = global::HG_Vision.Properties.Resources.齿轮;
+            this.ButtonSetting.BackgroundImage = global::HG_Vision.Properties.Resources.螺母;
             this.ButtonSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonSetting.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonSetting.Enabled = false;
             this.ButtonSetting.FlatAppearance.BorderSize = 0;
             this.ButtonSetting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(67)))), ((int)(((byte)(76)))));
             this.ButtonSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonSetting.Location = new System.Drawing.Point(202, 6);
+            this.ButtonSetting.Location = new System.Drawing.Point(202, 5);
             this.ButtonSetting.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonSetting.Name = "ButtonSetting";
             this.ButtonSetting.Size = new System.Drawing.Size(100, 49);
             this.ButtonSetting.TabIndex = 28;
             this.ButtonSetting.Tag = "4";
-            this.ToolTip1.SetToolTip(this.ButtonSetting, "系统设置");
+            this.ToolTip1.SetToolTip(this.ButtonSetting, "参数设置");
             this.ButtonSetting.UseVisualStyleBackColor = true;
             this.ButtonSetting.Click += new System.EventHandler(this.ButtonSetting_Click);
             // 
@@ -123,7 +167,7 @@ namespace HG_Vision.UIHome
             // 
             this.ButtonStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonStart.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonStart.BackgroundImage")));
+            this.ButtonStart.BackgroundImage = global::HG_Vision.Properties.Resources.开始;
             this.ButtonStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonStart.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonStart.FlatAppearance.BorderSize = 0;
@@ -285,10 +329,10 @@ namespace HG_Vision.UIHome
             this.PanelMain.Controls.Add(this.SplitContainer1);
             this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMain.ForeColor = System.Drawing.Color.Transparent;
-            this.PanelMain.Location = new System.Drawing.Point(0, 64);
+            this.PanelMain.Location = new System.Drawing.Point(0, 62);
             this.PanelMain.Margin = new System.Windows.Forms.Padding(0);
             this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(1920, 958);
+            this.PanelMain.Size = new System.Drawing.Size(1920, 960);
             this.PanelMain.TabIndex = 34;
             // 
             // SplitContainer1
@@ -308,7 +352,7 @@ namespace HG_Vision.UIHome
             // 
             this.SplitContainer1.Panel2.Controls.Add(this.SplitContainer2);
             this.SplitContainer1.Panel2MinSize = 16;
-            this.SplitContainer1.Size = new System.Drawing.Size(1920, 958);
+            this.SplitContainer1.Size = new System.Drawing.Size(1920, 960);
             this.SplitContainer1.SplitterDistance = 1500;
             this.SplitContainer1.SplitterWidth = 1;
             this.SplitContainer1.TabIndex = 0;
@@ -321,7 +365,7 @@ namespace HG_Vision.UIHome
             this.PanelVisionMain.Location = new System.Drawing.Point(0, 0);
             this.PanelVisionMain.Margin = new System.Windows.Forms.Padding(0);
             this.PanelVisionMain.Name = "PanelVisionMain";
-            this.PanelVisionMain.Size = new System.Drawing.Size(1500, 958);
+            this.PanelVisionMain.Size = new System.Drawing.Size(1500, 960);
             this.PanelVisionMain.TabIndex = 0;
             // 
             // SplitContainer2
@@ -343,7 +387,7 @@ namespace HG_Vision.UIHome
             // 
             this.SplitContainer2.Panel2.Controls.Add(this.PanelRightMain);
             this.SplitContainer2.Panel2MinSize = 16;
-            this.SplitContainer2.Size = new System.Drawing.Size(419, 958);
+            this.SplitContainer2.Size = new System.Drawing.Size(419, 960);
             this.SplitContainer2.SplitterDistance = 37;
             this.SplitContainer2.SplitterWidth = 1;
             this.SplitContainer2.TabIndex = 0;
@@ -359,7 +403,7 @@ namespace HG_Vision.UIHome
             this.ButtonShrinkPage.Location = new System.Drawing.Point(0, 0);
             this.ButtonShrinkPage.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonShrinkPage.Name = "ButtonShrinkPage";
-            this.ButtonShrinkPage.Size = new System.Drawing.Size(37, 958);
+            this.ButtonShrinkPage.Size = new System.Drawing.Size(37, 960);
             this.ButtonShrinkPage.TabIndex = 3;
             this.ButtonShrinkPage.UseVisualStyleBackColor = false;
             this.ButtonShrinkPage.Click += new System.EventHandler(this.ButtonShrinkPage_Click);
@@ -371,12 +415,14 @@ namespace HG_Vision.UIHome
             this.PanelRightMain.Location = new System.Drawing.Point(0, 0);
             this.PanelRightMain.Margin = new System.Windows.Forms.Padding(0);
             this.PanelRightMain.Name = "PanelRightMain";
-            this.PanelRightMain.Size = new System.Drawing.Size(381, 958);
+            this.PanelRightMain.Size = new System.Drawing.Size(381, 960);
             this.PanelRightMain.TabIndex = 0;
             // 
             // Panel2
             // 
             this.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(40)))), ((int)(((byte)(55)))));
+            this.Panel2.Controls.Add(this.ButtonPictureSetting);
+            this.Panel2.Controls.Add(this.ButtonVisionTool);
             this.Panel2.Controls.Add(this.panel3);
             this.Panel2.Controls.Add(this.ButtonLogin);
             this.Panel2.Controls.Add(this.ButtonSetting);
@@ -442,7 +488,7 @@ namespace HG_Vision.UIHome
             // 
             // TimerLogout
             // 
-            this.TimerLogout.Interval = 60000;
+            this.TimerLogout.Interval = 6000;
             this.TimerLogout.Tick += new System.EventHandler(this.TimerLogout_Tick);
             // 
             // FrmHome
@@ -517,5 +563,7 @@ namespace HG_Vision.UIHome
         private System.Windows.Forms.Button ButtonStart;
         private System.Windows.Forms.Panel Panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button ButtonVisionTool;
+        private System.Windows.Forms.Button ButtonPictureSetting;
     }
 }

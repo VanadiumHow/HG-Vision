@@ -3,7 +3,7 @@ using HG_Vision.Contol.Control_Sql;
 using HG_Vision.Contol.Control_Vision;
 using HG_Vision.Manager.Manager_System;
 using HG_Vision.Manager.Manager_Thread;
-using Model.ConstantModel;
+using Model.VisionModel;
 using Model.EnumModel;
 using Model.UIModel;
 using Obj.Obj_File;

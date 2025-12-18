@@ -47,7 +47,7 @@ namespace HG_Vision.Contol.Control_System
         /// <summary>
         /// Ini读写对象
         /// </summary>
-        private IniHelper _ini = new IniHelper(FilePathModel.ConfigPath + @"\\DataCheckComm.ini");
+        private IniHelper _ini = new IniHelper(FilePathModel.MESDataCheckPath);
 
         /// <summary>
         /// 检查各配置文件
@@ -60,8 +60,8 @@ namespace HG_Vision.Contol.Control_System
                 if (!Directory.Exists(FilePathModel.ConfigPath))
                     Directory.CreateDirectory(FilePathModel.ConfigPath);
                 //主配置文件ini
-                if (!File.Exists(FilePathModel.ConfigPath + @"\\DataCheckComm.ini"))
-                    File.Create(FilePathModel.ConfigPath + @"\\DataCheckComm.ini").Close();
+                if (!File.Exists(FilePathModel.ConfigPath + "\\DataCheckComm.ini"))
+                    File.Create(FilePathModel.ConfigPath + "\\DataCheckComm.ini").Close();
             }
             catch (Exception ex)
             {

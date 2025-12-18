@@ -213,17 +213,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\Control_Socket\LaserClientObj.cs" />
+    <Compile Include="Control\Control_Socket\LaserServerObj.cs" />
+    <Compile Include="Control\Control_Socket\RobotServerObj.cs" />
     <Compile Include="Control\Control_Vision\CameraConfiguration.cs" />
     <Compile Include="Control\Control_Vision\CameraParamsConfiguration.cs" />
     <Compile Include="Control\Control_Sql\CCDDataBll.cs" />
     <Compile Include="Control\Control_Sql\SqlInfoConfiguration.cs" />
     <Compile Include="Control\Control_Vision\ImageConfiguration.cs" />
-    <Compile Include="Control\Control_Laser\LeaserObj.cs" />
     <Compile Include="Control\Control_System\DataCheckConfiguration.cs" />
     <Compile Include="Control\Control_System\GlobalConfiguration.cs" />
-    <Compile Include="Control\Control_Laser\LeaserClientConfiguration.cs" />
+    <Compile Include="Control\Control_Socket\Configuration\ClientConfiguration.cs" />
     <Compile Include="Control\Control_Sql\OperationLogDataBll.cs" />
-    <Compile Include="Control\Control_Robot\RobotSeverConfiguration.cs" />
+    <Compile Include="Control\Control_Socket\Configuration\SeverConfiguration.cs" />
     <Compile Include="Control\Control_System\UserConfiguration.cs" />
     <Compile Include="Control\Control_Vision\WorkFlow.cs" />
     <Compile Include="DAL\BaseDal.cs" />
@@ -235,15 +237,13 @@
     <Compile Include="Manager\Manager_Thread\FrmSplashScreenThread.cs" />
     <Compile Include="Manager\Manager_Thread\InsertDataThread.cs" />
     <Compile Include="Manager\Manager_Thread\SaveImageThread.cs" />
-    <Compile Include="Manager\Manager_Thread\WatchConnectingThread.cs" />
     <Compile Include="Manager\Manager_Vision\CameraManager.cs" />
     <Compile Include="Manager\Manager_Vision\CameraParamsManager.cs" />
     <Compile Include="Manager\Manager_Vision\ImageManager.cs" />
-    <Compile Include="Manager\Manager_Laser\LeaserManager.cs" />
+    <Compile Include="Manager\Manager_Socket\ClientManager.cs" />
     <Compile Include="Control\Control_PLC\PLCConfiguration.cs" />
     <Compile Include="Manager\Manager_Process\ScheduledTaskManager.cs" />
-    <Compile Include="Manager\Manager_Robot\RobotManager.cs" />
-    <Compile Include="Control\Control_Robot\RobotObj.cs" />
+    <Compile Include="Manager\Manager_Socket\ServerManager.cs" />
     <Compile Include="Manager\Manager_System\DataCheckManager.cs" />
     <Compile Include="Manager\Manager_System\GlobalManager.cs" />
     <Compile Include="Manager\Manager_System\HardWareStateManager.cs" />
@@ -469,24 +469,25 @@
     <Content Include="obj\x64\Debug\VisionProgram.pdb" />
     <Content Include="Resources\HG-logo.ico" />
     <Content Include="Resources\信息.png" />
-    <None Include="Resources\齿轮.png" />
     <None Include="Resources\加载界面.png" />
     <None Include="Resources\华工科技图标.bmp" />
     <None Include="Resources\华工科技图标.png" />
     <None Include="Resources\华工科技图标1.png" />
+    <None Include="Resources\切换用户.png" />
     <Content Include="Resources\卡券标签.png" />
     <None Include="Resources\参数.png" />
     <Content Include="Resources\双人.png" />
-    <None Include="Resources\多用户.png" />
     <Content Include="Resources\密码锁.png" />
     <Content Include="Resources\平板.png" />
     <None Include="Resources\开始.png" />
     <Content Include="Resources\手机.png" />
-    <None Include="Resources\扳手.png" />
     <Content Include="Resources\搜索商家.png" />
+    <None Include="Resources\文件夹设置.png" />
     <Content Include="Resources\文本.png" />
+    <None Include="Resources\智能.png" />
     <Content Include="Resources\暂停.png" />
     <None Include="Resources\标签.png" />
+    <None Include="Resources\未登录.png" />
     <Content Include="Resources\用户.png" />
     <Content Include="Resources\电话.png" />
     <Content Include="Resources\相机.png" />
@@ -498,9 +499,9 @@
     <Content Include="Resources\红绿灯1_黄.png" />
     <Content Include="Resources\红绿灯2.png" />
     <None Include="Resources\缩小.png" />
+    <None Include="Resources\螺母.png" />
     <Content Include="Resources\货币.png" />
     <None Include="Resources\退出.png" />
-    <None Include="Resources\运行.png" />
     <Content Include="Resources\通知.png" />
     <Content Include="Resources\铃铛.png" />
     <Content Include="Resources\饼图.png" />
@@ -523,9 +524,9 @@
       <Project>{68be877e-2675-4369-9bce-d90ce4d5c44b}</Project>
       <Name>UIModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Object\Abstract_Socket\Socket.csproj">
+    <ProjectReference Include="..\Object\Abstract_Socket\BaseSocket.csproj">
       <Project>{45de612b-9c13-4116-9ad3-d641873b8b36}</Project>
-      <Name>Socket</Name>
+      <Name>BaseSocket</Name>
     </ProjectReference>
     <ProjectReference Include="..\Object\Abstract_Thread\BaseThread.csproj">
       <Project>{fc86e310-61fa-4039-9f83-c55309347be8}</Project>
@@ -559,13 +560,25 @@
       <Project>{08f48cb2-bee8-41c4-8efe-baa3eae1cb8d}</Project>
       <Name>Obj_Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Obj_Socket\Obj_Socket.csproj">
+      <Project>{8ed34829-95de-490c-b2e6-3534b2052c72}</Project>
+      <Name>Obj_Socket</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Obj_User\Obj_User.csproj">
       <Project>{49119092-0ff4-4eaa-9c4c-5037ac689672}</Project>
       <Name>Obj_User</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RobotModel\SocketModel.csproj">
+      <Project>{951b9df9-424b-47f3-9e3c-c01feeea84e8}</Project>
+      <Name>SocketModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UserModel\UserModel.csproj">
       <Project>{ce23dec1-9690-4c17-bc3b-6f101a1c07aa}</Project>
       <Name>UserModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VisionModel\VisionModel.csproj">
+      <Project>{42518eaf-5b43-4df3-9033-44461839ec66}</Project>
+      <Name>VisionModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\VisionProgram.UserControls\VisionProgram.UserControls.csproj">
       <Project>{f2b31baf-5300-4840-a356-438444fb8a17}</Project>
@@ -585,6 +598,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Control\Control_Laser\" />
     <Folder Include="Control\Control_User\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

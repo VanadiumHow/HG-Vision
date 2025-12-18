@@ -75,4 +75,12 @@
         Laser1 = 2,
         Laser2 = 3
     }
+    /// <summary>
+    /// 设备类型枚举
+    /// </summary>
+    public enum DeviceType
+    {
+        Robot, // 机器人
+        Laser  // 激光设备
+    }
 }

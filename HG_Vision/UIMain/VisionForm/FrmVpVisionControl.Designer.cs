@@ -37,9 +37,9 @@ namespace HG_Vision.UIVision
             this.打开图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.处理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.处理2工位ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.查看图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工具设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.图片保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查看图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
@@ -66,8 +66,6 @@ namespace HG_Vision.UIVision
             this.打开图片ToolStripMenuItem,
             this.处理ToolStripMenuItem,
             this.处理2工位ToolStripMenuItem,
-            this.工具设置ToolStripMenuItem,
-            this.图片保存ToolStripMenuItem,
             this.查看图片ToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -112,8 +110,8 @@ namespace HG_Vision.UIVision
             this.打开图片ToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.打开图片ToolStripMenuItem.Name = "打开图片ToolStripMenuItem";
             this.打开图片ToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
-            this.打开图片ToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
-            this.打开图片ToolStripMenuItem.Text = "文件";
+            this.打开图片ToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
+            this.打开图片ToolStripMenuItem.Text = "打开图片";
             this.打开图片ToolStripMenuItem.Click += new System.EventHandler(this.打开图片ToolStripMenuItem_Click);
             // 
             // 处理ToolStripMenuItem
@@ -136,6 +134,16 @@ namespace HG_Vision.UIVision
             this.处理2工位ToolStripMenuItem.Text = "处理2工位";
             this.处理2工位ToolStripMenuItem.Click += new System.EventHandler(this.处理2工位ToolStripMenuItem_Click);
             // 
+            // 查看图片ToolStripMenuItem
+            // 
+            this.查看图片ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F);
+            this.查看图片ToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.查看图片ToolStripMenuItem.Name = "查看图片ToolStripMenuItem";
+            this.查看图片ToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
+            this.查看图片ToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
+            this.查看图片ToolStripMenuItem.Text = "图片文件夹";
+            this.查看图片ToolStripMenuItem.Click += new System.EventHandler(this.查看图片ToolStripMenuItem_Click);
+            // 
             // 工具设置ToolStripMenuItem
             // 
             this.工具设置ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -155,16 +163,6 @@ namespace HG_Vision.UIVision
             this.图片保存ToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
             this.图片保存ToolStripMenuItem.Text = "存图设置";
             this.图片保存ToolStripMenuItem.Click += new System.EventHandler(this.图片保存ToolStripMenuItem_Click);
-            // 
-            // 查看图片ToolStripMenuItem
-            // 
-            this.查看图片ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F);
-            this.查看图片ToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.查看图片ToolStripMenuItem.Name = "查看图片ToolStripMenuItem";
-            this.查看图片ToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
-            this.查看图片ToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
-            this.查看图片ToolStripMenuItem.Text = "查看图片";
-            this.查看图片ToolStripMenuItem.Click += new System.EventHandler(this.查看图片ToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -259,7 +257,7 @@ namespace HG_Vision.UIVision
             // 
             this.tbExposeReal.BackColor = System.Drawing.Color.White;
             this.tbExposeReal.Font = new System.Drawing.Font("宋体", 9F);
-            this.tbExposeReal.Location = new System.Drawing.Point(849, 1);
+            this.tbExposeReal.Location = new System.Drawing.Point(864, 1);
             this.tbExposeReal.Name = "tbExposeReal";
             this.tbExposeReal.Size = new System.Drawing.Size(54, 21);
             this.tbExposeReal.TabIndex = 3;
@@ -270,7 +268,7 @@ namespace HG_Vision.UIVision
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(799, 1);
+            this.label1.Location = new System.Drawing.Point(814, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 4;

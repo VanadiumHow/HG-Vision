@@ -14,6 +14,7 @@ using Obj.Obj_File;
 using HG_Vision.Contol.Control_Vision;
 using HG_Vision.Manager.Manager_System;
 using HG_Vision.Manager.Manager_Thread;
+using HG_Vision.Contol.Control_Socket;
 
 /****************************************************************
 
@@ -378,20 +379,21 @@ namespace HG_Vision.UIVision
 
             try
             {
-                string lasermove = "_PDMoveAbs(0," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X.ToString() + "," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y.ToString() + ",500);";
-                Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser = Project.Instance.LaserManagerInstance.L_Laser[0].SendText(lasermove);
-                if (!Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser)
+                string lasermove = "_PDMoveAbs(0," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X.ToString() +
+                    "," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y.ToString() + ",500);";
+                Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").IsConnected = Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").SendText(lasermove);
+                if (!Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").IsConnected)
                 {
-                    Project.Instance.LaserManagerInstance.L_Laser[0].Connect();
+                    Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").Connect();
                     Thread.Sleep(50);
-                    Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser = Project.Instance.LaserManagerInstance.L_Laser[0].SendText(lasermove);
+                    Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").IsConnected = Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").SendText(lasermove);
                 }
                 Thread.Sleep(100);
             }
             catch (Exception)
             {
-                if (null != Project.Instance.LaserManagerInstance.L_Laser[0]) Project.Instance.LaserManagerInstance.L_Laser[0].Close();
-                Project.Instance.LaserManagerInstance.L_Laser[0].Connect();
+                if (null != Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}")) Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").StopClient();
+                Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").Connect();
             }
 
             GrabImage();
@@ -439,24 +441,25 @@ namespace HG_Vision.UIVision
             {
                 FlowIdx = 0,
                 NozzleIdx = 0,
-                eMode = Model.EnumModel.eProcessMode.debug
+                eMode = Model.EnumModel.eProcessMode.debug,
+                InputImage = cogRecordDisplay1.Display.Image
             };
             CameraWorkThrad1.VisionProcess(args);
             Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.StandPose = args.ResultOffset;
         }
-
+        //已失效
         private void 工具设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_curWorkFlow.SettingBlock != null)
-            {
-                FrmVppSetting VisionToolSettingForm = new FrmVppSetting(_curWorkFlow, _vppName);
-                VisionToolSettingForm.AfterSaveTool += AfterSaveTool;
-                VisionToolSettingForm.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("SettingBlock！", "异常信息");
-            }
+            //if (_curWorkFlow.SettingBlock != null)
+            //{
+            //    FrmVppSetting VisionToolSettingForm = new FrmVppSetting(_curWorkFlow, _vppName);
+            //    VisionToolSettingForm.AfterSaveTool += AfterSaveTool;
+            //    VisionToolSettingForm.ShowDialog();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("SettingBlock！", "异常信息");
+            //}
         }
 
 
@@ -600,12 +603,13 @@ namespace HG_Vision.UIVision
                 MessageBox.Show("读取图像异常");
             }
         }
+        //已失效
 
         private void 图片保存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmImageStoreSettings FrmImageStoreSettings = new FrmImageStoreSettings(_vppName);
+            //FrmImageStoreSettings FrmImageStoreSettings = new FrmImageStoreSettings(_vppName);
 
-            FrmImageStoreSettings.ShowDialog();
+            //FrmImageStoreSettings.ShowDialog();
         }
 
         private void 查看图片ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -649,20 +653,21 @@ namespace HG_Vision.UIVision
             }
             try
             {
-                string lasermove = "_PDMoveAbs(0," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La2Axis.X.ToString() + "," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La2Axis.Y.ToString() + ",500);";
-                Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser = Project.Instance.LaserManagerInstance.L_Laser[0].SendText(lasermove);
-                if (!Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser)
+                string lasermove = "_PDMoveAbs(0," + Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La2Axis.X.ToString() + "," + 
+                    Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La2Axis.Y.ToString() + ",500);";
+                Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").IsConnected = Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").SendText(lasermove);
+                if (!Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").IsConnected)
                 {
-                    Project.Instance.LaserManagerInstance.L_Laser[0].Connect();
+                    Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").Connect();
                     Thread.Sleep(50);
-                    Project.Instance.LaserManagerInstance.L_Laser[0].IsConnectedLaser = Project.Instance.LaserManagerInstance.L_Laser[0].SendText(lasermove);
+                    Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").IsConnected = Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").SendText(lasermove);
                 }
                 Thread.Sleep(50);
             }
             catch (Exception)
             {
-                if (null != Project.Instance.LaserManagerInstance.L_Laser[0]) Project.Instance.LaserManagerInstance.L_Laser[0].Close();
-                Project.Instance.LaserManagerInstance.L_Laser[0].Connect();
+                if (null != Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}")) Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").StopClient();
+                Project.Instance.ClientManagerInstance.GetDevice<LaserClientObj>($"Laser{0}").Connect();
             }
 
             GrabImage1();

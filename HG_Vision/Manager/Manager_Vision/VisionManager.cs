@@ -103,19 +103,20 @@ namespace HG_Vision.Manager.Manager_Vision
                 {
                     MessageBox.Show("Configuration设置CurProductModel为空，请先将UseProductModel设置为0！");
 
-                    _visionToolPath = FilePathModel.VisionToolDefaultPath;
-                    _visionParamPath = FilePathModel.VisionParamDefaultPath;
+                    _visionToolPath = FilePathModel.VisionDefaultPath + "\\VisionTool";
+                    _visionParamPath = FilePathModel.VisionDefaultPath + "\\VisionParam";
+                    Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel = "默认";
                 }
                 else
                 {
-                    _visionToolPath = FilePathModel.ProductPath + @"\\" + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel + @"\VisionTool";
-                    _visionParamPath = FilePathModel.ProductPath + @"\\" + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel + @"\VisionParam";
+                    _visionToolPath = FilePathModel.ProductPath + "\\" + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel + "\\VisionTool";
+                    _visionParamPath = FilePathModel.ProductPath + "\\" + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel + "\\VisionParam";
                 }
             }
             else
             {
-                _visionToolPath = FilePathModel.VisionToolDefaultPath;
-                _visionParamPath = FilePathModel.VisionParamDefaultPath;
+                _visionToolPath = FilePathModel.VisionDefaultPath + "\\VisionTool";
+                _visionParamPath = FilePathModel.VisionDefaultPath + "\\VisionParam";
             }
         }
 

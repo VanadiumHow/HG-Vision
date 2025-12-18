@@ -9,10 +9,10 @@ using Cognex.VisionPro.CalibFix;
 using Obj.Obj_File;
 using Obj.Obj_Queue;
 using HG_Vision.Manager.Manager_System;
+using Model.VisionModel;
 using Model.EnumModel;
 using System.Reflection;
 using log4net.Repository.Hierarchy;
-using Model.ConstantModel;
 
 /****************************************************************
 
@@ -28,6 +28,7 @@ namespace HG_Vision.Contol.Control_Vision
         internal int NozzleIdx {  get; set; } // 振镜位置
         internal eProcessMode eMode { get; set; } // 流程模式
         internal CogRecordsDisplay DisplayObj { get; set; } // 存结果图片
+        internal ICogImage InputImage { get; set; } // 存原图
         internal ICogImage rawImage { get; set; } // 存原图
         internal bool results { get; set; } // 处理结果
         internal string imageName { get; set; } // 图片名
@@ -184,12 +185,12 @@ namespace HG_Vision.Contol.Control_Vision
         {
             _vppName = p;
             _vppIndex = Convert.ToInt16(_vppName) - 1;
-            _acquireBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + @"\acquire\AcquireBlock" + _vppName + ".vpp";
-            _distortioncalibBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + @"\calib_distortion\DistortionCalibBlock" + _vppName + ".vpp";
-            _linearcalibBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + @"\calib_linear\LinearCalibBlock" + _vppName + ".vpp";
-            _rotationcalibBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + @"\calib_rotation\RotationCalibBlock" + _vppName + ".vpp";
-            _VerificatecalibBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + @"\calib_Verificate\VerificateCalibBlock" + _vppName + ".vpp";
-            _processBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + @"\process\ProcessBlock" + _vppName + ".vpp";
+            _acquireBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + "\\acquire\\AcquireBlock" + _vppName + ".vpp";
+            _distortioncalibBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + "\\calib_distortion\\DistortionCalibBlock" + _vppName + ".vpp";
+            _linearcalibBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + "\\calib_linear\\LinearCalibBlock" + _vppName + ".vpp";
+            _rotationcalibBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + "\\calib_rotation\\RotationCalibBlock" + _vppName + ".vpp";
+            _VerificatecalibBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + "\\calib_Verificate\\VerificateCalibBlock" + _vppName + ".vpp";
+            _processBlockpath = Project.Instance.VisionManagerInstance._visionToolPath + "\\process\\ProcessBlock" + _vppName + ".vpp";
         }
         /// <summary>
         /// 加载工具

@@ -10,7 +10,7 @@ namespace BaseThread
     /// <summary>
     /// 所有具体线程的抽象类基类，要求派生类实现Initialize和Deinitialize方法、要求实现Run方法
     /// </summary>
-    public abstract class Control_Thread : BaseClass, IBaseThread
+    public abstract class Control_Thread : BaseThread, IBaseThread
     {
         Thread th;
         bool m_bStopThread = false;

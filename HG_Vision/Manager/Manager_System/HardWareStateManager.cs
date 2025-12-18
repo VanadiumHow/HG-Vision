@@ -23,9 +23,13 @@ namespace HG_Vision.Manager.Manager_System
         public List<bool> L_sqlState = new List<bool>();
 
         /// <summary>
-        /// ROBOT连接状态
+        /// 机械手连接状态
         /// </summary>
         public List<bool> L_robotState = new List<bool>();
+        /// <summary>
+        /// 激光连接状态
+        /// </summary>
+        public List<bool> L_laserState = new List<bool>();
 
         internal HardWareStateManager() { }
 
@@ -37,6 +41,7 @@ namespace HG_Vision.Manager.Manager_System
             L_ccdState.Clear();
             L_sqlState.Clear();
             L_robotState.Clear();
+            L_laserState.Clear();
             //CCD连接状态初始化
             for (int i = 0; i < Project.Instance.VisionManagerInstance.CameraNum; i++)
             {
@@ -44,12 +49,11 @@ namespace HG_Vision.Manager.Manager_System
                 L_ccdState[i] = Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[i].connected();
             }
 
-
-            for (int i = 0; i < 1; i++)
+            foreach(var robot in Project.Instance.ServerManagerInstance.GetAllDevice())
             {
-                L_robotState.Add(false);
-                L_robotState[i] = Project.Instance.RobotManagerInstance.L_Robot[i].IsConnected;//待定
+                L_robotState.Add(robot.IsConnected);
             }
+
             //数据库连接状态初始化
             for (int i = 0; i < Project.Instance.SqlInfoManagerInstance.SqlNum; i++)
             {

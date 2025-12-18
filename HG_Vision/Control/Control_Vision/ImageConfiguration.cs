@@ -65,11 +65,11 @@ namespace HG_Vision.Contol.Control_Vision
             {
                 string ss = Project.Instance.VisionManagerInstance._visionParamPath.ToString();
                 //配置文件夹
-                if (!Directory.Exists(Project.Instance.VisionManagerInstance._visionParamPath + @"\\Config"))
-                    Directory.CreateDirectory(Project.Instance.VisionManagerInstance._visionParamPath + @"\\Config");
+                if (!Directory.Exists(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config"))
+                    Directory.CreateDirectory(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config");
                 //主配置文件ini
-                if (!File.Exists(Project.Instance.VisionManagerInstance._visionParamPath + @"\\Config\\ImageParams.ini"))
-                    File.Create(Project.Instance.VisionManagerInstance._visionParamPath + @"\\Config\\ImageParams.ini").Close();
+                if (!File.Exists(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config\\ImageParams.ini"))
+                    File.Create(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config\\ImageParams.ini").Close();
             }
             catch (Exception ex)
             {

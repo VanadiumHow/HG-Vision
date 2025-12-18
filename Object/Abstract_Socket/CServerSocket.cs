@@ -135,22 +135,21 @@ namespace BaseSocket
             }
         }
         #endregion
-
-        #region Constructor
+        #region 构造函数（增加重载）
         /// <summary>
-        /// Default Constructor
+        /// 核心构造函数：绑定指定本地端点（IP + 端口）
         /// </summary>
-        /// <param name="port">Port to wait for call</param>
+        /// <param name="localEndPoint">本地监听端点</param>
         public CServerSocket(IPEndPoint localEndPoint)
         {
             try
             {
                 serverEndPoint = localEndPoint;
+                mPort = localEndPoint.Port; // 修复：给 mPort 赋值，让 Port 属性生效
             }
             catch (Exception ex)
             {
-                if (OnError != null)
-                    OnError(ex.Message, null, 0);
+                OnError?.Invoke(ex.Message, null, 0);
             }
         }
         #endregion
@@ -313,7 +312,7 @@ namespace BaseSocket
         /// 
         /// 
         private static readonly object obj = new object();
-        public bool SendText(string mens, int SocketIndex)
+        public bool SendText(string mens, int SocketIndex = 0)
         {
             if (SocketIndex >= 0 && SocketIndex < Clients.Count) // 修正索引检查
             {
@@ -336,11 +335,7 @@ namespace BaseSocket
                         return true;
                     }
                     else
-                    {
-
                         return false;
-
-                    }
                 }
                 catch (ArgumentException ex)
                 {

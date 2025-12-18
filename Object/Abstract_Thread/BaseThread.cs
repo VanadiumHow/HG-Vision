@@ -8,7 +8,7 @@
         void Initialize();
         void Deinitialize();
     }
-    public abstract class BaseClass
+    public abstract class BaseThread
     {
         protected abstract bool Start(int nDelayTime, string strName = "");
         protected abstract void Stop();

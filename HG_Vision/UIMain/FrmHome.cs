@@ -14,6 +14,7 @@ using HG_Vision.Manager.Manager_System;
 using HG_Vision.Contol.Control_Sql;
 using Microsoft.Win32;
 using System.Linq;
+using HG_Vision.Contol.Control_Vision;
 
 /****************************************************************
 
@@ -182,6 +183,7 @@ namespace HG_Vision.UIHome
             {
                 UserLevelControlEnabled();
             }
+            this.ButtonLogin.BackgroundImage = Properties.Resources.切换用户;
         }
 
         private void SetSplitDistance()
@@ -289,6 +291,9 @@ namespace HG_Vision.UIHome
                 case "操作者":
                     {
                         ButtonSetting.Enabled = false;
+                        ButtonVisionTool.Enabled = false;
+                        ButtonPictureSetting.Enabled = false;
+
                         for (int i = 0; i < GlobalCameraParams.toolStripMenuItem.Count; i++)
                         {
                             GlobalCameraParams.toolStripMenuItem[i].Enabled = false;
@@ -299,6 +304,9 @@ namespace HG_Vision.UIHome
                     {
                         //不允许
                         ButtonSetting.Enabled = !_isRunningFlag;
+                        ButtonVisionTool.Enabled = !_isRunningFlag;
+                        ButtonPictureSetting.Enabled = !_isRunningFlag;
+
                         for (int i = 0; i < GlobalCameraParams.toolStripMenuItem.Count; i++)
                         {
                             GlobalCameraParams.toolStripMenuItem[i].Enabled = !_isRunningFlag;
@@ -308,6 +316,9 @@ namespace HG_Vision.UIHome
                 case "工程师":
                     {
                         ButtonSetting.Enabled = !_isRunningFlag;
+                        ButtonVisionTool.Enabled = !_isRunningFlag;
+                        ButtonPictureSetting.Enabled = !_isRunningFlag;
+
                         for (int i = 0; i < GlobalCameraParams.toolStripMenuItem.Count; i++)
                         {
                             GlobalCameraParams.toolStripMenuItem[i].Enabled = !_isRunningFlag;
@@ -373,7 +384,7 @@ namespace HG_Vision.UIHome
                     //}
                     for (int i = 0; i < Project.Instance.HardWareStateManagerInstance.L_robotState.Count; i++)
                     {
-                        isRun = isRun && Project.Instance.RobotManagerInstance.L_Robot[i].GetIsConnectedRobot(0);
+                        isRun = isRun && Project.Instance.ServerManagerInstance.GetAllDevice()[i].IsConnected;
                     }
                     if (isRun)
                     {
@@ -385,6 +396,7 @@ namespace HG_Vision.UIHome
                         //登录权限控件初始化
                         UpdateRunStateShow();
                         UserLevelControlEnabled();
+                        this.ButtonStart.BackgroundImage = Properties.Resources.暂停;
                         //开启线程
                         //StartPLCThread(true);
                     }
@@ -410,6 +422,7 @@ namespace HG_Vision.UIHome
                     _isRunningFlag = false;
                     UpdateRunStateShow();
                     UserLevelControlEnabled();
+                    this.ButtonStart.BackgroundImage = Properties.Resources.开始;
                     //开启线程
                     //StartPLCThread(false);
                 }
@@ -502,6 +515,8 @@ namespace HG_Vision.UIHome
                     //关闭相机
                     FrmHome.Instance.FrmMainVision.stopLiveDisplay();
                     FrmHome.Instance.FrmMainVision.Exit();
+                    //关闭Visionpro资源
+                    
                     //取消PLC业务逻辑线程token
                     //foreach (CancellationTokenSource item in Project.Instance.PLCManagerInstance.L_PLCCtsServices)
                     //{
@@ -521,17 +536,8 @@ namespace HG_Vision.UIHome
                     OperationLogDataBll.GetInstance().CloseQueue();
                 }
 
-                //释放机器人
-                int nRobotNum = Project.Instance.RobotManagerInstance.L_Robot.Count;
-                for (int i = 0; i < nRobotNum; i++)
-                {
-                    if (Project.Instance.RobotManagerInstance.L_Robot[i] != null)
-                    {
-                        Project.Instance.RobotManagerInstance.L_Robot[i].StopServer();
-
-                    }
-                }
-                Project.Instance.RobotManagerInstance.L_Robot.Clear();
+                //释放服务器
+                Project.Instance.ServerManagerInstance.StopAllDevices();
             }
             finally
             {
@@ -573,6 +579,7 @@ namespace HG_Vision.UIHome
             Project.Instance.UserManagerInstance.CurrentUser = Project.Instance.UserManagerInstance.DefultUser;
             StripStatusLabelUser.Text = "当前角色：" + Project.Instance.UserManagerInstance.CurrentUser.UserRoleName;
             UserLevelControlEnabled();
+            this.ButtonLogin.BackgroundImage = Properties.Resources.未登录;
         }
         private void FrmHome_Activated(object sender, EventArgs e)
         {
@@ -584,6 +591,29 @@ namespace HG_Vision.UIHome
         {
             if (Project.Instance.UserManagerInstance.CurrentUser != Project.Instance.UserManagerInstance.DefultUser)
                 TimerLogout.Stop();
+        }
+
+        private void ButtonVisionTool_Click(object sender, EventArgs e)
+        {
+            FrmVpVisionControl _form = FrmMainVision.FrmVpVisionControl1;
+            if (_form.CurWorkFlow.SettingBlock != null)
+            {
+                FrmVppSetting VisionToolSettingForm = new FrmVppSetting(_form.CurWorkFlow, _form.VppName);
+                VisionToolSettingForm.AfterSaveTool += _form.AfterSaveTool;
+                VisionToolSettingForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("SettingBlock！", "异常信息");
+            }
+        }
+
+        private void ButtonPictureSetting_Click(object sender, EventArgs e)
+        {
+            FrmVpVisionControl _form = FrmMainVision.FrmVpVisionControl1;
+            FrmImageStoreSettings FrmImageStoreSettings = new FrmImageStoreSettings(_form.VppName);
+
+            FrmImageStoreSettings.ShowDialog();
         }
     }
 }

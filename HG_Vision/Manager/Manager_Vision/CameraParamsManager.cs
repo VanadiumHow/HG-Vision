@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cognex.VisionPro;
-using Model.ConstantModel;
+using Model.VisionModel;
 using Obj.Obj_File;
 using HG_Vision.Contol.Control_Vision;
 using HG_Vision.Manager.Manager_System;
@@ -23,9 +23,9 @@ namespace HG_Vision.Manager.Manager_Vision
             get { return _cameraParamsConfiguration; }
         }
 
-        private ParamsModelC1 _cameraParams;
+        private ParamsC1Model _cameraParams;
 
-        public ParamsModelC1 ParamsC1
+        public ParamsC1Model ParamsC1
         {
             get { return _cameraParams; }
         }
@@ -54,7 +54,7 @@ namespace HG_Vision.Manager.Manager_Vision
         /// <returns></returns>
         public void SaveAllParams()
         {
-            _cameraParamsConfiguration.SaveAllParams(_cameraParams);
+            _cameraParamsConfiguration.SaveCameraParamsConfig(_cameraParams);
         }
         /// <summary>
         /// 将曝光值写入到取图工具

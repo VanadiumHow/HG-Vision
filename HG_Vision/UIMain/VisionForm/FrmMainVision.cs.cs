@@ -40,7 +40,7 @@ namespace HG_Vision.UIVision
                 return _instance;
             }
         }
-
+        internal FrmVpVisionControl FrmVpVisionControl1 { get; private set; }
         private void FrmMainVision_Load(object sender, EventArgs e)
         {
             //初始化图像窗口LIST
@@ -64,9 +64,9 @@ namespace HG_Vision.UIVision
             {
                 if (Project.Instance.VisionManagerInstance.CameraManagerInstance.A_CameraAttributes[i].ImageWindowType == "VP")
                 {
-                    FrmVpVisionControl frmVisionControl1 = new FrmVpVisionControl((i + 1).ToString());
-                    _frmVisionControlList.Add(frmVisionControl1);
-                    GlobalCameraParams.cameraVisionControlList.Add(frmVisionControl1.RecordDisplay);
+                    FrmVpVisionControl1 = new FrmVpVisionControl((i + 1).ToString());
+                    _frmVisionControlList.Add(FrmVpVisionControl1);
+                    GlobalCameraParams.cameraVisionControlList.Add(FrmVpVisionControl1.RecordDisplay);
                 }
             }
         }

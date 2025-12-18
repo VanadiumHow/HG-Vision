@@ -73,9 +73,9 @@ namespace HG_Vision
             Project.Instance.InitialPLC();
             Project.Instance.InitialProductionData();
             ProgramGerneral.FrmSplashScreen.SetStatus("初始Robot/Laser服务器...");
-            Project.Instance.InitialRobotSever();
+            Project.Instance.InitialSocketSever();
             ProgramGerneral.FrmSplashScreen.SetStatus("初始Laser客户端...");
-            Project.Instance.InitialLaserClient();
+            Project.Instance.InitialSocketClient();
             ProgramGerneral.FrmSplashScreen.SetStatus("初始化硬件状态...");
             Project.Instance.InitialHardWareState();
             ProgramGerneral.FrmSplashScreen.SetStatus("窗体加载中...");

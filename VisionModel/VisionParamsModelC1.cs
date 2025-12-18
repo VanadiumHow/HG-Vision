@@ -5,13 +5,13 @@ using System.Xml.Serialization;
 /****************************************************************
 
 *****************************************************************/
-namespace Model.ConstantModel
+namespace Model.VisionModel
 {
     /// <summary>
     /// 映射配置文件结构体
     /// </summary>
-    [XmlRoot("ParamsModelC1")]
-    public class ParamsModelC1
+    [XmlRoot("相机1视觉参数")]
+    public class ParamsC1Model
     {
         // 基准位置/补偿位置/旋转中心
         public BasePose StdPose = new BasePose();

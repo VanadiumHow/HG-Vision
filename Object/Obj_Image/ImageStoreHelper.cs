@@ -92,8 +92,8 @@ namespace Obj.Obj_Image
                 try
                 {
 
-                    string path = imageParams.ResultImagePosition + @"\" + ymd + @"\" + "工位1" + (isOk ? "\\OK" : "\\NG");
-                    string path1 = imageParams.ResultImagePosition + @"\" + ymd + @"\" + "工位2" + (isOk ? "\\OK" : "\\NG");
+                    string path = imageParams.ResultImagePosition + "\\" + ymd + "\\" + "工位1" + (isOk ? "\\OK" : "\\NG");
+                    string path1 = imageParams.ResultImagePosition + "\\" + ymd + "\\" + "工位2" + (isOk ? "\\OK" : "\\NG");
                     if (!Directory.Exists(path))
                     {
                         //检查设置的地址是否有这个盘符
@@ -118,8 +118,8 @@ namespace Obj.Obj_Image
                             return;
                         }
                     }
-                    string str = path + @"\" + imageName + "-" + hms + imageParams.ResultImagePattern;//YBH
-                    string str1 = path1 + @"\" + imageName + "-" + hms + imageParams.ResultImagePattern;
+                    string str = path + "\\" + imageName + "-" + hms + imageParams.ResultImagePattern;//YBH
+                    string str1 = path1 + "\\" + imageName + "-" + hms + imageParams.ResultImagePattern;
 
                     System.Drawing.Image ig = _cd.Display.CreateContentBitmap(Cognex.VisionPro.Display.CogDisplayContentBitmapConstants.Custom, null, 0);
                     string L = "1";
@@ -243,8 +243,8 @@ namespace Obj.Obj_Image
             {
                 try
                 {
-                    string path = imageParams.RawImagePosition + @"\" + ymd1 + @"\" + "工位1" + (isOk ? "\\OK" : "\\NG");
-                    string path1 = imageParams.RawImagePosition + @"\" + ymd1 + @"\" + "工位2" + (isOk ? "\\OK" : "\\NG");
+                    string path = imageParams.RawImagePosition + "\\" + ymd1 + "\\" + "工位1" + (isOk ? "\\OK" : "\\NG");
+                    string path1 = imageParams.RawImagePosition + "\\" + ymd1 + "\\" + "工位2" + (isOk ? "\\OK" : "\\NG");
                     if (!Directory.Exists(path))//2021_07_26\CCD1
                     {
                         //检查设置的地址是否有这个盘符
@@ -274,14 +274,14 @@ namespace Obj.Obj_Image
                     string L = "1";
                     if (imageName1.Substring(0, 1) == L)
                     {
-                        string str = path + @"\" + imageName1 + "-" + hms + "-" + imageParams.RawImagePattern;//YBH
+                        string str = path + "\\" + imageName1 + "-" + hms + "-" + imageParams.RawImagePattern;//YBH
                         a.Operator.Open(str, Cognex.VisionPro.ImageFile.CogImageFileModeConstants.Write);
                         a.Run();
                         a.Dispose();
                     }
                     else
                     {
-                        string str1 = path1 + @"\" + imageName1 + "-" + hms + imageParams.RawImagePattern;
+                        string str1 = path1 + "\\" + imageName1 + "-" + hms + imageParams.RawImagePattern;
 
                         a.Operator.Open(str1, Cognex.VisionPro.ImageFile.CogImageFileModeConstants.Write);
                         a.Run();

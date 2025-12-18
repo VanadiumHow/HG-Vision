@@ -79,7 +79,7 @@ namespace HG_Vision.UIHome.RightForm
             FrmHardWareState.Instance.Show();
             //计算分割距离
             double cellWidth = double.Parse(FrmHardWareState.Instance.Width.ToString()) / FrmHardWareState.Instance.ColumnCount;//计算高度
-            double cellHeight = cellWidth > (FrmHardWareState.Instance.LampWidth + 10) ? (FrmHardWareState.Instance.LampWidth + 10) : cellWidth;
+            double cellHeight = cellWidth > (FrmHardWareState.Instance.LampDiameter + 10) ? (FrmHardWareState.Instance.LampDiameter + 10) : cellWidth;
             int rowHeight = Convert.ToInt32(cellHeight * FrmHardWareState.Instance.RowCount);
             FrmHome.Instance.FrmRightMain.SplitContainer1.SplitterDistance = rowHeight + FrmHome.Instance.FrmRightMain.PanelLampTitle.Height + 1;
             FrmHome.Instance.FrmRightMain.SplitContainer1.SplitterDistance = 354;

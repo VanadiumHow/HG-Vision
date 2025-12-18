@@ -3,10 +3,10 @@ using Obj.Obj_File;
 using HG_Vision.Manager.Manager_Sql;
 using HG_Vision.Manager.Manager_Vision;
 using HG_Vision.Manager.Manager_Process;
-using HG_Vision.Manager.Manager_Robot;
-using HG_Vision.Manager.Manager_Laser;
+using HG_Vision.Manager.Manager_Socket;
 using HG_Vision.Manager.Manager_PLC;
 using HG_Vision.Manager.Manager_User;
+using HslCommunication.Enthernet;
 /****************************************************************
 
 *****************************************************************/
@@ -54,15 +54,16 @@ namespace HG_Vision.Manager.Manager_System
         /// 定时任务管理类
         /// </summary>
         public ScheduledTaskManager ScheduledTaskManagerInstance = null;
+
         /// <summary>
         /// Robot服务器管理类
         /// </summary>
-        public RobotManager RobotManagerInstance = null;
+        public ServerManager ServerManagerInstance = null;
 
         /// <summary>
         /// Laser客户端管理类
         /// </summary>
-        public LaserManager LaserManagerInstance = null;
+        public ClientManager ClientManagerInstance = null;
 
         /// <summary>
         /// 双重锁校验声明单例
@@ -101,9 +102,9 @@ namespace HG_Vision.Manager.Manager_System
 
             PLCManagerInstance = new HSLPLCOmron();              //在这里已经初始化了
 
-            RobotManagerInstance = new RobotManager();
+            ServerManagerInstance = new ServerManager();
 
-            LaserManagerInstance = new LaserManager();
+            ClientManagerInstance = new ClientManager();
 
             HardWareStateManagerInstance = new HardWareStateManager();
 
@@ -111,20 +112,17 @@ namespace HG_Vision.Manager.Manager_System
 
             ScheduledTaskManagerInstance = new ScheduledTaskManager();
 
-
-
         }
 
         /// <summary>
-        /// 初始Robot服务器
+        /// 初始Robot/laser服务器
         /// </summary>
-        /// <returns></returns>
-        public void InitialRobotSever()
+        public void InitialSocketSever()
         {
             try
             {
                 //初始化Robot服务器
-                Project.Instance.RobotManagerInstance.Initial();
+                Project.Instance.ServerManagerInstance.Initial();
             }
             catch (Exception ex)
             {
@@ -137,13 +135,12 @@ namespace HG_Vision.Manager.Manager_System
         /// <summary>
         /// 初始Laser客户端
         /// </summary>
-        /// <returns></returns>
-        public void InitialLaserClient()
+        public void InitialSocketClient()
         {
             try
             {
                 //初始化Laser客户端
-                Project.Instance.LaserManagerInstance.Initial();
+                Project.Instance.ClientManagerInstance.Initial();
             }
             catch (Exception ex)
             {

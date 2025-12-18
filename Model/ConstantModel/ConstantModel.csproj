@@ -42,12 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VisionParamsModelC1.cs" />
     <Compile Include="FilePathModel.cs" />
     <Compile Include="GlobalParamModel.cs" />
     <Compile Include="ImageParamsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RobotSignalsModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

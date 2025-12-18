@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using static BaseSocket.CServerSocket;
 
 /****************************************************************
 
@@ -133,29 +134,23 @@ namespace BaseSocket
         }
         #endregion
 
-        #region Constructor
-
-
+        #region 构造函数（增加重载）
         /// <summary>
-        /// Default Constructor
+        /// 核心构造函数：通过服务器端点（IPEndPoint）连接
         /// </summary>
-        /// <param name="port">Port to connection
-        /// </param>
-        public CClientSocket(string IP, int port)
+        /// <param name="serverEndPoint">服务器端点（IP + 端口）</param>
+        public CClientSocket(IPEndPoint serverEndPoint)
         {
             try
             {
-                mPort = port;
-                IPAddress ipAddress = IPAddress.Parse(IP);
-                mRemoteAddress = ipAddress.ToString();
-                //IPHostEntry ipss = Dns.GetHostEntry(mRemoteAddress);
-                // mRemoteHost = ipss.HostName;
-                serverEndPoint = new IPEndPoint(ipAddress, port);
+                this.serverEndPoint = serverEndPoint;
+                mPort = serverEndPoint.Port;
+                mRemoteAddress = serverEndPoint.Address.ToString();
+                mRemoteHost = Dns.GetHostEntry(mRemoteAddress).HostName; // 修复：解析服务器主机名
             }
             catch (Exception ex)
             {
-                if (OnError != null)
-                    OnError(ex.Message, null, 0);
+                OnError?.Invoke(ex.Message, null, 0);
             }
         }
         #endregion
@@ -172,6 +167,9 @@ namespace BaseSocket
                 mainSocket = new Socket(SocketType.Stream, ProtocolType.Tcp);
                 //Connect to Server
                 mainSocket.Connect(serverEndPoint);
+                WaitForData(mainSocket);
+                if (OnConnect != null)
+                    OnConnect(mainSocket);
                 //mainSocket.BeginConnect(serverEndPoint, ConfirmConnect, null);
                 return true;
             }

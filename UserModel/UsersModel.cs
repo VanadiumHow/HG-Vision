@@ -4,11 +4,11 @@ using System.Xml.Serialization;
 
 namespace Model.UserModel
 {
-    [XmlRoot("UserModel")]
+    [XmlRoot("用户参数")]
     public class UsersModel
     {
         [XmlIgnore]
-        public List<UserInfoModel> UsersList = new List<UserInfoModel>(5);
+        public List<UserInfoModel> UsersList = new List<UserInfoModel>();
 
         [XmlArray("Users")]
         [XmlArrayItem("User")]

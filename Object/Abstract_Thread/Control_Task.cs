@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 *****************************************************************/
 namespace BaseThread
 {
-    public abstract class Control_Task : BaseClass, IDisposable
+    public abstract class Control_Task : BaseThread, IDisposable
     {
         private CancellationTokenSource _cts;
         private Task _task;

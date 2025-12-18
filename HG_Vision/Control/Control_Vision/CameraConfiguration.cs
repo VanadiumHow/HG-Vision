@@ -19,7 +19,7 @@ namespace HG_Vision.Contol.Control_Vision
         /// <summary>
         /// Ini读写对象
         /// </summary>
-        private IniHelper _ini = new IniHelper(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config\\CameraAttribute.ini");
+        private IniHelper _ini = new IniHelper(Project.Instance.VisionManagerInstance._visionParamPath + "\\CameraAttribute.ini");
 
         /// <summary>
         /// 检查各配置文件
@@ -29,11 +29,11 @@ namespace HG_Vision.Contol.Control_Vision
             try
             {
                 //配置文件夹
-                if (!Directory.Exists(Project.Instance.VisionManagerInstance._visionParamPath + @"\\Config"))
-                    Directory.CreateDirectory(Project.Instance.VisionManagerInstance._visionParamPath + @"\\Config");
+                if (!Directory.Exists(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config"))
+                    Directory.CreateDirectory(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config");
                 //主配置文件ini
-                if (!File.Exists(Project.Instance.VisionManagerInstance._visionParamPath + @"\\Config\\CameraAttribute.ini"))
-                    File.Create(Project.Instance.VisionManagerInstance._visionParamPath + @"\\Config\\CameraAttribute.ini").Close();
+                if (!File.Exists(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config\\CameraAttribute.ini"))
+                    File.Create(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config\\CameraAttribute.ini").Close();
             }
             catch (Exception ex)
             {

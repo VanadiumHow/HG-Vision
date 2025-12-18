@@ -31,7 +31,7 @@ namespace HG_Vision.UIHome.RightForm
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.TableLayoutPanelAll = new UITableLayoutPanel();
+            this.TableLayoutPanelAll = new Sunny.UI.UITableLayoutPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
@@ -63,12 +63,13 @@ namespace HG_Vision.UIHome.RightForm
             this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.TableLayoutPanelAll.Size = new System.Drawing.Size(257, 143);
             this.TableLayoutPanelAll.TabIndex = 8;
+            this.TableLayoutPanelAll.TagString = null;
             // 
             // FrmHardWareState
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(31, 40, 55);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(40)))), ((int)(((byte)(55)))));
             this.ClientSize = new System.Drawing.Size(257, 143);
             this.Controls.Add(this.TableLayoutPanelAll);
             this.DoubleBuffered = true;
@@ -78,7 +79,6 @@ namespace HG_Vision.UIHome.RightForm
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "FrmHardWare";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmHardWareState_FormClosing);
             this.Load += new System.EventHandler(this.FrmHardWareState_Load);
             this.ResumeLayout(false);
 

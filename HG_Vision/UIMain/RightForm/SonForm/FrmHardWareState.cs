@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using Obj.Obj_File;
 using HG_Vision.Manager.Manager_System;
 using VisionProgram.UserControls.UILamp;
+using HG_Vision.Contol.Control_Socket;
+using Model.EnumModel;
 
 /****************************************************************
 
@@ -19,13 +21,14 @@ namespace HG_Vision.UIHome.RightForm
         /// <summary>
         /// 所有设备的指示灯，如有增加可继续创建对应设备的指示灯
         /// </summary>
-        private List<LampEX> _sqlLights = new List<LampEX>();
         private List<LampEX> _plcLights = new List<LampEX>();
         private List<LampEX> _ccdLights = new List<LampEX>();
         private List<LampEX> _robotLights = new List<LampEX>();
-        internal int ColumnCount = 12;//默认9，无需改变
-        internal int RowCount;//行数
-        internal int LampWidth = 32;
+        private List<LampEX> _laserLights = new List<LampEX>();
+
+        internal int ColumnCount = 10;//列数
+        internal int RowCount = 1;//行数
+        internal int LampDiameter = 32;//灯直径
 
 
         /// <summary>
@@ -38,48 +41,35 @@ namespace HG_Vision.UIHome.RightForm
             this.FormBorderStyle = FormBorderStyle.None;
             this.Dock = DockStyle.Fill;
         }
-        /// <summary>
-        /// Load
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        //加载窗体(动态根据硬件数量渲染指示灯)
         private void FrmHardWareState_Load(object sender, EventArgs e)
         {
-            //动态根据硬件数量渲染指示灯
-            this.LoadSelf();
-        }
-
-        /// <summary>
-        /// 动态根据硬件数量渲染指示灯
-        /// </summary>
-        private void LoadSelf()
-        {
             //清空所有设备的指示灯集合
-            _sqlLights.Clear();
             _plcLights.Clear();
             _ccdLights.Clear();
             _robotLights.Clear();
 
-            //计算tabLayOutPanel的行列以及父控件的高度，实现动态排版
-            int deviceCount = Project.Instance.VisionManagerInstance.CameraNum;//非SQL及PLC的设备数量,如有新设备可继续相加
-
-            RowCount = 1;// + (deviceCount % ColumnCount == 0 ? deviceCount / ColumnCount : deviceCount / ColumnCount + 1) * 2;//计算行数
-            TableLayoutPanelAll.ColumnCount = ColumnCount;//设置行列
+            //设置行列
+            TableLayoutPanelAll.ColumnCount = ColumnCount;
             TableLayoutPanelAll.RowCount = RowCount;
-            //渲染指示灯
-            //默认SQL和PLC的指示灯在一行，其他设备另起一行，排列一起
-            //LoadLabelLight(0, 0, Project.Instance.SqlInfoManagerInstance.SqlNum, "SQL");
-            LoadLabelLight(0, 0, Project.Instance.PLCManagerInstance.PLCNum, "PLC");
-            //LoadLabelLight(0, Project.Instance.SqlInfoManagerInstance.SqlNum + Project.Instance.PLCManagerInstance.PLCNum, Project.Instance.RobotManagerInstance.RobotNum, "BOT");
-            LoadLabelLight(0, 8, Project.Instance.RobotManagerInstance.RobotNum, "BOT");
-            LoadLabelLight(0, 6, Project.Instance.VisionManagerInstance.CameraNum, "CCD");
-            //if (deviceCount > 0)
-            //{
-            //    List<Label> labs = new List<Label>();
-            //    List<LampEX> lights = new List<LampEX>();
-            //    LoadLabelLights(deviceCount, ref labs, ref lights);
-            //    UpdateLabelLight(labs, lights, 0, Project.Instance.VisionManagerInstance.CameraNum, "CCD");
-            //}
+
+            //使用局部变量缩短语句
+            int _currentnum = Project.Instance.PLCManagerInstance.PLCNum;
+            LoadLabelLight(0, 0, _currentnum, "PLC");
+            int _deviceCount = _currentnum;
+
+            _currentnum = Project.Instance.VisionManagerInstance.CameraNum;
+            LoadLabelLight(0, _deviceCount * 2, _currentnum, "CCD");
+            _deviceCount += _currentnum;
+
+            _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(DeviceType.Robot).Count;
+            LoadLabelLight(0, _deviceCount * 2, _currentnum, "Robot");
+            _deviceCount += _currentnum;
+
+            _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(DeviceType.Laser).Count;
+            LoadLabelLight(0, _deviceCount * 2, _currentnum, "Laser");
+            _deviceCount += _currentnum;
         }
 
         /// <summary>
@@ -95,9 +85,10 @@ namespace HG_Vision.UIHome.RightForm
                 return _instance;
             }
         }
+        #region 加载Label和指示灯
 
         /// <summary>
-        /// SQL/PLC/ROBOT排版
+        /// 加载指示灯和标签（PLC/CCD/Robot/Laser排版）
         /// </summary>
         /// <param name="row">第几行</param>
         /// <param name="col">第几列</param>
@@ -105,131 +96,87 @@ namespace HG_Vision.UIHome.RightForm
         /// <param name="str">文本</param>
         private void LoadLabelLight(int row, int col, int num, string str)
         {
-            Label lbl = null; LampEX lamp = null; Panel p = null;
             for (int i = 0; i < num; i++)
             {
-                int index = i + 1;
-                if (str == "BOT" && i == 2)
+                Panel p = new Panel();
+                Label lbl = new Label();
+                LampEX lamp = new LampEX();
+                p.Dock = DockStyle.Fill;
+                p.Margin = new Padding(7, 0, 0, 0);
+                p.BackColor = Color.Transparent;
+                if (str == "PLC")
                 {
-                    p = new Panel();
-                    p.Dock = DockStyle.Fill;
-                    p.Name = $"uiPanel{"LSR" + 1}";
-                    p.BackColor = Color.Transparent;
-                    p.Controls.Add(CreateUILabel(lbl, $"uiLbl激光"));
-                    TableLayoutPanelAll.Controls.Add(p, col + i, row);
-                    lamp = CreateUILight(lamp, $"uiLig{"LASER" + 1}");
-                    TableLayoutPanelAll.Controls.Add(lamp, col + i, row);
-                }
-                else if (str == "CCD" && i == 0)
-                {
-                    p = new Panel();
-                    p.Dock = DockStyle.Fill;
-                    p.Name = $"uiPanel{"CCD" + 1}";
-                    p.BackColor = Color.Transparent;
-                    p.Controls.Add(CreateUILabel(lbl, $"uiLbl{"相机"}"));
-                    TableLayoutPanelAll.Controls.Add(p, col + i, row);
+                    p.Name = $"uiPanel{str}";
+                    p.Controls.Add(CreateUILabel(lbl, $"uiLbl{str}", str));
+                    TableLayoutPanelAll.Controls.Add(p, col + 2 * i, row);
                     lamp = CreateUILight(lamp, $"uiLig{str}");
-                    TableLayoutPanelAll.Controls.Add(lamp, col + i, row);
+                    TableLayoutPanelAll.Controls.Add(lamp, col + 2 * i + 1, row);
                 }
-                else
+                else if (str == "CCD")
                 {
-                    p = new Panel();
-                    p.Dock = DockStyle.Fill;
-                    p.Name = $"uiPanel{str + index}";
-                    p.BackColor = Color.Transparent;
-                    p.Controls.Add(CreateUILabel(lbl, $"uiLbl{str + index}"));
-                    TableLayoutPanelAll.Controls.Add(p, col + i, row);
-                    lamp = CreateUILight(lamp, $"uiLig{str + index}");
-                    TableLayoutPanelAll.Controls.Add(lamp, col + i, row);
-
+                    p.Name = $"uiPanel{"CCD" + 1}";
+                    p.Controls.Add(CreateUILabel(lbl, $"uiLblCCD{i + 1}", "相机"));
+                    TableLayoutPanelAll.Controls.Add(p, col + 2 * i, row);
+                    lamp = CreateUILight(lamp, $"uiLig{str}");
+                    TableLayoutPanelAll.Controls.Add(lamp, col + 2 * i + 1, row);
                 }
-
-
+                else if (str == "Robot")
+                {
+                    p.Name = $"uiPanel{str + 1}";
+                    p.Controls.Add(CreateUILabel(lbl, $"uiLbl{str}{i + 1}", $"机械手{i + 1}"));
+                    TableLayoutPanelAll.Controls.Add(p, col + 2 * i, row);
+                    lamp = CreateUILight(lamp, $"uiLig{str}{i + 1}");
+                    TableLayoutPanelAll.Controls.Add(lamp, col + 2 * i + 1, row);
+                }
+                else if (str == "Laser")
+                {
+                    p.Name = $"uiPanel{str + 1}";
+                    p.Controls.Add(CreateUILabel(lbl, $"uiLblLaser{str}{i + 1}", $"激光{i + 1}"));
+                    TableLayoutPanelAll.Controls.Add(p, col + 2 * i, row);
+                    lamp = CreateUILight(lamp, $"uiLig{str}{i + 1}");
+                    TableLayoutPanelAll.Controls.Add(lamp, col + 2 * i + 1, row);
+                }
 
                 switch (str)
                 {
-                    case "SQL":
-                        _sqlLights.Add(lamp);
-                        break;
                     case "PLC":
                         _plcLights.Add(lamp);
-                        break;
-                    case "BOT":
-                        _robotLights.Add(lamp);
                         break;
                     case "CCD":
                         _ccdLights.Add(lamp);
                         break;
-                    default:
+                    case "Robot":
+                        _robotLights.Add(lamp);
+                        break;
+                    case "Laser":
+                        _laserLights.Add(lamp);
                         break;
                 }
             }
         }
 
-        private void LoadLabelLights(int num, ref List<Label> labs, ref List<LampEX> lights)
+        private Label CreateUILabel(Label lbl, string name, string text)
         {
-            Label lbl = null; LampEX lamp = null; Panel p = null;
-            for (int i = 0; i < num; i++)
-            {
-                int index = i + 1;
-                lbl = CreateUILabel(lbl, $"uiLblTest{index}");
-                p = new Panel();
-                p.Dock = DockStyle.Fill;
-                p.Name = $"uiPanelTest{index}";
-                p.BackColor = Color.Transparent; ;
-                p.Controls.Add(lbl);
-                TableLayoutPanelAll.Controls.Add(p, i % ColumnCount, 2 + (i / 10 * 2));
-                lamp = CreateUILight(lamp, $"uiLigTest{index}");
-                TableLayoutPanelAll.Controls.Add(lamp, i % ColumnCount, 3 + (i / 10 * 2));
-                labs.Add(lbl);
-                lights.Add(lamp);
-            }
-        }
-
-        private void UpdateLabelLight(List<Label> labs, List<LampEX> lights, int start, int num, string str)
-        {
-            int index = 0;
-            for (int i = start; i < start + num; i++)
-            {
-                index++;
-                switch (str)
-                {
-                    case "CCD":
-                        UpdateUILabel(labs[i], $"uiLbl{str + index}", $"相机{index}");
-                        _ccdLights.Add(UpdateUILight(lights[i], $"uiLig{str + index}"));
-                        this.toolTip1.SetToolTip(lights[i], Project.Instance.VisionManagerInstance.CameraManagerInstance.A_CameraAttributes[index - 1].ImageWindowName);
-                        this.toolTip1.SetToolTip(labs[i], Project.Instance.VisionManagerInstance.CameraManagerInstance.A_CameraAttributes[index - 1].ImageWindowName);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        private Label CreateUILabel(Label lbl, string str)
-        {
-            lbl = new Label();
-            lbl.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            lbl.Font = new Font("微软雅黑", 10.5F, FontStyle.Bold);
             lbl.ForeColor = Color.White;
             lbl.AutoSize = false;
             lbl.BackColor = Color.Transparent;
             lbl.Dock = DockStyle.Fill;
-            lbl.TextAlign = ContentAlignment.MiddleCenter;
-            lbl.Location = new System.Drawing.Point(1, 0);
-            lbl.Name = str;
-            lbl.Size = new System.Drawing.Size(1, 1);
+            lbl.TextAlign = ContentAlignment.MiddleRight;
+            lbl.Location = new Point(1, 0);
+            lbl.Name = name;
+            lbl.Size = new Size(1, 1);
             lbl.TabIndex = 0;
-            lbl.Text = str.Substring(5);
+            lbl.Text = text;
             return lbl;
         }
 
         private LampEX CreateUILight(LampEX lig, string str)
         {
-            lig = new LampEX();
-            lig.Anchor = System.Windows.Forms.AnchorStyles.None;
-            lig.MinimumSize = new System.Drawing.Size(1, 1);
+            lig.Anchor = AnchorStyles.None;
+            lig.MinimumSize = new Size(1, 1);
             lig.Name = str;
-            lig.Size = new System.Drawing.Size(LampWidth, LampWidth);
+            lig.Size = new Size(LampDiameter, LampDiameter);
             lig.LedStatus = VisionProgram.UserControls.Datas.Status.None;
             lig.TabIndex = 0;
             lig.IsBorder = false;
@@ -237,24 +184,7 @@ namespace HG_Vision.UIHome.RightForm
             lig.IsHighLight = true;
             return lig;
         }
-
-
-        private Label UpdateUILabel(Label lbl, string name, string text)
-        {
-            lbl.Name = name;
-            lbl.Text = text;
-            return lbl;
-        }
-
-        private LampEX UpdateUILight(LampEX lig, string name)
-        {
-            lig.Name = name;
-            return lig;
-        }
-
-
-
-
+        #endregion
         #region 刷新各种灯
 
         /// <summary>
@@ -270,27 +200,29 @@ namespace HG_Vision.UIHome.RightForm
                 {
                     //1.PLC指示刷新
                     {
-                        RefreshLight_PLC();//刷新PLC中的灯                  
+                        RefreshLight_PLC();
                     }
-
-                    //2.SQL指示刷新
+                    //2.CCD指示刷新
                     {
-                        //  RefreshLight_SQL();//刷新SQL的灯
+                        RefreshLight_CCD();
                     }
-
-                    //3.CCD指示刷新
+                    //3.Robot指示刷新
                     {
-                        RefreshLight_CCD();//刷新CCD连接的灯
+                        RefreshLight_Robot();
                     }
-                    //4.ROOT指示刷新
+                    //3.Laser指示刷新
                     {
-                        RefreshLight_ROBOT();
+                        RefreshLight_Laser();
                     }
                 }
                 catch (Exception ex)
                 {
                     LogHelper.Error("定时任务刷新设备状态出现异常", ex);
                 }
+            }
+            else
+            {
+                LogHelper.Error("FrmHardWareState窗体句柄未创建，无法刷新硬件状态显示");
             }
         }
 
@@ -318,20 +250,6 @@ namespace HG_Vision.UIHome.RightForm
                                 _plcLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
                             }
                         }
-                        //else if (Project.Instance.PLCManagerInstance.L_basePLCObjects[i].PLCHand == 1)
-                        //{//浅色
-                        //    if (_plcLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Close)
-                        //    {
-                        //        _plcLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Close;
-                        //    }
-                        //}
-                        //else if (Project.Instance.PLCManagerInstance.L_basePLCObjects[i].PLCHand == 2)
-                        //{//绿色
-                        //    if (_plcLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
-                        //    {
-                        //        _plcLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
-                        //    }
-                        //}
                     }
                 }
             }
@@ -340,41 +258,6 @@ namespace HG_Vision.UIHome.RightForm
                 LogHelper.Error("定时任务刷新PLC设备状态出现异常", ex);
             }
         }
-
-
-        /// <summary>
-        /// 刷新SQL的灯
-        /// </summary>
-        private void RefreshLight_SQL()
-        {
-            try
-            {
-                for (int i = 0; i < Project.Instance.SqlInfoManagerInstance.SqlNum; i++)
-                {
-                    if (!Project.Instance.HardWareStateManagerInstance.L_sqlState[i])
-                    {
-                        //未连接
-                        if (_sqlLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
-                        {
-                            _sqlLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
-                        }
-                    }
-                    else
-                    {
-                        //防止频繁无效刷新连接状态
-                        if (_sqlLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
-                        {
-                            _sqlLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error("定时任务刷新数据库设备状态出现异常", ex);
-            }
-        }
-
         /// <summary>
         /// 刷新CCD连接的灯
         /// </summary>
@@ -387,19 +270,15 @@ namespace HG_Vision.UIHome.RightForm
                     if (!Project.Instance.HardWareStateManagerInstance.L_ccdState[i])
                     {
                         Project.Instance.HardWareStateManagerInstance.L_ccdState[i] = Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[i].connected();
-                        //未连接
+                        //只有未在当前状态才切换状态
                         if (_ccdLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
-                        {
                             _ccdLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
-                        }
                     }
                     else
                     {
-                        //防止频繁无效刷新连接状态
+                        //只有未在当前状态才切换状态
                         if (_ccdLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
-                        {
                             _ccdLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
-                        }
                     }
                 }
             }
@@ -410,36 +289,55 @@ namespace HG_Vision.UIHome.RightForm
         }
 
         /// <summary>
-        /// 刷新ROOT连接的灯
+        /// 刷新Robot连接的灯
         /// </summary>
-        private void RefreshLight_ROBOT()
+        private void RefreshLight_Robot()
         {
             try
             {
-                int nRobotNum = Project.Instance.RobotManagerInstance.RobotNum;
+                int nRobotNum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(DeviceType.Robot).Count;
                 for (int i = 0; i < nRobotNum; i++)
                 {
-                    if (!Project.Instance.RobotManagerInstance.L_Robot[i].GetIsConnectedRobot(0))
+                    if (!Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(DeviceType.Robot)[i].IsConnected)
                     {
-                        //    Project.Instance.HardWareStateManagerInstance.L_robotState[i] = Project.Instance.RobotManagerInstance.L_Robot[i].IsConnectedRobot[0];
-                        //未连接
-                        if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR && i != 3)
-                        {
+                        //只有未在当前状态才切换状态
+                        if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
                             _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
-                        }
-                        if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR && i == 3)
-                        {
-                            _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
-                        }
                     }
                     else
                     {
-                        //    Project.Instance.HardWareStateManagerInstance.L_robotState[i] = Project.Instance.RobotManagerInstance.L_Robot[i].IsConnectedRobot[0];
-                        //防止频繁无效刷新连接状态
+                        //只有未在当前状态才切换状态
                         if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
-                        {
                             _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
-                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("定时任务刷新ROBOT设备状态出现异常", ex);
+            }
+        }
+        /// <summary>
+        /// 刷新Laser连接的灯
+        /// </summary>
+        private void RefreshLight_Laser()
+        {
+            try
+            {
+                int nLaserNum = Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(DeviceType.Laser).Count;
+                for (int i = 0; i < nLaserNum; i++)
+                {
+                    if (Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(DeviceType.Laser)[i].IsConnected && Project.Instance.ClientManagerInstance.GetDevicesByType<LaserClientObj>(DeviceType.Laser)[i].IsConnected)
+                    {
+                        //只有未在当前状态才切换状态
+                        if (_laserLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
+                            _laserLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
+                    }
+                    else
+                    {
+                        //只有未在当前状态才切换状态
+                        if (_laserLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
+                            _laserLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
                     }
                 }
             }
@@ -449,10 +347,5 @@ namespace HG_Vision.UIHome.RightForm
             }
         }
         #endregion
-
-        private void FrmHardWareState_FormClosing(object sender, FormClosingEventArgs e)
-        {
-        }
-
     }
 }

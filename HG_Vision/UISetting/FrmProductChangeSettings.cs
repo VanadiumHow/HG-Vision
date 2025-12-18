@@ -43,7 +43,7 @@ namespace HG_Vision.UISetting
         /// <summary>
         /// 加载界面信息
         /// </summary>
-        public void InitializeLoad()
+        public void InitializeLoad() 
         {
             TextBoxEXNewProductModelName.Clear();
             RefreshProductList();
@@ -62,10 +62,10 @@ namespace HG_Vision.UISetting
                 Directory.CreateDirectory(FilePathModel.ProductPath);
                 return;
             }
-            ListBoxProductModelList.Items.Add("默认");
+            //ListBoxProductModelList.Items.Add("默认");
             foreach (string filename in System.IO.Directory.GetDirectories(FilePathModel.ProductPath))
             {
-                file = filename.Substring(filename.LastIndexOf(@"\") + 1);
+                file = filename.Substring(filename.LastIndexOf("\\") + 1);
                 ListBoxProductModelList.Items.Add(file);
             }
 
@@ -167,8 +167,7 @@ namespace HG_Vision.UISetting
 
                 if (!bExits)
                 {
-                    DirectoryHelper.CopyDirectories(FilePathModel.VisionToolDefaultPath, FilePathModel.ProductPath + @"\" + TextBoxEXNewProductModelName.Text + @"\VisionTool");
-                    DirectoryHelper.CopyDirectories(FilePathModel.VisionParamDefaultPath, FilePathModel.ProductPath + @"\" + TextBoxEXNewProductModelName.Text + @"\VisionParam");
+                    DirectoryHelper.CopyDirectories(FilePathModel.VisionCurrentPath, FilePathModel.ProductPath + "\\" + TextBoxEXNewProductModelName.Text);//未实现当前目录的复制
                     RefreshProductList();
                     NoticeHelper.OutputMessageSend($"添加产品型号 {TextBoxEXNewProductModelName.Text} 成功！", OutputLevelModel.INFO);
                     this.ConfirmInfoDialog("添加产品型号 " + TextBoxEXNewProductModelName.Text + " 成功！");
@@ -211,7 +210,7 @@ namespace HG_Vision.UISetting
                 try
                 {
                     Thread.Sleep(100);
-                    Directory.Delete(FilePathModel.ProductPath + @"\" + ListBoxProductModelList.Text, true);
+                    Directory.Delete(FilePathModel.ProductPath + "\\" + ListBoxProductModelList.Text, true);
                     RefreshProductList();
                     Thread.Sleep(100);
                     NoticeHelper.OutputMessageSend($"删除产品型号 {oldText} 成功！", OutputLevelModel.INFO);

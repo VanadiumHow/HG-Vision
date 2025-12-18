@@ -30,7 +30,6 @@ namespace HG_Vision.UIVision
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.uiTabControlAll = new System.Windows.Forms.TabControl();
@@ -126,7 +125,6 @@ namespace HG_Vision.UIVision
             this.tb_Cam1LaserStep = new System.Windows.Forms.TextBox();
             this.tb_Cam1Spacing = new System.Windows.Forms.TextBox();
             this.tb_Cam1RobotStep = new System.Windows.Forms.TextBox();
-            this.uiSymbolButtonSave = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1Jig1Bo2Y = new System.Windows.Forms.Label();
@@ -568,6 +566,7 @@ namespace HG_Vision.UIVision
             this.label145 = new System.Windows.Forms.Label();
             this.btn_clearJ9 = new System.Windows.Forms.Button();
             this.cb_clearJ9 = new System.Windows.Forms.CheckBox();
+            this.uiSymbolButtonSave = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();

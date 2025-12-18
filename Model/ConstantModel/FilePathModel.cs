@@ -15,15 +15,15 @@ namespace Model.ConstantModel
         /// <summary>
         /// 日志文件夹路径
         /// </summary>
-        public static string LogPath = DataPath + @"\\Logger";
+        public static string LogPath = DataPath + "\\Logger";
 
         //系统日志文件路径
-        public static string SystemLogPath = LogPath + @"\\系统异常.log";
+        public static string SystemLogPath = LogPath + "\\系统异常.log";
 
         /// <summary>
         /// Config文件夹路径
         /// </summary>
-        public static string ConfigPath = DataPath + @"\\Config";
+        public static string ConfigPath = DataPath + "\\Config";
 
         //程序系统参数Configuration.ini加载路径
         public static string GlobalParamPath = DataPath + "\\Config\\Configuration.ini";
@@ -37,33 +37,37 @@ namespace Model.ConstantModel
         //程序PLC交互信号excel加载路径
         public static string PlcSignalPath = string.Format(@"{0}..\..\..\..\..\交互信号.xlsx", DataPath);
 
-        //程序Robot参数RobotComm.ini加载路径
-        public static string RobotCommPath1 = DataPath + "\\Config\\RobotComm1.ini";
+        //程序Robot客户端对象参数RobotClientPath.ini加载路径
+        public static string RobotClientPath = DataPath + "\\Config\\RobotClient.xml";
 
-        //程序Robot参数RobotComm.ini加载路径
-        public static string RobotCommPath2 = DataPath + "\\Config\\RobotComm2.ini";
+        //程序Laser客户端对象参数LaserClientPath.ini加载路径
+        public static string LaserClientPath = DataPath + "\\Config\\LaserClient.xml";
 
-        //程序Laser参数LaserComm.ini加载路径
-        public static string LaserCommPath = DataPath + "\\Config\\LaserComm.ini";
+        //程序Laser客户端对象参数LaserServerPath.ini加载路径
+        public static string LaserServerPath = DataPath + "\\Config\\LaserServer.xml";
+
+        //程序MES数据校验参数MESDataCheck.xml加载路径
+        public static string MESDataCheckPath = DataPath + "\\Config\\DataCheckComm.ini";
 
         //程序用户登录信息UserInfo.json加载路径
-        public static string UsersFilePath = DataPath + @"\\User\\Users.xml";
+        public static string UsersFilePath = DataPath + "\\User\\Users.xml";
 
-        //ParamsModelC1.xml加载路径
+        //ParamsC1Model.xml加载路径
         //由于参数文件会随产品型号变化，所以放到Product文件夹下的不同目录中，因此无法在此处定义，由VisionManager动态赋值
-        /// <summary>
-        /// 程序默认视觉工具文件夹路径
-        /// </summary>
-        public static string VisionToolDefaultPath = DataPath + @"\\VisionTool";
 
-        /// <summary>
-        /// 程序默认视觉参数文件夹路径
-        /// </summary>
-        public static string VisionParamDefaultPath = DataPath + @"\\VisionParam";
+        // 产品文件夹路径
+        public static string ProductPath = DataPath + "\\Product";
 
-        /// <summary>
-        /// 产品文件夹路径
-        /// </summary>
-        public static string ProductPath = DataPath + @"\\Product";
+        //默认产品型号文件夹路径
+        public static string VisionDefaultPath = ProductPath + "\\默认";
+
+        //当前产品型号文件夹路径
+        public static string VisionCurrentPath = ProductPath + "\\默认";
+
+        //视觉参数文件夹路径
+        public static string VisionParamPath;
+
+        //视觉工具文件夹路径
+        public static string VisionToolPath;
     }
 }

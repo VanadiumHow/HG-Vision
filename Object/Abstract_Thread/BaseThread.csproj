@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseClass.cs" />
+    <Compile Include="BaseThread.cs" />
     <Compile Include="Control_Task.cs" />
     <Compile Include="Control_Thread.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
