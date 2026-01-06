@@ -19,7 +19,7 @@ namespace HG_Vision.Contol.Control_Vision
         /// <summary>
         /// Ini读写对象
         /// </summary>
-        private readonly static string _xml = Project.Instance.VisionManagerInstance._visionParamPath + "\\Config\\ParamsC1Model.xml";
+        private readonly static string _xml = Project.Instance.VisionManagerInstance._visionParamPath + "\\ParamsC1Model.xml";
         /// <summary>
         /// 读取.xml文件参数
         /// </summary>

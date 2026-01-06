@@ -20,7 +20,7 @@ namespace HG_Vision.Contol.Control_Vision
         /// <summary>
         /// Ini读写对象
         /// </summary>
-        private IniHelper _ini = new IniHelper(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config\\ImageParams.ini");
+        private IniHelper _ini = new IniHelper(Project.Instance.VisionManagerInstance._visionParamPath + "\\ImageParams.ini");
 
         /// <summary>
         /// ImageParamsModel,初始化ImageParams
@@ -65,11 +65,11 @@ namespace HG_Vision.Contol.Control_Vision
             {
                 string ss = Project.Instance.VisionManagerInstance._visionParamPath.ToString();
                 //配置文件夹
-                if (!Directory.Exists(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config"))
-                    Directory.CreateDirectory(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config");
+                if (!Directory.Exists(Project.Instance.VisionManagerInstance._visionParamPath))
+                    Directory.CreateDirectory(Project.Instance.VisionManagerInstance._visionParamPath);
                 //主配置文件ini
-                if (!File.Exists(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config\\ImageParams.ini"))
-                    File.Create(Project.Instance.VisionManagerInstance._visionParamPath + "\\Config\\ImageParams.ini").Close();
+                if (!File.Exists(Project.Instance.VisionManagerInstance._visionParamPath + "\\ImageParams.ini"))
+                    File.Create(Project.Instance.VisionManagerInstance._visionParamPath + "\\ImageParams.ini").Close();
             }
             catch (Exception ex)
             {
