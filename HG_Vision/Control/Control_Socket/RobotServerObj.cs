@@ -16,7 +16,7 @@ namespace HG_Vision.Contol.Control_Socket
         public RobotServerObj(string deviceId, string ip, string port) : base(new IPEndPoint(IPAddress.Parse(ip), int.Parse(port)))
         {
             DeviceId = deviceId;
-            DeviceType = DeviceType.Robot;
+            DeviceType = eDeviceType.Robot;
             DeviceName = $"机器人_{deviceId}";
         }
         #endregion

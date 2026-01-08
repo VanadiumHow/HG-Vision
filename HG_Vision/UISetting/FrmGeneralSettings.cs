@@ -43,24 +43,32 @@ namespace HG_Vision.UISetting
 
         public void InitializeLoad()
         {
-            TextBoxEXLogSaveDays.Text = Project.Instance.GlobalManagerInstance.GlobalParamModel.logSaveDays.ToString();
+            TextBoxEXLogSaveDays.Text = Project.Instance.GlobalManagerInstance.GlobalParamsModel.LogSaveDays.ToString();
+            cbProtocolType.Text = Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType;
             cb_AutoStart.Checked = AutoStartHelper.CheckShortCut();
         }
 
-        private void ButtonSubmit_Click(object sender, EventArgs e)
+        private void btSave_Click(object sender, EventArgs e)
         {
             if (this.QuestionInfoDialog("确定要保存常规参数？", "提交参数") == DialogResult.Yes)
             {
                 try
                 {
                     List<OperationLogParamModel.OldParam> oldGeneralParamObjects = new List<OperationLogParamModel.OldParam>();
-
-                    if (Project.Instance.GlobalManagerInstance.GlobalParamModel.logSaveDays != Convert.ToInt16(TextBoxEXLogSaveDays.Text))
+                    //日志保存天数参数保存
+                    if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.LogSaveDays != Convert.ToInt16(TextBoxEXLogSaveDays.Text))
                     {
-                        oldGeneralParamObjects.Add(new OperationLogParamModel.OldParam() { Text = "日志保存天数", Field = "LogSaveDays", OldValue = Project.Instance.GlobalManagerInstance.GlobalParamModel.logSaveDays + "", NewValue = TextBoxEXLogSaveDays.Text });
-                        Project.Instance.GlobalManagerInstance.GlobalParamModel.logSaveDays = Convert.ToInt16(TextBoxEXLogSaveDays.Text);
-                        Project.Instance.GlobalManagerInstance.SaveOneParams("Config", "LogSaveDays", Project.Instance.GlobalManagerInstance.GlobalParamModel.logSaveDays.ToString());
+                        oldGeneralParamObjects.Add(new OperationLogParamModel.OldParam() { Text = "日志保存天数", Field = "LogSaveDays", OldValue = Project.Instance.GlobalManagerInstance.GlobalParamsModel.LogSaveDays + "", NewValue = TextBoxEXLogSaveDays.Text });
+                        Project.Instance.GlobalManagerInstance.GlobalParamsModel.LogSaveDays = Convert.ToInt16(TextBoxEXLogSaveDays.Text);
                     }
+
+                    if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType != cbProtocolType.Text)
+                    {
+                        oldGeneralParamObjects.Add(new OperationLogParamModel.OldParam() { Text = "机械手通讯协议", Field = "ProtocolType", OldValue = Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType, NewValue = cbProtocolType.Text });
+                        Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType = cbProtocolType.Text;
+                    }
+
+                    //windows启动文件夹下快捷方式保存
                     if (AutoStartHelper.CheckShortCut() != cb_AutoStart.Checked)
                     {
                         oldGeneralParamObjects.Add(new OperationLogParamModel.OldParam() { Text = "开机自启动", Field = "AutoStart", OldValue = AutoStartHelper.CheckShortCut().ToString(), NewValue = cb_AutoStart.Checked.ToString() });
@@ -72,6 +80,7 @@ namespace HG_Vision.UISetting
 
                     if (oldGeneralParamObjects.Count > 0)
                     {
+                        Project.Instance.GlobalManagerInstance.SaveAllParams();
                         this.ConfirmInfoDialog("常规参数修改成功！");
                         NoticeHelper.OutputMessageSend("常规参数修改成功！", OutputLevelModel.INFO);
                         OnChangeGeneralSettings?.Invoke(oldGeneralParamObjects);

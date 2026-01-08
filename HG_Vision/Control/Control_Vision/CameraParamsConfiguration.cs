@@ -17,7 +17,7 @@ namespace HG_Vision.Contol.Control_Vision
     public class CameraParamsConfiguration
     {
         /// <summary>
-        /// Ini读写对象
+        /// xml读写对象
         /// </summary>
         private readonly static string _xml = Project.Instance.VisionManagerInstance._visionParamPath + "\\ParamsC1Model.xml";
         /// <summary>

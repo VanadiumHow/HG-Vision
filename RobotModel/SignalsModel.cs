@@ -11,7 +11,7 @@
         #region 标定信号   
         public static string CCDRobotCal = "0"; //0-九点标定，1-旋转中心标定
 
-        public static string CCDRobotCalStart = "CalStart"; //Robot开始一键九点标定
+        public static string CCDRobotCalStart = "CBS;04;"; //Robot开始一键九点标定
 
         public static string CCDRobotRCalStart = "RCalStart"; //Robot开始一键旋转标定
         #endregion

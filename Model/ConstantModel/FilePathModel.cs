@@ -26,7 +26,7 @@ namespace Model.ConstantModel
         public static string ConfigPath = DataPath + "\\Config";
 
         //程序系统参数Configuration.ini加载路径
-        public static string GlobalParamPath = DataPath + "\\Config\\Configuration.ini";
+        public static string GlobalParamPath = DataPath + "\\Config\\GlobalParam.xml";
 
         //程序数据库参数Sql.ini加载路径
         public static string SqlParamPath = DataPath + "\\Config\\Sql.ini";

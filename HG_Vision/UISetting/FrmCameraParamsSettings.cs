@@ -291,8 +291,6 @@ namespace HG_Vision.UIVision
                 Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.SpacingUse.ToString(),
                 Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse.ToString(),
                 Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse.ToString(),
-
-                //Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.NozzleNum.ToString()
             };
             for (int i = 0; i < Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations.Length; i++)
             {
@@ -596,12 +594,6 @@ namespace HG_Vision.UIVision
                         if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
                             Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.P4byP3.Y = _newValue;
                         break;
-
-                    case "NozzleNum":
-                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.NozzleNum;
-                        if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
-                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.NozzleNum = (int)_newValue;
-                        break;
                 }
                 // 夹具补偿对应参数较多，由此按名称查询，缩短运行时间
                 if (item.Contains("Jig"))
@@ -761,7 +753,7 @@ namespace HG_Vision.UIVision
                 System.Windows.MessageBox.Show("相机设置参数暂无修改");
             //若有控件获取过焦点
             List<OperationLogParamModel.OldParam> oldCameraParamObjects = new List<OperationLogParamModel.OldParam>();
-            string productName = Project.Instance.GlobalManagerInstance.GlobalParamModel.useProductModel ? Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel : "通用产品";
+            string productName = Project.Instance.GlobalManagerInstance.GlobalParamsModel.UseProductName ? Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName : "默认";
             foreach (TextBox tb in _textBoxes)
                 CheckAndSave(tb, productName, ref oldCameraParamObjects);
             Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.SaveAllParams();

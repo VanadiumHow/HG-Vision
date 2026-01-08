@@ -40,10 +40,14 @@ namespace Obj.Obj_File
                 }
 
                 var serializer = GetSerializer(typeof(T));
+                T output;
                 using (var reader = new StreamReader(filePath, Encoding.UTF8))
                 {
-                    return (T)serializer.Deserialize(reader);
+                    output = (T)serializer.Deserialize(reader);
                 }
+                //在返回T类型的实例前，先进行一次序列化，保证若参数名修改，能够正确映射导.xml文件中（例如program改为Program）
+                Serialize<T>(filePath, output);
+                return output;
             }
             catch (Exception ex)
             {

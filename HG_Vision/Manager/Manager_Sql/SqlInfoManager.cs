@@ -52,7 +52,7 @@ namespace HG_Vision.Manager.Manager_Sql
             //通过数据库有无来决定操作日志存储位置
             if (sqlNum > 0)
             {
-                Project.Instance.GlobalManagerInstance.GlobalParamModel.saveOperationLogsByDB = true;
+                //Project.Instance.GlobalManagerInstance.GlobalParamsModel.saveOperationLogsByDB = true;
             }
         }
 

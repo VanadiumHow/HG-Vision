@@ -44,7 +44,7 @@ namespace HG_Vision.Manager.Manager_Vision
         /// </summary>
         public int CameraNum
         {
-            get { return Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum; }
+            get { return Project.Instance.GlobalManagerInstance.GlobalParamsModel.WorkFlowNum; }
         }
 
         internal VisionManager() { }
@@ -96,21 +96,21 @@ namespace HG_Vision.Manager.Manager_Vision
         /// </summary>
         public void LoadVisionPath()
         {
-            if (Project.Instance.GlobalManagerInstance.GlobalParamModel.useProductModel)
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.UseProductName)
             {
                 //当前型号为空
-                if (string.IsNullOrEmpty(Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel))
+                if (string.IsNullOrEmpty(Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName))
                 {
                     MessageBox.Show("Configuration设置CurProductModel为空，请先将UseProductModel设置为0！");
 
                     _visionToolPath = FilePathModel.VisionDefaultPath + "\\VisionTool";
                     _visionParamPath = FilePathModel.VisionDefaultPath + "\\VisionParam";
-                    Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel = "默认";
+                    Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName = "默认";
                 }
                 else
                 {
-                    _visionToolPath = FilePathModel.ProductPath + "\\" + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel + "\\VisionTool";
-                    _visionParamPath = FilePathModel.ProductPath + "\\" + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel + "\\VisionParam";
+                    _visionToolPath = FilePathModel.ProductPath + "\\" + Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName + "\\VisionTool";
+                    _visionParamPath = FilePathModel.ProductPath + "\\" + Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName + "\\VisionParam";
                 }
             }
             else
@@ -183,7 +183,7 @@ namespace HG_Vision.Manager.Manager_Vision
         /// </summary>
         public void CleanHistoryImage()
         {
-            for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum; i++)
+            for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamsModel.WorkFlowNum; i++)
             {
                 ImageParamsModel imageParams = Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageParams[i];
                 ImageStoreHelper.CleanHistoryPicture(imageParams);

@@ -40,7 +40,7 @@ namespace HG_Vision.Manager.Manager_Vision
         /// </summary>
         public int CameraNum
         {
-            get { return Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum; }
+            get { return Project.Instance.GlobalManagerInstance.GlobalParamsModel.WorkFlowNum; }
         }
 
         /// <summary>

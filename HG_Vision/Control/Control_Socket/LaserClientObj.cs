@@ -27,7 +27,7 @@ namespace HG_Vision.Contol.Control_Socket
         public LaserClientObj(string deviceId, string ip, string port) : base(new IPEndPoint(IPAddress.Parse(ip), int.Parse(port)))
         {
             DeviceId = deviceId;
-            DeviceType = DeviceType.Laser;
+            DeviceType = eDeviceType.Laser;
             DeviceName = $"激光_{deviceId}";
         }
         #endregion

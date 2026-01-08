@@ -31,7 +31,7 @@ namespace HG_Vision.Manager.Manager_Vision
         }
 
         /// <summary>
-        /// 处理参数输入输出
+        /// 基准位置（在Initial方法中实例化，通过手动触发赋值，在获取基准位置时调用）
         /// </summary>
         internal BasePose StandPose;
         /// <summary>
@@ -40,7 +40,7 @@ namespace HG_Vision.Manager.Manager_Vision
         public void Initial()
         {
             StandPose = new BasePose();
-            CameraParamsConfiguration.AnalysisCameraParamsConfig(ref _cameraParams);
+            _cameraParamsConfiguration.AnalysisCameraParamsConfig(ref _cameraParams);
         }
         /// <summary>
         /// 存单个参数(此处增加对应用层的调用接口，以简化调用方法的代码长度)

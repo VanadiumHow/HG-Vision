@@ -108,7 +108,7 @@ namespace HG_Vision.UIHome
                         if (bopen)
                         {
                             this.SplitContainer2.Panel2.Show();
-                            this.SplitContainer1.SplitterDistance = this.SplitContainer1.Width - Project.Instance.GlobalManagerInstance.GlobalParamModel.PanelRightWidth - 1;
+                            this.SplitContainer1.SplitterDistance = this.SplitContainer1.Width - Project.Instance.GlobalManagerInstance.GlobalParamsModel.PanelRightWidth - 1;
                             // ButtonShrinkPage.BackgroundImage = Resources.;
                         }
                         else
@@ -240,10 +240,10 @@ namespace HG_Vision.UIHome
         /// </summary>
         private void StartSaveOperationLog()
         {
-            if (Project.Instance.GlobalManagerInstance.GlobalParamModel.saveOperationLogsByDB)
-            {
-                OperationLogDataBll.GetInstance().InitThread();
-            }
+            //if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.saveOperationLogsByDB)
+            //{
+            //    OperationLogDataBll.GetInstance().InitThread();
+            //}
         }
 
         /// <summary>
@@ -331,26 +331,33 @@ namespace HG_Vision.UIHome
 
         private void FrmHome_Load(object sender, EventArgs e)
         {
-            ProgramGerneral.FrmSplashScreen.CloseForm();
+            try
+            {
+                ProgramGerneral.FrmSplashScreen.CloseForm();
 
-            //渲染各子窗体及控件
-            OpenRightShowPage(!_isRightShowPageOpen);
-            SetSplitDistance(); //定义好界面分割距离
-            FrmMainVisionInitial(); //初始化默认加载视觉显示窗口       
-            FrmRightFormInitial(); //初始化加载右侧窗口集
-            UpdateRunStateShow();
-            //设置程序标题
-            LabelProgramTitle.Text = Project.Instance.GlobalManagerInstance.GlobalParamModel.programTitle + (Project.Instance.GlobalManagerInstance.GlobalParamModel.useProductModel ? "  产品型号：" + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel : "");
-            NotifyIcon1.Text = LabelProgramTitle.Text;
-            StartScheduledTask();//实例化定时器类         
-            TimerRefreshDate.Start();//刷新时间显示
-            StartSaveImage();//启动存图线程        
-            StartSaveLog4Log();//启动log4net日志处理线程           
-            StartSaveOperationLog();//判断启动操作日志记录线程
-            //指示灯面板
-            PanelTipLigthLoad();
-            UserLevelControlEnabled(); //登录权限控件初始化
-            NoticeHelper.OutputMessageSend("欢迎使用本软件！", OutputLevelModel.INFO);
+                //渲染各子窗体及控件
+                OpenRightShowPage(!_isRightShowPageOpen);
+                SetSplitDistance(); //定义好界面分割距离
+                FrmMainVisionInitial(); //初始化默认加载视觉显示窗口       
+                FrmRightFormInitial(); //初始化加载右侧窗口集
+                UpdateRunStateShow();
+                //设置程序标题
+                LabelProgramTitle.Text = Project.Instance.GlobalManagerInstance.GlobalParamsModel.ProgramTitle + (Project.Instance.GlobalManagerInstance.GlobalParamsModel.UseProductName ? "  产品型号：" + Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName : "");
+                NotifyIcon1.Text = LabelProgramTitle.Text;
+                StartScheduledTask();//实例化定时器类         
+                TimerRefreshDate.Start();//刷新时间显示
+                StartSaveImage();//启动存图线程        
+                StartSaveLog4Log();//启动log4net日志处理线程           
+                StartSaveOperationLog();//判断启动操作日志记录线程
+                                        //指示灯面板
+                PanelTipLigthLoad();
+                UserLevelControlEnabled(); //登录权限控件初始化
+                NoticeHelper.OutputMessageSend("欢迎使用本软件！", OutputLevelModel.INFO);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(string.Format("错误：启动程序异常，原因：{0}", ex));
+            }
         }
 
         /// <summary>

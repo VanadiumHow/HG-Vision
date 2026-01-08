@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Obj.Obj_File;
-using Model.UserModel;
-using Model.EnumModel;
-using HG_Vision.Contol.Control_System;
-using HG_Vision.Manager.Manager_System;
+﻿using Model.UserModel;
+using HG_Vision.Contol.Control_User;
 /****************************************************************
 
 *****************************************************************/

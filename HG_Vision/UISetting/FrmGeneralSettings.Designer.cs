@@ -31,26 +31,28 @@ namespace HG_Vision.UISetting
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGeneralSettings));
             this.PanelAll = new System.Windows.Forms.Panel();
-            this.TableLayoutPanelAll = new UITableLayoutPanel();
-            this.ButtonSubmit = new System.Windows.Forms.Button();
-            this.TableLayoutPanelMain = new UITableLayoutPanel();
-            this.tableLayoutPanelPic = new UITableLayoutPanel();
+            this.TableLayoutPanelAll = new Sunny.UI.UITableLayoutPanel();
+            this.btSave = new System.Windows.Forms.Button();
+            this.TableLayoutPanelMain = new Sunny.UI.UITableLayoutPanel();
+            this.tableLayoutPanelSet = new Sunny.UI.UITableLayoutPanel();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.TextBoxEXLogSaveDays = new VisionProgram.UserControls.UITextBox.TextBoxEX();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cb_AutoStart = new System.Windows.Forms.CheckBox();
+            this.cbProtocolType = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanelPic = new Sunny.UI.UITableLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lb_AxisTitle = new System.Windows.Forms.Label();
-            this.tableLayoutPanelSet = new UITableLayoutPanel();
-            this.Label1 = new System.Windows.Forms.Label();
-            this.TextBoxEXLogSaveDays = new VisionProgram.UserControls.UITextBox.TextBoxEX();
-            this.cb_AutoStart = new System.Windows.Forms.CheckBox();
             this.PanelAll.SuspendLayout();
             this.TableLayoutPanelAll.SuspendLayout();
             this.TableLayoutPanelMain.SuspendLayout();
+            this.tableLayoutPanelSet.SuspendLayout();
             this.tableLayoutPanelPic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tableLayoutPanelSet.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelAll
@@ -71,7 +73,7 @@ namespace HG_Vision.UISetting
             this.TableLayoutPanelAll.BackColor = System.Drawing.SystemColors.Window;
             this.TableLayoutPanelAll.ColumnCount = 1;
             this.TableLayoutPanelAll.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TableLayoutPanelAll.Controls.Add(this.ButtonSubmit, 0, 1);
+            this.TableLayoutPanelAll.Controls.Add(this.btSave, 0, 1);
             this.TableLayoutPanelAll.Controls.Add(this.TableLayoutPanelMain, 0, 0);
             this.TableLayoutPanelAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayoutPanelAll.Location = new System.Drawing.Point(0, 0);
@@ -82,23 +84,24 @@ namespace HG_Vision.UISetting
             this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.TableLayoutPanelAll.Size = new System.Drawing.Size(1015, 707);
             this.TableLayoutPanelAll.TabIndex = 77;
+            this.TableLayoutPanelAll.TagString = null;
             // 
-            // ButtonSubmit
+            // btSave
             // 
-            this.ButtonSubmit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonSubmit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ButtonSubmit.FlatAppearance.BorderSize = 2;
-            this.ButtonSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonSubmit.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ButtonSubmit.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.ButtonSubmit.Location = new System.Drawing.Point(775, 647);
-            this.ButtonSubmit.Margin = new System.Windows.Forms.Padding(3, 4, 60, 10);
-            this.ButtonSubmit.MinimumSize = new System.Drawing.Size(1, 1);
-            this.ButtonSubmit.Name = "ButtonSubmit";
-            this.ButtonSubmit.Size = new System.Drawing.Size(180, 51);
-            this.ButtonSubmit.TabIndex = 80;
-            this.ButtonSubmit.Text = "应用常规参数";
-            this.ButtonSubmit.Click += new System.EventHandler(this.ButtonSubmit_Click);
+            this.btSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btSave.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btSave.FlatAppearance.BorderSize = 2;
+            this.btSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btSave.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btSave.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.btSave.Location = new System.Drawing.Point(775, 647);
+            this.btSave.Margin = new System.Windows.Forms.Padding(3, 4, 60, 10);
+            this.btSave.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btSave.Name = "btSave";
+            this.btSave.Size = new System.Drawing.Size(180, 51);
+            this.btSave.TabIndex = 80;
+            this.btSave.Text = "应用常规参数";
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
             // TableLayoutPanelMain
             // 
@@ -116,6 +119,105 @@ namespace HG_Vision.UISetting
             this.TableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 637F));
             this.TableLayoutPanelMain.Size = new System.Drawing.Size(1009, 637);
             this.TableLayoutPanelMain.TabIndex = 75;
+            this.TableLayoutPanelMain.TagString = null;
+            // 
+            // tableLayoutPanelSet
+            // 
+            this.tableLayoutPanelSet.ColumnCount = 2;
+            this.tableLayoutPanelSet.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelSet.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelSet.Controls.Add(this.Label1, 0, 0);
+            this.tableLayoutPanelSet.Controls.Add(this.TextBoxEXLogSaveDays, 1, 0);
+            this.tableLayoutPanelSet.Controls.Add(this.label2, 0, 1);
+            this.tableLayoutPanelSet.Controls.Add(this.cb_AutoStart, 0, 2);
+            this.tableLayoutPanelSet.Controls.Add(this.cbProtocolType, 1, 1);
+            this.tableLayoutPanelSet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelSet.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            this.tableLayoutPanelSet.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanelSet.Name = "tableLayoutPanelSet";
+            this.tableLayoutPanelSet.RowCount = 10;
+            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelSet.Size = new System.Drawing.Size(357, 631);
+            this.tableLayoutPanelSet.TabIndex = 4;
+            this.tableLayoutPanelSet.TagString = null;
+            // 
+            // Label1
+            // 
+            this.Label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label1.Location = new System.Drawing.Point(1, 0);
+            this.Label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(176, 63);
+            this.Label1.TabIndex = 28;
+            this.Label1.Text = "系统日志保存天数：";
+            this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TextBoxEXLogSaveDays
+            // 
+            this.TextBoxEXLogSaveDays.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.TextBoxEXLogSaveDays.BorderFocusColor = System.Drawing.Color.Teal;
+            this.TextBoxEXLogSaveDays.BorderSize = 1;
+            this.TextBoxEXLogSaveDays.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TextBoxEXLogSaveDays.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TextBoxEXLogSaveDays.ForeColor = System.Drawing.Color.DimGray;
+            this.TextBoxEXLogSaveDays.Location = new System.Drawing.Point(193, 15);
+            this.TextBoxEXLogSaveDays.Margin = new System.Windows.Forms.Padding(15, 15, 15, 8);
+            this.TextBoxEXLogSaveDays.Multiline = false;
+            this.TextBoxEXLogSaveDays.Name = "TextBoxEXLogSaveDays";
+            this.TextBoxEXLogSaveDays.Padding = new System.Windows.Forms.Padding(5);
+            this.TextBoxEXLogSaveDays.PasswordChar = false;
+            this.TextBoxEXLogSaveDays.ReadOnly = false;
+            this.TextBoxEXLogSaveDays.Size = new System.Drawing.Size(149, 32);
+            this.TextBoxEXLogSaveDays.TabIndex = 29;
+            this.TextBoxEXLogSaveDays.UnderlinedStyle = false;
+            this.TextBoxEXLogSaveDays.WatermarkText = null;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(1, 63);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(176, 63);
+            this.label2.TabIndex = 32;
+            this.label2.Text = "机械手通讯协议：";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cb_AutoStart
+            // 
+            this.cb_AutoStart.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cb_AutoStart.AutoSize = true;
+            this.cb_AutoStart.Location = new System.Drawing.Point(34, 144);
+            this.cb_AutoStart.Name = "cb_AutoStart";
+            this.cb_AutoStart.Size = new System.Drawing.Size(109, 26);
+            this.cb_AutoStart.TabIndex = 31;
+            this.cb_AutoStart.Text = "开机自启动";
+            this.cb_AutoStart.UseVisualStyleBackColor = true;
+            // 
+            // cbProtocolType
+            // 
+            this.cbProtocolType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbProtocolType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProtocolType.FormattingEnabled = true;
+            this.cbProtocolType.Items.AddRange(new object[] {
+            "LYH",
+            "HG"});
+            this.cbProtocolType.Location = new System.Drawing.Point(193, 78);
+            this.cbProtocolType.Margin = new System.Windows.Forms.Padding(15, 15, 15, 8);
+            this.cbProtocolType.Name = "cbProtocolType";
+            this.cbProtocolType.Size = new System.Drawing.Size(149, 30);
+            this.cbProtocolType.TabIndex = 33;
             // 
             // tableLayoutPanelPic
             // 
@@ -135,6 +237,7 @@ namespace HG_Vision.UISetting
             this.tableLayoutPanelPic.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelPic.Size = new System.Drawing.Size(640, 631);
             this.tableLayoutPanelPic.TabIndex = 3;
+            this.tableLayoutPanelPic.TagString = null;
             // 
             // pictureBox2
             // 
@@ -182,75 +285,6 @@ namespace HG_Vision.UISetting
             this.lb_AxisTitle.Text = "坐标轴示意图：";
             this.lb_AxisTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tableLayoutPanelSet
-            // 
-            this.tableLayoutPanelSet.ColumnCount = 2;
-            this.tableLayoutPanelSet.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelSet.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelSet.Controls.Add(this.Label1, 0, 0);
-            this.tableLayoutPanelSet.Controls.Add(this.TextBoxEXLogSaveDays, 1, 0);
-            this.tableLayoutPanelSet.Controls.Add(this.cb_AutoStart, 0, 1);
-            this.tableLayoutPanelSet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelSet.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.tableLayoutPanelSet.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanelSet.Name = "tableLayoutPanelSet";
-            this.tableLayoutPanelSet.RowCount = 10;
-            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelSet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelSet.Size = new System.Drawing.Size(357, 631);
-            this.tableLayoutPanelSet.TabIndex = 4;
-            // 
-            // Label1
-            // 
-            this.Label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Label1.Location = new System.Drawing.Point(1, 0);
-            this.Label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(176, 63);
-            this.Label1.TabIndex = 28;
-            this.Label1.Text = "系统日志保存天数：";
-            this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // TextBoxEXLogSaveDays
-            // 
-            this.TextBoxEXLogSaveDays.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.TextBoxEXLogSaveDays.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.TextBoxEXLogSaveDays.BorderFocusColor = System.Drawing.Color.Teal;
-            this.TextBoxEXLogSaveDays.BorderSize = 1;
-            this.TextBoxEXLogSaveDays.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TextBoxEXLogSaveDays.ForeColor = System.Drawing.Color.DimGray;
-            this.TextBoxEXLogSaveDays.Location = new System.Drawing.Point(192, 15);
-            this.TextBoxEXLogSaveDays.Margin = new System.Windows.Forms.Padding(5, 8, 7, 8);
-            this.TextBoxEXLogSaveDays.Multiline = false;
-            this.TextBoxEXLogSaveDays.Name = "TextBoxEXLogSaveDays";
-            this.TextBoxEXLogSaveDays.Padding = new System.Windows.Forms.Padding(5);
-            this.TextBoxEXLogSaveDays.PasswordChar = false;
-            this.TextBoxEXLogSaveDays.ReadOnly = false;
-            this.TextBoxEXLogSaveDays.Size = new System.Drawing.Size(149, 32);
-            this.TextBoxEXLogSaveDays.TabIndex = 29;
-            this.TextBoxEXLogSaveDays.UnderlinedStyle = false;
-            this.TextBoxEXLogSaveDays.WatermarkText = null;
-            // 
-            // cb_AutoStart
-            // 
-            this.cb_AutoStart.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cb_AutoStart.AutoSize = true;
-            this.cb_AutoStart.Location = new System.Drawing.Point(34, 81);
-            this.cb_AutoStart.Name = "cb_AutoStart";
-            this.cb_AutoStart.Size = new System.Drawing.Size(109, 26);
-            this.cb_AutoStart.TabIndex = 31;
-            this.cb_AutoStart.Text = "开机自启动";
-            this.cb_AutoStart.UseVisualStyleBackColor = true;
-            // 
             // FrmGeneralSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -268,13 +302,13 @@ namespace HG_Vision.UISetting
             this.PanelAll.ResumeLayout(false);
             this.TableLayoutPanelAll.ResumeLayout(false);
             this.TableLayoutPanelMain.ResumeLayout(false);
+            this.tableLayoutPanelSet.ResumeLayout(false);
+            this.tableLayoutPanelSet.PerformLayout();
             this.tableLayoutPanelPic.ResumeLayout(false);
             this.tableLayoutPanelPic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanelSet.ResumeLayout(false);
-            this.tableLayoutPanelSet.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -283,7 +317,7 @@ namespace HG_Vision.UISetting
 
         private System.Windows.Forms.Panel PanelAll;
         private UITableLayoutPanel TableLayoutPanelAll;
-        private System.Windows.Forms.Button ButtonSubmit;
+        private System.Windows.Forms.Button btSave;
         private UITableLayoutPanel TableLayoutPanelMain;
         private UITableLayoutPanel tableLayoutPanelPic;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -294,5 +328,7 @@ namespace HG_Vision.UISetting
         internal System.Windows.Forms.Label Label1;
         private VisionProgram.UserControls.UITextBox.TextBoxEX TextBoxEXLogSaveDays;
         private System.Windows.Forms.CheckBox cb_AutoStart;
+        internal System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbProtocolType;
     }
 }

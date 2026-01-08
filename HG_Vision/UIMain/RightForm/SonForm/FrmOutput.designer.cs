@@ -30,12 +30,11 @@ namespace HG_Vision.UIHome.RightForm
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOutput));
             this.ContextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.清除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.历史日志ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SplitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.TableLayoutPanel1 = new UITableLayoutPanel();
+            this.TableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.ButtonError = new System.Windows.Forms.Button();
             this.ButtonWarn = new System.Windows.Forms.Button();
             this.ButtonTip = new System.Windows.Forms.Button();
@@ -117,10 +116,11 @@ namespace HG_Vision.UIHome.RightForm
             this.TableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TableLayoutPanel1.Size = new System.Drawing.Size(322, 30);
             this.TableLayoutPanel1.TabIndex = 1;
+            this.TableLayoutPanel1.TagString = null;
             // 
             // ButtonError
             // 
-            this.ButtonError.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonError.BackgroundImage")));
+            this.ButtonError.BackgroundImage = global::HG_Vision.Properties.Resources.红绿灯1_红;
             this.ButtonError.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonError.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonError.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -137,7 +137,7 @@ namespace HG_Vision.UIHome.RightForm
             // 
             // ButtonWarn
             // 
-            this.ButtonWarn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonWarn.BackgroundImage")));
+            this.ButtonWarn.BackgroundImage = global::HG_Vision.Properties.Resources.红绿灯1_黄;
             this.ButtonWarn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonWarn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonWarn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -154,7 +154,7 @@ namespace HG_Vision.UIHome.RightForm
             // 
             // ButtonTip
             // 
-            this.ButtonTip.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonTip.BackgroundImage")));
+            this.ButtonTip.BackgroundImage = global::HG_Vision.Properties.Resources.红绿灯1_绿;
             this.ButtonTip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonTip.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonTip.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -171,13 +171,13 @@ namespace HG_Vision.UIHome.RightForm
             // 
             // ButtonAll
             // 
-            this.ButtonAll.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonAll.BackgroundImage")));
             this.ButtonAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonAll.FlatAppearance.BorderSize = 0;
             this.ButtonAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.ButtonAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonAll.Image = global::HG_Vision.Properties.Resources.红绿灯2;
             this.ButtonAll.Location = new System.Drawing.Point(2, 2);
             this.ButtonAll.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonAll.Name = "ButtonAll";
@@ -228,7 +228,6 @@ namespace HG_Vision.UIHome.RightForm
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmOutput";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);

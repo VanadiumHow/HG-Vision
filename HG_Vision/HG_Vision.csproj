@@ -226,7 +226,7 @@
     <Compile Include="Control\Control_Socket\Configuration\ClientConfiguration.cs" />
     <Compile Include="Control\Control_Sql\OperationLogDataBll.cs" />
     <Compile Include="Control\Control_Socket\Configuration\SeverConfiguration.cs" />
-    <Compile Include="Control\Control_System\UserConfiguration.cs" />
+    <Compile Include="Control\Control_User\UserConfiguration.cs" />
     <Compile Include="Control\Control_Vision\WorkFlow.cs" />
     <Compile Include="DAL\BaseDal.cs" />
     <Compile Include="DAL\BQuery.cs" />
@@ -597,10 +597,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Control\Control_Laser\" />
-    <Folder Include="Control\Control_User\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

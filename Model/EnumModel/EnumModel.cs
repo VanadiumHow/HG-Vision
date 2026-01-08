@@ -78,9 +78,17 @@
     /// <summary>
     /// 设备类型枚举
     /// </summary>
-    public enum DeviceType
+    public enum eDeviceType
     {
         Robot, // 机器人
         Laser  // 激光设备
+    }
+    /// <summary>
+    /// 机器人协议类型枚举
+    /// </summary>
+    public enum eProtocol
+    {
+        LYH = 0, //利元亨协议
+        HG = 1 //华工协议
     }
 }

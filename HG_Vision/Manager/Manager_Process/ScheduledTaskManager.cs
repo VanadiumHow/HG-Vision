@@ -164,7 +164,7 @@ namespace HG_Vision.Manager.Manager_Process
         {
             new Action(() =>
             {
-                LogHelper.CleanHistoryLog(Project.Instance.GlobalManagerInstance.GlobalParamModel.logSaveDays);
+                LogHelper.CleanHistoryLog(Project.Instance.GlobalManagerInstance.GlobalParamsModel.LogSaveDays);
                 NoticeHelper.OutputMessageSend($"清空N天前的日志完成-----------------------------------------------------------------------", OutputLevelModel.INFO);
             }).BeginInvoke(null, null);
         }

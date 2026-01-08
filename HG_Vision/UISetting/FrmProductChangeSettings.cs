@@ -70,9 +70,9 @@ namespace HG_Vision.UISetting
             }
 
             //选中当前型号
-            if (Project.Instance.GlobalManagerInstance.GlobalParamModel.useProductModel)
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.UseProductName)
             {
-                ListBoxProductModelList.SelectedIndex = ListBoxProductModelList.Items.IndexOf(Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel);
+                ListBoxProductModelList.SelectedIndex = ListBoxProductModelList.Items.IndexOf(Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName);
             }
             else
             {
@@ -102,21 +102,21 @@ namespace HG_Vision.UISetting
                 this.ConfirmErrorDialog("请选中要切换的类型！");
                 return;
             }
-            if (Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel == ListBoxProductModelList.Text)
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName == ListBoxProductModelList.Text)
             {
                 this.ConfirmErrorDialog("请选择和当前类型不同的类型");
                 return;
             }
-            string oldValue = Project.Instance.GlobalManagerInstance.GlobalParamModel.useProductModel ? Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel : "默认";
+            string oldValue = Project.Instance.GlobalManagerInstance.GlobalParamsModel.UseProductName ? Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName : "默认";
             string newValue = ListBoxProductModelList.Text;
             NoticeHelper.OutputMessageSend($"切换产品型号 {ListBoxProductModelList.Text} 中....", OutputLevelModel.INFO);
             try
             {
                 //设置产品模式
-                Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel = ListBoxProductModelList.Text;
-                Project.Instance.GlobalManagerInstance.GlobalParamModel.useProductModel = ListBoxProductModelList.Text == "默认" ? false : true;
+                Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName = ListBoxProductModelList.Text;
+                Project.Instance.GlobalManagerInstance.GlobalParamsModel.UseProductName = ListBoxProductModelList.Text == "默认" ? false : true;
                 //修改config 模型参数设置 持久化
-                Project.Instance.GlobalManagerInstance.SetCurProductModel();
+                Project.Instance.GlobalManagerInstance.SaveAllParams();
                 // 更新视觉参数、视觉工具文件夹路径
                 {
                     Project.Instance.VisionManagerInstance.LoadVisionPath();
@@ -131,8 +131,8 @@ namespace HG_Vision.UISetting
                 }
                 OnChangeProductSettings?.Invoke(oldValue, newValue);
                 Thread.Sleep(200);
-                NoticeHelper.OutputMessageSend($"切换产品型号 {Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel} 成功！", OutputLevelModel.INFO);
-                this.ConfirmInfoDialog("切换产品型号 " + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel + " 成功！");
+                NoticeHelper.OutputMessageSend($"切换产品型号 {Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName} 成功！", OutputLevelModel.INFO);
+                this.ConfirmInfoDialog("切换产品型号 " + Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName + " 成功！");
             }
             catch (Exception ex)
             {
@@ -198,7 +198,7 @@ namespace HG_Vision.UISetting
                 this.ConfirmErrorDialog("请勿删除默认，默认代表适用于全部产品，是程序的默认加载！");
                 return;
             }
-            if (Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel == ListBoxProductModelList.Text)
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName == ListBoxProductModelList.Text)
             {
                 this.ConfirmErrorDialog("请勿删除当前产品类型，程序正在使用当前产品类型视觉配置！");
                 return;

@@ -25,11 +25,11 @@ namespace Obj.Obj_Socket
         /// <summary>
         /// 设备类型（枚举，便于分类判断）
         /// </summary>
-        public DeviceType DeviceType { get; protected set; }
+        public eDeviceType DeviceType { get; protected set; }
         /// <summary>
         /// 客户端ip地址
         /// </summary>
-        public IPEndPoint _localEndPoint;
+        public IPEndPoint LocalEndPoint;
         //客户端连接状态
         private bool _isConnected = false;
         /// <summary>
@@ -64,7 +64,7 @@ namespace Obj.Obj_Socket
 
         public ClientObj(IPEndPoint localEndPoint) : base(localEndPoint)
         {
-            _localEndPoint = localEndPoint;
+            LocalEndPoint = localEndPoint;
         }
         #endregion
 
@@ -114,7 +114,7 @@ namespace Obj.Obj_Socket
                 string data = "Test Data!";
                 byte[] buffer = Encoding.ASCII.GetBytes(data);
                 int timeout = 5000; // Timeout 时间，单位：毫秒  
-                System.Net.NetworkInformation.PingReply reply = p.Send(_localEndPoint.Address, timeout, buffer, options);
+                System.Net.NetworkInformation.PingReply reply = p.Send(LocalEndPoint.Address, timeout, buffer, options);
                 if (reply == null || reply.Status == System.Net.NetworkInformation.IPStatus.Success)
                     return true;
 

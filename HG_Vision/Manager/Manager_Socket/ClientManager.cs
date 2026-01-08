@@ -41,9 +41,9 @@ namespace HG_Vision.Manager.Manager_Socket
         /// <summary>
         /// 按类型分类的对象Robot、Laser
         /// </summary>
-        private readonly Dictionary<DeviceType, List<ClientObj>> _devicesByType = new Dictionary<DeviceType, List<ClientObj>>()
+        private readonly Dictionary<eDeviceType, List<ClientObj>> _devicesByType = new Dictionary<eDeviceType, List<ClientObj>>()
         {
-            { DeviceType.Laser, new List<ClientObj>() }
+            { eDeviceType.Laser, new List<ClientObj>() }
         };
         /// <summary>
         /// 初始化
@@ -201,7 +201,7 @@ namespace HG_Vision.Manager.Manager_Socket
         /// <summary>
         /// 获取指定类型的所有设备（如所有机器人）
         /// </summary>
-        public List<T> GetDevicesByType<T>(DeviceType deviceType) where T : ClientObj
+        public List<T> GetDevicesByType<T>(eDeviceType deviceType) where T : ClientObj
         {
             return _devicesByType[deviceType].Cast<T>().ToList();
         }

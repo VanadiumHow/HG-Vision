@@ -145,7 +145,7 @@ namespace HG_Vision.UISetting
             {
                 this.Invoke(new Action(() =>
                 {
-                    FrmHome.Instance.LabelProgramTitle.Text = Project.Instance.GlobalManagerInstance.GlobalParamModel.programTitle + (Project.Instance.GlobalManagerInstance.GlobalParamModel.useProductModel ? "  产品型号：" + Project.Instance.GlobalManagerInstance.GlobalParamModel.curProductModel : "");
+                    FrmHome.Instance.LabelProgramTitle.Text = Project.Instance.GlobalManagerInstance.GlobalParamsModel.ProgramTitle + (Project.Instance.GlobalManagerInstance.GlobalParamsModel.UseProductName ? "  产品型号：" + Project.Instance.GlobalManagerInstance.GlobalParamsModel.CurProductName : "");
                     FrmHome.Instance.NotifyIcon1.Text = FrmHome.Instance.LabelProgramTitle.Text;
                 }));
                 OperationLogDataBll.GetInstance().OperationLogProcessFactory(new OperationLogDataModel(Project.Instance.UserManagerInstance.CurrentUser.UserRoleName,

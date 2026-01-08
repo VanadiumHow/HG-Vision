@@ -245,7 +245,7 @@ namespace HG_Vision
             this.tab_C_VisionTool.Controls.Add(this.tab_EditVision);
             this.tab_C_VisionTool.Controls.Add(this.tab_VisionDistortion);
             this.tab_C_VisionTool.Controls.Add(this.tab_VisionLinear);
-            this.tab_C_VisionTool.Controls.Add(this.tab_VisionRotation);
+            //this.tab_C_VisionTool.Controls.Add(this.tab_VisionRotation);
             this.tab_C_VisionTool.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tab_C_VisionTool.Location = new System.Drawing.Point(0, 0);
             this.tab_C_VisionTool.Name = "tab_C_VisionTool";

@@ -33,7 +33,7 @@ namespace HG_Vision.Contol.Control_Vision
                 imageParams = new List<ImageParamsModel>();
                 imageParams.Clear();
                 //读取图像保存参数
-                for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum; i++)
+                for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamsModel.WorkFlowNum; i++)
                 {
                     ImageParamsModel imp = new ImageParamsModel();
                     imp.RawImagePattern = _ini.IniReadValue("IMAGESAVE" + (i + 1).ToString(), "RAWPATTERN");
@@ -106,13 +106,13 @@ namespace HG_Vision.Contol.Control_Vision
         {
             SaveImageThread mSaveImageThread = new SaveImageThread();
             _Threads = new Control_Thread[] { mSaveImageThread };
-            if (_Threads.Length < Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum)
+            if (_Threads.Length < Project.Instance.GlobalManagerInstance.GlobalParamsModel.WorkFlowNum)
             {
                 MessageBox.Show("存图线程数量不足工作流程数量，请检查代码或配置文件！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             // 手动填充空对象
-            for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum; i++)
+            for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamsModel.WorkFlowNum; i++)
             {
                 saveImageQueueList.Add(null); // 初始化每个元素
             }

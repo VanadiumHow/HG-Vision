@@ -36,7 +36,7 @@ namespace Model.VisionModel
         public int BoUse = 0;
         public int LaUse = 0;
 
-        public int NozzleNum = 0;
+        public int LocationNum = 0; // 振镜位置数量(暂未使用)
         // 夹具补偿
         public JigAdd[] JigCompensations = Enumerable.Range(0, 9)
             .Select(i => new JigAdd()).ToArray();
@@ -105,6 +105,16 @@ namespace Model.VisionModel
                 L_La1Axis[i] = new PointAxis();
                 L_La2Axis[i] = new PointAxis();
             }
+        }
+        /// <summary>
+        /// 根据索引获取对应的BoAxis（1=Bo1Axis，2=Bo2Axis）
+        /// </summary>
+        /// <param name="i">索引值（仅支持1/2）</param>
+        /// <returns>对应的PointAxis对象</returns>
+        /// <exception cref="ArgumentOutOfRangeException">索引无效时抛出</exception>
+        public PointAxis GetBoAxis(int i)
+        {
+            return i ==0? Bo1Axis:i==1? Bo2Axis: throw new ArgumentOutOfRangeException(nameof(i), "仅支持索引值1或2");
         }
     }
 }

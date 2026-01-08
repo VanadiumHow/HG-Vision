@@ -23,11 +23,11 @@ namespace Obj.Obj_Socket
         /// <summary>
         /// 设备类型（枚举，便于分类判断）
         /// </summary>
-        public DeviceType DeviceType { get; protected set; }
+        public eDeviceType DeviceType { get; protected set; }
         /// <summary>
         /// 服务器ip地址
         /// </summary>
-        public IPEndPoint _localEndPoint;
+        public IPEndPoint LocalEndPoint;
         //服务器状态
         private bool _isConnected = false;
         /// <summary>
@@ -43,7 +43,7 @@ namespace Obj.Obj_Socket
         #region 构造函数
         public ServerObj(IPEndPoint localEndPoint) : base(localEndPoint)
         {
-            _localEndPoint = localEndPoint;
+            LocalEndPoint = localEndPoint;
         }
         #endregion
 

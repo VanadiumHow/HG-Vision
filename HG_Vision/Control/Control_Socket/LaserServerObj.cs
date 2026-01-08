@@ -27,7 +27,7 @@ namespace HG_Vision.Contol.Control_Socket
         public LaserServerObj(string deviceId, string ip, string port) : base(new IPEndPoint(IPAddress.Parse(ip), int.Parse(port)))
         {
             DeviceId = deviceId;
-            DeviceType = DeviceType.Laser;
+            DeviceType = eDeviceType.Laser;
             DeviceName = $"激光_{deviceId}";
         }
         #endregion
@@ -43,7 +43,7 @@ namespace HG_Vision.Contol.Control_Socket
             //可按实际情况删除或增加委托
             CameraWorkThrad1 mainWorkThread1 = new CameraWorkThrad1();
             Control_Thread[] _threadStartArray = new Control_Thread[] { mainWorkThread1 };
-            if (_threadStartArray.Length < Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum)
+            if (_threadStartArray.Length < Project.Instance.GlobalManagerInstance.GlobalParamsModel.WorkFlowNum)
             {
                 MessageBox.Show("相机线程数量不足工作流程数量，请检查代码或配置文件！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;

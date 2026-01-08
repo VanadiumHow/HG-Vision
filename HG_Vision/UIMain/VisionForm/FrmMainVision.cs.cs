@@ -46,7 +46,7 @@ namespace HG_Vision.UIVision
             //初始化图像窗口LIST
             InitialFrmVisionControlList(Project.Instance.VisionManagerInstance.CameraNum);
             //布局图像窗口
-            LoadCameraForm(Project.Instance.GlobalManagerInstance.GlobalParamModel.MaxWorkNum, Project.Instance.VisionManagerInstance.CameraNum);
+            LoadCameraForm(Project.Instance.GlobalManagerInstance.GlobalParamsModel.MaxWorkNum, Project.Instance.VisionManagerInstance.CameraNum);
 
         }
         /// <summary>

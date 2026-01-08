@@ -63,11 +63,11 @@ namespace HG_Vision.UIHome.RightForm
             LoadLabelLight(0, _deviceCount * 2, _currentnum, "CCD");
             _deviceCount += _currentnum;
 
-            _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(DeviceType.Robot).Count;
+            _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count;
             LoadLabelLight(0, _deviceCount * 2, _currentnum, "Robot");
             _deviceCount += _currentnum;
 
-            _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(DeviceType.Laser).Count;
+            _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(eDeviceType.Laser).Count;
             LoadLabelLight(0, _deviceCount * 2, _currentnum, "Laser");
             _deviceCount += _currentnum;
         }
@@ -295,10 +295,10 @@ namespace HG_Vision.UIHome.RightForm
         {
             try
             {
-                int nRobotNum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(DeviceType.Robot).Count;
+                int nRobotNum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count;
                 for (int i = 0; i < nRobotNum; i++)
                 {
-                    if (!Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(DeviceType.Robot)[i].IsConnected)
+                    if (!Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot)[i].IsConnected)
                     {
                         //只有未在当前状态才切换状态
                         if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
@@ -324,10 +324,10 @@ namespace HG_Vision.UIHome.RightForm
         {
             try
             {
-                int nLaserNum = Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(DeviceType.Laser).Count;
+                int nLaserNum = Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(eDeviceType.Laser).Count;
                 for (int i = 0; i < nLaserNum; i++)
                 {
-                    if (Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(DeviceType.Laser)[i].IsConnected && Project.Instance.ClientManagerInstance.GetDevicesByType<LaserClientObj>(DeviceType.Laser)[i].IsConnected)
+                    if (Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(eDeviceType.Laser)[i].IsConnected && Project.Instance.ClientManagerInstance.GetDevicesByType<LaserClientObj>(eDeviceType.Laser)[i].IsConnected)
                     {
                         //只有未在当前状态才切换状态
                         if (_laserLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)

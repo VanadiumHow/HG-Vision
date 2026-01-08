@@ -2,7 +2,6 @@
 using Model.EnumModel;
 using Model.UserModel;
 using Obj.Obj_File;
-using Obj_Serialize;
 using System;
 using Obj.Obj_User;
 using HG_Vision.Manager.Manager_System;
@@ -10,7 +9,7 @@ using HG_Vision.Manager.Manager_System;
 /****************************************************************
 
 *****************************************************************/
-namespace HG_Vision.Contol.Control_System
+namespace HG_Vision.Contol.Control_User
 {
     public class UserConfiguration
     {

@@ -203,7 +203,7 @@ namespace HG_Vision.Manager.Manager_System
         /// </summary>
         public void LoadVisionInfo()
         {
-            if (Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum > 0)
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.WorkFlowNum > 0)
             {
                 try
                 {

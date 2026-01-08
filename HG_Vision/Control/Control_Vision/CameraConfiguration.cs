@@ -49,7 +49,7 @@ namespace HG_Vision.Contol.Control_Vision
             try
             {
                 InitConfigDirctory();
-                for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamModel.WorkFlowNum; i++)
+                for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamsModel.WorkFlowNum; i++)
                 {
                     CameraAttribute _cameraAttribute = new CameraAttribute();
                     string ScanSection = "Camera" + (i + 1).ToString();

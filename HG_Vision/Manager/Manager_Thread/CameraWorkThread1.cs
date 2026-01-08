@@ -2,9 +2,7 @@
 using Cognex.VisionPro;
 using HG_Vision.Contol.Control_PLC;
 using HG_Vision.Contol.Control_Vision;
-using HG_Vision.Manager.Manager_Process;
 using HG_Vision.Manager.Manager_System;
-using Model.SocketModel;
 using Model.VisionModel;
 using Model.EnumModel;
 using Model.UIModel;
@@ -13,11 +11,8 @@ using Obj.Obj_Message;
 using Obj.Obj_Queue;
 using Obj.Utility;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.Text;
-using static System.Net.Mime.MediaTypeNames;
 using HG_Vision.Contol.Control_Socket;
 
 /****************************************************************
@@ -25,73 +20,73 @@ using HG_Vision.Contol.Control_Socket;
 *****************************************************************/
 namespace HG_Vision.Manager.Manager_Thread
 {
-	internal class CameraWorkThrad1 : Control_Thread
-	{
-		private BlockQueue<TriggerEventArgs> _taskQueueList;//相机触发队列集合
-		internal BlockQueue<TriggerEventArgs> TaskQueueListC1
-		{
-			set { _taskQueueList = value; }
-		}
-		private string _someData;
+    internal class CameraWorkThrad1 : Control_Thread
+    {
+        private BlockQueue<TriggerEventArgs> _taskQueueList;//相机触发队列集合
+        internal BlockQueue<TriggerEventArgs> TaskQueueListC1
+        {
+            set { _taskQueueList = value; }
+        }
+        private string _someData;
 
-		// 定义事件，使用标准的EventHandler委托
-		public event EventHandler<string> DataChanged;
+        // 定义事件，使用标准的EventHandler委托
+        public event EventHandler<string> DataChanged;
 
-		public string SomeData
-		{
-			get { return _someData; }
-			set
-			{
-				if (_someData != value)
-				{
-					_someData = value;
-					// 当数据改变时，触发事件
-					OnDataChanged(value);
-				}
-			}
-		}
+        public string SomeData
+        {
+            get { return _someData; }
+            set
+            {
+                if (_someData != value)
+                {
+                    _someData = value;
+                    // 当数据改变时，触发事件
+                    OnDataChanged(value);
+                }
+            }
+        }
 
-		// 触发事件的方法
-		protected virtual void OnDataChanged(string newData)
-		{
-			DataChanged?.Invoke(this, newData);
-		}
-		public override void Initialize() => base.Start(10, "CameraWorkThread1");
+        // 触发事件的方法
+        protected virtual void OnDataChanged(string newData)
+        {
+            DataChanged?.Invoke(this, newData);
+        }
+        public override void Initialize() => base.Start(10, "CameraWorkThread1");
 
-		public override void Deinitialize() => base.Stop();
-		protected override void Run()
-		{
-			try
-			{
-				DoWorkThreadC1();
-			}
-			catch (Exception ex)
-			{
-				LogHelper.Error("相机1工作线程出现异常", ex);  //写日志 
-			}
-		}
-		private void DoWorkThreadC1()
-		{
-			TriggerEventArgs e = null;
-			//从队列中取出数据
-			if (!_taskQueueList.IsCompleted)
-				e = _taskQueueList.Dequeue();
-			//防呆设计，确保取出的任务非null并且是本线程的
-			if (e == null && e.FlowIdx != 0)
-			{
-				LogHelper.Error("相机1工作线程收到非本线程任务！");
-				return;
-			}
-			VisionProcess(e);
-		}
-		internal static void VisionProcess(TriggerEventArgs e)
-		{
-			//最终偏移量 = 当前位置 - 基准位置 + 对位补偿 + 夹具补偿
-			try
-			{
-				//相机序号&吸嘴数量(振镜位置)
-				int workFlowIdx = e.FlowIdx;
-				//int nozzleIdx = e.NozzleIdx;
+        public override void Deinitialize() => base.Stop();
+        protected override void Run()
+        {
+            try
+            {
+                DoWorkThreadC1();
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("相机1工作线程出现异常", ex);  //写日志 
+            }
+        }
+        private void DoWorkThreadC1()
+        {
+            TriggerEventArgs e = null;
+            //从队列中取出数据
+            if (!_taskQueueList.IsCompleted)
+                e = _taskQueueList.Dequeue();
+            //防呆设计，确保取出的任务非null并且是本线程的
+            if (e == null && e.FlowIdx != 0)
+            {
+                LogHelper.Error("相机1工作线程收到非本线程任务！");
+                return;
+            }
+            VisionProcess(e);
+        }
+        internal static void VisionProcess(TriggerEventArgs e)
+        {
+            //最终偏移量 = 当前位置 - 基准位置 + 对位补偿 + 夹具补偿
+            try
+            {
+                //相机序号&吸嘴数量(振镜位置)
+                int workFlowIdx = e.FlowIdx;
+                //int nozzleIdx = e.NozzleIdx;
 
                 //取像失败重试一次
                 int acqRetriesNum = 2;
@@ -153,27 +148,63 @@ namespace HG_Vision.Manager.Manager_Thread
                         Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{e.NozzleIdx}").SendText("PGE;0;1;0;0;0;0;\r\n", 0);//？信息内容待定
                         Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{e.FlowIdx}").SendText("_NG;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10", 0);//？信息内容待定
                         Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
-					}
-					return;
-				}
-				//读取PLC寄存器中：夹具号、产品条码、极耳间距
-				byte[] _plcD100_45 = Project.Instance.PLCManagerInstance.Read("D100", 45);
-				//plc发来的夹具号是从1开始的，这里要减1作为数组下标使用
-				int _jigIndex = BitConverter.ToInt16(RegisterDataProcessing.ReverseBytes(_plcD100_45, 0, 2), 0) - 1;
-				string _code1 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD100_45, 2, 40))).Trim().Replace(":", "-");
-				string _code2 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD100_45, 42, 40))).Trim().Replace(":", "-");
-				double _spacing1 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD100_45, 82, 4), 0);
-				double _spacing2 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD100_45, 86, 4), 0);
-				if (e.NozzleIdx.Equals(0))
-				{
-					if (!processOK)
-					{
+                    }
+                    return;
+                }
+                int _jigIndex;
+                string _code1, _code2;
+                double _spacing1, _spacing2;
+                if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
+                {
+                    //读取PLC寄存器中：夹具号、产品条码、极耳间距
+                    byte[] _plcD100_45 = Project.Instance.PLCManagerInstance.Read("D100", 45);
+                    //plc发来的夹具号是从1开始的，这里要减1作为数组下标使用
+                    _jigIndex = BitConverter.ToInt16(RegisterDataProcessing.ReverseBytes(_plcD100_45, 0, 2), 0);
+                    _code1 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD100_45, 2, 40))).Trim().Replace(":", "-");
+                    _code2 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD100_45, 42, 40))).Trim().Replace(":", "-");
+                    _spacing1 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD100_45, 82, 4), 0);
+                    _spacing2 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD100_45, 86, 4), 0);
+                    // PLC无法自动清除旧数据，需手动生成40个空格的字符串
+                    if (e.eMode == eProcessMode.produce)
+                    {
+                        byte[] aZero = new byte[40];
+                        Project.Instance.PLCManagerInstance.Write("D101", aZero);
+                    }
+                }
+                else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
+                {
+                    //读取PLC寄存器中：夹具号、产品条码、极耳间距
+                    //plc发来的夹具号是从1开始的，这里要减1作为数组下标使用
+                    _jigIndex = BitConverter.ToInt16(Project.Instance.PLCManagerInstance.Read("D550", 1), 0) - 1;
+                    byte[] _plcD5000_100 = Project.Instance.PLCManagerInstance.Read("D5000", 100);
+                    byte[] _plcD5100_100 = Project.Instance.PLCManagerInstance.Read("D5100", 100);
+                    _code1 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD5000_100, 0, 160))).Trim().Replace(":", "-");
+                    _code2 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD5100_100, 0, 160))).Trim().Replace(":", "-");
+                    byte[] _plcD1100_4 = Project.Instance.PLCManagerInstance.Read("D1100", 4);
+                    _spacing1 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD1100_4, 0, 4), 0);
+                    _spacing2 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD1100_4, 4, 4), 0);
+                    //// PLC无法自动清除旧数据，需手动生成40个空格的字符串 (暂未实现，优先让PLC程序实现)
+                    //if (e.eMode == eProcessMode.produce)
+                    //{
+                    //    byte[] aZero = new byte[40];
+                    //    Project.Instance.PLCManagerInstance.Write("D101", aZero);
+                    //}
+                }
+                else
+                {
+                    LogHelper.Error("未知协议类型，无法读取PLC数据！");
+                    return;
+                }
+                if (e.NozzleIdx.Equals(0))
+                {
+                    if (!processOK)
+                    {
                         LogHelper.Error($"{workFlowIdx + 1}相机视觉流程运行失败！");
                         processOK = false;
-						finalResult = false;
-					}
-					else
-					{
+                        finalResult = false;
+                    }
+                    else
+                    {
                         LogHelper.Info($"{workFlowIdx + 1}相机视觉流程运行成功！");
                         #region 读取vpp上的ResultArr
                         double[] ResultArrBo = (double[])Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[workFlowIdx].ProcessBlock.Outputs["ResultArrBo"].Value;
@@ -282,45 +313,7 @@ namespace HG_Vision.Manager.Manager_Thread
                     #region 结果数据发送机器人、激光
                     if (e.eMode == eProcessMode.produce)
                     {
-                        string sendToRob, sendToLas;
-                        if (!finalResult)
-                        {
-
-                            if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse != 1)
-                                sendToRob = "PGE;0;1;0;0;0;0;\r\n";
-                            else
-                                sendToRob = $"PGE;0;2;0;{offset_in_jig.Bo1Axis.X:f3};{offset_in_jig.Bo1Axis.X:f3};0;\r\n";
-
-                            if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
-                                sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
-                            else
-                                sendToLas = CreatSentToLas(false, currentPose, offset_in_jig, 0);
-                            Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
-                        }
-                        else
-                        {
-
-                            if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse != 1)
-                                sendToRob = "PGE;0;1;0;0;0;0;\r\n";
-                            else
-                                sendToRob = $"PGE;0;1;0;{offset_in_jig.Bo1Axis.X:f3};{offset_in_jig.Bo1Axis:f3};0;\r\n";
-
-                            if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
-                                sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
-                            else
-                                sendToLas = CreatSentToLas(true, currentPose, offset_in_jig, 0);
-                            Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0]++;
-                        }
-
-                        if (Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{e.NozzleIdx}").SendText(sendToRob, 0))
-                            LogHelper.Info("发送完成信号成功>>激光：" + sendToLas);
-                        else
-                            LogHelper.Error("发送完成信号失败>>激光!");
-
-                        if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{e.FlowIdx}").SendText(sendToLas, 0))
-                            LogHelper.Info("发送完成信号成功>>激光：" + sendToLas);
-                        else
-                            LogHelper.Error("发送完成信号失败>>激光!");
+                        SendMessageToDevice(finalResult, 0, offset_in_jig, currentPose);
                     }
                     else
                     {
@@ -384,7 +377,7 @@ namespace HG_Vision.Manager.Manager_Thread
                     strLogData[11] = offset_in_jig.L_La1Axis[3].X.ToString("f3");
                     strLogData[12] = offset_in_jig.L_La1Axis[3].Y.ToString("f3");
                     strLogData[13] = offset_in_jig.Bo1Axis.R.ToString("f3");
-                    strLogData[24] = _spacing1.ToString("f3");
+                    strLogData[14] = _spacing1.ToString("f3");
                     strLogData[15] = _code1;
                     strLogData[16] = nowTime;
                     csv.AppendToCsv(strHead, strLogData, "PositionData");
@@ -398,12 +391,6 @@ namespace HG_Vision.Manager.Manager_Thread
                         e.imageName = (e.FlowIdx + 1).ToString() + "-1-" + e.eMode.ToString();
                     e.results = finalResult;
                     Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageSave.saveImageQueueList[e.FlowIdx].Enqueue(e);
-                    // 生成40个空格的字符串
-                    if (e.eMode == eProcessMode.produce)
-                    {
-                        byte[] aZero = new byte[40];
-                        Project.Instance.PLCManagerInstance.Write("D101", aZero);
-                    }
                 }
                 //下待定
                 else
@@ -522,46 +509,7 @@ namespace HG_Vision.Manager.Manager_Thread
                     #region 结果数据发送机器人、激光
                     if (e.eMode == eProcessMode.produce)
                     {
-                        string sendToRob, sendToLas;
-                        if (!finalResult)
-                        {
-
-                            if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse != 1)
-                                sendToRob = "PGE;0;1;0;0;0;0;\r\n";
-                            else
-                                sendToRob = $"PGE;0;2;0;{offset_in_jig.Bo2Axis.X:f3};{offset_in_jig.Bo2Axis.X:f3};0;\r\n";
-
-                            if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
-                                sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
-                            else
-                                sendToLas = CreatSentToLas(false, currentPose, offset_in_jig, 1);
-                            Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
-                        }
-                        else
-                        {
-
-                            if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse != 1)
-                                sendToRob = "PGE;0;1;0;0;0;0;\r\n";
-                            else
-                                sendToRob = $"PGE;0;1;0;{offset_in_jig.Bo2Axis.X:f3};{offset_in_jig.Bo2Axis:f3};0;\r\n";
-
-                            if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
-                                sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
-                            else
-                                sendToLas = CreatSentToLas(true, currentPose, offset_in_jig, 1);
-                            Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0]++;
-                        }
-                        if (Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{e.NozzleIdx}").SendText(sendToRob, 0))
-                            LogHelper.Info("发送完成信号成功>>激光：" + sendToLas);
-                        else
-                            LogHelper.Error("发送完成信号失败>>激光!");
-
-                        if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{e.FlowIdx}").SendText(sendToLas, 0))
-                            LogHelper.Info("发送完成信号成功>>激光：" + sendToLas);
-                        else
-                            LogHelper.Error("发送完成信号失败>>激光!");
-                        LogHelper.Info("给到机械手返回：" + sendToRob);
-                        NoticeHelper.OutputMessageSend("给到机械手返回" + sendToRob, OutputLevelModel.INFO);
+                        SendMessageToDevice(finalResult, 0, offset_in_jig, currentPose);
                     }
                     else
                     {
@@ -625,7 +573,7 @@ namespace HG_Vision.Manager.Manager_Thread
                     strLogData[11] = offset_in_jig.L_La2Axis[3].X.ToString("f3");
                     strLogData[12] = offset_in_jig.L_La2Axis[3].Y.ToString("f3");
                     strLogData[13] = offset_in_jig.Bo2Axis.R.ToString("f3");
-                    strLogData[24] = _spacing2.ToString("f3");
+                    strLogData[14] = _spacing2.ToString("f3");
                     strLogData[15] = _code2;
                     strLogData[16] = nowTime;
                     csv.AppendToCsv(strHead, strLogData, "PositionData");
@@ -639,12 +587,6 @@ namespace HG_Vision.Manager.Manager_Thread
                         e.imageName = (e.FlowIdx + 1).ToString() + "-2-" + e.eMode.ToString();
                     e.results = finalResult;
                     Project.Instance.VisionManagerInstance.ImageManagerInstance.ImageSave.saveImageQueueList[e.FlowIdx].Enqueue(e);
-                    // 生成40个空格的字符串
-                    if (e.eMode == eProcessMode.produce)
-                    {
-                        byte[] aZero = new byte[40];
-                        Project.Instance.PLCManagerInstance.Write("D101", aZero);
-                    }
                 }
                 //良率统计
                 Action act = () =>
@@ -657,6 +599,103 @@ namespace HG_Vision.Manager.Manager_Thread
             catch (Exception ex)
             {
                 LogHelper.Error($"处理{e.FlowIdx + 1}相机检测出现异常", ex);  //写日志
+            }
+        }
+        private static void SendMessageToDevice(bool isOK, int index, JigAdd offset_in_jig, BasePose currentPose)
+        {
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
+            {
+                string sendToRob, sendToLas;
+                if (!isOK)
+                {
+                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse != 1)
+                        sendToRob = "PGE;0;1;0;0;0;0;\r\n";
+                    else
+                        sendToRob = $"PGE;0;2;0;{offset_in_jig.GetBoAxis(index).X:f3};{offset_in_jig.GetBoAxis(index).X:f3};0;\r\n";
+
+                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
+                        sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
+                    else
+                        sendToLas = CreatSentToLas(false, currentPose, offset_in_jig, 1);
+                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
+                }
+                else
+                {
+                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse != 1)
+                        sendToRob = "PGE;0;1;0;0;0;0;\r\n";
+                    else
+                        sendToRob = $"PGE;0;1;0;{offset_in_jig.GetBoAxis(index).X:f3};{offset_in_jig.GetBoAxis(index):f3};0;\r\n";
+
+                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
+                        sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
+                    else
+                        sendToLas = CreatSentToLas(true, currentPose, offset_in_jig, 1);
+                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0]++;
+                }
+                if (Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{index}").SendText(sendToRob, 0))
+                    LogHelper.Info("发送完成信号成功>>机械手：" + sendToLas);
+                else
+                    LogHelper.Error("发送完成信号失败>>机械手!");
+
+                if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{index}").SendText(sendToLas, 0))
+                    LogHelper.Info("发送完成信号成功>>激光：" + sendToLas);
+                else
+                    LogHelper.Error("发送完成信号失败>>激光!");
+            }
+            else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
+            {
+                byte[] sendToPLC = new byte[8];
+                string sendToLas;
+                if (!isOK)
+                {
+                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
+                        sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
+                    else
+                        sendToLas = CreatSentToLas(false, currentPose, offset_in_jig, 1);
+                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
+                }
+                else
+                {
+
+                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse == 1)
+                    {
+                        byte[] xBytes = BitConverter.GetBytes(offset_in_jig.GetBoAxis(index).X);
+                        Array.Copy(xBytes, sendToPLC, xBytes.Length);
+                        byte[] yBytes = BitConverter.GetBytes(offset_in_jig.GetBoAxis(index).Y);
+                        // 从源数组复制到目标数组的后面
+                        Array.Copy(yBytes, 0, sendToPLC, xBytes.Length, yBytes.Length);
+                    }
+
+                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
+                        sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
+                    else
+                        sendToLas = CreatSentToLas(true, currentPose, offset_in_jig, 1);
+                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0]++;
+                }
+                if (index == 0)
+                {
+                    if (Project.Instance.PLCManagerInstance.Write("D2100", sendToPLC))
+                        LogHelper.Info("发送完成信号成功>>PLC!");
+                    else
+                        LogHelper.Error("发送完成信号失败>>PLC!");
+                }
+                if (index == 1)
+                {
+                    if (Project.Instance.PLCManagerInstance.Write("D2106", sendToPLC))
+                        LogHelper.Info("发送完成信号成功>>PLC!");
+                    else
+                        LogHelper.Error("发送完成信号失败>>PLC!");
+                }
+
+                if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{index}").SendText(sendToLas, 0))
+                    LogHelper.Info("发送完成信号成功>>激光：" + sendToLas);
+                else
+                    LogHelper.Error("发送完成信号失败>>激光!");
+            }
+            else
+            {
+                LogHelper.Error("未知协议类型，无法发送视觉数据！");
+                return;
             }
         }
         private static string CreatSentToLas(bool isOK, BasePose currentPose, JigAdd in_offset, int LaserIdx)

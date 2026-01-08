@@ -1,22 +1,22 @@
 ﻿using BaseSocket;
 using Cognex.VisionPro;
 using Cognex.VisionPro.ImageFile;
+using HG_Vision.Contol.Control_Socket;
 using HG_Vision.Contol.Control_Vision;
 using HG_Vision.Manager.Manager_System;
+using Model.EnumModel;
 using Model.SocketModel;
 using Model.VisionModel;
-using Model.EnumModel;
 using Obj.Obj_File;
+using Obj.Obj_Socket;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
-using HG_Vision.Contol.Control_Socket;
 
 /****************************************************************
 
@@ -122,18 +122,26 @@ namespace HG_Vision
             SetLinearCalibMode(0);
             SetRotationCalibMode(false);
             //当前吸嘴Index
-            for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamModel.NozzleNum; i++)
-            {
-                this.cbb_Ro_Nozzle.Items.Add(i + 1);
-            }
-            this.cbb_Ro_Nozzle.SelectedIndex = 0;
+            //for (int i = 0; i < Project.Instance.GlobalManagerInstance.GlobalParamsModel.NozzleNum; i++)
+            //{
+            //    this.cbb_Ro_Nozzle.Items.Add(i + 1);
+            //}
+            //this.cbb_Ro_Nozzle.SelectedIndex = 0;
 
-            nozzleIndex = Convert.ToInt32(this.cbb_Ro_Nozzle.Text) - 1;
+            //nozzleIndex = Convert.ToInt32(this.cbb_Ro_Nozzle.Text) - 1;
 
             //开启服务器接收事件
             SignalsModel.CCDProcess = 1;
-            Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal1);
-            Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal2);
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
+            {
+                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+            }
+            else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
+            {
+                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+            }
             Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
 
             RefleshLinearDataGridView();
@@ -147,8 +155,16 @@ namespace HG_Vision
             {
                 //关闭服务器接收事件
                 SignalsModel.CCDProcess = 0;
-                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal1);
-                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal2);
+                if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
+                {
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                }
+                else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
+                {
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                }
                 Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
 
                 HandlerButtonDisplay -= TextBoxDisplay;
@@ -175,8 +191,16 @@ namespace HG_Vision
             {
                 //关闭服务器接收事件
                 SignalsModel.CCDProcess = 0;
-                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal1);
-                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal2);
+                if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
+                {
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                }
+                else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
+                {
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                }
                 Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
 
                 HandlerButtonDisplay -= TextBoxDisplay;
@@ -442,11 +466,11 @@ namespace HG_Vision
                 {
                     return;
                 }
-                if (!Project.Instance.HardWareStateManagerInstance.L_ccdState[vppindex])
-                {
-                    MessageBox.Show("CCD未链接!");
-                    return;
-                }
+                //if (!Project.Instance.HardWareStateManagerInstance.L_ccdState[vppindex])
+                //{
+                //    MessageBox.Show("CCD未链接!");
+                //    return;
+                //}
 
                 if (rdo_Li_Robot1.Checked)
                 {
@@ -457,17 +481,6 @@ namespace HG_Vision
                         MessageBox.Show("ROBOT" + 1 + ":未链接!");
                         return;
                     }
-                    #region //通知ROBOT开始一键标定.
-                    try
-                    {
-                        //Project.Instance.RobotServerManagerInstance.L_Robot[0].SendText(RobotSignalsModel.CCDRobotCalStart, 0);
-                        RefleshLinearTextMsgBox("rob1九点标定开启......");
-                    }
-                    catch
-                    {
-                        RefleshLinearTextMsgBox("CCD自动九点标定模式catch......");
-                    }
-                    #endregion
                     if (rdo_Li_Auto.Checked)
                     {
                         if (!Clear_Linear(eLinearCalib_Link.Robot1))
@@ -475,6 +488,23 @@ namespace HG_Vision
                             return;
                         }
                     }
+                    #region //通知ROBOT开始一键标定.
+                    try
+                    {
+                        if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
+                        { }
+                        else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
+                        {
+                            Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText(SignalsModel.CCDRobotCalStart, 0);
+                        }
+                        RefleshLinearTextMsgBox("rob1九点标定开启......");
+                    }
+                    catch
+                    {
+                        RefleshLinearTextMsgBox("CCD自动九点标定模式catch......");
+                    }
+                    #endregion
+
                 }
                 else if (rdo_Li_Robot2.Checked)
                 {
@@ -485,18 +515,6 @@ namespace HG_Vision
                         MessageBox.Show("ROBOT" + 2 + ":未链接!");
                         return;
                     }
-                    #region //通知ROBOT开始一键标定.
-                    try
-                    {
-                        //Project.Instance.RobotServerManagerInstance.L_Robot[1].SendText(RobotSignalsModel.CCDRobotCalStart, 0);
-                        RefleshLinearTextMsgBox("rob2九点标定开启......");
-                    }
-                    catch
-                    {
-                        RefleshLinearTextMsgBox("CCD自动九点标定模式catch......");
-                    }
-                    #endregion
-
                     if (rdo_Li_Auto.Checked)
                     {
                         if (!Clear_Linear(eLinearCalib_Link.Robot2))
@@ -504,7 +522,23 @@ namespace HG_Vision
                             return;
                         }
                     }
+                    #region //通知ROBOT开始一键标定.
+                    try
+                    {
 
+                        if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
+                        { }
+                        else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
+                        {
+                            Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText(SignalsModel.CCDRobotCalStart, 0);
+                        }
+                        RefleshLinearTextMsgBox("rob2九点标定开启......");
+                    }
+                    catch
+                    {
+                        RefleshLinearTextMsgBox("CCD自动九点标定模式catch......");
+                    }
+                    #endregion
                 }
                 else if (rdo_Li_Laser1.Checked)
                 {
@@ -533,7 +567,6 @@ namespace HG_Vision
                     {
                         return;
                     }
-
                 }
 
                 _b_Auto_Linear = true;
@@ -1197,44 +1230,59 @@ namespace HG_Vision
             }
             return true;
         }
-        public string module_X1 = "";
-        public string module_Y1 = "";
+        public string module_OriginX = "";
+        public string module_OriginY = "";
         /// <summary>
         /// 服务器接收事件（机器人1标定）
         /// </summary>
         /// <param name="soc"></param>
-        private void Server_OnRead_Cal1(Socket soc)
+        private void Server_OnRead_Cal_Epson(Socket soc)
         {
             if (SignalsModel.CCDProcess == 1)
             {
-                string receive_string = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").ReceivedText.Trim().Replace("\r\n", "").Replace("\0", "");
-                RefleshLinearTextMsgBox("接收数据：" + receive_string);
-                string[] str = receive_string.Split(';');
-                int nCountNum = str.Length;
+                string receive_string = "";
                 try
                 {
-                    if (nCountNum == 4)
+                    ServerObj currentRobot; //根据触发事件回调方法的soc参数确定当前机器人
+                    int currentIdx;
+                    string[] EndPointstrs = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").LocalEndPoint.ToString().Split(':');
+                    if (soc.RemoteEndPoint.ToString().Contains(EndPointstrs[0]))
                     {
-                        module_X1 = str[2];
-                        module_Y1 = str[3];
+                        currentRobot = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}");
+                        currentIdx = 0;
                     }
+                    else if (soc.RemoteEndPoint.ToString().Contains(EndPointstrs[0]))
+                    {
+                        currentRobot = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}");
+                        currentIdx = 1;
+                    }
+                    else
+                    {
+                        RefleshLinearTextMsgBox($"机械手IP地址索引失败，当前为{soc.RemoteEndPoint}");
+                        return;
+                    }
+                    receive_string = currentRobot.ReceivedText.Trim().Replace("\r\n", "").Replace("\0", "");
+                    RefleshLinearTextMsgBox("接收数据：" + receive_string);
+                    string[] str = receive_string.Split(';');
+
+                    module_OriginX = str[2];
+                    module_OriginY = str[3];
+
                     double Step = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.RobotStep;
                     _inAuto = true;
                     //解析receive_string，假设如果是位置就以首字母！发送并以；来间隔xy，否则则为其他信号,接受字符无结束符
-                    if (nCountNum == 4 && str[0] == "CBS")
+                    if (str[0] == "CBS")
                     {
-                        #region //解析当前ROBOT实时坐标，添加九点标定点对
-                        module_X = module_X1;
-                        module_Y = module_Y1;
+                        module_X = module_OriginX;
+                        module_Y = module_OriginY;
 
                         if (_b_Auto_Linear)
                         {
-                            Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "01" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                            currentRobot.SendText("CBP" + ";" + "01" + ";" + "01" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                             RefleshLinearTextMsgBox("CCD发送1号标定点字符：" + "CBP" + ";" + "01" + ";" + "01" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                         }
-                        #endregion
                     }
-                    else if (str[2] == "01" && str[0] == "CBA")
+                    else if (str[0] == "CBA" && str[2] == "01")
                     {
 
                         if (_b_Auto_Linear)
@@ -1243,18 +1291,18 @@ namespace HG_Vision
                             if (Acq_Linear())
                             {
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot1))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)(eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY)).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送2号标定点字符：" + "CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot1))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY)).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送2号标定点字符：" + "CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
                                 else
@@ -1268,7 +1316,7 @@ namespace HG_Vision
                             }
                         }
                     }
-                    else if (str[2] == "02" && str[0] == "CBA")
+                    else if (str[0] == "CBA" && str[2] == "02")
                     {
 
                         if (_b_Auto_Linear)
@@ -1276,27 +1324,25 @@ namespace HG_Vision
 
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot1))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) + Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送3号标定点字符：" + "CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot1))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) + Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送3号标定点字符：" + "CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
@@ -1304,7 +1350,7 @@ namespace HG_Vision
                             }
                         }
                     }
-                    else if (str[2] == "03" && str[0] == "CBA")
+                    else if (str[0] == "CBA" && str[2] == "03")
                     {
 
                         if (_b_Auto_Linear)
@@ -1312,27 +1358,25 @@ namespace HG_Vision
 
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot1))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1)).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX)).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) + Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送4号标定点字符：" + "CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot1))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1)).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX)).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) + Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送4号标定点字符：" + "CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
@@ -1340,7 +1384,7 @@ namespace HG_Vision
                             }
                         }
                     }
-                    else if (str[2] == "04" && str[0] == "CBA")
+                    else if (str[0] == "CBA" && str[2] == "04")
                     {
 
                         if (_b_Auto_Linear)
@@ -1348,36 +1392,33 @@ namespace HG_Vision
 
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot1))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) + Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送5号标定点字符：" + "CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot1))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) + Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送5号标定点字符：" + "CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
                                 RefleshLinearTextMsgBox("CCD采集图像失败 ......");
                             }
                         }
-
                     }
-                    else if (str[2] == "05" && str[0] == "CBA")
+                    else if (str[0] == "CBA" && str[2] == "05")
                     {
 
                         if (_b_Auto_Linear)
@@ -1385,36 +1426,33 @@ namespace HG_Vision
 
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot1))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY)).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送6号标定点字符：" + "CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot1))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY)).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送6号标定点字符：" + "CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
                                 RefleshLinearTextMsgBox("CCD采集图像失败 ......");
                             }
                         }
-
                     }
-                    else if (str[2] == "06" && str[0] == "CBA")
+                    else if (str[0] == "CBA" && str[2] == "06")
                     {
 
                         if (_b_Auto_Linear)
@@ -1422,36 +1460,33 @@ namespace HG_Vision
 
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot1))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) - Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送7号标定点字符：" + "CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot1))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) + Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) - Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送7号标定点字符：" + "CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
                                 RefleshLinearTextMsgBox("CCD采集图像失败 ......");
                             }
                         }
-
                     }
-                    else if (str[2] == "07" && str[0] == "CBA")
+                    else if (str[0] == "CBA" && str[2] == "07")
                     {
 
                         if (_b_Auto_Linear)
@@ -1459,36 +1494,33 @@ namespace HG_Vision
 
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot1))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1)).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX)).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) - Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送8号标定点字符：" + "CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot1))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1)).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX)).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) - Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送8号标定点字符：" + "CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
                                 RefleshLinearTextMsgBox("CCD采集图像失败 ......");
                             }
                         }
-
                     }
-                    else if (str[2] == "08" && str[0] == "CBA")
+                    else if (str[0] == "CBA" && str[2] == "08")
                     {
 
                         if (_b_Auto_Linear)
@@ -1496,20 +1528,19 @@ namespace HG_Vision
 
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot1))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) - Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送9号标定点字符：" + "CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot1))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
+                                    module_X = (Convert.ToDouble(module_OriginX) - Step).ToString();
+                                    module_Y = (Convert.ToDouble(module_OriginY) - Step).ToString();
+                                    currentRobot.SendText("CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送9号标定点字符：" + "CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
                                 }
                                 else
@@ -1523,7 +1554,6 @@ namespace HG_Vision
                                 RefleshLinearTextMsgBox("CCD采集图像失败 ......");
                             }
                         }
-
                     }
                     else if (str[2] == "09")
                     {
@@ -1533,34 +1563,34 @@ namespace HG_Vision
                             RefleshLinearTextMsgBox("CCD采集图像成功 ......");
                             if (rdo_Li_Auto.Checked)
                             {
-                                if (Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot1))
+                                if (Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
                                     RefleshLinearTextMsgBox("添加点对成功");
                                 }
 
-                                if (linear(eLinearCalib_Link.Robot1))
+                                if (linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    currentRobot.SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
                                 }
                                 else
                                 {
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    currentRobot.SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
                                 }
                             }
                             else if (rdo_Li_Verificate.Checked)
                             {
-                                if (runVerificate(eLinearCalib_Link.Robot1))
+                                if (runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    currentRobot.SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
                                     RefleshLinearTextMsgBox("开始生成验证结果：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
                                     enterExcel();
                                 }
                                 else
                                 {
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
+                                    currentRobot.SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
                                 }
                             }
@@ -1576,7 +1606,6 @@ namespace HG_Vision
                 {
 
                     RefleshLinearTextMsgBox("请核对机器人发送内容是否符合标准" + receive_string);
-
                 }
             }
             else
@@ -1586,71 +1615,71 @@ namespace HG_Vision
             }
 
         }
-        /// <summary>
-        /// 服务器接收事件（机器人2标定）
-        /// </summary>
-        /// <param name="soc"></param>
-        private void Server_OnRead_Cal2(Socket soc)
+        private void Server_OnRead_Cal_Inovance(Socket soc)
         {
             if (SignalsModel.CCDProcess == 1)
             {
-                string receive_string = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").ReceivedText.Trim().Replace("\r\n", "").Replace("\0", "");
-                RefleshLinearTextMsgBox("接收数据：" + receive_string);
-                string[] str = receive_string.Split(';');
-                int nCountNum = str.Length;
+                string receive_string = "";
                 try
                 {
-                    if (nCountNum == 4)
+                    ServerObj currentRobot; //根据触发事件回调方法的soc参数确定当前机器人
+                    int currentIdx;
+                    string[] EndPointstrs = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").LocalEndPoint.ToString().Split(':');
+                    if (soc.RemoteEndPoint.ToString().Contains(EndPointstrs[0]))
                     {
-                        module_X1 = str[2];
-                        module_Y1 = str[3];
+                        currentRobot = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}");
+                        currentIdx = 0;
                     }
+                    else if (soc.RemoteEndPoint.ToString().Contains(EndPointstrs[0]))
+                    {
+                        currentRobot = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}");
+                        currentIdx = 1;
+                    }
+                    else
+                    {
+                        RefleshLinearTextMsgBox($"机械手IP地址索引失败，当前为{soc.RemoteEndPoint.ToString()}");
+                        return;
+                    }
+
+                    receive_string = currentRobot.ReceivedText.Trim();
+                    RefleshLinearTextMsgBox("接收数据：" + receive_string);
+                    string[] str = receive_string.Split(';');
+
                     double Step = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.RobotStep;
-                    _inAuto = true;
-                    //解析receive_string，假设如果是位置就以首字母！发送并以；来间隔xy，否则则为其他信号,接受字符无结束符
-                    if (nCountNum == 4 && str[0] == "CBS")
-                    {
-                        #region //解析当前ROBOT实时坐标，添加九点标定点对
-                        module_X = module_X1;
-                        module_Y = module_Y1;
+                    _inAuto = true; // 正在自动标定
 
+                    if (str[0] == "CBS")
+                    {
                         if (_b_Auto_Linear)
                         {
-                            Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "01" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                            RefleshLinearTextMsgBox("CCD发送1号标定点字符：" + "CBP" + ";" + "01" + ";" + "01" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                            currentRobot.SendText($"CBP;04;01;{0};{0};0;", 0);
+                            RefleshLinearTextMsgBox("CCD发送1号标定点字符：" + $"CBP;04;01;{0};{0};0;");
                         }
-
-                        #endregion
+                        return;
                     }
-                    else if (str[2] == "01" && str[0] == "CBA")
+                    module_X = str[3];
+                    module_Y = str[4];
+                    if (str[0] == "CBA" && str[2] == "01")
                     {
-
                         if (_b_Auto_Linear)
                         {
-
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot2))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送2号标定点字符：" + "CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;02;{-Step};{0};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送2号标定点字符：" + $"CBP;04;02;{-Step};{0};0;");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot2))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送2号标定点字符：" + "CBP" + ";" + "01" + ";" + "02" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;02;{-Step};{0};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送2号标定点字符：" + $"CBP;04;02;{-Step};{0};0;");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
@@ -1658,35 +1687,27 @@ namespace HG_Vision
                             }
                         }
                     }
-                    else if (str[2] == "02" && str[0] == "CBA")
+                    if (str[0] == "CBA" && str[2] == "02")
                     {
-
                         if (_b_Auto_Linear)
                         {
-
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot2))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送3号标定点字符：" + "CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;03;{-Step};{Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送3号标定点字符：" + $"CBP;04;03;{-Step};{Step};0;");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot2))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送3号标定点字符：" + "CBP" + ";" + "01" + ";" + "03" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;03;{-Step};{Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送3号标定点字符：" + $"CBP;04;03;{-Step};{Step};0;");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
@@ -1694,35 +1715,27 @@ namespace HG_Vision
                             }
                         }
                     }
-                    else if (str[2] == "03" && str[0] == "CBA")
+                    if (str[0] == "CBA" && str[2] == "03")
                     {
-
                         if (_b_Auto_Linear)
                         {
-
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot2))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1)).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送4号标定点字符：" + "CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;04;{0};{Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送4号标定点字符：" + $"CBP;04;04;{0};{Step};0;");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot2))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1)).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送4号标定点字符：" + "CBP" + ";" + "01" + ";" + "04" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;04;{0};{Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送4号标定点字符：" + $"CBP;04;04;{0};{Step};0;");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
@@ -1730,226 +1743,177 @@ namespace HG_Vision
                             }
                         }
                     }
-                    else if (str[2] == "04" && str[0] == "CBA")
+                    if (str[0] == "CBA" && str[2] == "04")
                     {
-
                         if (_b_Auto_Linear)
                         {
-
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot2))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送5号标定点字符：" + "CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;05;{Step};{Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送5号标定点字符：" + $"CBP;04;05;{Step};{Step};0;");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot2))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) + Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送5号标定点字符：" + "CBP" + ";" + "01" + ";" + "05" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;05;{Step};{Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送5号标定点字符：" + $"CBP;04;05;{Step};{Step};0;");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
                                 RefleshLinearTextMsgBox("CCD采集图像失败 ......");
                             }
                         }
-
                     }
-                    else if (str[2] == "05" && str[0] == "CBA")
+                    if (str[0] == "CBA" && str[2] == "05")
                     {
-
                         if (_b_Auto_Linear)
                         {
-
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot2))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送6号标定点字符：" + "CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;06;{Step};{0};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送6号标定点字符：" + $"CBP;04;06;{Step};{0};0;");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot2))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1)).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送6号标定点字符：" + "CBP" + ";" + "01" + ";" + "06" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;06;{Step};{0};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送6号标定点字符：" + $"CBP;04;06;{Step};{0};0;");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
                                 RefleshLinearTextMsgBox("CCD采集图像失败 ......");
                             }
                         }
-
                     }
-                    else if (str[2] == "06" && str[0] == "CBA")
+                    if (str[0] == "CBA" && str[2] == "06")
                     {
-
                         if (_b_Auto_Linear)
                         {
-
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot2))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送7号标定点字符：" + "CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;07;{Step};{-Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送7号标定点字符：" + $"CBP;04;07;{Step};{-Step};0;");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot2))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) + Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送7号标定点字符：" + "CBP" + ";" + "01" + ";" + "07" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;07;{Step};{-Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送7号标定点字符：" + $"CBP;04;07;{Step};{-Step};0;");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
                                 RefleshLinearTextMsgBox("CCD采集图像失败 ......");
                             }
                         }
-
                     }
-                    else if (str[2] == "07" && str[0] == "CBA")
+                    if (str[0] == "CBA" && str[2] == "07")
                     {
-
                         if (_b_Auto_Linear)
                         {
-
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot2))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1)).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送8号标定点字符：" + "CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;08;{0};{-Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送8号标定点字符：" + $"CBP;04;08;{0};{-Step};0;");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot2))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1)).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送8号标定点字符：" + "CBP" + ";" + "01" + ";" + "08" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;08;{0};{-Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送8号标定点字符：" + $"CBP;04;08;{0};{-Step};0;");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
                                 RefleshLinearTextMsgBox("CCD采集图像失败 ......");
                             }
                         }
-
                     }
-                    else if (str[2] == "08" && str[0] == "CBA")
+                    if (str[0] == "CBA" && str[2] == "08")
                     {
-
                         if (_b_Auto_Linear)
                         {
-
                             if (Acq_Linear())
                             {
-
                                 RefleshLinearTextMsgBox("CCD采集图像成功 ......");
-                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot2))
+                                if (rdo_Li_Auto.Checked && Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送9号标定点字符：" + "CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;09;{-Step};{-Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送9号标定点字符：" + $"CBP;04;09;{-Step};{-Step};0;");
                                 }
-                                else if (rdo_Li_Verificate.Checked && runVerificate(eLinearCalib_Link.Robot2))
+                                else if (rdo_Li_Verificate.Checked && runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    module_X = (Convert.ToDouble(module_X1) - Step).ToString();
-                                    module_Y = (Convert.ToDouble(module_Y1) - Step).ToString();
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送9号标定点字符：" + "CBP" + ";" + "01" + ";" + "09" + ";" + module_X + ";" + module_Y + ";" + "\r\n");
+                                    currentRobot.SendText($"CBP;04;09;{-Step};{-Step};0;", 0);
+                                    RefleshLinearTextMsgBox("CCD发送9号标定点字符：" + $"CBP;04;09;{-Step};{-Step};0;");
                                 }
                                 else
                                 {
                                     RefleshLinearTextMsgBox("CCD处理结果：添加点对失败 ......");
                                 }
-
                             }
                             else
                             {
                                 RefleshLinearTextMsgBox("CCD采集图像失败 ......");
                             }
                         }
-
                     }
                     else if (str[2] == "09")
                     {
                         if (Acq_Linear())
                         {
+
                             RefleshLinearTextMsgBox("CCD采集图像成功 ......");
                             if (rdo_Li_Auto.Checked)
                             {
-                                if (Rbt_FindCircle() && addMark_Linear(eLinearCalib_Link.Robot2))
+                                if (Rbt_FindCircle() && addMark_Linear((eLinearCalib_Link)currentIdx))
                                 {
                                     RefleshLinearTextMsgBox("添加点对成功");
                                 }
 
-                                if (linear(eLinearCalib_Link.Robot2))
+                                if (linear((eLinearCalib_Link)currentIdx))
                                 {
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
+                                    RefleshLinearTextMsgBox("标定流程结束！");
                                 }
                                 else
                                 {
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
                                 }
                             }
                             else if (rdo_Li_Verificate.Checked)
                             {
-                                if (runVerificate(eLinearCalib_Link.Robot2))
+                                if (runVerificate((eLinearCalib_Link)currentIdx))
                                 {
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
-                                    RefleshLinearTextMsgBox("CCD发送结束标定点字符：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
-                                    RefleshLinearTextMsgBox("开始生成验证结果：" + "CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n");
+                                    RefleshLinearTextMsgBox("验证流程结束！开始生成验证结果：");
                                     enterExcel();
                                 }
                                 else
                                 {
-                                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").SendText("CBE" + ";" + "01" + ";" + "1/2" + ";" + "\r\n", 0);
                                     RefleshLinearTextMsgBox("CCD发送标定结束信号：标定失败 ......");
                                 }
                             }
@@ -1963,7 +1927,6 @@ namespace HG_Vision
                 }
                 catch (Exception)
                 {
-
                     RefleshLinearTextMsgBox("请核对机器人发送内容是否符合标准" + receive_string);
                 }
             }
@@ -2367,7 +2330,7 @@ namespace HG_Vision
             module_Y = "";
         }
         #endregion
-        
+
         private void RefleshLinearDataGridView()
         {
             try

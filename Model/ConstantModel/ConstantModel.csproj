@@ -47,5 +47,11 @@
     <Compile Include="ImageParamsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EnumModel\EnumModel.csproj">
+      <Project>{9719f883-fefc-41de-ad38-9faebd203e85}</Project>
+      <Name>EnumModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

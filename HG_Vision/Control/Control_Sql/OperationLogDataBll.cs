@@ -52,14 +52,14 @@ namespace HG_Vision.Contol.Control_Sql
         /// <param name="logData"></param>
         public void OperationLogProcessFactory(OperationLogDataModel logData)
         {
-            if (Project.Instance.GlobalManagerInstance.GlobalParamModel.saveOperationLogsByDB)
-            {
-                SaveOperationLogByDB(logData);
-            }
-            else
-            {
-                SaveOperationLogByLogger(logData);
-            }
+            //if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.saveOperationLogsByDB)
+            //{
+                //SaveOperationLogByDB(logData);
+            //}
+            //else
+            //{
+                //SaveOperationLogByLogger(logData);
+            //}
         }
 
         /// <summary>
