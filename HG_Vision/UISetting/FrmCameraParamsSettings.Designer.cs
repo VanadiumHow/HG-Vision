@@ -30,6 +30,7 @@ namespace HG_Vision.UIVision
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.uiTabControlAll = new System.Windows.Forms.TabControl();
@@ -567,6 +568,7 @@ namespace HG_Vision.UIVision
             this.btn_clearJ9 = new System.Windows.Forms.Button();
             this.cb_clearJ9 = new System.Windows.Forms.CheckBox();
             this.uiSymbolButtonSave = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -805,6 +807,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdBo1X.TabIndex = 1;
             this.lb_Cam1StdBo1X.Text = "机械手1基准X";
             this.lb_Cam1StdBo1X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdBo1X, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // tb_Cam1StdBo1X
             // 
@@ -831,6 +834,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdBo2X.TabIndex = 23;
             this.lb_Cam1StdBo2X.Text = "机械手2基准X";
             this.lb_Cam1StdBo2X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdBo2X, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // tb_Cam1StdBo2X
             // 
@@ -857,6 +861,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdLa1X.TabIndex = 26;
             this.lb_Cam1StdLa1X.Text = "激光1基准X";
             this.lb_Cam1StdLa1X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdLa1X, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // tb_Cam1StdLa1X
             // 
@@ -883,6 +888,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdLa2X.TabIndex = 33;
             this.lb_Cam1StdLa2X.Text = "激光2基准X";
             this.lb_Cam1StdLa2X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdLa2X, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // tb_Cam1StdLa2X
             // 
@@ -909,6 +915,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdBo1Y.TabIndex = 4;
             this.lb_Cam1StdBo1Y.Text = "机械手1基准Y";
             this.lb_Cam1StdBo1Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdBo1Y, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // tb_Cam1StdBo1Y
             // 
@@ -935,6 +942,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdBo2Y.TabIndex = 23;
             this.lb_Cam1StdBo2Y.Text = "机械手2基准Y";
             this.lb_Cam1StdBo2Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdBo2Y, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // tb_Cam1StdBo2Y
             // 
@@ -961,6 +969,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdLa1Y.TabIndex = 25;
             this.lb_Cam1StdLa1Y.Text = "激光1基准Y";
             this.lb_Cam1StdLa1Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdLa1Y, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // tb_Cam1StdLa1Y
             // 
@@ -987,6 +996,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdLa2Y.TabIndex = 34;
             this.lb_Cam1StdLa2Y.Text = "激光2基准Y";
             this.lb_Cam1StdLa2Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdLa2Y, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // tb_Cam1StdLa2Y
             // 
@@ -1027,6 +1037,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdLa1R.TabIndex = 29;
             this.lb_Cam1StdLa1R.Text = "激光1基准R";
             this.lb_Cam1StdLa1R.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdLa1R, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // lb_Cam1StdLa2R
             // 
@@ -1039,6 +1050,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdLa2R.TabIndex = 32;
             this.lb_Cam1StdLa2R.Text = "激光2基准R";
             this.lb_Cam1StdLa2R.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdLa2R, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // tb_Cam1StdLa1R
             // 
@@ -1079,6 +1091,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdBo2R.TabIndex = 23;
             this.lb_Cam1StdBo2R.Text = "机械手2基准R";
             this.lb_Cam1StdBo2R.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdBo2R, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // tb_Cam1StdBo1R
             // 
@@ -1105,6 +1118,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdBo1R.TabIndex = 7;
             this.lb_Cam1StdBo1R.Text = "机械手1基准R";
             this.lb_Cam1StdBo1R.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdBo1R, "产品标准的位置，需点击获取基准按钮获取上次运行的结果坐标，无法手动输入");
             // 
             // btn_GetStd1
             // 
@@ -1174,6 +1188,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddLa2X.TabIndex = 31;
             this.lb_Cam1AddLa2X.Text = "激光2补偿X";
             this.lb_Cam1AddLa2X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddLa2X, "设定测量后需要加上的固定补偿");
             // 
             // tb_Cam1AddLa1X
             // 
@@ -1199,6 +1214,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddLa1X.TabIndex = 28;
             this.lb_Cam1AddLa1X.Text = "激光1补偿X";
             this.lb_Cam1AddLa1X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddLa1X, "设定测量后需要加上的固定补偿");
             // 
             // tb_Cam1AddBo2X
             // 
@@ -1224,6 +1240,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddBo2X.TabIndex = 1;
             this.lb_Cam1AddBo2X.Text = "机械手2补偿X";
             this.lb_Cam1AddBo2X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddBo2X, "设定测量后需要加上的固定补偿");
             // 
             // tb_Cam1AddBo1X
             // 
@@ -1249,6 +1266,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddBo1X.TabIndex = 1;
             this.lb_Cam1AddBo1X.Text = "机械手1补偿X";
             this.lb_Cam1AddBo1X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddBo1X, "设定测量后需要加上的固定补偿");
             // 
             // lb_Cam1AddBo1Y
             // 
@@ -1261,6 +1279,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddBo1Y.TabIndex = 1;
             this.lb_Cam1AddBo1Y.Text = "机械手1补偿Y";
             this.lb_Cam1AddBo1Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddBo1Y, "设定测量后需要加上的固定补偿");
             // 
             // tb_Cam1AddBo1Y
             // 
@@ -1286,6 +1305,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddBo2Y.TabIndex = 1;
             this.lb_Cam1AddBo2Y.Text = "机械手2补偿Y";
             this.lb_Cam1AddBo2Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddBo2Y, "设定测量后需要加上的固定补偿");
             // 
             // tb_Cam1AddBo2Y
             // 
@@ -1311,6 +1331,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddLa1Y.TabIndex = 27;
             this.lb_Cam1AddLa1Y.Text = "激光1补偿Y";
             this.lb_Cam1AddLa1Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddLa1Y, "设定测量后需要加上的固定补偿");
             // 
             // tb_Cam1AddLa1Y
             // 
@@ -1336,6 +1357,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddLa2Y.TabIndex = 35;
             this.lb_Cam1AddLa2Y.Text = "激光2补偿Y";
             this.lb_Cam1AddLa2Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddLa2Y, "设定测量后需要加上的固定补偿");
             // 
             // tb_Cam1AddLa2Y
             // 
@@ -1361,6 +1383,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddLa2R.TabIndex = 36;
             this.lb_Cam1AddLa2R.Text = "激光2补偿R";
             this.lb_Cam1AddLa2R.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddLa2R, "设定测量后需要加上的固定补偿");
             // 
             // tb_Cam1AddLa2R
             // 
@@ -1399,6 +1422,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddLa1R.TabIndex = 30;
             this.lb_Cam1AddLa1R.Text = "激光1补偿R";
             this.lb_Cam1AddLa1R.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddLa1R, "设定测量后需要加上的固定补偿");
             // 
             // tb_Cam1AddBo2R
             // 
@@ -1424,6 +1448,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddBo2R.TabIndex = 1;
             this.lb_Cam1AddBo2R.Text = "机械手2补偿R";
             this.lb_Cam1AddBo2R.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddBo2R, "设定测量后需要加上的固定补偿");
             // 
             // tb_Cam1AddBo1R
             // 
@@ -1449,6 +1474,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AddBo1R.TabIndex = 1;
             this.lb_Cam1AddBo1R.Text = "机械手1补偿R";
             this.lb_Cam1AddBo1R.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AddBo1R, "设定测量后需要加上的固定补偿");
             // 
             // lb_Cam1Exprosure
             // 
@@ -1461,6 +1487,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1Exprosure.TabIndex = 21;
             this.lb_Cam1Exprosure.Text = "曝光值(ms)";
             this.lb_Cam1Exprosure.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1Exprosure, "设定相机曝光时间，时间越长画面越亮");
             // 
             // tb_Cam1Exprosure
             // 
@@ -1485,6 +1512,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1P2byP1X.TabIndex = 169;
             this.lb_Cam1P2byP1X.Text = "固定点2随点1自动修改差值X";
             this.lb_Cam1P2byP1X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1P2byP1X, "用于夹具补偿页面输入点1X时点2X增加的值");
             // 
             // tb_Cam1P2byP1X
             // 
@@ -1523,6 +1551,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1P2byP1Y.TabIndex = 171;
             this.lb_Cam1P2byP1Y.Text = "固定点2随点1自动修改差值Y";
             this.lb_Cam1P2byP1Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1P2byP1Y, "用于夹具补偿页面输入点1Y时点2Y增加的值");
             // 
             // tb_Cam1P4byP3X
             // 
@@ -1548,6 +1577,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1P4byP3X.TabIndex = 173;
             this.lb_Cam1P4byP3X.Text = "固定点4随点3自动修改差值X";
             this.lb_Cam1P4byP3X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1P4byP3X, "用于夹具补偿页面输入点3X时点4X增加的值");
             // 
             // tb_Cam1P4byP3Y
             // 
@@ -1573,6 +1603,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1P4byP3Y.TabIndex = 175;
             this.lb_Cam1P4byP3Y.Text = "固定点4随点3自动修改差值Y";
             this.lb_Cam1P4byP3Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1P4byP3Y, "用于夹具补偿页面输入点3Y时点4Y增加的值");
             // 
             // lb_Cam1AngleMax
             // 
@@ -1585,6 +1616,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AngleMax.TabIndex = 138;
             this.lb_Cam1AngleMax.Text = "钢片与壳角度Max";
             this.lb_Cam1AngleMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AngleMax, "钢片角度-钢壳角度允许的最大值");
             // 
             // tb_Cam1AngleMax
             // 
@@ -1610,6 +1642,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1CenterLa1X.TabIndex = 52;
             this.lb_Cam1CenterLa1X.Text = "L1标定中心位X";
             this.lb_Cam1CenterLa1X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1CenterLa1X, "设定振镜偏转位置，标定后不允许修改");
             // 
             // tb_Cam1CenterLa1X
             // 
@@ -1634,6 +1667,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1CenterLa1Y.TabIndex = 53;
             this.lb_Cam1CenterLa1Y.Text = "L1标定中心位Y";
             this.lb_Cam1CenterLa1Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1CenterLa1Y, "设定振镜偏转位置，标定后不允许修改");
             // 
             // tb_Cam1CenterLa1Y
             // 
@@ -1658,6 +1692,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AngleMin.TabIndex = 137;
             this.lb_Cam1AngleMin.Text = "钢片与壳角度Min";
             this.lb_Cam1AngleMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1AngleMin, "钢片角度-钢壳角度允许的最小值");
             // 
             // tb_Cam1AngleMin
             // 
@@ -1683,6 +1718,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1LimitMax.TabIndex = 142;
             this.lb_Cam1LimitMax.Text = "偏移范围Max";
             this.lb_Cam1LimitMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1LimitMax, "允许输出给机械手、激光X、Y的最大值");
             // 
             // tb_Cam1LimitMax
             // 
@@ -1708,6 +1744,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1CenterLa2X.TabIndex = 65;
             this.lb_Cam1CenterLa2X.Text = "L2标定中心位X";
             this.lb_Cam1CenterLa2X.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1CenterLa2X, "设定振镜偏转位置，标定后不允许修改");
             // 
             // tb_Cam1CenterLa2X
             // 
@@ -1732,6 +1769,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1CenterLa2Y.TabIndex = 66;
             this.lb_Cam1CenterLa2Y.Text = "L2标定中心位Y";
             this.lb_Cam1CenterLa2Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1CenterLa2Y, "设定振镜偏转位置，标定后不允许修改");
             // 
             // tb_Cam1CenterLa2Y
             // 
@@ -1769,6 +1807,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1LimitMin.TabIndex = 141;
             this.lb_Cam1LimitMin.Text = "偏移范围Min";
             this.lb_Cam1LimitMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1LimitMin, "允许输出给机械手、激光X、Y的最小值");
             // 
             // lb_Cam1Spacing
             // 
@@ -1781,6 +1820,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1Spacing.TabIndex = 162;
             this.lb_Cam1Spacing.Text = "极耳间距设定标准值";
             this.lb_Cam1Spacing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1Spacing, "用于消除因极耳间距带来的误差");
             // 
             // lb_Cam1SpacingUse
             // 
@@ -1793,6 +1833,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1SpacingUse.TabIndex = 161;
             this.lb_Cam1SpacingUse.Text = "屏蔽间距补偿（1启用0屏蔽）";
             this.lb_Cam1SpacingUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1SpacingUse, "输入 1 = 启用间距补偿功能；输入 0 = 屏蔽间距补偿功能；");
             // 
             // tb_Cam1SpacingUse
             // 
@@ -1817,6 +1858,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1RobotStep.TabIndex = 160;
             this.lb_Cam1RobotStep.Text = "机械手标定偏移";
             this.lb_Cam1RobotStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1RobotStep, "机械手九点标定每个相邻点之间的间距");
             // 
             // lb_Cam1RobotUse
             // 
@@ -1829,6 +1871,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1RobotUse.TabIndex = 163;
             this.lb_Cam1RobotUse.Text = "屏蔽机械手补偿（1启用0屏蔽）";
             this.lb_Cam1RobotUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1RobotUse, "输入 1 = 启用机械手补偿功能；输入 0 = 屏蔽机械手补偿功能；");
             // 
             // tb_Cam1RobotUse
             // 
@@ -1865,6 +1908,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1LaserUse.TabIndex = 164;
             this.lb_Cam1LaserUse.Text = "屏蔽激光补偿（1启用0屏蔽）";
             this.lb_Cam1LaserUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1LaserUse, "输入 1 = 启用激光补偿功能；输入 0 = 屏蔽激光补偿功能；");
             // 
             // lb_Cam1LaserStep
             // 
@@ -1877,6 +1921,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1LaserStep.TabIndex = 157;
             this.lb_Cam1LaserStep.Text = "激光标定偏移";
             this.lb_Cam1LaserStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1LaserStep, "激光九点标定每个相邻点之间的间距");
             // 
             // tb_Cam1LaserStep
             // 
@@ -8516,5 +8561,6 @@ namespace HG_Vision.UIVision
         private Label lb_Cam1P4byP3X;
         private TextBox tb_Cam1P4byP3Y;
         private Label lb_Cam1P4byP3Y;
+        private ToolTip toolTip1;
     }
 }
