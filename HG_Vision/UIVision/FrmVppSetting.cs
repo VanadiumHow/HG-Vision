@@ -9,6 +9,7 @@ using Model.SocketModel;
 using Model.VisionModel;
 using Obj.Obj_File;
 using Obj.Obj_Socket;
+using Obj.Obj_Message;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -83,6 +84,14 @@ namespace HG_Vision
         private CancellationTokenSource cts2;                                      //设置取消操作
 
         private event EventHandler HandlerButtonDisplay;
+
+        // 标记是否正在拖动窗体
+        private bool _isDragging = false;
+        // 鼠标按下时，鼠标相对于屏幕的起始位置
+        private Point _mouseStartPos;
+        // 鼠标按下时，窗体相对于屏幕的起始位置
+        private Point _formStartPos;
+
         #endregion
 
         #region 窗体
@@ -92,6 +101,15 @@ namespace HG_Vision
             cur_WorkFlow = wf;
             this.Text = "CCD" + vpp_name + "工具设置";
             vppindex = Convert.ToInt32(vpp_name) - 1;
+
+            // 为标题栏Panel绑定鼠标事件
+            plTitle.MouseDown += PanelTitleBar_MouseDown;
+            plTitle.MouseMove += PanelTitleBar_MouseMove;
+            plTitle.MouseUp += PanelTitleBar_MouseUp;
+
+            // 可选：设置鼠标移到标题栏时显示拖动光标，提升用户体验
+            plTitle.Cursor = Cursors.SizeAll;
+
         }
         private void FrmVppSetting_Load(object sender, EventArgs e)
         {
@@ -3127,6 +3145,11 @@ namespace HG_Vision
             {
             }
         }
+        #endregion
+        private void ButtonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
         private void tab_C_VisionTool_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -3185,6 +3208,50 @@ namespace HG_Vision
             {
             }
         }
-        #endregion
+        /// <summary>
+        /// 鼠标在标题栏按下时触发（记录起始位置，标记开始拖动）
+        /// </summary>
+        private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            // 仅响应鼠标左键按下（排除右键、中键）
+            if (e.Button == MouseButtons.Left)
+            {
+                _isDragging = true;
+                // 记录鼠标按下时的屏幕坐标
+                _mouseStartPos = Cursor.Position;
+                // 记录窗体当前的屏幕坐标
+                _formStartPos = this.Location;
+            }
+        }
+
+        /// <summary>
+        /// 鼠标移动时触发（计算偏移量，更新窗体位置）
+        /// </summary>
+        private void PanelTitleBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            // 仅当处于拖动状态时，才执行移动逻辑
+            if (_isDragging)
+            {
+                // 计算鼠标移动的偏移量（当前鼠标位置 - 起始鼠标位置）
+                Point mouseCurrentPos = Cursor.Position;
+                int offsetX = mouseCurrentPos.X - _mouseStartPos.X;
+                int offsetY = mouseCurrentPos.Y - _mouseStartPos.Y;
+
+                // 更新窗体位置（起始窗体位置 + 偏移量）
+                this.Location = new Point(
+                    _formStartPos.X + offsetX,
+                    _formStartPos.Y + offsetY
+                );
+            }
+        }
+
+        /// <summary>
+        /// 鼠标松开时触发（结束拖动状态）
+        /// </summary>
+        private void PanelTitleBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            // 无论哪个按键松开，都结束拖动状态
+            _isDragging = false;
+        }
     }
 }

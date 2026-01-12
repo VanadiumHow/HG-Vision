@@ -194,7 +194,7 @@ namespace HG_Vision.UIHome
             this.ButtonClose.FlatAppearance.BorderSize = 0;
             this.ButtonClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(67)))), ((int)(((byte)(76)))));
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonClose.Location = new System.Drawing.Point(1881, 4);
+            this.ButtonClose.Location = new System.Drawing.Point(1880, 4);
             this.ButtonClose.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(38, 29);

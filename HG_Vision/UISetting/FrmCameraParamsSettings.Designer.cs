@@ -566,7 +566,7 @@ namespace HG_Vision.UIVision
             this.label145 = new System.Windows.Forms.Label();
             this.btn_clearJ9 = new System.Windows.Forms.Button();
             this.cb_clearJ9 = new System.Windows.Forms.CheckBox();
-            this.uiSymbolButtonSave = new System.Windows.Forms.Button();
+            this.btSave = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -620,7 +620,7 @@ namespace HG_Vision.UIVision
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.uiSymbolButtonSave);
+            this.splitContainer1.Panel2.Controls.Add(this.btSave);
             this.splitContainer1.Size = new System.Drawing.Size(1308, 650);
             this.splitContainer1.SplitterDistance = 600;
             this.splitContainer1.TabIndex = 11;
@@ -7912,17 +7912,17 @@ namespace HG_Vision.UIVision
             this.cb_clearJ9.TabIndex = 55;
             this.cb_clearJ9.UseVisualStyleBackColor = true;
             // 
-            // uiSymbolButtonSave
+            // btSave
             // 
-            this.uiSymbolButtonSave.BackColor = System.Drawing.Color.Transparent;
-            this.uiSymbolButtonSave.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiSymbolButtonSave.Location = new System.Drawing.Point(1135, -1);
-            this.uiSymbolButtonSave.Name = "uiSymbolButtonSave";
-            this.uiSymbolButtonSave.Size = new System.Drawing.Size(168, 43);
-            this.uiSymbolButtonSave.TabIndex = 10;
-            this.uiSymbolButtonSave.Text = "应用参数";
-            this.uiSymbolButtonSave.UseVisualStyleBackColor = false;
-            this.uiSymbolButtonSave.Click += new System.EventHandler(this.UiSymbolButtonSave_Click);
+            this.btSave.BackColor = System.Drawing.Color.Transparent;
+            this.btSave.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btSave.Location = new System.Drawing.Point(1135, -1);
+            this.btSave.Name = "btSave";
+            this.btSave.Size = new System.Drawing.Size(168, 43);
+            this.btSave.TabIndex = 10;
+            this.btSave.Text = "应用参数";
+            this.btSave.UseVisualStyleBackColor = false;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
             // FrmCameraParamsSettings
             // 
@@ -7980,7 +7980,7 @@ namespace HG_Vision.UIVision
         #endregion
 
         private Panel panel1;
-        private Button uiSymbolButtonSave;
+        private Button btSave;
         private SplitContainer splitContainer1;
         private TabControl uiTabControlAll;
         private TabPage uiTabPage1;

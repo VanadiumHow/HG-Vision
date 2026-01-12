@@ -747,7 +747,7 @@ namespace HG_Vision.UIVision
             newValue = oldValue;
             return false;
         }
-        private void UiSymbolButtonSave_Click(object sender, EventArgs e)
+        private void btSave_Click(object sender, EventArgs e)
         {
             if (_textBoxes.Count == 0)
                 System.Windows.MessageBox.Show("相机设置参数暂无修改");

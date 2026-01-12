@@ -35,16 +35,16 @@ namespace HG_Vision.UISetting
             this.PanelAll = new System.Windows.Forms.Panel();
             this.TableLayoutPanelAll = new Sunny.UI.UITableLayoutPanel();
             this.PanelTitle = new System.Windows.Forms.Panel();
+            this.ButtonMin = new System.Windows.Forms.Button();
+            this.ButtonClose = new System.Windows.Forms.Button();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.PanelMain = new System.Windows.Forms.Panel();
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.ButtonGeneralSet = new System.Windows.Forms.Button();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.ButtonMin = new System.Windows.Forms.Button();
-            this.ButtonClose = new System.Windows.Forms.Button();
             this.ButtonProductChangeSet = new System.Windows.Forms.Button();
             this.ButtonCameraParamsSetting = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.PanelAll.SuspendLayout();
             this.TableLayoutPanelAll.SuspendLayout();
             this.PanelTitle.SuspendLayout();
@@ -95,7 +95,7 @@ namespace HG_Vision.UISetting
             // 
             // PanelTitle
             // 
-            this.PanelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(19)))), ((int)(((byte)(44)))));
+            this.PanelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(22)))), ((int)(((byte)(60)))));
             this.PanelTitle.Controls.Add(this.ButtonMin);
             this.PanelTitle.Controls.Add(this.ButtonClose);
             this.PanelTitle.Controls.Add(this.LabelTitle);
@@ -106,17 +106,51 @@ namespace HG_Vision.UISetting
             this.PanelTitle.Size = new System.Drawing.Size(1468, 36);
             this.PanelTitle.TabIndex = 0;
             // 
+            // ButtonMin
+            // 
+            this.ButtonMin.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonMin.BackgroundImage = global::HG_Vision.Properties.Resources.缩小;
+            this.ButtonMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonMin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonMin.FlatAppearance.BorderSize = 0;
+            this.ButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonMin.ForeColor = System.Drawing.Color.White;
+            this.ButtonMin.Location = new System.Drawing.Point(1389, 3);
+            this.ButtonMin.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonMin.Name = "ButtonMin";
+            this.ButtonMin.Size = new System.Drawing.Size(38, 29);
+            this.ButtonMin.TabIndex = 14;
+            this.ButtonMin.UseVisualStyleBackColor = false;
+            this.ButtonMin.Click += new System.EventHandler(this.ButtonMin_Click);
+            // 
+            // ButtonClose
+            // 
+            this.ButtonClose.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonClose.BackgroundImage = global::HG_Vision.Properties.Resources.退出;
+            this.ButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonClose.FlatAppearance.BorderSize = 0;
+            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonClose.Location = new System.Drawing.Point(1430, 3);
+            this.ButtonClose.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonClose.Name = "ButtonClose";
+            this.ButtonClose.Size = new System.Drawing.Size(38, 29);
+            this.ButtonClose.TabIndex = 13;
+            this.ButtonClose.UseVisualStyleBackColor = false;
+            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            // 
             // LabelTitle
             // 
             this.LabelTitle.BackColor = System.Drawing.Color.Transparent;
             this.LabelTitle.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Bold);
             this.LabelTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelTitle.Location = new System.Drawing.Point(-3, 1);
+            this.LabelTitle.Location = new System.Drawing.Point(3, 3);
             this.LabelTitle.Margin = new System.Windows.Forms.Padding(0);
             this.LabelTitle.Name = "LabelTitle";
-            this.LabelTitle.Size = new System.Drawing.Size(100, 33);
+            this.LabelTitle.Size = new System.Drawing.Size(95, 33);
             this.LabelTitle.TabIndex = 0;
-            this.LabelTitle.Text = " 系统设置";
+            this.LabelTitle.Text = "系统设置";
             this.LabelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
@@ -175,47 +209,6 @@ namespace HG_Vision.UISetting
             this.ButtonGeneralSet.UseVisualStyleBackColor = false;
             this.ButtonGeneralSet.Click += new System.EventHandler(this.ButtonGeneralSet_Click);
             // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
-            // 
-            // ButtonMin
-            // 
-            this.ButtonMin.BackColor = System.Drawing.Color.Transparent;
-            this.ButtonMin.BackgroundImage = global::HG_Vision.Properties.Resources.缩小;
-            this.ButtonMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ButtonMin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonMin.FlatAppearance.BorderSize = 0;
-            this.ButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMin.ForeColor = System.Drawing.Color.White;
-            this.ButtonMin.Location = new System.Drawing.Point(1389, 3);
-            this.ButtonMin.Margin = new System.Windows.Forms.Padding(0);
-            this.ButtonMin.Name = "ButtonMin";
-            this.ButtonMin.Size = new System.Drawing.Size(38, 29);
-            this.ButtonMin.TabIndex = 14;
-            this.ButtonMin.UseVisualStyleBackColor = false;
-            this.ButtonMin.Click += new System.EventHandler(this.ButtonMin_Click);
-            // 
-            // ButtonClose
-            // 
-            this.ButtonClose.BackColor = System.Drawing.Color.Transparent;
-            this.ButtonClose.BackgroundImage = global::HG_Vision.Properties.Resources.退出;
-            this.ButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ButtonClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonClose.FlatAppearance.BorderSize = 0;
-            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonClose.Location = new System.Drawing.Point(1430, 3);
-            this.ButtonClose.Margin = new System.Windows.Forms.Padding(0);
-            this.ButtonClose.Name = "ButtonClose";
-            this.ButtonClose.Size = new System.Drawing.Size(38, 29);
-            this.ButtonClose.TabIndex = 13;
-            this.ButtonClose.UseVisualStyleBackColor = false;
-            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
-            // 
             // ButtonProductChangeSet
             // 
             this.ButtonProductChangeSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -257,6 +250,13 @@ namespace HG_Vision.UISetting
             this.ButtonCameraParamsSetting.Text = "相机参数";
             this.ButtonCameraParamsSetting.UseVisualStyleBackColor = false;
             this.ButtonCameraParamsSetting.Click += new System.EventHandler(this.ButtonCameraParamsSetting_Click);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
             // FrmSetting
             // 

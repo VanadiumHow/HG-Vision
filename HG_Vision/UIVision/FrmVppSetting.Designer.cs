@@ -32,16 +32,16 @@ namespace HG_Vision
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVppSetting));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tab_C_VisionTool = new System.Windows.Forms.TabControl();
             this.tab_EditVision = new System.Windows.Forms.TabPage();
             this.cogToolBlockEditV21 = new Cognex.VisionPro.ToolBlock.CogToolBlockEditV2();
@@ -143,6 +143,11 @@ namespace HG_Vision
             this.tb_Ro_Y = new System.Windows.Forms.TextBox();
             this.tb_Ro_X = new System.Windows.Forms.TextBox();
             this.tb_msg_Rotation = new System.Windows.Forms.TextBox();
+            this.TableLayoutPanelAll = new Sunny.UI.UITableLayoutPanel();
+            this.plTitle = new System.Windows.Forms.Panel();
+            this.ButtonClose = new System.Windows.Forms.Button();
+            this.LabelTitle = new System.Windows.Forms.Label();
+            this.plBottom = new System.Windows.Forms.Panel();
             this.tab_C_VisionTool.SuspendLayout();
             this.tab_EditVision.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cogToolBlockEditV21)).BeginInit();
@@ -237,6 +242,9 @@ namespace HG_Vision
             this.splitContainer_Ro_4.Panel2.SuspendLayout();
             this.splitContainer_Ro_4.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.TableLayoutPanelAll.SuspendLayout();
+            this.plTitle.SuspendLayout();
+            this.plBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab_C_VisionTool
@@ -245,12 +253,11 @@ namespace HG_Vision
             this.tab_C_VisionTool.Controls.Add(this.tab_EditVision);
             this.tab_C_VisionTool.Controls.Add(this.tab_VisionDistortion);
             this.tab_C_VisionTool.Controls.Add(this.tab_VisionLinear);
-            //this.tab_C_VisionTool.Controls.Add(this.tab_VisionRotation);
             this.tab_C_VisionTool.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tab_C_VisionTool.Location = new System.Drawing.Point(0, 0);
             this.tab_C_VisionTool.Name = "tab_C_VisionTool";
             this.tab_C_VisionTool.SelectedIndex = 0;
-            this.tab_C_VisionTool.Size = new System.Drawing.Size(1284, 761);
+            this.tab_C_VisionTool.Size = new System.Drawing.Size(1278, 774);
             this.tab_C_VisionTool.TabIndex = 6;
             this.tab_C_VisionTool.SelectedIndexChanged += new System.EventHandler(this.tab_C_VisionTool_SelectedIndexChanged);
             // 
@@ -261,7 +268,7 @@ namespace HG_Vision
             this.tab_EditVision.Controls.Add(this.cogToolBlockEditV21);
             this.tab_EditVision.Location = new System.Drawing.Point(4, 30);
             this.tab_EditVision.Name = "tab_EditVision";
-            this.tab_EditVision.Size = new System.Drawing.Size(1276, 727);
+            this.tab_EditVision.Size = new System.Drawing.Size(1270, 740);
             this.tab_EditVision.TabIndex = 0;
             this.tab_EditVision.Text = "VP工具编辑";
             // 
@@ -276,7 +283,7 @@ namespace HG_Vision
             this.cogToolBlockEditV21.MinimumSize = new System.Drawing.Size(489, 0);
             this.cogToolBlockEditV21.Name = "cogToolBlockEditV21";
             this.cogToolBlockEditV21.ShowNodeToolTips = true;
-            this.cogToolBlockEditV21.Size = new System.Drawing.Size(1276, 727);
+            this.cogToolBlockEditV21.Size = new System.Drawing.Size(1270, 740);
             this.cogToolBlockEditV21.SuspendElectricRuns = false;
             this.cogToolBlockEditV21.TabIndex = 1;
             // 
@@ -285,7 +292,7 @@ namespace HG_Vision
             this.tab_VisionDistortion.Controls.Add(this.splitContainer7);
             this.tab_VisionDistortion.Location = new System.Drawing.Point(4, 30);
             this.tab_VisionDistortion.Name = "tab_VisionDistortion";
-            this.tab_VisionDistortion.Size = new System.Drawing.Size(1276, 727);
+            this.tab_VisionDistortion.Size = new System.Drawing.Size(1270, 740);
             this.tab_VisionDistortion.TabIndex = 2;
             this.tab_VisionDistortion.Text = "畸变矫正";
             this.tab_VisionDistortion.UseVisualStyleBackColor = true;
@@ -303,8 +310,8 @@ namespace HG_Vision
             // splitContainer7.Panel2
             // 
             this.splitContainer7.Panel2.Controls.Add(this.splitContainer18);
-            this.splitContainer7.Size = new System.Drawing.Size(1276, 727);
-            this.splitContainer7.SplitterDistance = 804;
+            this.splitContainer7.Size = new System.Drawing.Size(1270, 740);
+            this.splitContainer7.SplitterDistance = 800;
             this.splitContainer7.TabIndex = 0;
             // 
             // cogRecordDisplayDistortion
@@ -322,7 +329,7 @@ namespace HG_Vision
             this.cogRecordDisplayDistortion.MouseWheelSensitivity = 1D;
             this.cogRecordDisplayDistortion.Name = "cogRecordDisplayDistortion";
             this.cogRecordDisplayDistortion.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("cogRecordDisplayDistortion.OcxState")));
-            this.cogRecordDisplayDistortion.Size = new System.Drawing.Size(804, 727);
+            this.cogRecordDisplayDistortion.Size = new System.Drawing.Size(800, 740);
             this.cogRecordDisplayDistortion.TabIndex = 1;
             // 
             // splitContainer18
@@ -335,8 +342,8 @@ namespace HG_Vision
             // splitContainer18.Panel1
             // 
             this.splitContainer18.Panel1.Controls.Add(this.groupBoxOperation);
-            this.splitContainer18.Size = new System.Drawing.Size(468, 727);
-            this.splitContainer18.SplitterDistance = 111;
+            this.splitContainer18.Size = new System.Drawing.Size(466, 740);
+            this.splitContainer18.SplitterDistance = 112;
             this.splitContainer18.TabIndex = 71;
             // 
             // groupBoxOperation
@@ -345,7 +352,7 @@ namespace HG_Vision
             this.groupBoxOperation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxOperation.Location = new System.Drawing.Point(0, 0);
             this.groupBoxOperation.Name = "groupBoxOperation";
-            this.groupBoxOperation.Size = new System.Drawing.Size(468, 111);
+            this.groupBoxOperation.Size = new System.Drawing.Size(466, 112);
             this.groupBoxOperation.TabIndex = 0;
             this.groupBoxOperation.TabStop = false;
             this.groupBoxOperation.Text = "操作";
@@ -367,7 +374,7 @@ namespace HG_Vision
             this.uiPanelOperation.RowCount = 2;
             this.uiPanelOperation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiPanelOperation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiPanelOperation.Size = new System.Drawing.Size(462, 83);
+            this.uiPanelOperation.Size = new System.Drawing.Size(460, 84);
             this.uiPanelOperation.TabIndex = 71;
             this.uiPanelOperation.TagString = null;
             // 
@@ -379,7 +386,7 @@ namespace HG_Vision
             this.btn_Di_Start.Location = new System.Drawing.Point(309, 3);
             this.btn_Di_Start.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_Di_Start.Name = "btn_Di_Start";
-            this.btn_Di_Start.Size = new System.Drawing.Size(150, 35);
+            this.btn_Di_Start.Size = new System.Drawing.Size(148, 36);
             this.btn_Di_Start.TabIndex = 69;
             this.btn_Di_Start.Text = "畸变校正";
             this.btn_Di_Start.Click += new System.EventHandler(this.btn_Di_Start_Click);
@@ -392,7 +399,7 @@ namespace HG_Vision
             this.btn_Di_Acq.Location = new System.Drawing.Point(3, 3);
             this.btn_Di_Acq.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_Di_Acq.Name = "btn_Di_Acq";
-            this.btn_Di_Acq.Size = new System.Drawing.Size(147, 35);
+            this.btn_Di_Acq.Size = new System.Drawing.Size(147, 36);
             this.btn_Di_Acq.TabIndex = 67;
             this.btn_Di_Acq.Text = "单帧取图";
             this.btn_Di_Acq.Click += new System.EventHandler(this.btn_Di_Acq_Click);
@@ -406,7 +413,7 @@ namespace HG_Vision
             this.btn_Di_FileImage.Location = new System.Drawing.Point(156, 3);
             this.btn_Di_FileImage.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_Di_FileImage.Name = "btn_Di_FileImage";
-            this.btn_Di_FileImage.Size = new System.Drawing.Size(147, 35);
+            this.btn_Di_FileImage.Size = new System.Drawing.Size(147, 36);
             this.btn_Di_FileImage.TabIndex = 68;
             this.btn_Di_FileImage.Text = "文件取图";
             this.btn_Di_FileImage.Click += new System.EventHandler(this.btn_Di_FileImage_Click);
@@ -415,7 +422,7 @@ namespace HG_Vision
             // 
             this.lb_Di_Enable.AutoSize = true;
             this.lb_Di_Enable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Di_Enable.Location = new System.Drawing.Point(3, 41);
+            this.lb_Di_Enable.Location = new System.Drawing.Point(3, 42);
             this.lb_Di_Enable.Name = "lb_Di_Enable";
             this.lb_Di_Enable.Size = new System.Drawing.Size(147, 42);
             this.lb_Di_Enable.TabIndex = 70;
@@ -429,7 +436,7 @@ namespace HG_Vision
             this.cbb_Di_Enable.Items.AddRange(new object[] {
             "启用",
             "禁用"});
-            this.cbb_Di_Enable.Location = new System.Drawing.Point(156, 48);
+            this.cbb_Di_Enable.Location = new System.Drawing.Point(156, 49);
             this.cbb_Di_Enable.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
             this.cbb_Di_Enable.MaxDropDownItems = 2;
             this.cbb_Di_Enable.Name = "cbb_Di_Enable";
@@ -441,7 +448,7 @@ namespace HG_Vision
             this.tab_VisionLinear.Controls.Add(this.splitContainer_Li_1);
             this.tab_VisionLinear.Location = new System.Drawing.Point(4, 30);
             this.tab_VisionLinear.Name = "tab_VisionLinear";
-            this.tab_VisionLinear.Size = new System.Drawing.Size(1276, 727);
+            this.tab_VisionLinear.Size = new System.Drawing.Size(1270, 740);
             this.tab_VisionLinear.TabIndex = 1;
             this.tab_VisionLinear.Text = "九点标定";
             this.tab_VisionLinear.UseVisualStyleBackColor = true;
@@ -460,8 +467,8 @@ namespace HG_Vision
             // splitContainer_Li_1.Panel2
             // 
             this.splitContainer_Li_1.Panel2.Controls.Add(this.splitContainer_Li_2);
-            this.splitContainer_Li_1.Size = new System.Drawing.Size(1276, 727);
-            this.splitContainer_Li_1.SplitterDistance = 771;
+            this.splitContainer_Li_1.Size = new System.Drawing.Size(1270, 740);
+            this.splitContainer_Li_1.SplitterDistance = 765;
             this.splitContainer_Li_1.TabIndex = 23;
             // 
             // cogRecordDisplayLinear
@@ -479,7 +486,7 @@ namespace HG_Vision
             this.cogRecordDisplayLinear.MouseWheelSensitivity = 1D;
             this.cogRecordDisplayLinear.Name = "cogRecordDisplayLinear";
             this.cogRecordDisplayLinear.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("cogRecordDisplayLinear.OcxState")));
-            this.cogRecordDisplayLinear.Size = new System.Drawing.Size(771, 727);
+            this.cogRecordDisplayLinear.Size = new System.Drawing.Size(765, 740);
             this.cogRecordDisplayLinear.TabIndex = 0;
             // 
             // splitContainer_Li_2
@@ -495,7 +502,7 @@ namespace HG_Vision
             // splitContainer_Li_2.Panel2
             // 
             this.splitContainer_Li_2.Panel2.Controls.Add(this.splitContainer_Li_3);
-            this.splitContainer_Li_2.Size = new System.Drawing.Size(501, 727);
+            this.splitContainer_Li_2.Size = new System.Drawing.Size(501, 740);
             this.splitContainer_Li_2.SplitterDistance = 100;
             this.splitContainer_Li_2.TabIndex = 23;
             // 
@@ -513,8 +520,8 @@ namespace HG_Vision
             // splitContainer_Li_5.Panel2
             // 
             this.splitContainer_Li_5.Panel2.Controls.Add(this.gb_Li_operation);
-            this.splitContainer_Li_5.Size = new System.Drawing.Size(100, 727);
-            this.splitContainer_Li_5.SplitterDistance = 448;
+            this.splitContainer_Li_5.Size = new System.Drawing.Size(100, 740);
+            this.splitContainer_Li_5.SplitterDistance = 455;
             this.splitContainer_Li_5.TabIndex = 25;
             // 
             // splitContainer_Li_6
@@ -531,8 +538,8 @@ namespace HG_Vision
             // splitContainer_Li_6.Panel2
             // 
             this.splitContainer_Li_6.Panel2.Controls.Add(this.btn_Li_Auto);
-            this.splitContainer_Li_6.Size = new System.Drawing.Size(100, 448);
-            this.splitContainer_Li_6.SplitterDistance = 394;
+            this.splitContainer_Li_6.Size = new System.Drawing.Size(100, 455);
+            this.splitContainer_Li_6.SplitterDistance = 397;
             this.splitContainer_Li_6.TabIndex = 0;
             // 
             // splitContainer_Li_7
@@ -549,7 +556,7 @@ namespace HG_Vision
             // splitContainer_Li_7.Panel2
             // 
             this.splitContainer_Li_7.Panel2.Controls.Add(this.splitContainer_Li_8);
-            this.splitContainer_Li_7.Size = new System.Drawing.Size(100, 394);
+            this.splitContainer_Li_7.Size = new System.Drawing.Size(100, 397);
             this.splitContainer_Li_7.SplitterDistance = 161;
             this.splitContainer_Li_7.TabIndex = 0;
             // 
@@ -640,7 +647,7 @@ namespace HG_Vision
             // splitContainer_Li_8.Panel2
             // 
             this.splitContainer_Li_8.Panel2.Controls.Add(this.gb_LinearVision);
-            this.splitContainer_Li_8.Size = new System.Drawing.Size(100, 229);
+            this.splitContainer_Li_8.Size = new System.Drawing.Size(100, 232);
             this.splitContainer_Li_8.SplitterDistance = 120;
             this.splitContainer_Li_8.TabIndex = 0;
             // 
@@ -706,7 +713,7 @@ namespace HG_Vision
             this.gb_LinearVision.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.gb_LinearVision.Location = new System.Drawing.Point(0, 0);
             this.gb_LinearVision.Name = "gb_LinearVision";
-            this.gb_LinearVision.Size = new System.Drawing.Size(100, 105);
+            this.gb_LinearVision.Size = new System.Drawing.Size(100, 108);
             this.gb_LinearVision.TabIndex = 22;
             this.gb_LinearVision.TabStop = false;
             this.gb_LinearVision.Text = "图像模式";
@@ -745,7 +752,7 @@ namespace HG_Vision
             this.btn_Li_Auto.Location = new System.Drawing.Point(0, 0);
             this.btn_Li_Auto.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_Li_Auto.Name = "btn_Li_Auto";
-            this.btn_Li_Auto.Size = new System.Drawing.Size(100, 50);
+            this.btn_Li_Auto.Size = new System.Drawing.Size(100, 54);
             this.btn_Li_Auto.TabIndex = 67;
             this.btn_Li_Auto.Text = "自动标定";
             this.btn_Li_Auto.Click += new System.EventHandler(this.btn_Li_Auto_Click);
@@ -764,7 +771,7 @@ namespace HG_Vision
             this.gb_Li_operation.Location = new System.Drawing.Point(0, 0);
             this.gb_Li_operation.Name = "gb_Li_operation";
             this.gb_Li_operation.Padding = new System.Windows.Forms.Padding(2);
-            this.gb_Li_operation.Size = new System.Drawing.Size(100, 275);
+            this.gb_Li_operation.Size = new System.Drawing.Size(100, 281);
             this.gb_Li_operation.TabIndex = 22;
             this.gb_Li_operation.TabStop = false;
             // 
@@ -875,27 +882,27 @@ namespace HG_Vision
             // splitContainer_Li_3.Panel2
             // 
             this.splitContainer_Li_3.Panel2.Controls.Add(this.splitContainer_Li_4);
-            this.splitContainer_Li_3.Size = new System.Drawing.Size(397, 727);
-            this.splitContainer_Li_3.SplitterDistance = 393;
+            this.splitContainer_Li_3.Size = new System.Drawing.Size(397, 740);
+            this.splitContainer_Li_3.SplitterDistance = 399;
             this.splitContainer_Li_3.TabIndex = 0;
             // 
             // dataGridViewLinear
             // 
             this.dataGridViewLinear.AllowUserToAddRows = false;
             this.dataGridViewLinear.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dataGridViewLinear.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.dataGridViewLinear.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridViewLinear.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewLinear.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewLinear.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewLinear.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewLinear.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridViewLinear.ColumnHeadersHeight = 32;
             this.dataGridViewLinear.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewLinear.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -903,14 +910,14 @@ namespace HG_Vision
             this.UncalibratedPointY,
             this.RawCalibratedPointX,
             this.RawCalibratedPointY});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewLinear.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewLinear.DefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridViewLinear.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewLinear.EnableHeadersVisualStyles = false;
             this.dataGridViewLinear.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -918,19 +925,19 @@ namespace HG_Vision
             this.dataGridViewLinear.MultiSelect = false;
             this.dataGridViewLinear.Name = "dataGridViewLinear";
             this.dataGridViewLinear.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewLinear.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            this.dataGridViewLinear.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewLinear.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.White;
+            this.dataGridViewLinear.RowsDefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridViewLinear.RowTemplate.Height = 30;
             this.dataGridViewLinear.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewLinear.Size = new System.Drawing.Size(397, 393);
+            this.dataGridViewLinear.Size = new System.Drawing.Size(397, 399);
             this.dataGridViewLinear.TabIndex = 0;
             this.dataGridViewLinear.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridViewLinear_RowPostPaint);
             // 
@@ -976,7 +983,7 @@ namespace HG_Vision
             // splitContainer_Li_4.Panel2
             // 
             this.splitContainer_Li_4.Panel2.Controls.Add(this.tb_Li_msg);
-            this.splitContainer_Li_4.Size = new System.Drawing.Size(397, 330);
+            this.splitContainer_Li_4.Size = new System.Drawing.Size(397, 337);
             this.splitContainer_Li_4.SplitterDistance = 62;
             this.splitContainer_Li_4.TabIndex = 23;
             // 
@@ -1095,7 +1102,7 @@ namespace HG_Vision
             this.tb_Li_msg.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Li_msg.Multiline = true;
             this.tb_Li_msg.Name = "tb_Li_msg";
-            this.tb_Li_msg.Size = new System.Drawing.Size(397, 264);
+            this.tb_Li_msg.Size = new System.Drawing.Size(397, 271);
             this.tb_Li_msg.TabIndex = 6;
             // 
             // tab_VisionRotation
@@ -1235,7 +1242,7 @@ namespace HG_Vision
             this.rdo_Ro_Robot2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.rdo_Ro_Robot2.Location = new System.Drawing.Point(13, 56);
             this.rdo_Ro_Robot2.Name = "rdo_Ro_Robot2";
-            this.rdo_Ro_Robot2.Size = new System.Drawing.Size(83, 25);
+            this.rdo_Ro_Robot2.Size = new System.Drawing.Size(59, 16);
             this.rdo_Ro_Robot2.TabIndex = 29;
             this.rdo_Ro_Robot2.Text = "Robot2";
             this.rdo_Ro_Robot2.UseVisualStyleBackColor = false;
@@ -1249,7 +1256,7 @@ namespace HG_Vision
             this.rdo_Ro_Robot1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.rdo_Ro_Robot1.Location = new System.Drawing.Point(13, 28);
             this.rdo_Ro_Robot1.Name = "rdo_Ro_Robot1";
-            this.rdo_Ro_Robot1.Size = new System.Drawing.Size(83, 25);
+            this.rdo_Ro_Robot1.Size = new System.Drawing.Size(59, 16);
             this.rdo_Ro_Robot1.TabIndex = 28;
             this.rdo_Ro_Robot1.TabStop = true;
             this.rdo_Ro_Robot1.Text = "Robot1";
@@ -1295,7 +1302,7 @@ namespace HG_Vision
             this.rdo_Ro_Manual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.rdo_Ro_Manual.Location = new System.Drawing.Point(13, 56);
             this.rdo_Ro_Manual.Name = "rdo_Ro_Manual";
-            this.rdo_Ro_Manual.Size = new System.Drawing.Size(60, 25);
+            this.rdo_Ro_Manual.Size = new System.Drawing.Size(47, 16);
             this.rdo_Ro_Manual.TabIndex = 28;
             this.rdo_Ro_Manual.TabStop = true;
             this.rdo_Ro_Manual.Text = "手动";
@@ -1308,7 +1315,7 @@ namespace HG_Vision
             this.rdo_Ro_Auto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.rdo_Ro_Auto.Location = new System.Drawing.Point(13, 28);
             this.rdo_Ro_Auto.Name = "rdo_Ro_Auto";
-            this.rdo_Ro_Auto.Size = new System.Drawing.Size(60, 25);
+            this.rdo_Ro_Auto.Size = new System.Drawing.Size(47, 16);
             this.rdo_Ro_Auto.TabIndex = 27;
             this.rdo_Ro_Auto.Text = "自动";
             this.rdo_Ro_Auto.UseVisualStyleBackColor = true;
@@ -1333,7 +1340,7 @@ namespace HG_Vision
             this.rdo_Ro_Live.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.rdo_Ro_Live.Location = new System.Drawing.Point(13, 56);
             this.rdo_Ro_Live.Name = "rdo_Ro_Live";
-            this.rdo_Ro_Live.Size = new System.Drawing.Size(60, 25);
+            this.rdo_Ro_Live.Size = new System.Drawing.Size(47, 16);
             this.rdo_Ro_Live.TabIndex = 28;
             this.rdo_Ro_Live.Text = "实时";
             this.rdo_Ro_Live.UseVisualStyleBackColor = true;
@@ -1346,7 +1353,7 @@ namespace HG_Vision
             this.rdo_Ro_Snap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.rdo_Ro_Snap.Location = new System.Drawing.Point(13, 28);
             this.rdo_Ro_Snap.Name = "rdo_Ro_Snap";
-            this.rdo_Ro_Snap.Size = new System.Drawing.Size(60, 25);
+            this.rdo_Ro_Snap.Size = new System.Drawing.Size(47, 16);
             this.rdo_Ro_Snap.TabIndex = 27;
             this.rdo_Ro_Snap.TabStop = true;
             this.rdo_Ro_Snap.Text = "单帧";
@@ -1490,32 +1497,32 @@ namespace HG_Vision
             // 
             this.dataGridViewRotation.AllowUserToAddRows = false;
             this.dataGridViewRotation.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dataGridViewRotation.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.dataGridViewRotation.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle26;
             this.dataGridViewRotation.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewRotation.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewRotation.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewRotation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewRotation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridViewRotation.ColumnHeadersHeight = 32;
             this.dataGridViewRotation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewRotation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewRotation.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewRotation.DefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridViewRotation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewRotation.EnableHeadersVisualStyles = false;
             this.dataGridViewRotation.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
@@ -1524,16 +1531,16 @@ namespace HG_Vision
             this.dataGridViewRotation.MultiSelect = false;
             this.dataGridViewRotation.Name = "dataGridViewRotation";
             this.dataGridViewRotation.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewRotation.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.dataGridViewRotation.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewRotation.RowHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.White;
+            this.dataGridViewRotation.RowsDefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridViewRotation.RowTemplate.Height = 30;
             this.dataGridViewRotation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewRotation.Size = new System.Drawing.Size(397, 393);
@@ -1691,17 +1698,86 @@ namespace HG_Vision
             this.tb_msg_Rotation.Size = new System.Drawing.Size(397, 264);
             this.tb_msg_Rotation.TabIndex = 6;
             // 
+            // TableLayoutPanelAll
+            // 
+            this.TableLayoutPanelAll.ColumnCount = 1;
+            this.TableLayoutPanelAll.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TableLayoutPanelAll.Controls.Add(this.plTitle, 0, 0);
+            this.TableLayoutPanelAll.Controls.Add(this.plBottom, 0, 1);
+            this.TableLayoutPanelAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TableLayoutPanelAll.Location = new System.Drawing.Point(0, 0);
+            this.TableLayoutPanelAll.Name = "TableLayoutPanelAll";
+            this.TableLayoutPanelAll.RowCount = 2;
+            this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 780F));
+            this.TableLayoutPanelAll.Size = new System.Drawing.Size(1284, 816);
+            this.TableLayoutPanelAll.TabIndex = 7;
+            this.TableLayoutPanelAll.TagString = null;
+            // 
+            // plTitle
+            // 
+            this.plTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(22)))), ((int)(((byte)(60)))));
+            this.plTitle.Controls.Add(this.ButtonClose);
+            this.plTitle.Controls.Add(this.LabelTitle);
+            this.plTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plTitle.Location = new System.Drawing.Point(0, 0);
+            this.plTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.plTitle.Name = "plTitle";
+            this.plTitle.Size = new System.Drawing.Size(1284, 36);
+            this.plTitle.TabIndex = 7;
+            // 
+            // ButtonClose
+            // 
+            this.ButtonClose.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonClose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonClose.BackgroundImage")));
+            this.ButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonClose.FlatAppearance.BorderSize = 0;
+            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonClose.Location = new System.Drawing.Point(1244, 3);
+            this.ButtonClose.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonClose.Name = "ButtonClose";
+            this.ButtonClose.Size = new System.Drawing.Size(38, 29);
+            this.ButtonClose.TabIndex = 14;
+            this.ButtonClose.UseVisualStyleBackColor = false;
+            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            // 
+            // LabelTitle
+            // 
+            this.LabelTitle.BackColor = System.Drawing.Color.Transparent;
+            this.LabelTitle.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Bold);
+            this.LabelTitle.ForeColor = System.Drawing.Color.White;
+            this.LabelTitle.Location = new System.Drawing.Point(3, 3);
+            this.LabelTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.LabelTitle.Name = "LabelTitle";
+            this.LabelTitle.Size = new System.Drawing.Size(100, 33);
+            this.LabelTitle.TabIndex = 8;
+            this.LabelTitle.Text = "视觉工具";
+            this.LabelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // plBottom
+            // 
+            this.plBottom.Controls.Add(this.tab_C_VisionTool);
+            this.plBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plBottom.Location = new System.Drawing.Point(3, 39);
+            this.plBottom.Name = "plBottom";
+            this.plBottom.Size = new System.Drawing.Size(1278, 774);
+            this.plBottom.TabIndex = 8;
+            // 
             // FrmVppSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 761);
-            this.Controls.Add(this.tab_C_VisionTool);
+            this.ClientSize = new System.Drawing.Size(1284, 816);
+            this.Controls.Add(this.TableLayoutPanelAll);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.Name = "FrmVppSetting";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "工具设置";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmVppSetting_FormClosing);
             this.Load += new System.EventHandler(this.FrmVppSetting_Load);
@@ -1811,6 +1887,9 @@ namespace HG_Vision
             this.splitContainer_Ro_4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.TableLayoutPanelAll.ResumeLayout(false);
+            this.plTitle.ResumeLayout(false);
+            this.plBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1918,5 +1997,10 @@ namespace HG_Vision
         private Button btn_Di_FileImage;
         private Label lb_Di_Enable;
         private ComboBox cbb_Di_Enable;
+        private Sunny.UI.UITableLayoutPanel TableLayoutPanelAll;
+        private Panel plTitle;
+        private Label LabelTitle;
+        private Button ButtonClose;
+        private Panel plBottom;
     }
 }

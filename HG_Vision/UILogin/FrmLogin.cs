@@ -104,5 +104,9 @@ namespace HG_Vision.UILogin
             }
         }
 
+        private void ButtonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

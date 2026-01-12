@@ -170,7 +170,7 @@
             // 
             // PanelTitle
             // 
-            this.PanelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(19)))), ((int)(((byte)(44)))));
+            this.PanelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(22)))), ((int)(((byte)(60)))));
             this.PanelTitle.Controls.Add(this.LabelTile);
             this.PanelTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelTitle.Location = new System.Drawing.Point(0, 0);
@@ -182,14 +182,14 @@
             // LabelTile
             // 
             this.LabelTile.BackColor = System.Drawing.Color.Transparent;
-            this.LabelTile.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LabelTile.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LabelTile.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Bold);
             this.LabelTile.ForeColor = System.Drawing.Color.White;
-            this.LabelTile.Location = new System.Drawing.Point(0, 0);
+            this.LabelTile.Location = new System.Drawing.Point(3, 3);
+            this.LabelTile.Margin = new System.Windows.Forms.Padding(0);
             this.LabelTile.Name = "LabelTile";
-            this.LabelTile.Size = new System.Drawing.Size(130, 36);
+            this.LabelTile.Size = new System.Drawing.Size(89, 36);
             this.LabelTile.TabIndex = 19;
-            this.LabelTile.Text = " 修改密码";
+            this.LabelTile.Text = "修改密码";
             this.LabelTile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ButtonClose

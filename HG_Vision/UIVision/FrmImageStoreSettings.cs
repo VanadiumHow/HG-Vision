@@ -178,7 +178,7 @@ namespace HG_Vision.UIVision
 
         private void FrmImageStoreSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("确定已经应用图像参数？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("是否确认关闭？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 e.Cancel = false;
             }
@@ -188,12 +188,6 @@ namespace HG_Vision.UIVision
             }
         }
 
-        private void ButtonClose_Click(object sender, EventArgs e)
-        {
-            if (this.QuestionInfoDialog("确定已经应用图像参数？", "提示") == DialogResult.Yes)
-            {
-                this.Close();
-            }
-        }
+        private void ButtonClose_Click(object sender, EventArgs e) =>  this.Close();
     }
 }
