@@ -54,22 +54,27 @@ namespace HG_Vision.UIHome.RightForm
             TableLayoutPanelAll.ColumnCount = ColumnCount;
             TableLayoutPanelAll.RowCount = RowCount;
 
-            //使用局部变量缩短语句
-            int _currentnum = Project.Instance.PLCManagerInstance.PLCNum;
-            LoadLabelLight(0, 0, _currentnum, "PLC");
+            #region 这部分代码采用从右往左创建，目的是控件居右排列（后续可优化表达）
+            int _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(eDeviceType.Laser).Count;
+            LoadLabelLight(0, ColumnCount - _currentnum * 2, _currentnum, "Laser"); //1
             int _deviceCount = _currentnum;
 
+
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
+            {
+                _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count;
+                LoadLabelLight(0, ColumnCount - _deviceCount * 2 - _currentnum * 2, _currentnum, "Robot"); //2
+                _deviceCount += _currentnum;
+            }
+
             _currentnum = Project.Instance.VisionManagerInstance.CameraNum;
-            LoadLabelLight(0, _deviceCount * 2, _currentnum, "CCD");
+            LoadLabelLight(0, ColumnCount - _deviceCount * 2 - _currentnum * 2, _currentnum, "CCD"); //1
             _deviceCount += _currentnum;
 
-            _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count;
-            LoadLabelLight(0, _deviceCount * 2, _currentnum, "Robot");
-            _deviceCount += _currentnum;
-
-            _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(eDeviceType.Laser).Count;
-            LoadLabelLight(0, _deviceCount * 2, _currentnum, "Laser");
-            _deviceCount += _currentnum;
+            _currentnum = Project.Instance.PLCManagerInstance.PLCNum;
+            LoadLabelLight(0, ColumnCount - _deviceCount * 2 - _currentnum * 2, _currentnum, "PLC"); //1
+            _deviceCount = _currentnum;
+            #endregion
         }
 
         /// <summary>

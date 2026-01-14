@@ -15,6 +15,7 @@ using HG_Vision.Contol.Control_Sql;
 using Microsoft.Win32;
 using System.Linq;
 using HG_Vision.Contol.Control_Vision;
+using Model.EnumModel;
 
 /****************************************************************
 
@@ -381,17 +382,16 @@ namespace HG_Vision.UIHome
                 {
                     //检测PLC与数据库是否全部连接上
                     bool isRun = true;
-                    //for (int i = 0; i < Project.Instance.PLCManagerInstance.L_basePLCObjects.Count; i++)
-                    //{
-                    //    isRun = isRun && Project.Instance.PLCManagerInstance.L_basePLCObjects[i].PLCConnectState;
-                    //}
-                    //for (int i = 0; i < Project.Instance.HardWareStateManagerInstance.L_sqlState.Count; i++)
-                    //{
-                    //    isRun = isRun && Project.Instance.HardWareStateManagerInstance.L_sqlState[i];
-                    //}
-                    for (int i = 0; i < Project.Instance.HardWareStateManagerInstance.L_robotState.Count; i++)
+                    if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
                     {
-                        isRun = isRun && Project.Instance.ServerManagerInstance.GetAllDevice()[i].IsConnected;
+                        isRun = Project.Instance.PLCManagerInstance._isPLCConnect;
+                    }
+                    else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
+                    {
+                        for (int i = 0; i < Project.Instance.HardWareStateManagerInstance.L_robotState.Count + Project.Instance.HardWareStateManagerInstance.L_laserState.Count; i++)
+                        {
+                            isRun = isRun && Project.Instance.ServerManagerInstance.GetAllDevice()[i].IsConnected;
+                        }
                     }
                     if (isRun)
                     {
@@ -411,7 +411,7 @@ namespace HG_Vision.UIHome
                     {
                         _isRunningFlag = false;
                         //this.ConfirmErrorDialog("PLC或数据库未连接，程序无法启动，请检查！");
-                        this.ConfirmErrorDialog("机器人未连接，程序无法启动，请检查！");
+                        this.ConfirmErrorDialog("机器人或PLC未连接，程序无法启动，请检查！");
                     }
                 }
                 catch (Exception ex)

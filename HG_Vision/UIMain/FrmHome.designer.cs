@@ -488,7 +488,7 @@ namespace HG_Vision.UIHome
             // 
             // TimerLogout
             // 
-            this.TimerLogout.Interval = 6000;
+            this.TimerLogout.Interval = 60000;
             this.TimerLogout.Tick += new System.EventHandler(this.TimerLogout_Tick);
             // 
             // FrmHome

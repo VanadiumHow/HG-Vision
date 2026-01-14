@@ -56,12 +56,12 @@ namespace HG_Vision.Manager.Manager_System
         public ScheduledTaskManager ScheduledTaskManagerInstance = null;
 
         /// <summary>
-        /// Robot服务器管理类
+        /// Socket服务器管理类
         /// </summary>
         public ServerManager ServerManagerInstance = null;
 
         /// <summary>
-        /// Laser客户端管理类
+        /// Socket客户端管理类
         /// </summary>
         public ClientManager ClientManagerInstance = null;
 

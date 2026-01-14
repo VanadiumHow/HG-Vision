@@ -298,7 +298,7 @@ namespace HG_Vision
                 if (rdo_Li_Laser1.Checked || rdo_Li_Laser2.Checked)
                 {
                     tb_Li_Step.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaserStep.ToString("f3");
-                    if (!Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").IsConnected)
+                    if (!Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").IsConnected)
                     {
                         rdo_Li_Laser1.BackColor = Color.Red;
                         rdo_Li_Laser2.BackColor = Color.Red;
@@ -313,6 +313,32 @@ namespace HG_Vision
                 {
                     rdo_Li_Laser1.BackColor = Color.Transparent;
                     rdo_Li_Laser2.BackColor = Color.Transparent;
+                }
+                if (rdo_Li_Robot1.Checked || rdo_Li_Robot2.Checked)
+                {
+                    tb_Li_Step.Text = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.RobotStep.ToString("f3");
+                    int robotIndex = rdo_Li_Robot1.Checked ? 0 : 1;
+                    if (!Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").IsConnected)
+                    {
+                        rdo_Li_Robot1.BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        rdo_Li_Robot1.BackColor = Color.LimeGreen;
+                    }
+                    if (!Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").IsConnected)
+                    {
+                        rdo_Li_Robot2.BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        rdo_Li_Robot2.BackColor = Color.LimeGreen;
+                    }
+                }
+                else
+                {
+                    rdo_Li_Robot1.BackColor = Color.Transparent;
+                    rdo_Li_Robot2.BackColor = Color.Transparent;
                 }
             }
         }
