@@ -61,7 +61,7 @@ namespace HG_Vision.Manager.Manager_Socket
                 _clientConfiguration.AnalysisLaserInfoConfig(ref laserServerModel);
                 for (int i = 0; i < laserServerModel.LaserServerList.Count; i++)
                 {
-                    var laserObj = new LaserClientObj(laserServerModel.LaserServerList[i].LocalName, laserServerModel.LaserServerList[i].LocalIP, laserServerModel.LaserServerList[i].LocalPort);
+                    var laserObj = new LaserClientObj(laserServerModel.LaserServerList[i].DeviceName, laserServerModel.LaserServerList[i].LocalIP, laserServerModel.LaserServerList[i].LocalPort);
                     AddDevice(laserObj);
                 }
                 //启动所有设备连接
@@ -97,7 +97,7 @@ namespace HG_Vision.Manager.Manager_Socket
                                 flag = true;
                             }
                             if (null != laser) laser.StopClient();
-                            laser = new LaserClientObj(laserServerModel.LaserServerList[i].LocalName, laserServerModel.LaserServerList[i].LocalIP, laserServerModel.LaserServerList[i].LocalPort);
+                            laser = new LaserClientObj(laserServerModel.LaserServerList[i].DeviceName, laserServerModel.LaserServerList[i].LocalIP, laserServerModel.LaserServerList[i].LocalPort);
                             ;
                             if (flag)
                             {

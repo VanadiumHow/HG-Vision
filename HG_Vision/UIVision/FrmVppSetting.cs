@@ -1289,13 +1289,14 @@ namespace HG_Vision
                 {
                     ServerObj currentRobot; //根据触发事件回调方法的soc参数确定当前机器人
                     int currentIdx;
-                    string[] EndPointstrs = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").LocalEndPoint.ToString().Split(':');
-                    if (soc.RemoteEndPoint.ToString().Contains(EndPointstrs[0]))
+                    string deviceIP0 = Project.Instance.ServerManagerInstance.RobotClientModel.RobotClientList[0].DeviceIP;
+                    string deviceIP1 = Project.Instance.ServerManagerInstance.RobotClientModel.RobotClientList[1].DeviceIP;
+                    if (soc.RemoteEndPoint.ToString().Contains(deviceIP0))
                     {
                         currentRobot = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}");
                         currentIdx = 0;
                     }
-                    else if (soc.RemoteEndPoint.ToString().Contains(EndPointstrs[0]))
+                    else if (soc.RemoteEndPoint.ToString().Contains(deviceIP1))
                     {
                         currentRobot = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}");
                         currentIdx = 1;
@@ -1668,13 +1669,14 @@ namespace HG_Vision
                 {
                     ServerObj currentRobot; //根据触发事件回调方法的soc参数确定当前机器人
                     int currentIdx;
-                    string[] EndPointstrs = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").LocalEndPoint.ToString().Split(':');
-                    if (soc.RemoteEndPoint.ToString().Contains(EndPointstrs[0]))
+                    string deviceIP0 = Project.Instance.ServerManagerInstance.RobotClientModel.RobotClientList[0].DeviceIP;
+                    string deviceIP1 = Project.Instance.ServerManagerInstance.RobotClientModel.RobotClientList[1].DeviceIP;
+                    if (soc.RemoteEndPoint.ToString().Contains(deviceIP0))
                     {
                         currentRobot = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}");
                         currentIdx = 0;
                     }
-                    else if (soc.RemoteEndPoint.ToString().Contains(EndPointstrs[0]))
+                    else if (soc.RemoteEndPoint.ToString().Contains(deviceIP1))
                     {
                         currentRobot = Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}");
                         currentIdx = 1;
@@ -1703,7 +1705,7 @@ namespace HG_Vision
                     }
                     module_X = str[3];
                     module_Y = str[4];
-                    if (str[0] == "CBA" && str[2] == "01")
+                    if (str[0] == "CBP" && str[2] == "01")
                     {
                         if (_b_Auto_Linear)
                         {
@@ -1731,7 +1733,7 @@ namespace HG_Vision
                             }
                         }
                     }
-                    if (str[0] == "CBA" && str[2] == "02")
+                    if (str[0] == "CBP" && str[2] == "02")
                     {
                         if (_b_Auto_Linear)
                         {
@@ -1759,7 +1761,7 @@ namespace HG_Vision
                             }
                         }
                     }
-                    if (str[0] == "CBA" && str[2] == "03")
+                    if (str[0] == "CBP" && str[2] == "03")
                     {
                         if (_b_Auto_Linear)
                         {
@@ -1787,7 +1789,7 @@ namespace HG_Vision
                             }
                         }
                     }
-                    if (str[0] == "CBA" && str[2] == "04")
+                    if (str[0] == "CBP" && str[2] == "04")
                     {
                         if (_b_Auto_Linear)
                         {
@@ -1815,7 +1817,7 @@ namespace HG_Vision
                             }
                         }
                     }
-                    if (str[0] == "CBA" && str[2] == "05")
+                    if (str[0] == "CBP" && str[2] == "05")
                     {
                         if (_b_Auto_Linear)
                         {
@@ -1843,7 +1845,7 @@ namespace HG_Vision
                             }
                         }
                     }
-                    if (str[0] == "CBA" && str[2] == "06")
+                    if (str[0] == "CBP" && str[2] == "06")
                     {
                         if (_b_Auto_Linear)
                         {
@@ -1871,7 +1873,7 @@ namespace HG_Vision
                             }
                         }
                     }
-                    if (str[0] == "CBA" && str[2] == "07")
+                    if (str[0] == "CBP" && str[2] == "07")
                     {
                         if (_b_Auto_Linear)
                         {
@@ -1899,7 +1901,7 @@ namespace HG_Vision
                             }
                         }
                     }
-                    if (str[0] == "CBA" && str[2] == "08")
+                    if (str[0] == "CBP" && str[2] == "08")
                     {
                         if (_b_Auto_Linear)
                         {
@@ -2198,56 +2200,56 @@ namespace HG_Vision
                 double Step = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaserStep;
                 if (CircleIdx == 0)
                 {
-                    module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X - Step).ToString();
-                    module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y + Step).ToString();
+                    module_X = (midPose.X - Step).ToString();
+                    module_Y = (midPose.Y + Step).ToString();
                     HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 1)
                 {
-                    module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X).ToString();
-                    module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y + Step).ToString();
+                    module_X = (midPose.X).ToString();
+                    module_Y = (midPose.Y + Step).ToString();
                     HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 2)
                 {
-                    module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X + Step).ToString();
-                    module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y + Step).ToString();
+                    module_X = (midPose.X + Step).ToString();
+                    module_Y = (midPose.Y + Step).ToString();
                     HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 3)
                 {
-                    module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X + Step).ToString();
-                    module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y).ToString();
+                    module_X = (midPose.X + Step).ToString();
+                    module_Y = (midPose.Y).ToString();
                     HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 4)
                 {
-                    module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X).ToString();
-                    module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y).ToString();
+                    module_X = (midPose.X).ToString();
+                    module_Y = (midPose.Y).ToString();
                     HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 5)
                 {
-                    module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X - Step).ToString();
-                    module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y).ToString();
+                    module_X = (midPose.X - Step).ToString();
+                    module_Y = (midPose.Y).ToString();
                     HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 6)
                 {
-                    module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X - Step).ToString();
-                    module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y - Step).ToString();
+                    module_X = (midPose.X - Step).ToString();
+                    module_Y = (midPose.Y - Step).ToString();
                     HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 7)
                 {
-                    module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X).ToString();
-                    module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y - Step).ToString();
+                    module_X = (midPose.X).ToString();
+                    module_Y = (midPose.Y - Step).ToString();
                     HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
                 if (CircleIdx == 8)
                 {
-                    module_X = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.Y + Step).ToString();
-                    module_Y = (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LocationCenter.La1Axis.X - Step).ToString();
+                    module_X = (midPose.X + Step).ToString();
+                    module_Y = (midPose.Y - Step).ToString();
                     HandlerButtonDisplay.Invoke(this, new EventArgs());
                 }
             }

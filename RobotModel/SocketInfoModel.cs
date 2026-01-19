@@ -8,8 +8,10 @@ namespace Model.SocketModel
 {
     public class SocketInfoModel
     {
-        public string LocalName { get; set; } = "";
+        public string DeviceName { get; set; } = "";
+        public string DeviceIP { get; set; } = "";
         public string LocalIP { get; set; } = "";
+
         public string LocalPort { get; set; } = "";
     }
 }

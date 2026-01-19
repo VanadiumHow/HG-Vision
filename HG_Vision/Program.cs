@@ -71,6 +71,7 @@ namespace HG_Vision
             Project.Instance.LoadVisionInfo();
             ProgramGerneral.FrmSplashScreen.SetStatus("初始化PLC...");
             Project.Instance.InitialPLC();
+            ProgramGerneral.FrmSplashScreen.SetStatus("初始化生产数据...");
             Project.Instance.InitialProductionData();
             ProgramGerneral.FrmSplashScreen.SetStatus("初始Robot/Laser服务器...");
             Project.Instance.InitialSocketSever();

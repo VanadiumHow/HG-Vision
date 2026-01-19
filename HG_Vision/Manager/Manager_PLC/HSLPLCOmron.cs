@@ -44,8 +44,6 @@ namespace HG_Vision.Manager.Manager_PLC
                 NJPLC.DA2 = 0;
                 NJPLC.ByteTransform.DataFormat = HslCommunication.Core.DataFormat.CDAB;
                 NJPLC.ByteTransform.IsStringReverse = true;
-
-
             }
             catch (Exception ex)
             {

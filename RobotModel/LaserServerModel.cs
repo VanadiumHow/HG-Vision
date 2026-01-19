@@ -20,6 +20,6 @@ namespace Model.SocketModel
             get => LaserServerList.ToArray();
             set => LaserServerList = value != null ? new List<SocketInfoModel>(value) : new List<SocketInfoModel>();
         }
-        public LaserServerModel() => LaserServerList.Add(new SocketInfoModel() { LocalName = "Laser0", LocalIP = "127.0.0.1", LocalPort = "5000" });
+        public LaserServerModel() => LaserServerList.Add(new SocketInfoModel() { DeviceName = "Laser0", DeviceIP = "127.0.0.1", LocalIP = "127.0.0.1", LocalPort = "5000" });
     }
 }

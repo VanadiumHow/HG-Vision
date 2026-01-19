@@ -22,8 +22,8 @@ namespace Model.SocketModel
         }
         public RobotClientModel()
         {
-            RobotClientList.Add(new SocketInfoModel() { LocalName = "Robot0", LocalIP = "192.168.250.26", LocalPort = "12000" });
-            RobotClientList.Add(new SocketInfoModel() { LocalName = "Robot1", LocalIP = "192.168.250.25", LocalPort = "11000" });
+            RobotClientList.Add(new SocketInfoModel() { DeviceName = "Robot0", DeviceIP = "192.168.250.26", LocalIP = "192.168.3.50", LocalPort = "12000" });
+            RobotClientList.Add(new SocketInfoModel() { DeviceName = "Robot1", DeviceIP = "192.168.250.25", LocalIP = "192.168.3.50", LocalPort = "11000" });
         }
     }
 }

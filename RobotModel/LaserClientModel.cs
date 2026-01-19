@@ -22,7 +22,7 @@ namespace Model.SocketModel
         }
         public LaserClientModel()
         {
-            LaserClientList.Add(new SocketInfoModel() { LocalName = "Laser0", LocalIP = "127.0.0.1", LocalPort = "13000" });
+            LaserClientList.Add(new SocketInfoModel() { DeviceName = "Laser0",DeviceIP = "127.0.0.1", LocalIP = "127.0.0.1", LocalPort = "13000" });
         }
     }
 }

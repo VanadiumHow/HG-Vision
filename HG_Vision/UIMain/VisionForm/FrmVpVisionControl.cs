@@ -632,9 +632,11 @@ namespace HG_Vision.UIVision
             {
                 FlowIdx = 0,
                 NozzleIdx = 1,
-                eMode = Model.EnumModel.eProcessMode.debug
+                eMode = Model.EnumModel.eProcessMode.debug,
+                InputImage = cogRecordDisplay1.Display.Image
             };
             CameraWorkThrad1.VisionProcess(args);
+            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.StandPose = args.ResultOffset;
         }
 
         private void 单帧2工位ToolStripMenuItem_Click(object sender, EventArgs e)

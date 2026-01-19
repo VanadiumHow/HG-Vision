@@ -49,7 +49,7 @@ namespace HG_Vision.UIHome.RightForm
             _plcLights.Clear();
             _ccdLights.Clear();
             _robotLights.Clear();
-
+            _laserLights.Clear();
             //设置行列
             TableLayoutPanelAll.ColumnCount = ColumnCount;
             TableLayoutPanelAll.RowCount = RowCount;
@@ -332,7 +332,7 @@ namespace HG_Vision.UIHome.RightForm
                 int nLaserNum = Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(eDeviceType.Laser).Count;
                 for (int i = 0; i < nLaserNum; i++)
                 {
-                    if (Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(eDeviceType.Laser)[i].IsConnected && Project.Instance.ClientManagerInstance.GetDevicesByType<LaserClientObj>(eDeviceType.Laser)[i].IsConnected)
+                    if (Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(eDeviceType.Laser)[i].IsConnected)
                     {
                         //只有未在当前状态才切换状态
                         if (_laserLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)

@@ -33,6 +33,7 @@ namespace HG_Vision.Manager.Manager_Socket
         }
         //加载配置文件，创建机械手对象并添加
         RobotClientModel robotClientModel = new RobotClientModel();
+        public RobotClientModel RobotClientModel { get { return robotClientModel; } }
         //负责监听客户端的线程:创建一个监听线程
         /// <summary>
         /// 所有SocketServer连接的对象
@@ -64,7 +65,7 @@ namespace HG_Vision.Manager.Manager_Socket
                 _severConfiguration.AnalysisServerInfoConfig(ref robotClientModel);
                 for (int i = 0; i < robotClientModel.RobotClientList.Count; i++)
                 {
-                    var robotObj = new RobotServerObj(robotClientModel.RobotClientList[i].LocalName, robotClientModel.RobotClientList[i].LocalIP, robotClientModel.RobotClientList[i].LocalPort);
+                    var robotObj = new RobotServerObj(robotClientModel.RobotClientList[i].DeviceName, robotClientModel.RobotClientList[i].LocalIP, robotClientModel.RobotClientList[i].LocalPort);
                     AddDevice(robotObj);
                 }
                 //加载配置文件，创建激光对象并添加
@@ -72,7 +73,7 @@ namespace HG_Vision.Manager.Manager_Socket
                 _severConfiguration.AnalysisServerInfoConfig(ref laserClientModel);
                 for (int i = 0; i < laserClientModel.LaserClientList.Count; i++)
                 {
-                    var laserObj = new LaserServerObj(laserClientModel.LaserClientList[i].LocalName, laserClientModel.LaserClientList[i].LocalIP, laserClientModel.LaserClientList[i].LocalPort);
+                    var laserObj = new LaserServerObj(laserClientModel.LaserClientList[i].DeviceName, laserClientModel.LaserClientList[i].LocalIP, laserClientModel.LaserClientList[i].LocalPort);
                     laserObj.InitCameraWorkThreads1();
                     AddDevice(laserObj);
                 }
