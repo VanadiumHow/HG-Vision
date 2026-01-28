@@ -181,6 +181,8 @@ namespace HG_Vision.UIVision
                                     tb_Cam1RobotStep,tb_Cam1LaserStep,
                                     tb_Cam1Spacing,tb_Cam1SpacingUse,tb_Cam1RobotUse,tb_Cam1LaserUse,
 
+                                    tb_Cam1StdweldlengthAl,tb_Cam1StdweldlengthNi,
+
                                     tb_Cam1Jig1Bo1X,tb_Cam1Jig1Bo1Y,tb_Cam1Jig1Bo2X,tb_Cam1Jig1Bo2Y,
                                     tb_Cam1Jig1La11X,tb_Cam1Jig1La11Y,tb_Cam1Jig1La21X,tb_Cam1Jig1La21Y,
                                     tb_Cam1Jig1La12X,tb_Cam1Jig1La12Y,tb_Cam1Jig1La22X,tb_Cam1Jig1La22Y,
@@ -291,6 +293,9 @@ namespace HG_Vision.UIVision
                 Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.SpacingUse.ToString(),
                 Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse.ToString(),
                 Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse.ToString(),
+
+                Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.StdweldlengthAl.ToString(),
+                Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.StdweldlengthNi.ToString()
             };
             for (int i = 0; i < Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.JigCompensations.Length; i++)
             {
@@ -571,6 +576,17 @@ namespace HG_Vision.UIVision
                         _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse;
                         if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
                             Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse = (int)_newValue;
+                        break;
+
+                    case "StdweldlengthAl":
+                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.StdweldlengthAl;
+                        if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.StdweldlengthAl = _newValue;
+                        break;
+                    case "StdweldlengthNi":
+                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.StdweldlengthNi;
+                        if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.StdweldlengthNi = _newValue;
                         break;
 
                     // 激光九点标定中心(控制振镜偏移坐标)

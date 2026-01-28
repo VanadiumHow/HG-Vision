@@ -300,20 +300,23 @@ namespace HG_Vision.UIHome.RightForm
         {
             try
             {
-                int nRobotNum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count;
-                for (int i = 0; i < nRobotNum; i++)
+                if (_robotLights.Count > 0)
                 {
-                    if (!Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot)[i].IsConnected)
+                    int nRobotNum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count;
+                    for (int i = 0; i < nRobotNum; i++)
                     {
-                        //只有未在当前状态才切换状态
-                        if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
-                            _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
-                    }
-                    else
-                    {
-                        //只有未在当前状态才切换状态
-                        if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
-                            _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
+                        if (!Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot)[i].IsConnected)
+                        {
+                            //只有未在当前状态才切换状态
+                            if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
+                                _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
+                        }
+                        else
+                        {
+                            //只有未在当前状态才切换状态
+                            if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
+                                _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
+                        }
                     }
                 }
             }

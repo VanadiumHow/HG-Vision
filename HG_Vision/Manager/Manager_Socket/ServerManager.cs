@@ -31,9 +31,13 @@ namespace HG_Vision.Manager.Manager_Socket
                 return _severConfiguration;
             }
         }
-        //加载配置文件，创建机械手对象并添加
+        //机械手配置文件
         RobotClientModel robotClientModel = new RobotClientModel();
         public RobotClientModel RobotClientModel { get { return robotClientModel; } }
+        //激光配置文件
+        LaserClientModel laserClientModel = new LaserClientModel();
+        public LaserClientModel LaserClientModel { get { return laserClientModel; } }
+
         //负责监听客户端的线程:创建一个监听线程
         /// <summary>
         /// 所有SocketServer连接的对象
@@ -62,6 +66,7 @@ namespace HG_Vision.Manager.Manager_Socket
                 _allDevices.Clear();
                 _devicesByType.Values.ToList().ForEach(list => list.Clear());
 
+                //加载配置文件，创建机械手对象并添加
                 _severConfiguration.AnalysisServerInfoConfig(ref robotClientModel);
                 for (int i = 0; i < robotClientModel.RobotClientList.Count; i++)
                 {
@@ -69,7 +74,6 @@ namespace HG_Vision.Manager.Manager_Socket
                     AddDevice(robotObj);
                 }
                 //加载配置文件，创建激光对象并添加
-                LaserClientModel laserClientModel = new LaserClientModel();
                 _severConfiguration.AnalysisServerInfoConfig(ref laserClientModel);
                 for (int i = 0; i < laserClientModel.LaserClientList.Count; i++)
                 {

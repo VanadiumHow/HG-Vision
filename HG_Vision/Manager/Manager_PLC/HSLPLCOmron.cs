@@ -184,7 +184,11 @@ namespace HG_Vision.Manager.Manager_PLC
                     read = NJPLC.ReadString(address, length);
                     if (read.IsSuccess)
                     {
-                        return read.Content;
+                        // 核心处理：去除所有\0字符，得到有效字符串
+                        string actualValue = read.Content.TrimEnd('\0');
+
+                        // 如果处理后为空，返回空字符串而非\0组成的字符串
+                        return string.IsNullOrEmpty(actualValue) ? "" : actualValue;
                     }
                     else
                     {
@@ -202,7 +206,11 @@ namespace HG_Vision.Manager.Manager_PLC
                         read = NJPLC.ReadString(address, length);
                         if (read.IsSuccess)
                         {
-                            return read.Content;
+                            // 核心处理：去除所有\0字符，得到有效字符串
+                            string actualValue = read.Content.TrimEnd('\0');
+
+                            // 如果处理后为空，返回空字符串而非\0组成的字符串
+                            return string.IsNullOrEmpty(actualValue) ? "" : actualValue;
                         }
                         else
                         {

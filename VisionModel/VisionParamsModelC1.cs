@@ -40,6 +40,16 @@ namespace Model.VisionModel
         // 夹具补偿
         public JigAdd[] JigCompensations = Enumerable.Range(0, 9)
             .Select(i => new JigAdd()).ToArray();
+
+
+        public double StdweldlengthAl = 0.00;
+
+        public double StdweldlengthNi = 0.00;
+
+        public double WeldlengthAl = 0.00;
+
+        public double WeldlengthNi = 0.00;
+
     }
     /// <summary>
     /// 补偿项类

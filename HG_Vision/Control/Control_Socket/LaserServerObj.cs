@@ -4,7 +4,9 @@ using HG_Vision.Manager.Manager_System;
 using HG_Vision.Manager.Manager_Thread;
 using Model.EnumModel;
 using Model.SocketModel;
+using Model.UIModel;
 using Obj.Obj_File;
+using Obj.Obj_Message;
 using Obj.Obj_Queue;
 using Obj.Obj_Socket;
 using System.Collections.Generic;
@@ -64,8 +66,10 @@ namespace HG_Vision.Contol.Control_Socket
         {
             if (SignalsModel.CCDProcess == 0)//0-自动运行
             {
+                //以,分组处理激光触发信号
                 string receive_string = this.ReceivedText;
                 string[] str = receive_string.Split(',');
+                //激光触发拍照，格式：_T1,振镜X位置（未使用）,振镜Y位置（未使用）;
                 if (str.Length > 2 && (str[0].Contains("T1") || str[0].Contains("T2")))
                 {
                     LogHelper.Info("收到激光触发：" + receive_string);
@@ -78,7 +82,19 @@ namespace HG_Vision.Contol.Control_Socket
                     };
                     _taskQueueList[0].Enqueue(_e);
                 }
+
+                //获取焊点线段长度，格式：Get;
+                if (receive_string.Contains("Get"))
+                {
+                    LogHelper.Info("收到激光Get");
+                    string lengthAl = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.WeldlengthAl.ToString("f3");
+                    string lengthNi = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.WeldlengthNi.ToString("f3");
+                    if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").SendText(lengthAl + ";" + lengthNi + ";", 0))
+                    NoticeHelper.OutputMessageSend($"给到激光整体长度:Al={lengthAl},Ni={lengthNi}", OutputLevelModel.INFO);
+                    LogHelper.Info($"给到激光整体长度:Al={lengthAl},Ni={lengthNi}");
+                }
             }
+
         }
         #endregion
     }

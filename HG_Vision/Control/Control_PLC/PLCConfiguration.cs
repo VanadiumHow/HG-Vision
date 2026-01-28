@@ -149,6 +149,20 @@ namespace HG_Vision.Contol.Control_PLC
     internal static class RegisterDataProcessing
     {
         /// <summary>
+        /// 数组截取
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="inputArrar"></param>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        internal static T[] SubArrar<T>(T[] inputArrar, int index, int count)
+        {
+            T[] outputArrar = new T[count];
+            Array.Copy(inputArrar, index, outputArrar, 0, count);
+            return outputArrar;
+        }
+        /// <summary>
         /// 两两字节交换
         /// </summary>
         /// <param name="input">输入字符串</param>
