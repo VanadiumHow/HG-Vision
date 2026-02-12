@@ -24,11 +24,33 @@ namespace Model.ConstantModel
         /// </summary>
         public int NozzleNum = 1;
         #endregion
-
+        #region 通讯参数
         /// <summary>
-        /// 机器人类型
+        /// 机器人通讯协议类型
         /// </summary>
         public string RobotProtocolType = eProtocol.LYH.ToString();
+
+        /// <summary>
+        /// PLC通讯协议类型
+        /// </summary>
+        public string PLCAgreement = ePLCAgreement.Fins_TCP.ToString();
+
+        /// <summary>
+        /// 机器人数量
+        /// </summary>
+        public int RobotNum = 0;
+        /// <summary>
+        /// 激光数量
+        /// </summary>
+        public int LaserNum = 0;
+
+        /// <summary>
+        /// plc Tcp服务器数量
+        /// </summary>
+        public int PLC_TCP_Num = 0;
+
+        #endregion
+
 
         /// <summary>
         /// 日志存储天数

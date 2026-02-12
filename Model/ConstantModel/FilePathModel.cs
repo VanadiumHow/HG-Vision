@@ -37,14 +37,23 @@ namespace Model.ConstantModel
         //程序PLC交互信号excel加载路径
         public static string PlcSignalPath = string.Format(@"{0}..\..\..\..\..\交互信号.xlsx", DataPath);
 
-        //程序Robot客户端对象参数RobotClientPath.ini加载路径
+        //程序Robot客户端对象参数RobotClient.xml加载路径
         public static string RobotClientPath = DataPath + "\\Config\\RobotClient.xml";
 
-        //程序Laser客户端对象参数LaserClientPath.ini加载路径
+        //程序Laser客户端对象参数LaserClient.xml加载路径
         public static string LaserClientPath = DataPath + "\\Config\\LaserClient.xml";
 
-        //程序Laser客户端对象参数LaserServerPath.ini加载路径
+        //程序Laser客户端对象参数LaserServer.xml加载路径
         public static string LaserServerPath = DataPath + "\\Config\\LaserServer.xml";
+
+        //程序Laser客户端对象参数PLCServer.xml加载路径
+        public static string PLCServerPath = DataPath + "\\Config\\PLCServer.xml";
+
+        //PLC发送临时数据（夹具号、条码、极耳间距）PLCDataTemp.xml加载路径
+        public static string PLCDataTempPath = DataPath + "\\temp\\PLCDataTemp.xml";
+
+        //发送给机械手的临时数据RobotDataTempPath.xml加载路径
+        public static string RobotDataTempPath = DataPath + "\\temp\\RobotDataTempPath.xml";
 
         //程序MES数据校验参数MESDataCheck.xml加载路径
         public static string MESDataCheckPath = DataPath + "\\Config\\DataCheckComm.ini";

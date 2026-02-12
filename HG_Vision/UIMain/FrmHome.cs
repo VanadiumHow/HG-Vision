@@ -16,6 +16,8 @@ using Microsoft.Win32;
 using System.Linq;
 using HG_Vision.Contol.Control_Vision;
 using Model.EnumModel;
+using Model.SocketModel;
+using HG_Vision.Contol.Control_Socket;
 
 /****************************************************************
 
@@ -39,8 +41,7 @@ namespace HG_Vision.UIHome
         private FrmHome()
         {
             InitializeComponent();
-            this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
-            this.WindowState = FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Normal;
         }
 
         /// <summary>
@@ -134,16 +135,7 @@ namespace HG_Vision.UIHome
         /// </summary>
         private void ChanggeWindowMin()
         {
-            if (this.WindowState == FormWindowState.Maximized)
-            {
-                this.WindowState = FormWindowState.Minimized;
-            }
-            //if (this.WindowState == FormWindowState.Maximized)
-            //{
-            //    this.NotifyIcon1.Visible = true;
-            //    this.Visible = false;
-            //    this.ShowInTaskbar = true;
-            //}
+            this.WindowState = FormWindowState.Minimized;
         }
 
 
@@ -304,25 +296,25 @@ namespace HG_Vision.UIHome
                 case "管理员":
                     {
                         //不允许
-                        ButtonSetting.Enabled = !_isRunningFlag;
-                        ButtonVisionTool.Enabled = !_isRunningFlag;
-                        ButtonPictureSetting.Enabled = !_isRunningFlag;
+                        ButtonSetting.Enabled = true;
+                        ButtonVisionTool.Enabled = true;
+                        ButtonPictureSetting.Enabled = true;
 
                         for (int i = 0; i < GlobalCameraParams.toolStripMenuItem.Count; i++)
                         {
-                            GlobalCameraParams.toolStripMenuItem[i].Enabled = !_isRunningFlag;
+                            GlobalCameraParams.toolStripMenuItem[i].Enabled = true;
                         }
                     }
                     break;
                 case "工程师":
                     {
-                        ButtonSetting.Enabled = !_isRunningFlag;
-                        ButtonVisionTool.Enabled = !_isRunningFlag;
-                        ButtonPictureSetting.Enabled = !_isRunningFlag;
+                        ButtonSetting.Enabled = true;
+                        ButtonVisionTool.Enabled = true;
+                        ButtonPictureSetting.Enabled = true;
 
                         for (int i = 0; i < GlobalCameraParams.toolStripMenuItem.Count; i++)
                         {
-                            GlobalCameraParams.toolStripMenuItem[i].Enabled = !_isRunningFlag;
+                            GlobalCameraParams.toolStripMenuItem[i].Enabled = true;
                         }
                     }
                     break;
@@ -382,17 +374,16 @@ namespace HG_Vision.UIHome
                 {
                     //检测PLC与数据库是否全部连接上
                     bool isRun = true;
-                    if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
+                    Project.Instance.HardWareStateManagerInstance.CheckLink_Relink();
+                    for (int i = 0; i < Project.Instance.HardWareStateManagerInstance.L_PLCState.Count; i++)
+                        isRun = isRun && Project.Instance.HardWareStateManagerInstance.L_PLCState[i];
+                    if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
                     {
-                        isRun = Project.Instance.PLCManagerInstance._isPLCConnect;
+                        for (int i = 0; i < Project.Instance.HardWareStateManagerInstance.L_robotState.Count; i++)
+                            isRun = isRun && Project.Instance.HardWareStateManagerInstance.L_robotState[i];
                     }
-                    else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
-                    {
-                        for (int i = 0; i < Project.Instance.HardWareStateManagerInstance.L_robotState.Count + Project.Instance.HardWareStateManagerInstance.L_laserState.Count; i++)
-                        {
-                            isRun = isRun && Project.Instance.ServerManagerInstance.GetAllDevice()[i].IsConnected;
-                        }
-                    }
+                    for (int i = 0; i < Project.Instance.HardWareStateManagerInstance.L_laserState.Count; i++)
+                        isRun = isRun && Project.Instance.HardWareStateManagerInstance.L_laserState[i];
                     if (isRun)
                     {
                         //关闭实时取向
@@ -410,8 +401,7 @@ namespace HG_Vision.UIHome
                     else
                     {
                         _isRunningFlag = false;
-                        //this.ConfirmErrorDialog("PLC或数据库未连接，程序无法启动，请检查！");
-                        this.ConfirmErrorDialog("机器人或PLC未连接，程序无法启动，请检查！");
+                        this.ConfirmErrorDialog("机器人、PLC或激光未连接，程序无法启动，请检查！");
                     }
                 }
                 catch (Exception ex)
@@ -458,6 +448,11 @@ namespace HG_Vision.UIHome
 
         private void ButtonSetting_Click(object sender, EventArgs e)
         {
+            if (_isRunningFlag)
+            {
+                MessageBox.Show("当前为运行状态不可打开此设置页面，请先暂停！");
+                return;
+            }
             FrmSetting.Instance.ShowDialog();
         }
 
@@ -523,7 +518,7 @@ namespace HG_Vision.UIHome
                     FrmHome.Instance.FrmMainVision.stopLiveDisplay();
                     FrmHome.Instance.FrmMainVision.Exit();
                     //关闭Visionpro资源
-                    
+
                     //取消PLC业务逻辑线程token
                     //foreach (CancellationTokenSource item in Project.Instance.PLCManagerInstance.L_PLCCtsServices)
                     //{
@@ -602,6 +597,11 @@ namespace HG_Vision.UIHome
 
         private void ButtonVisionTool_Click(object sender, EventArgs e)
         {
+            if (_isRunningFlag)
+            {
+                MessageBox.Show("当前为运行状态不可打开此设置页面，请先暂停！");
+                return;
+            }
             FrmVpVisionControl _form = FrmMainVision.FrmVpVisionControl1;
             if (_form.CurWorkFlow.SettingBlock != null)
             {
@@ -617,6 +617,11 @@ namespace HG_Vision.UIHome
 
         private void ButtonPictureSetting_Click(object sender, EventArgs e)
         {
+            if (_isRunningFlag)
+            {
+                MessageBox.Show("当前为运行状态不可打开此设置页面，请先暂停！");
+                return;
+            }
             FrmVpVisionControl _form = FrmMainVision.FrmVpVisionControl1;
             FrmImageStoreSettings FrmImageStoreSettings = new FrmImageStoreSettings(_form.VppName);
 

@@ -115,7 +115,7 @@ namespace HG_Vision.Manager.Manager_System
         }
 
         /// <summary>
-        /// 初始Robot/laser服务器
+        /// 初始Socket服务器
         /// </summary>
         public void InitialSocketSever()
         {
@@ -133,7 +133,7 @@ namespace HG_Vision.Manager.Manager_System
 
 
         /// <summary>
-        /// 初始Laser客户端
+        /// 初始Socket客户端
         /// </summary>
         public void InitialSocketClient()
         {

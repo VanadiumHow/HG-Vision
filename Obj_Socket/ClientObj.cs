@@ -48,18 +48,6 @@ namespace Obj.Obj_Socket
             get { return _isWarningOfReconn; }
         }
 
-        //客户端IP
-        private List<string> dicConnectIP = new List<string>();
-
-        //客户端断开IP
-        private List<string> dicDisConnectIP = new List<string>();
-
-        //客户端IP
-        private List<string> dicTempConnectIP = new List<string>();
-
-        //客户端IP长度
-        private int clientIPNum = 0;
-
         #region 构造函数
 
         public ClientObj(IPEndPoint localEndPoint) : base(localEndPoint)
@@ -76,8 +64,9 @@ namespace Obj.Obj_Socket
         /// <returns></returns>
         public void StartClient()
         {
-            this.OnConnect += Client_OnConnect;
-            this.OnDisconnect += Client_OnDisconnect;
+            this.OnConnect += new CClientSocket.ConnectionDelegate(Client_OnConnect);
+            this.OnDisconnect += new CClientSocket.ConnectionDelegate(Client_OnDisconnect);
+            this.OnRead += new CClientSocket.ConnectionDelegate(Client_OnRead);
             this.Connect();
         }
         #endregion
@@ -134,10 +123,6 @@ namespace Obj.Obj_Socket
         /// <param name="soc"></param>
         protected virtual void Client_OnConnect(Socket soc)
         {
-            //if (!dicConnectIP.Contains((soc.RemoteEndPoint as IPEndPoint).Address.ToString()))
-            //{
-            //    dicConnectIP.Add((soc.RemoteEndPoint as IPEndPoint).Address.ToString());
-            //}
             _isConnected = true;
         }
         /// <summary>
@@ -150,11 +135,11 @@ namespace Obj.Obj_Socket
             Connect();
         }
         /// <summary>
-        /// 服务器开始监听
+        /// 客户端接收数据事件（虚方法，在子类中重写以实现个性化逻辑）
         /// </summary>
-        protected virtual void Client_OnListen()
+        /// <param name="soc"></param>
+        protected virtual void Client_OnRead(Socket soc)
         {
-
         }
         #endregion
     }

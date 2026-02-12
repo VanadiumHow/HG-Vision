@@ -1,6 +1,7 @@
 ﻿using BaseSocket;
 using Cognex.VisionPro;
 using Cognex.VisionPro.ImageFile;
+using Cognex.VisionPro.ToolBlock;
 using HG_Vision.Contol.Control_Socket;
 using HG_Vision.Contol.Control_Vision;
 using HG_Vision.Manager.Manager_System;
@@ -14,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -109,13 +111,12 @@ namespace HG_Vision
 
             // 可选：设置鼠标移到标题栏时显示拖动光标，提升用户体验
             plTitle.Cursor = Cursors.SizeAll;
-
         }
         private void FrmVppSetting_Load(object sender, EventArgs e)
         {
             this.cogToolBlockEditV21.Subject = cur_WorkFlow.SettingBlock;
             acq = cur_WorkFlow.AcquireBlock.Tools["相机取像工具*"] as CogAcqFifoTool;
-            _linear_UnCalibrate_block = cur_WorkFlow.LinearCalibBlock.Tools["将未标定点位坐标算上畸变校正*"] as Cognex.VisionPro.ToolBlock.CogToolBlock;
+            _linear_UnCalibrate_block = cur_WorkFlow.LinearCalibBlock.Tools["将未标定点位坐标算上畸变校正*"] as CogToolBlock;
             _linear_calib_tool = cur_WorkFlow.LinearCalibBlock.Tools["机械手1标定工具*"] as Cognex.VisionPro.CalibFix.CogCalibNPointToNPointTool;
             _linear_calib_tool1 = cur_WorkFlow.LinearCalibBlock.Tools["机械手2标定工具*"] as Cognex.VisionPro.CalibFix.CogCalibNPointToNPointTool;
             _linear_calib_tool2 = cur_WorkFlow.LinearCalibBlock.Tools["激光1标定工具*"] as Cognex.VisionPro.CalibFix.CogCalibNPointToNPointTool;
@@ -152,15 +153,21 @@ namespace HG_Vision
             SignalsModel.CCDProcess = 1;
             if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
             {
-                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
-                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                if (Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count != 0)
+                {
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                }
             }
             else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
             {
-                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
-                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                if (Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count != 0)
+                {
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                }
             }
-            Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
+            //Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").OnRead += new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
 
             RefleshLinearDataGridView();
             RefleshRotationDataGridView();
@@ -175,23 +182,29 @@ namespace HG_Vision
                 SignalsModel.CCDProcess = 0;
                 if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
                 {
-                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
-                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                    //if (Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count != 0)
+                    //{
+                    //    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                    //    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                    //}
                 }
                 else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
                 {
-                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
-                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                    if (Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count != 0)
+                    {
+                        Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                        Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                    }
                 }
-                Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
+                //Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
 
                 HandlerButtonDisplay -= TextBoxDisplay;
 
                 if (cur_WorkFlow.SaveTools())
                 {
-                    cogToolBlockEditV21.Subject = null;
                     AfterSaveTool?.Invoke();
                 }
+
                 if (cts1 != null)
                 {
                     cts1.Cancel();
@@ -211,15 +224,21 @@ namespace HG_Vision
                 SignalsModel.CCDProcess = 0;
                 if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
                 {
-                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
-                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                    //if (Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count != 0)
+                    //{
+                    //    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                    //    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Epson);
+                    //}
                 }
                 else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
                 {
-                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
-                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                    if (Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count != 0)
+                    {
+                        Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                        Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{1}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal_Inovance);
+                    }
                 }
-                Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
+                //Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").OnRead -= new CServerSocket.ConnectionDelegate(Server_OnRead_Cal3);
 
                 HandlerButtonDisplay -= TextBoxDisplay;
 

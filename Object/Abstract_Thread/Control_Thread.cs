@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -21,9 +22,18 @@ namespace BaseThread
         private int m_nDelayTime = 0;
 
         private string m_strThName = "";
-        public bool IsBackground 
+        public bool IsBackground
         {
             set { if (th != null) th.IsBackground = value; }
+        }
+        public bool IsAlive
+        {
+            get {
+                if (th == null)
+                    return false;
+                else
+                    return th.IsAlive;
+            }
         }
         public void SetApartmentState(ApartmentState state)
         {

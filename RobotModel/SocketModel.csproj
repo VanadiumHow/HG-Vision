@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PLCServerModel.cs" />
     <Compile Include="LaserClientModel.cs" />
     <Compile Include="LaserServerModel.cs" />
     <Compile Include="RobotClientModel.cs" />

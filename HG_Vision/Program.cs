@@ -5,6 +5,7 @@ using Model.ConstantModel;
 #region using Visionprogram::namespace
 using HG_Vision.UIHome;
 using HG_Vision.Manager.Manager_System;
+using Model.EnumModel;
 #endregion
 namespace HG_Vision
 {
@@ -18,7 +19,7 @@ namespace HG_Vision
         static void Main()
         {
             bool createdNew; //返回是否赋予了使用线程的互斥体初始所属权
-            System.Threading.Mutex instance = new System.Threading.Mutex(true, "VisionProgram", out createdNew); 
+            System.Threading.Mutex instance = new System.Threading.Mutex(true, "VisionProgram", out createdNew);
 
             if (createdNew)
             {
@@ -63,19 +64,22 @@ namespace HG_Vision
             Application.DoEvents();
             //实例化Project并且实例化管理类
             Project.Instance.InitialManagerObj();
-            ProgramGerneral.FrmSplashScreen.SetStatus("加载系统设置参数...");       
+            ProgramGerneral.FrmSplashScreen.SetStatus("加载系统设置参数...");
             Project.Instance.LoadGlobalConfig();
             ProgramGerneral.FrmSplashScreen.SetStatus("加载用户信息...");
             Project.Instance.LoadUserInfo();
             ProgramGerneral.FrmSplashScreen.SetStatus("加载视觉功能块...");
             Project.Instance.LoadVisionInfo();
-            ProgramGerneral.FrmSplashScreen.SetStatus("初始化PLC...");
-            Project.Instance.InitialPLC();
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement == ePLCAgreement.Fins_TCP.ToString())
+            {
+                ProgramGerneral.FrmSplashScreen.SetStatus("初始化PLC...");
+                Project.Instance.InitialPLC();
+            }
             ProgramGerneral.FrmSplashScreen.SetStatus("初始化生产数据...");
             Project.Instance.InitialProductionData();
-            ProgramGerneral.FrmSplashScreen.SetStatus("初始Robot/Laser服务器...");
+            ProgramGerneral.FrmSplashScreen.SetStatus("初始化Socket服务器...");
             Project.Instance.InitialSocketSever();
-            ProgramGerneral.FrmSplashScreen.SetStatus("初始Laser客户端...");
+            ProgramGerneral.FrmSplashScreen.SetStatus("初始化Socket客户端...");
             Project.Instance.InitialSocketClient();
             ProgramGerneral.FrmSplashScreen.SetStatus("初始化硬件状态...");
             Project.Instance.InitialHardWareState();

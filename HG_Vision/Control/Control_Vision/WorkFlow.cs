@@ -235,7 +235,6 @@ namespace HG_Vision.Contol.Control_Vision
                     SettingBlock.Tools.Add(VerificatecalibBlock);
                 }
                 SettingBlock.Tools.Add(ProcessBlock);
-
             }
             catch (System.Exception ex)
             {

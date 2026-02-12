@@ -45,6 +45,7 @@ namespace HG_Vision.UISetting
         {
             TextBoxEXLogSaveDays.Text = Project.Instance.GlobalManagerInstance.GlobalParamsModel.LogSaveDays.ToString();
             cbProtocolType.Text = Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType;
+            cbPLCAgreement.Text = Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement;
             cb_AutoStart.Checked = AutoStartHelper.CheckShortCut();
         }
 
@@ -66,6 +67,12 @@ namespace HG_Vision.UISetting
                     {
                         oldGeneralParamObjects.Add(new OperationLogParamModel.OldParam() { Text = "机械手通讯协议", Field = "ProtocolType", OldValue = Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType, NewValue = cbProtocolType.Text });
                         Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType = cbProtocolType.Text;
+                    }
+
+                    if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement != cbPLCAgreement.Text)
+                    {
+                        oldGeneralParamObjects.Add(new OperationLogParamModel.OldParam() { Text = "PLC通讯协议类型", Field = "PLCAgreement", OldValue = Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement, NewValue = cbPLCAgreement.Text });
+                        Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement = cbPLCAgreement.Text;
                     }
 
                     //windows启动文件夹下快捷方式保存

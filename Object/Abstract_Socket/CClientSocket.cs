@@ -163,54 +163,34 @@ namespace BaseSocket
         {
             try
             {
+                mainSocket?.Close(); // 先关闭旧实例
                 mainSocket = null;
-                mainSocket = new Socket(SocketType.Stream, ProtocolType.Tcp);
+                mainSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 //Connect to Server
-                mainSocket.Connect(serverEndPoint);
-                WaitForData(mainSocket);
-                if (OnConnect != null)
-                    OnConnect(mainSocket);
-                //mainSocket.BeginConnect(serverEndPoint, ConfirmConnect, null);
+                mainSocket.BeginConnect(serverEndPoint, ConfirmConnect, mainSocket);
                 return true;
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
-                if (OnError != null)
-                    OnError(ex.Message, null, 0);
-                return false;
-            }
-            catch (InvalidOperationException ex)
-            {
-                if (OnError != null)
-                    OnError(ex.Message, null, 0);
-                return false;
-            }
-            catch (SocketException se)
-            {
-                if (OnError != null)
-                    OnError(se.Message, mainSocket, se.ErrorCode);
+                OnError?.Invoke(ex.Message, mainSocket, ex is SocketException se ? se.ErrorCode : 0);
                 return false;
             }
         }
 
         private void ConfirmConnect(IAsyncResult asyn)
         {
+            Socket soc = asyn.AsyncState as Socket;
+            if (soc == null) return;
+
             try
             {
-                mainSocket.EndConnect(asyn);
-                WaitForData(mainSocket);
-                if (OnConnect != null)
-                    OnConnect(mainSocket);
+                soc.EndConnect(asyn);
+                WaitForData(soc);
+                OnConnect?.Invoke(soc);
             }
-            catch (ObjectDisposedException se)
+            catch (Exception ex)
             {
-                if (OnError != null)
-                    OnError(se.Message, null, 0);
-            }
-            catch (SocketException se)
-            {
-                if (OnError != null)
-                    OnError(se.Message, null, 0);
+                OnError?.Invoke(ex.Message, soc, ex is SocketException se ? se.ErrorCode : 0);
             }
         }
 
@@ -220,20 +200,24 @@ namespace BaseSocket
             {
                 if (WorkerCallBack == null)
                     WorkerCallBack = new AsyncCallback(OnDataReceived);
-                soc.BeginReceive(dataBuffer, 0, dataBuffer.Length, SocketFlags.None, WorkerCallBack, null);
+                // 修复：将Socket实例作为state传递，回调中可获取有效实例
+                soc.BeginReceive(dataBuffer, 0, dataBuffer.Length, SocketFlags.None, WorkerCallBack, soc);
             }
             catch (SocketException se)
             {
-                if (OnError != null)
-                    OnError(se.Message, soc, se.ErrorCode);
+                OnError?.Invoke(se.Message, soc, se.ErrorCode);
             }
         }
 
         private void OnDataReceived(IAsyncResult asyn)
         {
+            Socket soc = asyn.AsyncState as Socket; // 获取传递的有效Socket
+            if (soc == null || !soc.Connected) return; // 提前判空，避免无效操作
+
             try
             {
-                int iRx = mainSocket.EndReceive(asyn);
+                int iRx = soc.EndReceive(asyn); // 操作传递的Socket，而非全局mainSocket
+
                 if (iRx < 1)
                 {
                     mainSocket.Close();
@@ -399,11 +383,20 @@ namespace BaseSocket
         /// </summary>
         public bool Disconnect()
         {
-            mainSocket.Close();
-            if (!mainSocket.Connected)
-                return true;
-            else
+            try
+            {
+                if (mainSocket.Connected)
+                {
+                    mainSocket.Shutdown(SocketShutdown.Both); // 先终止读写，通知对方
+                    mainSocket.Close(1000); // 等待1秒，让异步操作收尾
+                }
+                return !mainSocket.Connected;
+            }
+            catch (SocketException se)
+            {
+                OnError?.Invoke(se.Message, mainSocket, se.ErrorCode);
                 return false;
+            }
         }
         #endregion
     }

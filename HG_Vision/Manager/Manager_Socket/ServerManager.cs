@@ -68,14 +68,14 @@ namespace HG_Vision.Manager.Manager_Socket
 
                 //加载配置文件，创建机械手对象并添加
                 _severConfiguration.AnalysisServerInfoConfig(ref robotClientModel);
-                for (int i = 0; i < robotClientModel.RobotClientList.Count; i++)
+                for (int i = 0; i < Math.Min(robotClientModel.RobotClientList.Count, Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotNum); i++)
                 {
                     var robotObj = new RobotServerObj(robotClientModel.RobotClientList[i].DeviceName, robotClientModel.RobotClientList[i].LocalIP, robotClientModel.RobotClientList[i].LocalPort);
                     AddDevice(robotObj);
                 }
                 //加载配置文件，创建激光对象并添加
                 _severConfiguration.AnalysisServerInfoConfig(ref laserClientModel);
-                for (int i = 0; i < laserClientModel.LaserClientList.Count; i++)
+                for (int i = 0; i < Math.Min(laserClientModel.LaserClientList.Count, Project.Instance.GlobalManagerInstance.GlobalParamsModel.LaserNum); i++)
                 {
                     var laserObj = new LaserServerObj(laserClientModel.LaserClientList[i].DeviceName, laserClientModel.LaserClientList[i].LocalIP, laserClientModel.LaserClientList[i].LocalPort);
                     laserObj.InitCameraWorkThreads1();

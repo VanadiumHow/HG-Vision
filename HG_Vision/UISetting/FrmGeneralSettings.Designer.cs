@@ -38,8 +38,10 @@ namespace HG_Vision.UISetting
             this.Label1 = new System.Windows.Forms.Label();
             this.TextBoxEXLogSaveDays = new VisionProgram.UserControls.UITextBox.TextBoxEX();
             this.label2 = new System.Windows.Forms.Label();
-            this.cb_AutoStart = new System.Windows.Forms.CheckBox();
             this.cbProtocolType = new System.Windows.Forms.ComboBox();
+            this.cbPLCAgreement = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cb_AutoStart = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanelPic = new Sunny.UI.UITableLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -129,8 +131,10 @@ namespace HG_Vision.UISetting
             this.tableLayoutPanelSet.Controls.Add(this.Label1, 0, 0);
             this.tableLayoutPanelSet.Controls.Add(this.TextBoxEXLogSaveDays, 1, 0);
             this.tableLayoutPanelSet.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanelSet.Controls.Add(this.cb_AutoStart, 0, 2);
             this.tableLayoutPanelSet.Controls.Add(this.cbProtocolType, 1, 1);
+            this.tableLayoutPanelSet.Controls.Add(this.cbPLCAgreement, 1, 2);
+            this.tableLayoutPanelSet.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanelSet.Controls.Add(this.cb_AutoStart, 0, 3);
             this.tableLayoutPanelSet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelSet.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
             this.tableLayoutPanelSet.Location = new System.Drawing.Point(3, 3);
@@ -194,17 +198,6 @@ namespace HG_Vision.UISetting
             this.label2.Text = "机械手通讯协议：";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cb_AutoStart
-            // 
-            this.cb_AutoStart.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cb_AutoStart.AutoSize = true;
-            this.cb_AutoStart.Location = new System.Drawing.Point(34, 144);
-            this.cb_AutoStart.Name = "cb_AutoStart";
-            this.cb_AutoStart.Size = new System.Drawing.Size(109, 26);
-            this.cb_AutoStart.TabIndex = 31;
-            this.cb_AutoStart.Text = "开机自启动";
-            this.cb_AutoStart.UseVisualStyleBackColor = true;
-            // 
             // cbProtocolType
             // 
             this.cbProtocolType.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -218,6 +211,43 @@ namespace HG_Vision.UISetting
             this.cbProtocolType.Name = "cbProtocolType";
             this.cbProtocolType.Size = new System.Drawing.Size(149, 30);
             this.cbProtocolType.TabIndex = 33;
+            // 
+            // cbPLCAgreement
+            // 
+            this.cbPLCAgreement.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbPLCAgreement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPLCAgreement.FormattingEnabled = true;
+            this.cbPLCAgreement.Items.AddRange(new object[] {
+            "Fins TCP",
+            "TCP"});
+            this.cbPLCAgreement.Location = new System.Drawing.Point(193, 141);
+            this.cbPLCAgreement.Margin = new System.Windows.Forms.Padding(15, 15, 15, 8);
+            this.cbPLCAgreement.Name = "cbPLCAgreement";
+            this.cbPLCAgreement.Size = new System.Drawing.Size(149, 30);
+            this.cbPLCAgreement.TabIndex = 37;
+            // 
+            // label3
+            // 
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(1, 126);
+            this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(176, 63);
+            this.label3.TabIndex = 36;
+            this.label3.Text = "PLC通讯协议类型：";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cb_AutoStart
+            // 
+            this.cb_AutoStart.AutoSize = true;
+            this.cb_AutoStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cb_AutoStart.Location = new System.Drawing.Point(3, 192);
+            this.cb_AutoStart.Name = "cb_AutoStart";
+            this.cb_AutoStart.Size = new System.Drawing.Size(172, 57);
+            this.cb_AutoStart.TabIndex = 31;
+            this.cb_AutoStart.Text = "开机自启动";
+            this.cb_AutoStart.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelPic
             // 
@@ -330,5 +360,7 @@ namespace HG_Vision.UISetting
         private System.Windows.Forms.CheckBox cb_AutoStart;
         internal System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbProtocolType;
+        private System.Windows.Forms.ComboBox cbPLCAgreement;
+        internal System.Windows.Forms.Label label3;
     }
 }

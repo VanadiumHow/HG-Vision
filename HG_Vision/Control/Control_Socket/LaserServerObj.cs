@@ -73,28 +73,33 @@ namespace HG_Vision.Contol.Control_Socket
                 if (str.Length > 2 && (str[0].Contains("T1") || str[0].Contains("T2")))
                 {
                     LogHelper.Info("收到激光触发：" + receive_string);
-                    receive_string.Split(',');
                     TriggerEventArgs _e = new TriggerEventArgs
                     {
                         FlowIdx = 0,
                         eMode = Model.EnumModel.eProcessMode.produce,
                         NozzleIdx = str[0].Contains("T1") ? 0 : 1
                     };
+                    Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{_e.NozzleIdx}").SaveRobotOffsetData("2;0;0");
                     _taskQueueList[0].Enqueue(_e);
                 }
 
                 //获取焊点线段长度，格式：Get;
-                if (receive_string.Contains("Get"))
+                if (receive_string.Contains("Get1"))
                 {
-                    LogHelper.Info("收到激光Get");
+                    LogHelper.Info("收到激光Get1");
                     string lengthAl = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.WeldlengthAl.ToString("f3");
+                    if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").SendText(lengthAl + ";", 0))
+                    LogHelper.Info($"发送长度:Al={lengthAl}");
+                }
+                //获取焊点线段长度，格式：Get;
+                if (receive_string.Contains("Get2"))
+                {
+                    LogHelper.Info("收到激光Get2");
                     string lengthNi = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.WeldlengthNi.ToString("f3");
-                    if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").SendText(lengthAl + ";" + lengthNi + ";", 0))
-                    NoticeHelper.OutputMessageSend($"给到激光整体长度:Al={lengthAl},Ni={lengthNi}", OutputLevelModel.INFO);
-                    LogHelper.Info($"给到激光整体长度:Al={lengthAl},Ni={lengthNi}");
+                    if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").SendText(lengthNi + ";", 0))
+                    LogHelper.Info($"发送长度:Ni={lengthNi}");
                 }
             }
-
         }
         #endregion
     }

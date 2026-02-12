@@ -5,6 +5,9 @@ using HslCommunication.Profinet.Omron;
 using HslCommunication;
 using Obj.Obj_File;
 using HG_Vision.Contol.Control_PLC;
+using Model.EnumModel;
+using HG_Vision.Manager.Manager_System;
+using HG_Vision.Manager.Manager_Thread;
 
 /****************************************************************
 
@@ -30,8 +33,7 @@ namespace HG_Vision.Manager.Manager_PLC
         /// </summary>
         public List<PLCConfiguration.PLCInfo> L_PLCInfo = new List<PLCConfiguration.PLCInfo>();
         //加载ini
-
-
+        private HeartBeat heartBeat = new HeartBeat();
 
         public HSLPLCOmron()
         {
@@ -62,6 +64,10 @@ namespace HG_Vision.Manager.Manager_PLC
             {
                 result = NJPLC.ConnectServer();
                 _isPLCConnect = result.IsSuccess;
+                if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString() && !heartBeat.IsAlive)
+                {
+                    heartBeat.Initialize();
+                }
             }
             catch (Exception ex)
             {
@@ -73,6 +79,8 @@ namespace HG_Vision.Manager.Manager_PLC
 
         public void Dispose()
         {
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
+                heartBeat.Deinitialize();
             NJPLC.Dispose();
         }
         public bool Write(string address, byte[] value)
@@ -248,7 +256,7 @@ namespace HG_Vision.Manager.Manager_PLC
                     else
                     {
                         Connect();
-                        LogHelper.Fatal("读取夹具号出现异常");
+                        LogHelper.Fatal("读取PLC心跳异常");
                         return 0;
                     }
                 }
@@ -266,7 +274,7 @@ namespace HG_Vision.Manager.Manager_PLC
                         else
                         {
                             Connect();
-                            LogHelper.Fatal("读取夹具号出现异常");
+                            LogHelper.Fatal("读取PLC心跳异常");
                             return 0;
                         }
                     }

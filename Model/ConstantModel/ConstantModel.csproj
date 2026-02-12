@@ -45,7 +45,9 @@
     <Compile Include="FilePathModel.cs" />
     <Compile Include="GlobalParamModel.cs" />
     <Compile Include="ImageParamsModel.cs" />
+    <Compile Include="PLCDataTempModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RobotDataTempModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EnumModel\EnumModel.csproj">

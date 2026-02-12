@@ -81,7 +81,8 @@
     public enum eDeviceType
     {
         Robot, // 机器人
-        Laser  // 激光设备
+        Laser,  // 激光设备
+        PLC // PLC设备
     }
     /// <summary>
     /// 机器人协议类型枚举
@@ -90,5 +91,13 @@
     {
         LYH = 0, //利元亨协议
         HG = 1 //华工协议
+    }
+    /// <summary>
+    /// PLC协议类型枚举
+    /// </summary>
+    public enum ePLCAgreement
+    {
+        Fins_TCP = 0, //fINS TCP协议
+        TCP = 1 //TCP协议
     }
 }

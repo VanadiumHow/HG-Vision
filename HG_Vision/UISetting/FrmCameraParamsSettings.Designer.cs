@@ -105,30 +105,34 @@ namespace HG_Vision.UIVision
             this.tb_Cam1CenterLa1Y = new System.Windows.Forms.TextBox();
             this.lb_Cam1AngleMin = new System.Windows.Forms.Label();
             this.tb_Cam1AngleMin = new System.Windows.Forms.TextBox();
-            this.lb_Cam1LimitMax = new System.Windows.Forms.Label();
-            this.tb_Cam1LimitMax = new System.Windows.Forms.TextBox();
             this.lb_Cam1CenterLa2X = new System.Windows.Forms.Label();
             this.tb_Cam1CenterLa2X = new System.Windows.Forms.TextBox();
             this.lb_Cam1CenterLa2Y = new System.Windows.Forms.Label();
             this.tb_Cam1CenterLa2Y = new System.Windows.Forms.TextBox();
-            this.tb_Cam1LimitMin = new System.Windows.Forms.TextBox();
-            this.lb_Cam1LimitMin = new System.Windows.Forms.Label();
-            this.lb_Cam1Spacing = new System.Windows.Forms.Label();
-            this.lb_Cam1SpacingUse = new System.Windows.Forms.Label();
-            this.tb_Cam1SpacingUse = new System.Windows.Forms.TextBox();
-            this.lb_Cam1RobotStep = new System.Windows.Forms.Label();
-            this.lb_Cam1RobotUse = new System.Windows.Forms.Label();
-            this.tb_Cam1RobotUse = new System.Windows.Forms.TextBox();
-            this.tb_Cam1LaserUse = new System.Windows.Forms.TextBox();
-            this.lb_Cam1LaserUse = new System.Windows.Forms.Label();
+            this.lb_Cam1StdweldlengthAl = new System.Windows.Forms.Label();
+            this.tb_Cam1StdweldlengthAl = new System.Windows.Forms.TextBox();
+            this.lb_Cam1StdweldlengthNi = new System.Windows.Forms.Label();
+            this.tb_Cam1StdweldlengthNi = new System.Windows.Forms.TextBox();
             this.lb_Cam1LaserStep = new System.Windows.Forms.Label();
             this.tb_Cam1LaserStep = new System.Windows.Forms.TextBox();
-            this.tb_Cam1Spacing = new System.Windows.Forms.TextBox();
+            this.lb_Cam1LaserUse = new System.Windows.Forms.Label();
+            this.tb_Cam1LaserUse = new System.Windows.Forms.TextBox();
+            this.lb_Cam1RobotUse = new System.Windows.Forms.Label();
+            this.tb_Cam1RobotUse = new System.Windows.Forms.TextBox();
             this.tb_Cam1RobotStep = new System.Windows.Forms.TextBox();
-            this.tb_Cam1StdweldlengthAl = new System.Windows.Forms.TextBox();
-            this.tb_Cam1StdweldlengthNi = new System.Windows.Forms.TextBox();
-            this.lb_Cam1StdweldlengthAl = new System.Windows.Forms.Label();
-            this.lb_Cam1StdweldlengthNi = new System.Windows.Forms.Label();
+            this.lb_Cam1RobotStep = new System.Windows.Forms.Label();
+            this.lb_Cam1Spacing = new System.Windows.Forms.Label();
+            this.tb_Cam1Spacing = new System.Windows.Forms.TextBox();
+            this.lb_Cam1SpacingUse = new System.Windows.Forms.Label();
+            this.tb_Cam1SpacingUse = new System.Windows.Forms.TextBox();
+            this.lb_Cam1LaLimitMin = new System.Windows.Forms.Label();
+            this.tb_Cam1LaLimitMin = new System.Windows.Forms.TextBox();
+            this.lb_Cam1LaLimitMax = new System.Windows.Forms.Label();
+            this.tb_Cam1LaLimitMax = new System.Windows.Forms.TextBox();
+            this.lb_Cam1BoLimitMax = new System.Windows.Forms.Label();
+            this.lb_Cam1BoLimitMin = new System.Windows.Forms.Label();
+            this.tb_Cam1BoLimitMax = new System.Windows.Forms.TextBox();
+            this.tb_Cam1BoLimitMin = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.lb_Cam1Jig1Bo2Y = new System.Windows.Forms.Label();
@@ -756,30 +760,34 @@ namespace HG_Vision.UIVision
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa1Y, 12, 2);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1AngleMin, 9, 2);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1AngleMin, 10, 2);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LimitMax, 9, 3);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LimitMax, 10, 3);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa2X, 11, 3);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa2X, 12, 3);
             this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1CenterLa2Y, 11, 4);
             this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1CenterLa2Y, 12, 4);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LimitMin, 10, 4);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LimitMin, 9, 4);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1Spacing, 9, 5);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1SpacingUse, 11, 5);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1SpacingUse, 12, 5);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1RobotStep, 9, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1RobotUse, 11, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1RobotUse, 12, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LaserUse, 12, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LaserUse, 11, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LaserStep, 9, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LaserStep, 10, 7);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1Spacing, 10, 5);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1RobotStep, 10, 6);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1StdweldlengthAl, 10, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1StdweldlengthNi, 12, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1StdweldlengthAl, 9, 8);
-            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1StdweldlengthNi, 11, 8);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1StdweldlengthAl, 11, 5);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1StdweldlengthAl, 12, 5);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1StdweldlengthNi, 11, 6);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1StdweldlengthNi, 12, 6);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LaserStep, 9, 9);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LaserStep, 10, 9);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LaserUse, 11, 9);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LaserUse, 12, 9);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1RobotUse, 11, 8);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1RobotUse, 12, 8);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1RobotStep, 10, 8);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1RobotStep, 9, 8);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1Spacing, 9, 7);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1Spacing, 10, 7);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1SpacingUse, 11, 7);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1SpacingUse, 12, 7);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LaLimitMin, 9, 6);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LaLimitMin, 10, 6);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1LaLimitMax, 9, 5);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1LaLimitMax, 10, 5);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1BoLimitMax, 9, 3);
+            this.uiTableLayoutPanel1.Controls.Add(this.lb_Cam1BoLimitMin, 9, 4);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1BoLimitMax, 10, 3);
+            this.uiTableLayoutPanel1.Controls.Add(this.tb_Cam1BoLimitMin, 10, 4);
             this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTableLayoutPanel1.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -1591,7 +1599,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AngleMax.Name = "lb_Cam1AngleMax";
             this.lb_Cam1AngleMax.Size = new System.Drawing.Size(86, 46);
             this.lb_Cam1AngleMax.TabIndex = 138;
-            this.lb_Cam1AngleMax.Text = "钢片与壳角度Max";
+            this.lb_Cam1AngleMax.Text = "钢片角度上限";
             this.lb_Cam1AngleMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tb_Cam1AngleMax
@@ -1664,7 +1672,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1AngleMin.Name = "lb_Cam1AngleMin";
             this.lb_Cam1AngleMin.Size = new System.Drawing.Size(86, 46);
             this.lb_Cam1AngleMin.TabIndex = 137;
-            this.lb_Cam1AngleMin.Text = "钢片与壳角度Min";
+            this.lb_Cam1AngleMin.Text = "钢片角度下限";
             this.lb_Cam1AngleMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tb_Cam1AngleMin
@@ -1679,31 +1687,6 @@ namespace HG_Vision.UIVision
             this.tb_Cam1AngleMin.Size = new System.Drawing.Size(84, 21);
             this.tb_Cam1AngleMin.TabIndex = 139;
             this.tb_Cam1AngleMin.Tag = "";
-            // 
-            // lb_Cam1LimitMax
-            // 
-            this.lb_Cam1LimitMax.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1LimitMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1LimitMax.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1LimitMax.Location = new System.Drawing.Point(831, 138);
-            this.lb_Cam1LimitMax.Name = "lb_Cam1LimitMax";
-            this.lb_Cam1LimitMax.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1LimitMax.TabIndex = 142;
-            this.lb_Cam1LimitMax.Text = "偏移范围Max";
-            this.lb_Cam1LimitMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1LimitMax
-            // 
-            this.tb_Cam1LimitMax.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1LimitMax.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1LimitMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1LimitMax.Location = new System.Drawing.Point(924, 150);
-            this.tb_Cam1LimitMax.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1LimitMax.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1LimitMax.Name = "tb_Cam1LimitMax";
-            this.tb_Cam1LimitMax.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1LimitMax.TabIndex = 144;
-            this.tb_Cam1LimitMax.Tag = "";
             // 
             // lb_Cam1CenterLa2X
             // 
@@ -1753,133 +1736,57 @@ namespace HG_Vision.UIVision
             this.tb_Cam1CenterLa2Y.Size = new System.Drawing.Size(84, 21);
             this.tb_Cam1CenterLa2Y.TabIndex = 131;
             // 
-            // tb_Cam1LimitMin
+            // lb_Cam1StdweldlengthAl
             // 
-            this.tb_Cam1LimitMin.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1LimitMin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1LimitMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1LimitMin.Location = new System.Drawing.Point(924, 196);
-            this.tb_Cam1LimitMin.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1LimitMin.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1LimitMin.Name = "tb_Cam1LimitMin";
-            this.tb_Cam1LimitMin.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1LimitMin.TabIndex = 143;
-            this.tb_Cam1LimitMin.Tag = "";
+            this.lb_Cam1StdweldlengthAl.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1StdweldlengthAl.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1StdweldlengthAl.Location = new System.Drawing.Point(1015, 230);
+            this.lb_Cam1StdweldlengthAl.Name = "lb_Cam1StdweldlengthAl";
+            this.lb_Cam1StdweldlengthAl.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1StdweldlengthAl.TabIndex = 179;
+            this.lb_Cam1StdweldlengthAl.Text = "Al焊印固定长度";
+            this.lb_Cam1StdweldlengthAl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lb_Cam1LimitMin
+            // tb_Cam1StdweldlengthAl
             // 
-            this.lb_Cam1LimitMin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1LimitMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1LimitMin.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1LimitMin.Location = new System.Drawing.Point(831, 184);
-            this.lb_Cam1LimitMin.Name = "lb_Cam1LimitMin";
-            this.lb_Cam1LimitMin.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1LimitMin.TabIndex = 141;
-            this.lb_Cam1LimitMin.Text = "偏移范围Min";
-            this.lb_Cam1LimitMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tb_Cam1StdweldlengthAl.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdweldlengthAl.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1StdweldlengthAl.Location = new System.Drawing.Point(1108, 242);
+            this.tb_Cam1StdweldlengthAl.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1StdweldlengthAl.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1StdweldlengthAl.Name = "tb_Cam1StdweldlengthAl";
+            this.tb_Cam1StdweldlengthAl.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1StdweldlengthAl.TabIndex = 177;
+            this.tb_Cam1StdweldlengthAl.Tag = "";
             // 
-            // lb_Cam1Spacing
+            // lb_Cam1StdweldlengthNi
             // 
-            this.lb_Cam1Spacing.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1Spacing.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1Spacing.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1Spacing.Location = new System.Drawing.Point(831, 230);
-            this.lb_Cam1Spacing.Name = "lb_Cam1Spacing";
-            this.lb_Cam1Spacing.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1Spacing.TabIndex = 162;
-            this.lb_Cam1Spacing.Text = "极耳间距设定标准值";
-            this.lb_Cam1Spacing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_Cam1StdweldlengthNi.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1StdweldlengthNi.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1StdweldlengthNi.Location = new System.Drawing.Point(1015, 276);
+            this.lb_Cam1StdweldlengthNi.Name = "lb_Cam1StdweldlengthNi";
+            this.lb_Cam1StdweldlengthNi.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1StdweldlengthNi.TabIndex = 180;
+            this.lb_Cam1StdweldlengthNi.Text = "Ni焊印固定长度";
+            this.lb_Cam1StdweldlengthNi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lb_Cam1SpacingUse
+            // tb_Cam1StdweldlengthNi
             // 
-            this.lb_Cam1SpacingUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1SpacingUse.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1SpacingUse.Location = new System.Drawing.Point(1015, 230);
-            this.lb_Cam1SpacingUse.Name = "lb_Cam1SpacingUse";
-            this.lb_Cam1SpacingUse.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1SpacingUse.TabIndex = 161;
-            this.lb_Cam1SpacingUse.Text = "屏蔽间距补偿（1启用0屏蔽）";
-            this.lb_Cam1SpacingUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1SpacingUse
-            // 
-            this.tb_Cam1SpacingUse.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1SpacingUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1SpacingUse.Location = new System.Drawing.Point(1108, 242);
-            this.tb_Cam1SpacingUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1SpacingUse.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1SpacingUse.Name = "tb_Cam1SpacingUse";
-            this.tb_Cam1SpacingUse.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1SpacingUse.TabIndex = 166;
-            // 
-            // lb_Cam1RobotStep
-            // 
-            this.lb_Cam1RobotStep.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1RobotStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1RobotStep.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1RobotStep.Location = new System.Drawing.Point(831, 276);
-            this.lb_Cam1RobotStep.Name = "lb_Cam1RobotStep";
-            this.lb_Cam1RobotStep.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1RobotStep.TabIndex = 160;
-            this.lb_Cam1RobotStep.Text = "机械手标定偏移";
-            this.lb_Cam1RobotStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Cam1RobotUse
-            // 
-            this.lb_Cam1RobotUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1RobotUse.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1RobotUse.Location = new System.Drawing.Point(1015, 276);
-            this.lb_Cam1RobotUse.Name = "lb_Cam1RobotUse";
-            this.lb_Cam1RobotUse.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1RobotUse.TabIndex = 163;
-            this.lb_Cam1RobotUse.Text = "屏蔽机械手补偿（1启用0屏蔽）";
-            this.lb_Cam1RobotUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tb_Cam1RobotUse
-            // 
-            this.tb_Cam1RobotUse.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1RobotUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1RobotUse.Location = new System.Drawing.Point(1108, 288);
-            this.tb_Cam1RobotUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1RobotUse.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1RobotUse.Name = "tb_Cam1RobotUse";
-            this.tb_Cam1RobotUse.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1RobotUse.TabIndex = 165;
-            // 
-            // tb_Cam1LaserUse
-            // 
-            this.tb_Cam1LaserUse.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1LaserUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1LaserUse.Location = new System.Drawing.Point(1108, 334);
-            this.tb_Cam1LaserUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1LaserUse.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1LaserUse.Name = "tb_Cam1LaserUse";
-            this.tb_Cam1LaserUse.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1LaserUse.TabIndex = 168;
-            // 
-            // lb_Cam1LaserUse
-            // 
-            this.lb_Cam1LaserUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1LaserUse.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1LaserUse.Location = new System.Drawing.Point(1015, 322);
-            this.lb_Cam1LaserUse.Name = "lb_Cam1LaserUse";
-            this.lb_Cam1LaserUse.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1LaserUse.TabIndex = 164;
-            this.lb_Cam1LaserUse.Text = "屏蔽激光补偿（1启用0屏蔽）";
-            this.lb_Cam1LaserUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tb_Cam1StdweldlengthNi.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdweldlengthNi.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1StdweldlengthNi.Location = new System.Drawing.Point(1108, 288);
+            this.tb_Cam1StdweldlengthNi.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1StdweldlengthNi.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1StdweldlengthNi.Name = "tb_Cam1StdweldlengthNi";
+            this.tb_Cam1StdweldlengthNi.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1StdweldlengthNi.TabIndex = 178;
+            this.tb_Cam1StdweldlengthNi.Tag = "";
             // 
             // lb_Cam1LaserStep
             // 
-            this.lb_Cam1LaserStep.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1LaserStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1LaserStep.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1LaserStep.Location = new System.Drawing.Point(831, 322);
+            this.lb_Cam1LaserStep.Location = new System.Drawing.Point(831, 414);
             this.lb_Cam1LaserStep.Name = "lb_Cam1LaserStep";
             this.lb_Cam1LaserStep.Size = new System.Drawing.Size(86, 46);
             this.lb_Cam1LaserStep.TabIndex = 157;
@@ -1889,9 +1796,8 @@ namespace HG_Vision.UIVision
             // tb_Cam1LaserStep
             // 
             this.tb_Cam1LaserStep.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1LaserStep.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1LaserStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1LaserStep.Location = new System.Drawing.Point(924, 334);
+            this.tb_Cam1LaserStep.Location = new System.Drawing.Point(924, 426);
             this.tb_Cam1LaserStep.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1LaserStep.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1LaserStep.Name = "tb_Cam1LaserStep";
@@ -1899,25 +1805,55 @@ namespace HG_Vision.UIVision
             this.tb_Cam1LaserStep.TabIndex = 159;
             this.tb_Cam1LaserStep.Tag = "";
             // 
-            // tb_Cam1Spacing
+            // lb_Cam1LaserUse
             // 
-            this.tb_Cam1Spacing.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1Spacing.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1Spacing.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1Spacing.Location = new System.Drawing.Point(924, 242);
-            this.tb_Cam1Spacing.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1Spacing.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1Spacing.Name = "tb_Cam1Spacing";
-            this.tb_Cam1Spacing.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1Spacing.TabIndex = 167;
-            this.tb_Cam1Spacing.Tag = "";
+            this.lb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1LaserUse.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1LaserUse.Location = new System.Drawing.Point(1015, 414);
+            this.lb_Cam1LaserUse.Name = "lb_Cam1LaserUse";
+            this.lb_Cam1LaserUse.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1LaserUse.TabIndex = 164;
+            this.lb_Cam1LaserUse.Text = "激光补偿使能（1启用0旁通）";
+            this.lb_Cam1LaserUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1LaserUse
+            // 
+            this.tb_Cam1LaserUse.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1LaserUse.Location = new System.Drawing.Point(1108, 426);
+            this.tb_Cam1LaserUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1LaserUse.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1LaserUse.Name = "tb_Cam1LaserUse";
+            this.tb_Cam1LaserUse.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1LaserUse.TabIndex = 168;
+            // 
+            // lb_Cam1RobotUse
+            // 
+            this.lb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1RobotUse.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1RobotUse.Location = new System.Drawing.Point(1015, 368);
+            this.lb_Cam1RobotUse.Name = "lb_Cam1RobotUse";
+            this.lb_Cam1RobotUse.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1RobotUse.TabIndex = 163;
+            this.lb_Cam1RobotUse.Text = "机械手补偿使能（1启用0旁通）";
+            this.lb_Cam1RobotUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1RobotUse
+            // 
+            this.tb_Cam1RobotUse.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1RobotUse.Location = new System.Drawing.Point(1108, 380);
+            this.tb_Cam1RobotUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1RobotUse.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1RobotUse.Name = "tb_Cam1RobotUse";
+            this.tb_Cam1RobotUse.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1RobotUse.TabIndex = 165;
             // 
             // tb_Cam1RobotStep
             // 
             this.tb_Cam1RobotStep.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1RobotStep.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1RobotStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1RobotStep.Location = new System.Drawing.Point(924, 288);
+            this.tb_Cam1RobotStep.Location = new System.Drawing.Point(924, 380);
             this.tb_Cam1RobotStep.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.tb_Cam1RobotStep.MinimumSize = new System.Drawing.Size(4, 4);
             this.tb_Cam1RobotStep.Name = "tb_Cam1RobotStep";
@@ -1925,55 +1861,153 @@ namespace HG_Vision.UIVision
             this.tb_Cam1RobotStep.TabIndex = 158;
             this.tb_Cam1RobotStep.Tag = "";
             // 
-            // tb_Cam1StdweldlengthAl
+            // lb_Cam1RobotStep
             // 
-            this.tb_Cam1StdweldlengthAl.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1StdweldlengthAl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1StdweldlengthAl.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdweldlengthAl.Location = new System.Drawing.Point(924, 380);
-            this.tb_Cam1StdweldlengthAl.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1StdweldlengthAl.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1StdweldlengthAl.Name = "tb_Cam1StdweldlengthAl";
-            this.tb_Cam1StdweldlengthAl.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1StdweldlengthAl.TabIndex = 177;
-            this.tb_Cam1StdweldlengthAl.Tag = "";
+            this.lb_Cam1RobotStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1RobotStep.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1RobotStep.Location = new System.Drawing.Point(831, 368);
+            this.lb_Cam1RobotStep.Name = "lb_Cam1RobotStep";
+            this.lb_Cam1RobotStep.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1RobotStep.TabIndex = 160;
+            this.lb_Cam1RobotStep.Text = "机械手标定偏移";
+            this.lb_Cam1RobotStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tb_Cam1StdweldlengthNi
+            // lb_Cam1Spacing
             // 
-            this.tb_Cam1StdweldlengthNi.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1StdweldlengthNi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1StdweldlengthNi.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1StdweldlengthNi.Location = new System.Drawing.Point(1108, 380);
-            this.tb_Cam1StdweldlengthNi.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1StdweldlengthNi.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1StdweldlengthNi.Name = "tb_Cam1StdweldlengthNi";
-            this.tb_Cam1StdweldlengthNi.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1StdweldlengthNi.TabIndex = 178;
-            this.tb_Cam1StdweldlengthNi.Tag = "";
+            this.lb_Cam1Spacing.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1Spacing.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1Spacing.Location = new System.Drawing.Point(831, 322);
+            this.lb_Cam1Spacing.Name = "lb_Cam1Spacing";
+            this.lb_Cam1Spacing.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1Spacing.TabIndex = 162;
+            this.lb_Cam1Spacing.Text = "极耳间距设定标准值";
+            this.lb_Cam1Spacing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lb_Cam1StdweldlengthAl
+            // tb_Cam1Spacing
             // 
-            this.lb_Cam1StdweldlengthAl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1StdweldlengthAl.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1StdweldlengthAl.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1StdweldlengthAl.Location = new System.Drawing.Point(831, 368);
-            this.lb_Cam1StdweldlengthAl.Name = "lb_Cam1StdweldlengthAl";
-            this.lb_Cam1StdweldlengthAl.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1StdweldlengthAl.TabIndex = 179;
-            this.lb_Cam1StdweldlengthAl.Text = "Al焊印固定长度";
-            this.lb_Cam1StdweldlengthAl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tb_Cam1Spacing.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1Spacing.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1Spacing.Location = new System.Drawing.Point(924, 334);
+            this.tb_Cam1Spacing.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1Spacing.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1Spacing.Name = "tb_Cam1Spacing";
+            this.tb_Cam1Spacing.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1Spacing.TabIndex = 167;
+            this.tb_Cam1Spacing.Tag = "";
             // 
-            // lb_Cam1StdweldlengthNi
+            // lb_Cam1SpacingUse
             // 
-            this.lb_Cam1StdweldlengthNi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1StdweldlengthNi.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1StdweldlengthNi.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1StdweldlengthNi.Location = new System.Drawing.Point(1015, 368);
-            this.lb_Cam1StdweldlengthNi.Name = "lb_Cam1StdweldlengthNi";
-            this.lb_Cam1StdweldlengthNi.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1StdweldlengthNi.TabIndex = 180;
-            this.lb_Cam1StdweldlengthNi.Text = "Ni焊印固定长度";
-            this.lb_Cam1StdweldlengthNi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1SpacingUse.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1SpacingUse.Location = new System.Drawing.Point(1015, 322);
+            this.lb_Cam1SpacingUse.Name = "lb_Cam1SpacingUse";
+            this.lb_Cam1SpacingUse.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1SpacingUse.TabIndex = 161;
+            this.lb_Cam1SpacingUse.Text = "间距补偿使能（1启用0旁通）";
+            this.lb_Cam1SpacingUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1SpacingUse
+            // 
+            this.tb_Cam1SpacingUse.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1SpacingUse.Location = new System.Drawing.Point(1108, 334);
+            this.tb_Cam1SpacingUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1SpacingUse.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1SpacingUse.Name = "tb_Cam1SpacingUse";
+            this.tb_Cam1SpacingUse.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1SpacingUse.TabIndex = 166;
+            // 
+            // lb_Cam1LaLimitMin
+            // 
+            this.lb_Cam1LaLimitMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1LaLimitMin.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1LaLimitMin.Location = new System.Drawing.Point(831, 276);
+            this.lb_Cam1LaLimitMin.Name = "lb_Cam1LaLimitMin";
+            this.lb_Cam1LaLimitMin.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1LaLimitMin.TabIndex = 141;
+            this.lb_Cam1LaLimitMin.Text = "激光偏移下限";
+            this.lb_Cam1LaLimitMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1LaLimitMin
+            // 
+            this.tb_Cam1LaLimitMin.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1LaLimitMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1LaLimitMin.Location = new System.Drawing.Point(924, 288);
+            this.tb_Cam1LaLimitMin.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1LaLimitMin.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1LaLimitMin.Name = "tb_Cam1LaLimitMin";
+            this.tb_Cam1LaLimitMin.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1LaLimitMin.TabIndex = 143;
+            this.tb_Cam1LaLimitMin.Tag = "";
+            // 
+            // lb_Cam1LaLimitMax
+            // 
+            this.lb_Cam1LaLimitMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1LaLimitMax.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1LaLimitMax.Location = new System.Drawing.Point(831, 230);
+            this.lb_Cam1LaLimitMax.Name = "lb_Cam1LaLimitMax";
+            this.lb_Cam1LaLimitMax.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1LaLimitMax.TabIndex = 142;
+            this.lb_Cam1LaLimitMax.Text = "激光偏移上限";
+            this.lb_Cam1LaLimitMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1LaLimitMax
+            // 
+            this.tb_Cam1LaLimitMax.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1LaLimitMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1LaLimitMax.Location = new System.Drawing.Point(924, 242);
+            this.tb_Cam1LaLimitMax.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1LaLimitMax.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1LaLimitMax.Name = "tb_Cam1LaLimitMax";
+            this.tb_Cam1LaLimitMax.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1LaLimitMax.TabIndex = 144;
+            this.tb_Cam1LaLimitMax.Tag = "";
+            // 
+            // lb_Cam1BoLimitMax
+            // 
+            this.lb_Cam1BoLimitMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1BoLimitMax.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1BoLimitMax.Location = new System.Drawing.Point(831, 138);
+            this.lb_Cam1BoLimitMax.Name = "lb_Cam1BoLimitMax";
+            this.lb_Cam1BoLimitMax.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1BoLimitMax.TabIndex = 181;
+            this.lb_Cam1BoLimitMax.Text = "机械手偏移上限";
+            this.lb_Cam1BoLimitMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lb_Cam1BoLimitMin
+            // 
+            this.lb_Cam1BoLimitMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_Cam1BoLimitMin.ForeColor = System.Drawing.Color.Black;
+            this.lb_Cam1BoLimitMin.Location = new System.Drawing.Point(831, 184);
+            this.lb_Cam1BoLimitMin.Name = "lb_Cam1BoLimitMin";
+            this.lb_Cam1BoLimitMin.Size = new System.Drawing.Size(86, 46);
+            this.lb_Cam1BoLimitMin.TabIndex = 182;
+            this.lb_Cam1BoLimitMin.Text = "机械手偏移下限";
+            this.lb_Cam1BoLimitMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tb_Cam1BoLimitMax
+            // 
+            this.tb_Cam1BoLimitMax.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1BoLimitMax.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1BoLimitMax.Location = new System.Drawing.Point(924, 150);
+            this.tb_Cam1BoLimitMax.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1BoLimitMax.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1BoLimitMax.Name = "tb_Cam1BoLimitMax";
+            this.tb_Cam1BoLimitMax.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1BoLimitMax.TabIndex = 183;
+            this.tb_Cam1BoLimitMax.Tag = "";
+            // 
+            // tb_Cam1BoLimitMin
+            // 
+            this.tb_Cam1BoLimitMin.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1BoLimitMin.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1BoLimitMin.Location = new System.Drawing.Point(924, 196);
+            this.tb_Cam1BoLimitMin.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1BoLimitMin.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1BoLimitMin.Name = "tb_Cam1BoLimitMin";
+            this.tb_Cam1BoLimitMin.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1BoLimitMin.TabIndex = 184;
+            this.tb_Cam1BoLimitMin.Tag = "";
             // 
             // tabPage1
             // 
@@ -8100,10 +8134,10 @@ namespace HG_Vision.UIVision
         private Label lb_Cam1AngleMax;
         private TextBox tb_Cam1AngleMin;
         private TextBox tb_Cam1AngleMax;
-        private Label lb_Cam1LimitMin;
-        private Label lb_Cam1LimitMax;
-        private TextBox tb_Cam1LimitMin;
-        private TextBox tb_Cam1LimitMax;
+        private Label lb_Cam1LaLimitMin;
+        private Label lb_Cam1LaLimitMax;
+        private TextBox tb_Cam1LaLimitMin;
+        private TextBox tb_Cam1LaLimitMax;
         private Label lb_Cam1CenterLa1X;
         private Label lb_Cam1CenterLa1Y;
         private Label lb_Cam1CenterLa2X;
@@ -8578,5 +8612,9 @@ namespace HG_Vision.UIVision
         private TextBox tb_Cam1StdweldlengthNi;
         private Label lb_Cam1StdweldlengthAl;
         private Label lb_Cam1StdweldlengthNi;
+        private Label lb_Cam1BoLimitMax;
+        private Label lb_Cam1BoLimitMin;
+        private TextBox tb_Cam1BoLimitMax;
+        private TextBox tb_Cam1BoLimitMin;
     }
 }

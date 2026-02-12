@@ -51,6 +51,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.dll</HintPath>
     </Reference>
+    <Reference Include="MvCameraControl.Net">
+      <HintPath>..\..\HG_Vision\bin\x64\Debug\MvCameraControl.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />

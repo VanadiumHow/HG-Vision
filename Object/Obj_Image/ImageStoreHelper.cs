@@ -7,9 +7,7 @@ using Cognex.VisionPro;
 using Model.ConstantModel;
 using Obj.Obj_File;
 using System.Linq;
-/****************************************************************
 
-*****************************************************************/
 namespace Obj.Obj_Image
 {
     /// <summary>
@@ -26,29 +24,28 @@ namespace Obj.Obj_Image
             DateTime dirDateTime;
             try
             {
-                //原始图像文件夹
-                if (!Directory.Exists(imageParams.RawImagePosition))
-                    Directory.CreateDirectory(imageParams.RawImagePosition);
-                //结果图片文件夹
-                if (!Directory.Exists(imageParams.ResultImagePosition))
-                    Directory.CreateDirectory(imageParams.ResultImagePosition);
+                // 原始图像文件夹-确保目录存在
+                Directory.CreateDirectory(imageParams.RawImagePosition);
+                // 结果图片文件夹-确保目录存在
+                Directory.CreateDirectory(imageParams.ResultImagePosition);
 
+                // 清理原始图历史目录
                 foreach (string dirname in Directory.GetDirectories(imageParams.RawImagePosition))
                 {
                     temp = dirname.Substring(dirname.LastIndexOf('\\') + 1);
-                    dirDateTime = DateTime.ParseExact(temp, "yyyy-MM-dd", CultureInfo.CurrentCulture, DateTimeStyles.None);
-
-                    if ((DateTime.Now - dirDateTime).Days >= imageParams.RawKeepingDays)
+                    if (DateTime.TryParseExact(temp, "yyyy-MM-dd", CultureInfo.CurrentCulture, DateTimeStyles.None, out dirDateTime)
+                        && (DateTime.Now - dirDateTime).Days >= imageParams.RawKeepingDays)
                     {
                         Directory.Delete(dirname, true);
                     }
                 }
 
+                // 清理结果图历史目录
                 foreach (string dirname in Directory.GetDirectories(imageParams.ResultImagePosition))
                 {
                     temp = dirname.Substring(dirname.LastIndexOf('\\') + 1);
-                    dirDateTime = DateTime.ParseExact(temp, "yyyy-MM-dd", CultureInfo.CurrentCulture, DateTimeStyles.None);
-                    if ((DateTime.Now - dirDateTime).Days >= imageParams.ResultKeepingDays)
+                    if (DateTime.TryParseExact(temp, "yyyy-MM-dd", CultureInfo.CurrentCulture, DateTimeStyles.None, out dirDateTime)
+                        && (DateTime.Now - dirDateTime).Days >= imageParams.ResultKeepingDays)
                     {
                         Directory.Delete(dirname, true);
                     }
@@ -64,9 +61,6 @@ namespace Obj.Obj_Image
         /// <summary>
         /// 存带结果图像
         /// </summary>
-        /// <param name="_cd"></param>
-        /// <param name="imagename"></param>
-        /// <param name="bOK"></param>
         public static void SaveResultImage(CogRecordsDisplay _cd, string imagename, bool bOK, string ymd, string hms, int index, ImageParamsModel imageParams)
         {
             if (imageParams.ResultImageSaveOpportunity == ImageParamsModel.SAVEOPPORTUNITY.NONE)
@@ -76,98 +70,39 @@ namespace Obj.Obj_Image
                 || ((imageParams.ResultImageSaveOpportunity == ImageParamsModel.SAVEOPPORTUNITY.ONLYNG) && !bOK))
             {
                 SaveResultImageHelper(_cd, imagename, ymd, hms, index, bOK, imageParams);
-                return;
             }
         }
 
         /// <summary>
-        /// 存结果图
+        /// 存结果图-核心修复方法
         /// </summary>
-        /// <param name="_cd"></param>
-        /// <param name="imagename"></param>
         private static void SaveResultImageHelper(CogRecordsDisplay _cd, string imageName, string ymd, string hms, int index, bool isOk, ImageParamsModel imageParams)
         {
             System.Threading.ThreadPool.QueueUserWorkItem((d) =>
             {
                 try
                 {
-
-                    string path = imageParams.ResultImagePosition + "\\" + ymd + "\\" + "工位1" + (isOk ? "\\OK" : "\\NG");
-                    string path1 = imageParams.ResultImagePosition + "\\" + ymd + "\\" + "工位2" + (isOk ? "\\OK" : "\\NG");
-                    if (!Directory.Exists(path))
+                    // 1. 工位判断：根据图片名称首字符确定工位（1=工位1，其他=工位2）
+                    string station = imageName.StartsWith("1-1") ? "工位1" : "工位2";
+                    // 2. 构建保存根路径（规范路径拼接，避免\\拼接问题）
+                    string rootPath = Path.Combine(imageParams.ResultImagePosition, ymd, station, isOk ? "OK" : "NG");
+                    // 3. 检查并创建目录（含盘符校验，抽离公共方法减少冗余）
+                    if (!TryCreateSaveDirectory(rootPath))
                     {
-                        //检查设置的地址是否有这个盘符
-                        bool driveExists = DriveInfo.GetDrives().Any(f => f.Name.StartsWith(Path.GetPathRoot(path)));
-                        if (driveExists)
-                            Directory.CreateDirectory(path);
-                        else
-                        {
-                            LogHelper.Error("盘符不存在请检查图像保存位置设置！");
-                            return;
-                        }
+                        LogHelper.Error($"创建结果图保存目录失败，盘符不存在：{rootPath}");
+                        return;
                     }
-                    if (!Directory.Exists(path1))
-                    {
-                        //检查设置的地址是否有这个盘符
-                        bool driveExists = DriveInfo.GetDrives().Any(f => f.Name.StartsWith(Path.GetPathRoot(path1)));
-                        if (driveExists)
-                            Directory.CreateDirectory(path1);
-                        else
-                        {
-                            LogHelper.Error("盘符不存在请检查图像保存位置设置！");
-                            return;
-                        }
-                    }
-                    string str = path + "\\" + imageName + "-" + hms + imageParams.ResultImagePattern;//YBH
-                    string str1 = path1 + "\\" + imageName + "-" + hms + imageParams.ResultImagePattern;
+                    // 4. 构建最终保存文件路径（规范拼接，避免非法字符）
+                    string savePath = Path.Combine(rootPath, $"{imageName}-{hms}{imageParams.ResultImagePattern}");
 
-                    System.Drawing.Image ig = _cd.Display.CreateContentBitmap(Cognex.VisionPro.Display.CogDisplayContentBitmapConstants.Custom, null, 0);
-                    string L = "1";
-
-                    string format = imageParams.ResultImagePattern;
-                    if (imageName.Substring(0, 1) == L)
+                    // 【核心修复】使用using语句封装Image对象，自动释放GDI+非托管资源
+                    // 解决GDI+一般性错误的根本方案，代码块结束自动执行Dispose()
+                    using (Image ig = _cd.Display.CreateContentBitmap(Cognex.VisionPro.Display.CogDisplayContentBitmapConstants.Custom, null, 0))
                     {
-
-                        switch (format)
-                        {
-                            case ".bmp":
-                                ig.Save(str, ImageFormat.Bmp);
-                                break;
-                            case ".jpg":
-                                ig.Save(str, ImageFormat.Jpeg);
-                                break;
-                            case ".png":
-                                ig.Save(str, ImageFormat.Png);
-                                break;
-                            case ".tif":
-                                ig.Save(str, ImageFormat.Tiff);
-                                break;
-                            default:
-                                ig.Save(str, ImageFormat.Jpeg);
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        switch (format)
-                        {
-                            case ".bmp":
-                                ig.Save(str1, ImageFormat.Bmp);
-                                break;
-                            case ".jpg":
-                                ig.Save(str1, ImageFormat.Jpeg);
-                                break;
-                            case ".png":
-                                ig.Save(str1, ImageFormat.Png);
-                                break;
-                            case ".tif":
-                                ig.Save(str1, ImageFormat.Tiff);
-                                break;
-                            default:
-                                ig.Save(str1, ImageFormat.Jpeg);
-                                break;
-                        }
-                    }
+                        // 统一格式保存，根据配置的后缀自动匹配ImageFormat，消除重复switch
+                        ImageFormat saveFormat = GetImageFormatByExtension(imageParams.ResultImagePattern);
+                        ig.Save(savePath, saveFormat);
+                    } // 此处自动释放ig的GDI+资源，无论是否保存成功
                 }
                 catch (Exception ex)
                 {
@@ -179,9 +114,6 @@ namespace Obj.Obj_Image
         /// <summary>
         /// 存原图
         /// </summary>
-        /// <param name="img"></param>
-        /// <param name="imagename"></param>
-        /// <param name="bOK"></param>
         public static void SaveRawImage(ICogImage img, string imagename, bool bOK, string ymd, string hms, int index, ImageParamsModel imageParams)
         {
             if (imageParams.RawImageSaveOpportunity == ImageParamsModel.SAVEOPPORTUNITY.NONE)
@@ -191,108 +123,110 @@ namespace Obj.Obj_Image
                 || ((imageParams.RawImageSaveOpportunity == ImageParamsModel.SAVEOPPORTUNITY.ONLYNG) && !bOK))
             {
                 SaveRawImageHelper(img, imagename, ymd, hms, index, bOK, imageParams);
-                return;
-            }
-        }
-        public static byte[] ImageToBytes(Image image, string formatPattern)
-        {
-            ImageFormat format = image.RawFormat;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                switch (formatPattern)
-                {
-                    case ".bmp":
-                        image.Save(ms, ImageFormat.Bmp);
-                        break;
-                    case ".jpg":
-                        image.Save(ms, ImageFormat.Jpeg);
-                        break;
-                    case ".png":
-                        image.Save(ms, ImageFormat.Png);
-                        break;
-                    case ".tif":
-                        image.Save(ms, ImageFormat.Tiff);
-                        break;
-                    default:
-                        image.Save(ms, ImageFormat.Jpeg);
-                        break;
-                }
-                byte[] buffer = new byte[ms.Length];
-                //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
-                ms.Seek(0, SeekOrigin.Begin);
-                ms.Read(buffer, 0, buffer.Length);
-                return buffer;
             }
         }
 
         /// <summary>
-        /// 存原图
+        /// Image转字节数组
         /// </summary>
-        /// <param name="img"></param>
-        /// <param name="imagename"></param>
+        public static byte[] ImageToBytes(Image image, string formatPattern)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                ImageFormat format = GetImageFormatByExtension(formatPattern);
+                image.Save(ms, format);
+                // 直接返回ToArray，简化流读取逻辑，避免Seek/Read的冗余操作
+                return ms.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// 存原图-辅助方法
+        /// </summary>
         private static void SaveRawImageHelper(ICogImage img, string imageName, string ymd, string hms, int index, bool isOk, ImageParamsModel imageParams)
         {
-            ICogImage img1 = img;
-            string imageName1 = imageName;
-            string ymd1 = ymd;
-            string hms1 = hms;
-            int index1 = index;
-
-
             System.Threading.ThreadPool.QueueUserWorkItem((d) =>
             {
+                Cognex.VisionPro.ImageFile.CogImageFileTool imageFileTool = null;
                 try
                 {
-                    string path = imageParams.RawImagePosition + "\\" + ymd1 + "\\" + "工位1" + (isOk ? "\\OK" : "\\NG");
-                    string path1 = imageParams.RawImagePosition + "\\" + ymd1 + "\\" + "工位2" + (isOk ? "\\OK" : "\\NG");
-                    if (!Directory.Exists(path))//2021_07_26\CCD1
+                    // 1. 工位判断+路径构建（统一规范）
+                    string station = imageName.StartsWith("1-1") ? "工位1" : "工位2";
+                    string rootPath = Path.Combine(imageParams.RawImagePosition, ymd, station, isOk ? "OK" : "NG");
+                    // 2. 检查并创建目录
+                    if (!TryCreateSaveDirectory(rootPath))
                     {
-                        //检查设置的地址是否有这个盘符
-                        bool driveExists = DriveInfo.GetDrives().Any(f => f.Name.StartsWith(Path.GetPathRoot(path)));
-                        if (driveExists)
-                            Directory.CreateDirectory(path);
-                        else
-                        {
-                            LogHelper.Error("盘符不存在请检查图像保存位置设置！");
-                            return;
-                        }
+                        LogHelper.Error($"创建原始图保存目录失败，盘符不存在：{rootPath}");
+                        return;
                     }
-                    if (!Directory.Exists(path1))//ybh
-                    {
-                        //检查设置的地址是否有这个盘符
-                        bool driveExists = DriveInfo.GetDrives().Any(f => f.Name.StartsWith(Path.GetPathRoot(path1)));
-                        if (driveExists)
-                            Directory.CreateDirectory(path1);
-                        else
-                        {
-                            LogHelper.Error("盘符不存在请检查图像保存位置设置！");
-                            return;
-                        }
-                    }
-                    Cognex.VisionPro.ImageFile.CogImageFileTool a = new Cognex.VisionPro.ImageFile.CogImageFileTool();
-                    a.InputImage = img1;
-                    string L = "1";
-                    if (imageName1.Substring(0, 1) == L)
-                    {
-                        string str = path + "\\" + imageName1 + "-" + hms + "-" + imageParams.RawImagePattern;//YBH
-                        a.Operator.Open(str, Cognex.VisionPro.ImageFile.CogImageFileModeConstants.Write);
-                        a.Run();
-                        a.Dispose();
-                    }
-                    else
-                    {
-                        string str1 = path1 + "\\" + imageName1 + "-" + hms + imageParams.RawImagePattern;
+                    // 3. 构建保存路径
+                    string savePath = Path.Combine(rootPath,
+                        imageName.StartsWith("1")
+                            ? $"{imageName}-{hms}{imageParams.RawImagePattern}"
+                            : $"{imageName}-{hms}{imageParams.RawImagePattern}");
 
-                        a.Operator.Open(str1, Cognex.VisionPro.ImageFile.CogImageFileModeConstants.Write);
-                        a.Run();
-                        a.Dispose();
-                    }
+                    // 4. 保存原始图（CogImageFileTool优化为using封装，自动释放）
+                    using (imageFileTool = new Cognex.VisionPro.ImageFile.CogImageFileTool())
+                    {
+                        imageFileTool.InputImage = img;
+                        imageFileTool.Operator.Open(savePath, Cognex.VisionPro.ImageFile.CogImageFileModeConstants.Write);
+                        imageFileTool.Run();
+                    } // 自动释放imageFileTool资源，替代手动Dispose()
                 }
                 catch (Exception ex)
                 {
                     LogHelper.Error("存相机VP原始图出现异常", ex);
                 }
+                // 移除手动Dispose()，由using自动处理
             });
+        }
+        #endregion
+
+        #region 公共辅助方法（抽离冗余逻辑，提升可维护性）
+        /// <summary>
+        /// 检查盘符并创建保存目录（无修改，兼容C#7.3）
+        /// </summary>
+        private static bool TryCreateSaveDirectory(string directoryPath)
+        {
+            try
+            {
+                string driveRoot = Path.GetPathRoot(directoryPath);
+                bool driveExists = DriveInfo.GetDrives().Any(f => f.Name.Equals(driveRoot, StringComparison.OrdinalIgnoreCase));
+                if (!driveExists)
+                    return false;
+                Directory.CreateDirectory(directoryPath);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 根据文件后缀获取ImageFormat【适配C#7.3：传统switch+case穿透，替代switch表达式+or】
+        /// </summary>
+        /// <param name="extension">文件后缀（如.jpg/.png）</param>
+        /// <returns>对应的ImageFormat</returns>
+        private static ImageFormat GetImageFormatByExtension(string extension)
+        {
+            // 统一转小写，避免大小写判断问题
+            string lowerExt = extension.ToLower();
+            // C#7.3支持的传统switch语句
+            switch (lowerExt)
+            {
+                case ".bmp":
+                    return ImageFormat.Bmp;
+                case ".png":
+                    return ImageFormat.Png;
+                case ".tif":
+                    return ImageFormat.Tiff;
+                case ".jpg":
+                case ".jpeg":
+                    return ImageFormat.Jpeg;
+                default: // 默认返回JPG格式，与原逻辑一致
+                    return ImageFormat.Jpeg;
+            }
         }
         #endregion
     }

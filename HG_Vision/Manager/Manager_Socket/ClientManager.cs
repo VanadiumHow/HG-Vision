@@ -19,7 +19,7 @@ namespace HG_Vision.Manager.Manager_Socket
     public class ClientManager
     {
         /// <summary>
-        /// 激光配置类
+        /// 客户端配置类
         /// </summary>
         private ClientConfiguration _clientConfiguration = new ClientConfiguration();
         public ClientConfiguration ClientConfiguration
@@ -33,6 +33,12 @@ namespace HG_Vision.Manager.Manager_Socket
         /// 激光服务器端IP、端口信息
         /// </summary>
         private LaserServerModel laserServerModel = new LaserServerModel();
+
+        /// <summary>
+        /// PLC服务器端IP、端口信息(TCP连接PLC，舍弃Fins协议)
+        /// </summary>
+        private PLCServerModel pLCServerModel = new PLCServerModel();
+
         /// <summary>
         /// 所有SocketClient连接的对象
         /// </summary>
@@ -43,7 +49,8 @@ namespace HG_Vision.Manager.Manager_Socket
         /// </summary>
         private readonly Dictionary<eDeviceType, List<ClientObj>> _devicesByType = new Dictionary<eDeviceType, List<ClientObj>>()
         {
-            { eDeviceType.Laser, new List<ClientObj>() }
+            { eDeviceType.Laser, new List<ClientObj>() },
+            { eDeviceType.PLC, new List<ClientObj>() }
         };
         /// <summary>
         /// 初始化
@@ -61,9 +68,18 @@ namespace HG_Vision.Manager.Manager_Socket
                 _clientConfiguration.AnalysisLaserInfoConfig(ref laserServerModel);
                 for (int i = 0; i < laserServerModel.LaserServerList.Count; i++)
                 {
-                    var laserObj = new LaserClientObj(laserServerModel.LaserServerList[i].DeviceName, laserServerModel.LaserServerList[i].LocalIP, laserServerModel.LaserServerList[i].LocalPort);
+                    var laserObj = new LaserClientObj(laserServerModel.LaserServerList[i].DeviceName, laserServerModel.LaserServerList[i].DeviceIP, laserServerModel.LaserServerList[i].LocalPort);
                     AddDevice(laserObj);
                 }
+
+                //加载配置文件，创建PLC对象并添加
+                _clientConfiguration.AnalysisLaserInfoConfig(ref pLCServerModel);
+                for (int i = 0; i < Math.Min(pLCServerModel.PLCServerList.Count, Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLC_TCP_Num); i++)
+                {
+                    var pLCObj = new PLCClientObj(pLCServerModel.PLCServerList[i].DeviceName, pLCServerModel.PLCServerList[i].DeviceIP, pLCServerModel.PLCServerList[i].LocalPort);
+                    AddDevice(pLCObj);
+                }
+
                 //启动所有设备连接
                 StartAllDevices();
             }

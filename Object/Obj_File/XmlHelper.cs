@@ -35,7 +35,7 @@ namespace Obj.Obj_File
                 {
                     File.Create(filePath).Close();
                     var _aimObj = new T(); // 文件不存在时返回新实例
-                    XmlHelper.Serialize(filePath, _aimObj);
+                    Serialize(filePath, _aimObj);
                     return _aimObj;
                 }
 
@@ -46,7 +46,7 @@ namespace Obj.Obj_File
                     output = (T)serializer.Deserialize(reader);
                 }
                 //在返回T类型的实例前，先进行一次序列化，保证若参数名修改，能够正确映射导.xml文件中（例如program改为Program）
-                Serialize<T>(filePath, output);
+                Serialize(filePath, output);
                 return output;
             }
             catch (Exception ex)

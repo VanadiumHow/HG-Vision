@@ -172,7 +172,8 @@ namespace HG_Vision.UIVision
                                     tb_Cam1AddLa2X,tb_Cam1AddLa2Y,tb_Cam1AddLa2R,
 
                                     tb_Cam1AngleMax,tb_Cam1AngleMin,
-                                    tb_Cam1LimitMax,tb_Cam1LimitMin,tb_Cam1Exprosure,
+                                    tb_Cam1BoLimitMax,tb_Cam1BoLimitMin,
+                                    tb_Cam1LaLimitMax,tb_Cam1LaLimitMin,tb_Cam1Exprosure,
 
                                     tb_Cam1CenterLa1X,tb_Cam1CenterLa1Y,
                                     tb_Cam1CenterLa2X,tb_Cam1CenterLa2Y,
@@ -268,8 +269,10 @@ namespace HG_Vision.UIVision
                 // Angle/Limit/Exprosure
                 Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.AngleMax.ToString(),
                 Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.AngleMin.ToString(),
-                Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LimitMax.ToString(),
-                Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LimitMin.ToString(),
+                Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoLimitMax.ToString(),
+                Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoLimitMin.ToString(),
+                Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaLimitMax.ToString(),
+                Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaLimitMin.ToString(),
                 Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.Exprosure.ToString(),
                 // LaserCenter
                 //Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.RotationCenter.Bo1Axis.X.ToString(),
@@ -484,15 +487,25 @@ namespace HG_Vision.UIVision
                         if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
                             Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.AngleMin = _newValue;
                         break;
-                    case "LimitMax":
-                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LimitMax;
+                    case "BoLimitMax":
+                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoLimitMax;
                         if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
-                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LimitMax = _newValue;
+                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoLimitMax = _newValue;
                         break;
-                    case "LimitMin":
-                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LimitMin;
+                    case "BoLimitMin":
+                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoLimitMin;
                         if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
-                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LimitMin = _newValue;
+                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoLimitMin = _newValue;
+                        break;
+                    case "LaLimitMax":
+                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaLimitMax;
+                        if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaLimitMax = _newValue;
+                        break;
+                    case "LaLimitMin":
+                        _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaLimitMin;
+                        if (IsParamChange(productName, cameraIndex, tb, _oldValue, ref oldCameraParamObjects, out _newValue))
+                            Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaLimitMin = _newValue;
                         break;
                     case "Exprosure":
                         _oldValue = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.Exprosure;
@@ -821,7 +834,7 @@ namespace HG_Vision.UIVision
                 }
                 #endregion
 
-                LogHelper.Info(currentTab.Text + l.Text + $"填入参数{uiTb.Text}成功");
+                LogHelper.Debug(currentTab.Text + l.Text + $"填入参数{uiTb.Text}成功");
                 //判断是否已在集合中
                 if (!_textBoxes.Contains(uiTb))
                     _textBoxes.Add(uiTb);

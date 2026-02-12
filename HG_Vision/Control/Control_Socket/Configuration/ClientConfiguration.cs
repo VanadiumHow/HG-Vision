@@ -23,6 +23,18 @@ namespace HG_Vision.Contol.Control_Socket
                 LogHelper.Error("AnalysisLaserInfoConfig方法调用Deserialize方法失败", ex);
             }
         }
+
+        public void AnalysisLaserInfoConfig(ref PLCServerModel pLCServer)
+        {
+            try
+            {
+                pLCServer = XmlHelper.Deserialize<PLCServerModel>(FilePathModel.PLCServerPath);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("AnalysisLaserInfoConfig方法调用Deserialize方法失败", ex);
+            }
+        }
         /// <summary>
         /// 保存参数至.xml文件
         /// </summary>

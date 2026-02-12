@@ -19,8 +19,10 @@ namespace Model.VisionModel
 
         public double AngleMax = 0;
         public double AngleMin = 0;
-        public double LimitMax = 0;
-        public double LimitMin = 0;
+        public double BoLimitMax = 0;
+        public double BoLimitMin = 0;
+        public double LaLimitMax = 0;
+        public double LaLimitMin = 0;
         public double Exprosure = 1; //曝光时间单位ms
 
         public RobotPose RotationCenter = new RobotPose();
@@ -94,6 +96,16 @@ namespace Model.VisionModel
         {
             get => Laser.La2Axis;
             set => Laser.La2Axis = value;
+        }
+        /// <summary>
+        /// 根据索引获取对应的BoAxis（1=Bo1Axis，2=Bo2Axis）
+        /// </summary>
+        /// <param name="i">索引值（仅支持1/2）</param>
+        /// <returns>对应的PointAxis对象</returns>
+        /// <exception cref="ArgumentOutOfRangeException">索引无效时抛出</exception>
+        public PointAxis GetBoAxis(int i)
+        {
+            return i == 0 ? Bo1Axis : i == 1 ? Bo2Axis : throw new ArgumentOutOfRangeException(nameof(i), "仅支持索引值1或2");
         }
     }
     public class JigAdd

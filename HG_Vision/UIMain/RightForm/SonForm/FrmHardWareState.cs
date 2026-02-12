@@ -7,6 +7,7 @@ using HG_Vision.Manager.Manager_System;
 using VisionProgram.UserControls.UILamp;
 using HG_Vision.Contol.Control_Socket;
 using Model.EnumModel;
+using Sunny.UI.Win32;
 
 /****************************************************************
 
@@ -50,6 +51,7 @@ namespace HG_Vision.UIHome.RightForm
             _ccdLights.Clear();
             _robotLights.Clear();
             _laserLights.Clear();
+
             //设置行列
             TableLayoutPanelAll.ColumnCount = ColumnCount;
             TableLayoutPanelAll.RowCount = RowCount;
@@ -59,8 +61,8 @@ namespace HG_Vision.UIHome.RightForm
             LoadLabelLight(0, ColumnCount - _currentnum * 2, _currentnum, "Laser"); //1
             int _deviceCount = _currentnum;
 
-
-            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
+            //特殊情况，有机械手对象，但仅标定时才会连接，故此处不予显示
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType != eProtocol.HG.ToString())
             {
                 _currentnum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count;
                 LoadLabelLight(0, ColumnCount - _deviceCount * 2 - _currentnum * 2, _currentnum, "Robot"); //2
@@ -71,7 +73,12 @@ namespace HG_Vision.UIHome.RightForm
             LoadLabelLight(0, ColumnCount - _deviceCount * 2 - _currentnum * 2, _currentnum, "CCD"); //1
             _deviceCount += _currentnum;
 
-            _currentnum = Project.Instance.PLCManagerInstance.PLCNum;
+            if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement == ePLCAgreement.Fins_TCP.ToString())
+                _currentnum = Project.Instance.PLCManagerInstance.PLCNum;
+            else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement == ePLCAgreement.TCP.ToString())
+                _currentnum = Project.Instance.ClientManagerInstance.GetDevicesByType<PLCClientObj>(eDeviceType.PLC).Count;
+            else
+                _currentnum = 0;
             LoadLabelLight(0, ColumnCount - _deviceCount * 2 - _currentnum * 2, _currentnum, "PLC"); //1
             _deviceCount = _currentnum;
             #endregion
@@ -141,7 +148,7 @@ namespace HG_Vision.UIHome.RightForm
                     lamp = CreateUILight(lamp, $"uiLig{str}{i + 1}");
                     TableLayoutPanelAll.Controls.Add(lamp, col + 2 * i + 1, row);
                 }
-
+                lamp.LedStatus = VisionProgram.UserControls.Datas.Status.ERR;//初始化后将灯色设置为红色，表示未连接状态
                 switch (str)
                 {
                     case "PLC":
@@ -235,21 +242,48 @@ namespace HG_Vision.UIHome.RightForm
         {
             try
             {
-                for (int i = 0; i < Project.Instance.PLCManagerInstance.L_PLCInfo.Count; i++)
+                int nPLCNum;
+                if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement == ePLCAgreement.Fins_TCP.ToString())
+                    nPLCNum = Project.Instance.PLCManagerInstance.PLCNum;
+                else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement == ePLCAgreement.TCP.ToString())
+                    nPLCNum = Project.Instance.ClientManagerInstance.GetDevicesByType<PLCClientObj>(eDeviceType.PLC).Count;
+                else
+                    nPLCNum = 0;
+
+                for (int i = 0; i < Math.Min(nPLCNum, _plcLights.Count); i++)
                 {
-                    //未连接
-                    if (!Project.Instance.PLCManagerInstance._isPLCConnect)
+                    if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement == ePLCAgreement.Fins_TCP.ToString())
                     {
-                        if (_plcLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
+                        //未连接
+                        if (!Project.Instance.PLCManagerInstance._isPLCConnect)
                         {
-                            _plcLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
+                            if (_plcLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
+                            {
+                                _plcLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
+                            }
+                        }
+                        //已连接 根据握手信号闪烁
+                        else
+                        {
+                            if (_plcLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
+                            {
+                                _plcLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
+                            }
                         }
                     }
-                    //已连接 根据握手信号闪烁
-                    else
+                    else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement == ePLCAgreement.TCP.ToString())
                     {
-                        if (Project.Instance.PLCManagerInstance._isPLCConnect)
-                        {//绿色
+                        //未连接
+                        if (!Project.Instance.ClientManagerInstance.GetDevicesByType<PLCClientObj>(eDeviceType.PLC)[i].IsConnected)
+                        {
+                            if (_plcLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
+                            {
+                                _plcLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
+                            }
+                        }
+                        //已连接 根据握手信号闪烁
+                        else
+                        {
                             if (_plcLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
                             {
                                 _plcLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
@@ -270,7 +304,8 @@ namespace HG_Vision.UIHome.RightForm
         {
             try
             {
-                for (int i = 0; i < Project.Instance.VisionManagerInstance.CameraNum; i++)
+                int nCCDNum = Project.Instance.VisionManagerInstance.CameraNum;
+                for (int i = 0; i < Math.Min(nCCDNum, _ccdLights.Count); i++)
                 {
                     if (!Project.Instance.HardWareStateManagerInstance.L_ccdState[i])
                     {
@@ -300,23 +335,20 @@ namespace HG_Vision.UIHome.RightForm
         {
             try
             {
-                if (_robotLights.Count > 0)
+                int nRobotNum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count;
+                for (int i = 0; i < Math.Min(nRobotNum, _robotLights.Count); i++)
                 {
-                    int nRobotNum = Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot).Count;
-                    for (int i = 0; i < nRobotNum; i++)
+                    if (!Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot)[i].IsConnected)
                     {
-                        if (!Project.Instance.ServerManagerInstance.GetDevicesByType<RobotServerObj>(eDeviceType.Robot)[i].IsConnected)
-                        {
-                            //只有未在当前状态才切换状态
-                            if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
-                                _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
-                        }
-                        else
-                        {
-                            //只有未在当前状态才切换状态
-                            if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
-                                _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
-                        }
+                        //只有未在当前状态才切换状态
+                        if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.ERR)
+                            _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.ERR;
+                    }
+                    else
+                    {
+                        //只有未在当前状态才切换状态
+                        if (_robotLights[i].LedStatus != VisionProgram.UserControls.Datas.Status.Open)
+                            _robotLights[i].LedStatus = VisionProgram.UserControls.Datas.Status.Open;
                     }
                 }
             }
@@ -333,7 +365,7 @@ namespace HG_Vision.UIHome.RightForm
             try
             {
                 int nLaserNum = Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(eDeviceType.Laser).Count;
-                for (int i = 0; i < nLaserNum; i++)
+                for (int i = 0; i < Math.Min(nLaserNum, _laserLights.Count); i++)
                 {
                     if (Project.Instance.ServerManagerInstance.GetDevicesByType<LaserServerObj>(eDeviceType.Laser)[i].IsConnected)
                     {

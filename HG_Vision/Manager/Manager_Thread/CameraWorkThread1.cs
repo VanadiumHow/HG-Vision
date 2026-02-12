@@ -4,6 +4,7 @@ using HG_Vision.Contol.Control_PLC;
 using HG_Vision.Contol.Control_Socket;
 using HG_Vision.Contol.Control_Vision;
 using HG_Vision.Manager.Manager_System;
+using Model.ConstantModel;
 using Model.EnumModel;
 using Model.UIModel;
 using Model.VisionModel;
@@ -14,6 +15,9 @@ using Obj.Utility;
 using System;
 using System.Diagnostics;
 using System.Text;
+using System.Threading;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Xml.Linq;
 
 /****************************************************************
 
@@ -148,30 +152,46 @@ namespace HG_Vision.Manager.Manager_Thread
                     WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, 0, "显示图像失败", 60);
                     if (e.eMode == eProcessMode.produce)
                     {
-                        Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{e.NozzleIdx}").SendText("PGE;0;1;0;0;0;0;\r\n", 0);//？信息内容待定
-                        Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{e.FlowIdx}").SendText("_NG;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10", 0);//？信息内容待定
+                        SendMessageToDevice(false, e.NozzleIdx, new JigAdd(), new BasePose());
                         Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
                     }
                     return;
                 }
-                int _jigIndex;
-                string _code1, _code2;
-                double _spacing1, _spacing2;
+                int _jigIndex = -1;
+                string _code1 = "", _code2 = "";
+                double _spacing1 = 0.00, _spacing2 = 0.00;
                 if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
                 {
                     //读取PLC寄存器中：夹具号、产品条码、极耳间距
-                    byte[] _plcD100_45 = Project.Instance.PLCManagerInstance.Read("D100", 45);
-                    //plc发来的夹具号是从1开始的，这里要减1作为数组下标使用
-                    _jigIndex = BitConverter.ToInt16(RegisterDataProcessing.ReverseBytes(_plcD100_45, 0, 2), 0);
-                    _code1 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD100_45, 2, 40))).Trim().Replace(":", "-");
-                    _code2 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD100_45, 42, 40))).Trim().Replace(":", "-");
-                    _spacing1 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD100_45, 82, 4), 0);
-                    _spacing2 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD100_45, 86, 4), 0);
-                    // PLC无法自动清除旧数据，需手动生成40个空格的字符串
-                    if (e.eMode == eProcessMode.produce)
+                    if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement == ePLCAgreement.Fins_TCP.ToString())
                     {
-                        byte[] aZero = new byte[40];
-                        Project.Instance.PLCManagerInstance.Write("D101", aZero);
+                        byte[] _plcD100_45 = Project.Instance.PLCManagerInstance.Read("D100", 45);
+                        if (_plcD100_45 != null)
+                        {
+                            _jigIndex = BitConverter.ToInt16(RegisterDataProcessing.ReverseBytes(_plcD100_45, 0, 2), 0);
+                            _code1 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD100_45, 2, 40))).Trim().Replace(":", "-");
+                            _code2 = Encoding.ASCII.GetString(RegisterDataProcessing.Remove_zero(RegisterDataProcessing.ReverseBytes(_plcD100_45, 42, 40))).Trim().Replace(":", "-");
+                            _spacing1 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD100_45, 82, 4), 0);
+                            _spacing2 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD100_45, 86, 4), 0);
+                        }
+                        // PLC无法自动清除旧数据，需手动生成40个空格的字符串
+                        if (e.eMode == eProcessMode.produce)
+                        {
+                            byte[] aZero = new byte[40];
+                            Project.Instance.PLCManagerInstance.Write("D101", aZero);
+                        }
+                    }
+                    else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.PLCAgreement == ePLCAgreement.TCP.ToString())
+                    {
+                        _jigIndex = Project.Instance.ClientManagerInstance.GetDevice<PLCClientObj>($"PLC{0}").PLCData.JigIndex;
+                        _code1 = Project.Instance.ClientManagerInstance.GetDevice<PLCClientObj>($"PLC{0}").PLCData.Code1;
+                        _code2 = Project.Instance.ClientManagerInstance.GetDevice<PLCClientObj>($"PLC{0}").PLCData.Code2;
+                        _spacing1 = Project.Instance.ClientManagerInstance.GetDevice<PLCClientObj>($"PLC{0}").PLCData.Spaing1;
+                        _spacing2 = Project.Instance.ClientManagerInstance.GetDevice<PLCClientObj>($"PLC{0}").PLCData.Spaing2;
+                        if (e.eMode == eProcessMode.produce)
+                        {
+                            Project.Instance.ClientManagerInstance.GetDevice<PLCClientObj>($"PLC{0}").PLCData = new PLCDataTempModel();
+                        }
                     }
                 }
                 else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
@@ -187,7 +207,8 @@ namespace HG_Vision.Manager.Manager_Thread
                     //_spacing1 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD1100_4, 0, 4), 0);
                     //_spacing2 = BitConverter.ToSingle(RegisterDataProcessing.ReverseBytes(_plcD1100_4, 4, 4), 0);
 
-                    _jigIndex = Project.Instance.PLCManagerInstance.ReadInt16("D550");
+                    //plc发来的夹具号是从1开始的，这里要减1作为数组下标使用
+                    _jigIndex = Project.Instance.PLCManagerInstance.ReadInt16("D550") - 1;
                     _code1 = Project.Instance.PLCManagerInstance.ReadString("D5000", 100);
                     if (_code1 == "")
                         _code1 = "null";
@@ -244,30 +265,29 @@ namespace HG_Vision.Manager.Manager_Thread
 
                             #endregion
                             #region 根据夹具号来分别额外补偿
+                            offset_in_jig.Bo1Axis = new PointAxis { X = offset_dis_jig.Bo1Axis.X, Y = offset_dis_jig.Bo1Axis.Y, R = offset_dis_jig.Bo1Axis.R };
+                            offset_in_jig.L_La1Axis[0] = new PointAxis { X = offset_dis_jig.La1Axis.X, Y = offset_dis_jig.La1Axis.Y, R = offset_dis_jig.La1Axis.R };
+                            offset_in_jig.L_La1Axis[1] = new PointAxis { X = offset_dis_jig.La1Axis.X, Y = offset_dis_jig.La1Axis.Y, R = offset_dis_jig.La1Axis.R };
+                            offset_in_jig.L_La1Axis[2] = new PointAxis { X = offset_dis_jig.La1Axis.X, Y = offset_dis_jig.La1Axis.Y, R = offset_dis_jig.La1Axis.R };
+                            offset_in_jig.L_La1Axis[3] = new PointAxis { X = offset_dis_jig.La1Axis.X, Y = offset_dis_jig.La1Axis.Y, R = offset_dis_jig.La1Axis.R };
                             //如果夹具号不在设定范围内，则不进行夹具补偿
                             if (_jigIndex < 0 || _jigIndex >= jig_Compensations.Length)
                             {
                                 LogHelper.Info($"读取到的夹具号{_jigIndex + 1}为非设定值，本次流程不进行夹具补偿");
-                                offset_in_jig.Bo1Axis = offset_dis_jig.Bo1Axis;
-                                offset_in_jig.L_La1Axis[0] = offset_dis_jig.La1Axis;
-                                offset_in_jig.L_La1Axis[1] = offset_dis_jig.La1Axis;
-                                offset_in_jig.L_La1Axis[2] = offset_dis_jig.La1Axis;
-                                offset_in_jig.L_La1Axis[3] = offset_dis_jig.La1Axis;
                             }
                             else
                             {
-                                offset_in_jig.Bo1Axis.X = offset_dis_jig.Bo1Axis.X + jig_Compensations[_jigIndex].Bo1Axis.X;
-                                offset_in_jig.Bo1Axis.Y = offset_dis_jig.Bo1Axis.Y + jig_Compensations[_jigIndex].Bo1Axis.Y;
-                                offset_in_jig.L_La1Axis[0].X = offset_dis_jig.La1Axis.X + jig_Compensations[_jigIndex].L_La1Axis[0].X;
-                                offset_in_jig.L_La1Axis[1].X = offset_dis_jig.La1Axis.X + jig_Compensations[_jigIndex].L_La1Axis[1].X;
-                                offset_in_jig.L_La1Axis[2].X = offset_dis_jig.La1Axis.X + jig_Compensations[_jigIndex].L_La1Axis[2].X;
-                                offset_in_jig.L_La1Axis[3].X = offset_dis_jig.La1Axis.X + jig_Compensations[_jigIndex].L_La1Axis[3].X;
-                                offset_in_jig.L_La1Axis[0].Y = offset_dis_jig.La1Axis.Y + jig_Compensations[_jigIndex].L_La1Axis[0].Y;
-                                offset_in_jig.L_La1Axis[1].Y = offset_dis_jig.La1Axis.Y + jig_Compensations[_jigIndex].L_La1Axis[1].Y;
-                                offset_in_jig.L_La1Axis[2].Y = offset_dis_jig.La1Axis.Y + jig_Compensations[_jigIndex].L_La1Axis[2].Y;
-                                offset_in_jig.L_La1Axis[3].Y = offset_dis_jig.La1Axis.Y + jig_Compensations[_jigIndex].L_La1Axis[3].Y;
-                                AddLengthAl = jig_Compensations[_jigIndex].L_La1Axis[1].X - jig_Compensations[_jigIndex].L_La1Axis[0].X;
-                                AddLengthNi = jig_Compensations[_jigIndex].L_La1Axis[3].X - jig_Compensations[_jigIndex].L_La1Axis[2].X;
+                                offset_in_jig.Bo1Axis.X += jig_Compensations[_jigIndex].Bo1Axis.X;
+                                offset_in_jig.Bo1Axis.Y += jig_Compensations[_jigIndex].Bo1Axis.Y;
+
+                                offset_in_jig.L_La1Axis[0].X += jig_Compensations[_jigIndex].L_La1Axis[0].X;
+                                offset_in_jig.L_La1Axis[1].X += jig_Compensations[_jigIndex].L_La1Axis[1].X;
+                                offset_in_jig.L_La1Axis[2].X += jig_Compensations[_jigIndex].L_La1Axis[2].X;
+                                offset_in_jig.L_La1Axis[3].X += jig_Compensations[_jigIndex].L_La1Axis[3].X;
+                                offset_in_jig.L_La1Axis[0].Y += jig_Compensations[_jigIndex].L_La1Axis[0].Y;
+                                offset_in_jig.L_La1Axis[1].Y += jig_Compensations[_jigIndex].L_La1Axis[1].Y;
+                                offset_in_jig.L_La1Axis[2].Y += jig_Compensations[_jigIndex].L_La1Axis[2].Y;
+                                offset_in_jig.L_La1Axis[3].Y += jig_Compensations[_jigIndex].L_La1Axis[3].Y;
                             }
                             offset_in_jig.Bo1Axis.R = offset_dis_jig.Bo1Axis.R;
                             #endregion
@@ -282,21 +302,23 @@ namespace HG_Vision.Manager.Manager_Thread
                             finalResult = true;
                         }
                         #region 偏移上下限判断
-                        double limitMax = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LimitMax;
-                        double limitMin = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LimitMin;
+                        double bolimitMax = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoLimitMax;
+                        double bolimitMin = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoLimitMin;
+                        double lalimitMax = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaLimitMax;
+                        double lalimitMin = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaLimitMin;
                         double angleMax = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.AngleMax;
                         double angleMin = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.AngleMin;
                         bool isOutLimit = false;
 
                         string NG_message = "";
                         //机械手X/Y
-                        if (offset_in_jig.Bo1Axis.X < limitMin || offset_in_jig.Bo1Axis.X > limitMax)
+                        if (offset_in_jig.Bo1Axis.X < bolimitMin || offset_in_jig.Bo1Axis.X > bolimitMax)
                         {
                             isOutLimit = true;
                             NG_message += "机械手偏移X超限NG;";
                             finalResult = false;
                         }
-                        if (offset_in_jig.Bo1Axis.Y < limitMin || offset_in_jig.Bo1Axis.Y > limitMax)
+                        if (offset_in_jig.Bo1Axis.Y < bolimitMin || offset_in_jig.Bo1Axis.Y > bolimitMax)
                         {
                             isOutLimit = true;
                             NG_message += "机械手偏移Y超限NG;";
@@ -305,13 +327,13 @@ namespace HG_Vision.Manager.Manager_Thread
                         //激光X/Y
                         for (int i = 0; i < 4; i++)
                         {
-                            if (offset_in_jig.L_La1Axis[i].X < limitMin || offset_in_jig.L_La1Axis[i].X > limitMax)
+                            if (offset_in_jig.L_La1Axis[i].X < lalimitMin || offset_in_jig.L_La1Axis[i].X > lalimitMax)
                             {
                                 isOutLimit = true;
                                 NG_message += $"焊点{i + 1}偏移X超限NG;";
                                 finalResult = false;
                             }
-                            if (offset_in_jig.L_La1Axis[i].Y < limitMin || offset_in_jig.L_La1Axis[i].Y > limitMax)
+                            if (offset_in_jig.L_La1Axis[i].Y < lalimitMin || offset_in_jig.L_La1Axis[i].Y > lalimitMax)
                             {
                                 isOutLimit = true;
                                 NG_message += $"焊点{i + 1}偏移Y超限NG;";
@@ -360,31 +382,33 @@ namespace HG_Vision.Manager.Manager_Thread
                         Int16 fontSize = 15;
                         string nowTime = DateTime.Now.ToString("HH:mm:ss");
                         CogColorConstants Color = processOK ? CogColorConstants.Green : CogColorConstants.Red;
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], Color, 0, 0, "工位号:" + "1(面朝屏幕右手端)" + string.Format("{0}", finalResult ? "OK" : "NG"), fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 2, "夹具号:" + _jigIndex, fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 4, $"取像耗时:{mSeconds1:f2}ms", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 6, $"视觉总耗时:{totalTime:f2}ms", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 8, "(以下为 夹具补偿后X: Y: / 夹具补偿前X: Y: )", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 10, $"机械手1偏移 X:{offset_in_jig.Bo1Axis.X:f3} Y:{offset_in_jig.Bo1Axis.Y:f3} / X:{offset_dis_jig.Bo1Axis.X:f3} Y:{offset_dis_jig.Bo1Axis.Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 12, $"机械手1当前 X:{currentPose.Bo1Axis.X:f3} Y:{currentPose.Bo1Axis.Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 14, $"焊点1偏移 X:{offset_in_jig.L_La1Axis[0].X:f3} Y:{offset_in_jig.L_La1Axis[0].Y:f3} / X:{offset_dis_jig.La1Axis.X:f3} Y:{offset_dis_jig.La1Axis.Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 16, $"焊点2偏移 X:{offset_in_jig.L_La1Axis[1].X:f3} Y:{offset_in_jig.L_La1Axis[1].Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 18, $"焊点3偏移 X:{offset_in_jig.L_La1Axis[2].X:f3} Y:{offset_in_jig.L_La1Axis[2].Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 20, $"焊点4偏移 X:{offset_in_jig.L_La1Axis[3].X:f3} Y:{offset_in_jig.L_La1Axis[3].Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 22, $"连接片角度:{offset_in_jig.Bo1Axis.R:f3}°", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 24, $"极耳间距:{_spacing1:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 26, "电芯条码:" + _code1, fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 28, nowTime, fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, 30, mError, fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], Color, 1, 0, "工位号:" + "1(面朝屏幕左手端)" + string.Format("{0}", finalResult ? "OK" : "NG"), fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 2, "夹具号:" + (_jigIndex + 1), fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 4, $"电池条码:{_code1}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 6, $"极耳间距:{_spacing1:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 8, $"取像耗时:{mSeconds1:f2}ms", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 10, $"视觉总耗时:{totalTime:f2}ms", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 12, $"当前1产品位置 X:{currentPose.Bo1Axis.X:f3} Y:{currentPose.Bo1Axis.Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 14, $"机械手1偏移 X:{offset_dis_jig.Bo1Axis.X:f3} Y:{offset_dis_jig.Bo1Axis.Y:f3}(未进行夹具补偿)", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 16, $"焊点偏移 X:{offset_dis_jig.La1Axis.X:f3} Y:{offset_dis_jig.La1Axis.Y:f3}(未进行夹具补偿)", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 19, "-------以下为夹具补偿后X、Y(最终发送):-------", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 22, $"机械手1偏移 X:{offset_in_jig.Bo1Axis.X:f3} Y:{offset_in_jig.Bo1Axis.Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 24, $"焊点1偏移 X:{offset_in_jig.L_La1Axis[0].X:f3} Y:{offset_in_jig.L_La1Axis[0].Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 26, $"焊点2偏移 X:{offset_in_jig.L_La1Axis[1].X:f3} Y:{offset_in_jig.L_La1Axis[1].Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 28, $"焊点3偏移 X:{offset_in_jig.L_La1Axis[2].X:f3} Y:{offset_in_jig.L_La1Axis[2].Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 30, $"焊点4偏移 X:{offset_in_jig.L_La1Axis[3].X:f3} Y:{offset_in_jig.L_La1Axis[3].Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 32, $"连接片角度:{offset_in_jig.Bo1Axis.R:f3}°", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 34, nowTime, fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 1, 36, mError, fontSize);
                         if (isOutLimit == true)
-                            WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, 34, NG_message, fontSize);
+                            WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 1, 40, NG_message, fontSize);
                         #region 保存生产数据csv文件
                         string[] strLogData = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
                         string strHead = "状态,工位,夹具,机械手偏移X,机械手偏移Y,焊点1X,焊点1Y,焊点2X,焊点2Y,焊点3X,焊点3Y,焊点4X,焊点4Y,弹夹角度,极耳间距,条码,时间";
                         File_CSV csv = new File_CSV();
                         strLogData[0] = finalResult.ToString();
                         strLogData[1] = "1";
-                        strLogData[2] = _jigIndex.ToString();
+                        strLogData[2] = (_jigIndex + 1).ToString();
                         strLogData[3] = offset_in_jig.Bo1Axis.X.ToString("f3");
                         strLogData[4] = offset_in_jig.Bo1Axis.Y.ToString("f3");
                         strLogData[5] = offset_in_jig.L_La1Axis[0].X.ToString("f3");
@@ -405,7 +429,7 @@ namespace HG_Vision.Manager.Manager_Thread
                         e.DisplayObj = GlobalCameraParams.cameraVisionControlList[e.FlowIdx];
                         e.rawImage = Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[e.FlowIdx].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
                         if (e.eMode == eProcessMode.produce)
-                            e.imageName = (e.FlowIdx + 1).ToString() + "-1-" + _jigIndex.ToString() + "-" + _code1;
+                            e.imageName = (e.FlowIdx + 1).ToString() + "-1-" + (_jigIndex + 1).ToString() + "-" + _code1;
                         else
                             e.imageName = (e.FlowIdx + 1).ToString() + "-1-" + e.eMode.ToString();
                         e.results = finalResult;
@@ -452,30 +476,29 @@ namespace HG_Vision.Manager.Manager_Thread
 
                             #endregion
                             #region 根据夹具号来分别额外补偿
+                            offset_in_jig.Bo2Axis = new PointAxis { X = offset_dis_jig.Bo2Axis.X, Y = offset_dis_jig.Bo2Axis.Y, R = offset_dis_jig.Bo2Axis.R };
+                            offset_in_jig.L_La2Axis[0] = new PointAxis { X = offset_dis_jig.La2Axis.X, Y = offset_dis_jig.La2Axis.Y, R = offset_dis_jig.La2Axis.R };
+                            offset_in_jig.L_La2Axis[1] = new PointAxis { X = offset_dis_jig.La2Axis.X, Y = offset_dis_jig.La2Axis.Y, R = offset_dis_jig.La2Axis.R };
+                            offset_in_jig.L_La2Axis[2] = new PointAxis { X = offset_dis_jig.La2Axis.X, Y = offset_dis_jig.La2Axis.Y, R = offset_dis_jig.La2Axis.R };
+                            offset_in_jig.L_La2Axis[3] = new PointAxis { X = offset_dis_jig.La2Axis.X, Y = offset_dis_jig.La2Axis.Y, R = offset_dis_jig.La2Axis.R };
                             //如果夹具号不在设定范围内，则不进行夹具补偿
                             if (_jigIndex < 0 || _jigIndex >= jig_Compensations.Length)
                             {
                                 LogHelper.Info($"读取到的夹具号{_jigIndex + 1}为非设定值，本次流程不进行夹具补偿");
-                                offset_in_jig.Bo2Axis = offset_dis_jig.Bo2Axis;
-                                offset_in_jig.L_La2Axis[0] = offset_dis_jig.La2Axis;
-                                offset_in_jig.L_La2Axis[1] = offset_dis_jig.La2Axis;
-                                offset_in_jig.L_La2Axis[2] = offset_dis_jig.La2Axis;
-                                offset_in_jig.L_La2Axis[3] = offset_dis_jig.La2Axis;
                             }
                             else
                             {
-                                offset_in_jig.Bo2Axis.X = offset_dis_jig.Bo2Axis.X + jig_Compensations[_jigIndex].Bo2Axis.X;
-                                offset_in_jig.Bo2Axis.Y = offset_dis_jig.Bo2Axis.Y + jig_Compensations[_jigIndex].Bo2Axis.Y;
-                                offset_in_jig.L_La2Axis[0].X = offset_dis_jig.La2Axis.X + jig_Compensations[_jigIndex].L_La2Axis[0].X;
-                                offset_in_jig.L_La2Axis[1].X = offset_dis_jig.La2Axis.X + jig_Compensations[_jigIndex].L_La2Axis[1].X;
-                                offset_in_jig.L_La2Axis[2].X = offset_dis_jig.La2Axis.X + jig_Compensations[_jigIndex].L_La2Axis[2].X;
-                                offset_in_jig.L_La2Axis[3].X = offset_dis_jig.La2Axis.X + jig_Compensations[_jigIndex].L_La2Axis[3].X;
-                                offset_in_jig.L_La2Axis[0].Y = offset_dis_jig.La2Axis.Y + jig_Compensations[_jigIndex].L_La2Axis[0].Y;
-                                offset_in_jig.L_La2Axis[1].Y = offset_dis_jig.La2Axis.Y + jig_Compensations[_jigIndex].L_La2Axis[1].Y;
-                                offset_in_jig.L_La2Axis[2].Y = offset_dis_jig.La2Axis.Y + jig_Compensations[_jigIndex].L_La2Axis[2].Y;
-                                offset_in_jig.L_La2Axis[3].Y = offset_dis_jig.La2Axis.Y + jig_Compensations[_jigIndex].L_La2Axis[3].Y;
-                                AddLengthAl = jig_Compensations[_jigIndex].L_La2Axis[1].X - jig_Compensations[_jigIndex].L_La2Axis[0].X;
-                                AddLengthNi = jig_Compensations[_jigIndex].L_La2Axis[3].X - jig_Compensations[_jigIndex].L_La2Axis[2].X;
+                                offset_in_jig.Bo2Axis.X += jig_Compensations[_jigIndex].Bo2Axis.X;
+                                offset_in_jig.Bo2Axis.Y += jig_Compensations[_jigIndex].Bo2Axis.Y;
+                            
+                                offset_in_jig.L_La1Axis[0].X += jig_Compensations[_jigIndex].L_La1Axis[0].X;
+                                offset_in_jig.L_La1Axis[1].X += jig_Compensations[_jigIndex].L_La1Axis[1].X;
+                                offset_in_jig.L_La1Axis[2].X += jig_Compensations[_jigIndex].L_La1Axis[2].X;
+                                offset_in_jig.L_La1Axis[3].X += jig_Compensations[_jigIndex].L_La1Axis[3].X;
+                                offset_in_jig.L_La1Axis[0].Y += jig_Compensations[_jigIndex].L_La1Axis[0].Y;
+                                offset_in_jig.L_La1Axis[1].Y += jig_Compensations[_jigIndex].L_La1Axis[1].Y;
+                                offset_in_jig.L_La1Axis[2].Y += jig_Compensations[_jigIndex].L_La1Axis[2].Y;
+                                offset_in_jig.L_La1Axis[3].Y += jig_Compensations[_jigIndex].L_La1Axis[3].Y;
                             }
                             offset_in_jig.Bo2Axis.R = offset_dis_jig.Bo2Axis.R;
                             #endregion
@@ -490,21 +513,23 @@ namespace HG_Vision.Manager.Manager_Thread
                             finalResult = true;
                         }
                         #region 偏移上下限判断
-                        double limitMax = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LimitMax;
-                        double limitMin = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LimitMin;
+                        double bolimitMax = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoLimitMax;
+                        double bolimitMin = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoLimitMin;
+                        double lalimitMax = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaLimitMax;
+                        double lalimitMin = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaLimitMin;
                         double angleMax = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.AngleMax;
                         double angleMin = Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.AngleMin;
                         bool isOutLimit = false;
 
                         string NG_message = "";
                         //机械手X/Y
-                        if (offset_in_jig.Bo2Axis.X < limitMin || offset_in_jig.Bo2Axis.X > limitMax)
+                        if (offset_in_jig.Bo2Axis.X < bolimitMin || offset_in_jig.Bo2Axis.X > bolimitMax)
                         {
                             isOutLimit = true;
                             NG_message += "机械手偏移X超限NG;";
                             finalResult = false;
                         }
-                        if (offset_in_jig.Bo2Axis.Y < limitMin || offset_in_jig.Bo2Axis.Y > limitMax)
+                        if (offset_in_jig.Bo2Axis.Y < bolimitMin || offset_in_jig.Bo2Axis.Y > bolimitMax)
                         {
                             isOutLimit = true;
                             NG_message += "机械手偏移Y超限NG;";
@@ -513,13 +538,13 @@ namespace HG_Vision.Manager.Manager_Thread
                         //激光X/Y
                         for (int i = 0; i < 4; i++)
                         {
-                            if (offset_in_jig.L_La2Axis[i].X < limitMin || offset_in_jig.L_La2Axis[i].X > limitMax)
+                            if (offset_in_jig.L_La2Axis[i].X < lalimitMin || offset_in_jig.L_La2Axis[i].X > lalimitMax)
                             {
                                 isOutLimit = true;
                                 NG_message += $"焊点{i + 1}偏移X超限NG;";
                                 finalResult = false;
                             }
-                            if (offset_in_jig.L_La2Axis[i].Y < limitMin || offset_in_jig.L_La2Axis[i].Y > limitMax)
+                            if (offset_in_jig.L_La2Axis[i].Y < lalimitMin || offset_in_jig.L_La2Axis[i].Y > lalimitMax)
                             {
                                 isOutLimit = true;
                                 NG_message += $"焊点{i + 1}偏移Y超限NG;";
@@ -568,31 +593,33 @@ namespace HG_Vision.Manager.Manager_Thread
                         Int16 fontSize = 15;
                         string nowTime = DateTime.Now.ToString("HH:mm:ss");
                         CogColorConstants Color = processOK ? CogColorConstants.Green : CogColorConstants.Red;
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], Color, 0, 0, "工位号:" + "2(面朝屏幕左手端)" + string.Format("{0}", finalResult ? "OK" : "NG"), fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 2, "夹具号:" + _jigIndex, fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 4, $"取像耗时:{mSeconds1:f2}ms", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 6, $"视觉总耗时:{totalTime:f2}ms", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 8, "(以下为 夹具补偿后X: Y: / 夹具补偿前X: Y: )", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 10, $"机械手1偏移 X:{offset_in_jig.Bo2Axis.X:f3} Y:{offset_in_jig.Bo2Axis.Y:f3} / X:{offset_dis_jig.Bo2Axis.X:f3} Y:{offset_dis_jig.Bo2Axis.Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 12, $"机械手1当前 X:{currentPose.Bo2Axis.X:f3} Y:{currentPose.Bo2Axis.Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 14, $"焊点1偏移 X:{offset_in_jig.L_La2Axis[0].X:f3} Y:{offset_in_jig.L_La2Axis[0].Y:f3} / X:{offset_dis_jig.La2Axis.X:f3} Y:{offset_dis_jig.La2Axis.Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 16, $"焊点2偏移 X:{offset_in_jig.L_La2Axis[1].X:f3} Y:{offset_in_jig.L_La2Axis[1].Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 18, $"焊点3偏移 X:{offset_in_jig.L_La2Axis[2].X:f3} Y:{offset_in_jig.L_La2Axis[2].Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 20, $"焊点4偏移 X:{offset_in_jig.L_La2Axis[3].X:f3} Y:{offset_in_jig.L_La2Axis[3].Y:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 22, $"连接片角度:{offset_in_jig.Bo2Axis.R:f3}°", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 24, $"极耳间距:{_spacing2:f3}", fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 26, "电池条码:" + _code2, fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 0, 28, nowTime, fontSize);
-                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, 30, mError, fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], Color, 1, 0, "工位号:" + "2(面朝屏幕左手端)" + string.Format("{0}", finalResult ? "OK" : "NG"), fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 2, "夹具号:" + (_jigIndex + 1), fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 4, $"电池条码:{_code2}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 6, $"极耳间距:{_spacing2:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 8, $"取像耗时:{mSeconds1:f2}ms", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 10, $"视觉总耗时:{totalTime:f2}ms", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 12, $"当前2产品位置 X:{currentPose.Bo2Axis.X:f3} Y:{currentPose.Bo2Axis.Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 14, $"机械手2偏移 X:{offset_dis_jig.Bo2Axis.X:f3} Y:{offset_dis_jig.Bo2Axis.Y:f3}(未进行夹具补偿)", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 16, $"焊点偏移 X:{offset_dis_jig.La2Axis.X:f3} Y:{offset_dis_jig.La2Axis.Y:f3}(未进行夹具补偿)", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 19, "-------以下为夹具补偿后X、Y(最终发送):-------", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 22, $"机械手2偏移 X:{offset_in_jig.Bo2Axis.X:f3} Y:{offset_in_jig.Bo2Axis.Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 24, $"焊点1偏移 X:{offset_in_jig.L_La2Axis[0].X:f3} Y:{offset_in_jig.L_La2Axis[0].Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 26, $"焊点2偏移 X:{offset_in_jig.L_La2Axis[1].X:f3} Y:{offset_in_jig.L_La2Axis[1].Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 28, $"焊点3偏移 X:{offset_in_jig.L_La2Axis[2].X:f3} Y:{offset_in_jig.L_La2Axis[2].Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 30, $"焊点4偏移 X:{offset_in_jig.L_La2Axis[3].X:f3} Y:{offset_in_jig.L_La2Axis[3].Y:f3}", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 32, $"连接片角度:{offset_in_jig.Bo2Axis.R:f3}°", fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Blue, 1, 34, nowTime, fontSize);
+                        WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 1, 36, mError, fontSize);
                         if (isOutLimit == true)
-                            WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 0, 34, NG_message, fontSize);
+                            WorkFlow1.DisplayLabelCogDisplay(GlobalCameraParams.cameraVisionControlList[workFlowIdx], CogColorConstants.Red, 1, 40, NG_message, fontSize);
                         #region 保存生产数据csv文件
                         string[] strLogData = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
                         string strHead = "状态,工位,夹具,机械手偏移X,机械手偏移Y,焊点1X,焊点1Y,焊点2X,焊点2Y,焊点3X,焊点3Y,焊点4X,焊点4Y,弹夹角度,极耳间距,条码,时间";
                         File_CSV csv = new File_CSV();
                         strLogData[0] = finalResult.ToString();
                         strLogData[1] = "2";
-                        strLogData[2] = _jigIndex.ToString();
+                        strLogData[2] = (_jigIndex + 1).ToString();
                         strLogData[3] = offset_in_jig.Bo2Axis.X.ToString("f3");
                         strLogData[4] = offset_in_jig.Bo2Axis.Y.ToString("f3");
                         strLogData[5] = offset_in_jig.L_La2Axis[0].X.ToString("f3");
@@ -613,7 +640,7 @@ namespace HG_Vision.Manager.Manager_Thread
                         e.DisplayObj = GlobalCameraParams.cameraVisionControlList[e.FlowIdx];
                         e.rawImage = Project.Instance.VisionManagerInstance.CameraManagerInstance.WorkFlowList[e.FlowIdx].ProcessBlock.Inputs["InputImage"].Value as ICogImage;
                         if (e.eMode == eProcessMode.produce)
-                            e.imageName = (e.FlowIdx + 1).ToString() + "-2-" + _jigIndex.ToString() + "-" + _code2;
+                            e.imageName = (e.FlowIdx + 1).ToString() + "-2-" + (_jigIndex + 1).ToString() + "-" + _code2;
                         else
                             e.imageName = (e.FlowIdx + 1).ToString() + "-2-" + e.eMode.ToString();
                         e.results = finalResult;
@@ -637,79 +664,48 @@ namespace HG_Vision.Manager.Manager_Thread
                 LogHelper.Error($"处理{e.FlowIdx + 1}相机检测出现异常", ex);  //写日志
             }
         }
+        /// <summary>
+        /// 发送数据到设备(机器人、激光)
+        /// </summary>
+        /// <param name="isOK">视觉总结果</param>
+        /// <param name="index">工位号</param>
+        /// <param name="offset_in_jig">补偿后偏移量</param>
+        /// <param name="currentPose">当前位置</param>
         private static void SendMessageToDevice(bool isOK, int index, JigAdd offset_in_jig, BasePose currentPose)
         {
             if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.LYH.ToString())
             {
-                string sendToRob, sendToLas;
-                if (!isOK)
-                {
-                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse != 1)
-                        sendToRob = "PGE;0;1;0;0;0;0;\r\n";
-                    else
-                        sendToRob = $"PGE;0;2;0;{offset_in_jig.GetBoAxis(index).X:f3};{offset_in_jig.GetBoAxis(index).X:f3};0;\r\n";
-
-                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
-                        sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
-                    else
-                        sendToLas = CreatSentToLas(false, currentPose, offset_in_jig, index);
-                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
-                }
+                string sendToRob;
+                #region 设定机械手偏移量字符串
+                if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse != 1)
+                    sendToRob = "1;0.0;0.0;";
                 else
-                {
-                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse != 1)
-                        sendToRob = "PGE;0;1;0;0;0;0;\r\n";
-                    else
-                        sendToRob = $"PGE;0;1;0;{offset_in_jig.GetBoAxis(index).X:f3};{offset_in_jig.GetBoAxis(index):f3};0;\r\n";
+                    sendToRob = $"{(isOK ? 1 : 2)};{currentPose.GetBoAxis(index).X:f3};{currentPose.GetBoAxis(index).Y:f3};";
+                #endregion
 
-                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
-                        sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
-                    else
-                        sendToLas = CreatSentToLas(true, currentPose, offset_in_jig, index);
-                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0]++;
-                }
-                if (Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{index}").SendText(sendToRob, 0))
-                    LogHelper.Info("发送完成信号成功>>机械手：" + sendToLas);
-                else
-                    LogHelper.Error("发送完成信号失败>>机械手!");
+                #region 缓存机械手偏移量字符串
 
-                if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{index}").SendText(sendToLas, 0))
-                    LogHelper.Info("发送完成信号成功>>激光：" + sendToLas);
-                else
-                    LogHelper.Error("发送完成信号失败>>激光!");
+                Project.Instance.ServerManagerInstance.GetDevice<RobotServerObj>($"Robot{index}").SaveRobotOffsetData(sendToRob);
+                #endregion
             }
             else if (Project.Instance.GlobalManagerInstance.GlobalParamsModel.RobotProtocolType == eProtocol.HG.ToString())
             {
                 byte[] sendToPLC = new byte[16];
-                string sendToLas;
-                if (!isOK)
-                {
-                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
-                        sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
-                    else
-                        sendToLas = CreatSentToLas(false, currentPose, offset_in_jig, index);
-                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
-                }
-                else
-                {
 
-                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse == 1)
-                    {
-                        float x = Convert.ToSingle(offset_in_jig.GetBoAxis(index).X);
-                        byte[] xBytes = BitConverter.GetBytes(x);
-                        Array.Copy(xBytes, sendToPLC, xBytes.Length);
-                        float y = Convert.ToSingle(offset_in_jig.GetBoAxis(index).Y);
-                        byte[] yBytes = BitConverter.GetBytes(y);
-                        // 从源数组复制到目标数组的后面
-                        Array.Copy(yBytes, 0, sendToPLC, xBytes.Length, yBytes.Length);
-                    }
-
-                    if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
-                        sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
-                    else
-                        sendToLas = CreatSentToLas(true, currentPose, offset_in_jig, index);
-                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0]++;
+                #region 设定机械手偏移量按Omron寄存器数量装箱
+                if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.BoUse == 1)
+                {
+                    float x = Convert.ToSingle(offset_in_jig.GetBoAxis(index).X);
+                    byte[] xBytes = BitConverter.GetBytes(x);
+                    Array.Copy(xBytes, sendToPLC, xBytes.Length);
+                    float y = Convert.ToSingle(offset_in_jig.GetBoAxis(index).Y);
+                    byte[] yBytes = BitConverter.GetBytes(y);
+                    // 从源数组复制到目标数组的后面
+                    Array.Copy(yBytes, 0, sendToPLC, xBytes.Length, yBytes.Length);
                 }
+                #endregion
+
+                #region 发送机械手偏移量给PLC(Fins通讯)
                 if (index == 0)
                 {
                     if (Project.Instance.PLCManagerInstance.Write("D2100", RegisterDataProcessing.ReverseBytes(sendToPLC, 0, sendToPLC.Length)))
@@ -737,17 +733,42 @@ namespace HG_Vision.Manager.Manager_Thread
                     else
                         LogHelper.Error("发送NG信号失败>>PLC!");
                 }
-
-                if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").SendText(sendToLas, 0))
-                    LogHelper.Info("发送完成信号成功>>激光：" + sendToLas);
-                else
-                    LogHelper.Error("发送完成信号失败>>激光!");
+                #endregion
             }
             else
             {
                 LogHelper.Error("未知协议类型，无法发送视觉数据！");
                 return;
             }
+
+            string sendToLas;
+
+            #region 设定激光偏移量字符串
+            if (Project.Instance.VisionManagerInstance.CameraParamsManagerInstance.ParamsC1.LaUse != 1)
+            {
+                sendToLas = "_OK;" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10#" + "0%0%0%0%0%10%10";
+            }
+            else
+            {
+                if (!isOK)
+                {
+                    sendToLas = CreatSentToLas(false, currentPose, offset_in_jig, index);
+                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationNGCount[0]++;
+                }
+                else
+                {
+                    sendToLas = CreatSentToLas(true, currentPose, offset_in_jig, index);
+                    Project.Instance.ProductionDataManagerInstance.L_ProduceStationOKCount[0]++;
+                }
+            }
+            #endregion
+
+            #region 发送激光偏移量字符串
+            if (Project.Instance.ServerManagerInstance.GetDevice<LaserServerObj>($"Laser{0}").SendText(sendToLas, 0))
+                LogHelper.Info("发送完成信号成功>>激光：" + sendToLas);
+            else
+                LogHelper.Error("发送完成信号失败>>激光!");
+            #endregion
         }
         private static string CreatSentToLas(bool isOK, BasePose currentPose, JigAdd in_offset, int LaserIdx)
         {

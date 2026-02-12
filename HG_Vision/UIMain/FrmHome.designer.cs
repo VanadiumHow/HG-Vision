@@ -234,7 +234,7 @@ namespace HG_Vision.UIHome
             this.StripStatusLabelUser,
             this.StripStatusLabelBreak2,
             this.StripStatusLabelTime});
-            this.StatusStrip1.Location = new System.Drawing.Point(0, 1058);
+            this.StatusStrip1.Location = new System.Drawing.Point(0, 1018);
             this.StatusStrip1.Name = "StatusStrip1";
             this.StatusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 7, 0);
             this.StatusStrip1.Size = new System.Drawing.Size(1920, 22);
@@ -300,7 +300,7 @@ namespace HG_Vision.UIHome
             this.TableLayoutPanelAll.RowCount = 2;
             this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.TableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableLayoutPanelAll.Size = new System.Drawing.Size(1920, 1058);
+            this.TableLayoutPanelAll.Size = new System.Drawing.Size(1920, 1018);
             this.TableLayoutPanelAll.TabIndex = 31;
             this.TableLayoutPanelAll.TagString = null;
             // 
@@ -496,7 +496,7 @@ namespace HG_Vision.UIHome
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(241)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1920, 1040);
             this.Controls.Add(this.TableLayoutPanelAll);
             this.Controls.Add(this.StatusStrip1);
             this.DoubleBuffered = true;
@@ -504,6 +504,7 @@ namespace HG_Vision.UIHome
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmHome";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "VisionProgram";
             this.Activated += new System.EventHandler(this.FrmHome_Activated);
             this.Deactivate += new System.EventHandler(this.FrmHome_Deactivate);
