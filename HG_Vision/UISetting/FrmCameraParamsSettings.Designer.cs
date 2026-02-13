@@ -575,7 +575,7 @@ namespace HG_Vision.UIVision
             this.label145 = new System.Windows.Forms.Label();
             this.btn_clearJ9 = new System.Windows.Forms.Button();
             this.cb_clearJ9 = new System.Windows.Forms.CheckBox();
-            this.uiSymbolButtonSave = new System.Windows.Forms.Button();
+            this.btSave = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -1783,6 +1783,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdweldlengthAl.TabIndex = 179;
             this.lb_Cam1StdweldlengthAl.Text = "Al焊印固定长度";
             this.lb_Cam1StdweldlengthAl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1StdweldlengthAl, "激光打出的铝焊印长度设定值");
             // 
             // tb_Cam1StdweldlengthAl
             // 
@@ -1806,104 +1807,19 @@ namespace HG_Vision.UIVision
             this.lb_Cam1StdweldlengthNi.TabIndex = 180;
             this.lb_Cam1StdweldlengthNi.Text = "Ni焊印固定长度";
             this.lb_Cam1StdweldlengthNi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lb_Cam1Spacing.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1Spacing.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1Spacing.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1Spacing.Location = new System.Drawing.Point(831, 230);
-            this.lb_Cam1Spacing.Name = "lb_Cam1Spacing";
-            this.lb_Cam1Spacing.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1Spacing.TabIndex = 162;
-            this.lb_Cam1Spacing.Text = "极耳间距设定标准值";
-            this.lb_Cam1Spacing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lb_Cam1Spacing, "用于消除因极耳间距带来的误差");
+            this.toolTip1.SetToolTip(this.lb_Cam1StdweldlengthNi, "激光打出的镍焊印长度设定值");
             // 
             // tb_Cam1StdweldlengthNi
             // 
-            this.lb_Cam1SpacingUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1SpacingUse.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1SpacingUse.Location = new System.Drawing.Point(1015, 230);
-            this.lb_Cam1SpacingUse.Name = "lb_Cam1SpacingUse";
-            this.lb_Cam1SpacingUse.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1SpacingUse.TabIndex = 161;
-            this.lb_Cam1SpacingUse.Text = "屏蔽间距补偿（1启用0屏蔽）";
-            this.lb_Cam1SpacingUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lb_Cam1SpacingUse, "输入 1 = 启用间距补偿功能；输入 0 = 屏蔽间距补偿功能；");
-            // 
-            // tb_Cam1SpacingUse
-            // 
-            this.tb_Cam1SpacingUse.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1SpacingUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1SpacingUse.Location = new System.Drawing.Point(1108, 242);
-            this.tb_Cam1SpacingUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1SpacingUse.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1SpacingUse.Name = "tb_Cam1SpacingUse";
-            this.tb_Cam1SpacingUse.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1SpacingUse.TabIndex = 166;
-            // 
-            // lb_Cam1RobotStep
-            // 
-            this.lb_Cam1RobotStep.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1RobotStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1RobotStep.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1RobotStep.Location = new System.Drawing.Point(831, 276);
-            this.lb_Cam1RobotStep.Name = "lb_Cam1RobotStep";
-            this.lb_Cam1RobotStep.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1RobotStep.TabIndex = 160;
-            this.lb_Cam1RobotStep.Text = "机械手标定偏移";
-            this.lb_Cam1RobotStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lb_Cam1RobotStep, "机械手九点标定每个相邻点之间的间距");
-            // 
-            // lb_Cam1RobotUse
-            // 
-            this.lb_Cam1RobotUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1RobotUse.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1RobotUse.Location = new System.Drawing.Point(1015, 276);
-            this.lb_Cam1RobotUse.Name = "lb_Cam1RobotUse";
-            this.lb_Cam1RobotUse.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1RobotUse.TabIndex = 163;
-            this.lb_Cam1RobotUse.Text = "屏蔽机械手补偿（1启用0屏蔽）";
-            this.lb_Cam1RobotUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lb_Cam1RobotUse, "输入 1 = 启用机械手补偿功能；输入 0 = 屏蔽机械手补偿功能；");
-            // 
-            // tb_Cam1RobotUse
-            // 
-            this.tb_Cam1RobotUse.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1RobotUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1RobotUse.Location = new System.Drawing.Point(1108, 288);
-            this.tb_Cam1RobotUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1RobotUse.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1RobotUse.Name = "tb_Cam1RobotUse";
-            this.tb_Cam1RobotUse.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1RobotUse.TabIndex = 165;
-            // 
-            // tb_Cam1LaserUse
-            // 
-            this.tb_Cam1LaserUse.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_Cam1LaserUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_Cam1LaserUse.Location = new System.Drawing.Point(1108, 334);
-            this.tb_Cam1LaserUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
-            this.tb_Cam1LaserUse.MinimumSize = new System.Drawing.Size(4, 4);
-            this.tb_Cam1LaserUse.Name = "tb_Cam1LaserUse";
-            this.tb_Cam1LaserUse.Size = new System.Drawing.Size(84, 21);
-            this.tb_Cam1LaserUse.TabIndex = 168;
-            // 
-            // lb_Cam1LaserUse
-            // 
-            this.lb_Cam1LaserUse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Cam1LaserUse.ForeColor = System.Drawing.Color.Black;
-            this.lb_Cam1LaserUse.Location = new System.Drawing.Point(1015, 322);
-            this.lb_Cam1LaserUse.Name = "lb_Cam1LaserUse";
-            this.lb_Cam1LaserUse.Size = new System.Drawing.Size(86, 46);
-            this.lb_Cam1LaserUse.TabIndex = 164;
-            this.lb_Cam1LaserUse.Text = "屏蔽激光补偿（1启用0屏蔽）";
-            this.lb_Cam1LaserUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lb_Cam1LaserUse, "输入 1 = 启用激光补偿功能；输入 0 = 屏蔽激光补偿功能；");
+            this.tb_Cam1StdweldlengthNi.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1StdweldlengthNi.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_Cam1StdweldlengthNi.Location = new System.Drawing.Point(1108, 288);
+            this.tb_Cam1StdweldlengthNi.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
+            this.tb_Cam1StdweldlengthNi.MinimumSize = new System.Drawing.Size(4, 4);
+            this.tb_Cam1StdweldlengthNi.Name = "tb_Cam1StdweldlengthNi";
+            this.tb_Cam1StdweldlengthNi.Size = new System.Drawing.Size(84, 21);
+            this.tb_Cam1StdweldlengthNi.TabIndex = 178;
+            this.tb_Cam1StdweldlengthNi.Tag = "";
             // 
             // lb_Cam1LaserStep
             // 
@@ -1931,6 +1847,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1LaserUse
             // 
+            this.lb_Cam1LaserUse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1LaserUse.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1LaserUse.Location = new System.Drawing.Point(1015, 414);
@@ -1939,10 +1856,12 @@ namespace HG_Vision.UIVision
             this.lb_Cam1LaserUse.TabIndex = 164;
             this.lb_Cam1LaserUse.Text = "激光补偿使能（1启用0旁通）";
             this.lb_Cam1LaserUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1LaserUse, "输入 1 = 启用激光补偿功能；输入 0 = 屏蔽激光补偿功能；");
             // 
             // tb_Cam1LaserUse
             // 
             this.tb_Cam1LaserUse.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1LaserUse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1LaserUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_Cam1LaserUse.Location = new System.Drawing.Point(1108, 426);
             this.tb_Cam1LaserUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
@@ -1953,6 +1872,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1RobotUse
             // 
+            this.lb_Cam1RobotUse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1RobotUse.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1RobotUse.Location = new System.Drawing.Point(1015, 368);
@@ -1961,10 +1881,12 @@ namespace HG_Vision.UIVision
             this.lb_Cam1RobotUse.TabIndex = 163;
             this.lb_Cam1RobotUse.Text = "机械手补偿使能（1启用0旁通）";
             this.lb_Cam1RobotUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1RobotUse, "输入 1 = 启用机械手补偿功能；输入 0 = 屏蔽机械手补偿功能；");
             // 
             // tb_Cam1RobotUse
             // 
             this.tb_Cam1RobotUse.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1RobotUse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1RobotUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_Cam1RobotUse.Location = new System.Drawing.Point(1108, 380);
             this.tb_Cam1RobotUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
@@ -1987,6 +1909,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1RobotStep
             // 
+            this.lb_Cam1RobotStep.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1RobotStep.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1RobotStep.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1RobotStep.Location = new System.Drawing.Point(831, 368);
@@ -1995,9 +1918,11 @@ namespace HG_Vision.UIVision
             this.lb_Cam1RobotStep.TabIndex = 160;
             this.lb_Cam1RobotStep.Text = "机械手标定偏移";
             this.lb_Cam1RobotStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1RobotStep, "机械手九点标定每个相邻点之间的间距");
             // 
             // lb_Cam1Spacing
             // 
+            this.lb_Cam1Spacing.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1Spacing.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1Spacing.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1Spacing.Location = new System.Drawing.Point(831, 322);
@@ -2006,6 +1931,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1Spacing.TabIndex = 162;
             this.lb_Cam1Spacing.Text = "极耳间距设定标准值";
             this.lb_Cam1Spacing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1Spacing, "用于消除因极耳间距带来的误差");
             // 
             // tb_Cam1Spacing
             // 
@@ -2021,6 +1947,7 @@ namespace HG_Vision.UIVision
             // 
             // lb_Cam1SpacingUse
             // 
+            this.lb_Cam1SpacingUse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb_Cam1SpacingUse.ForeColor = System.Drawing.Color.Black;
             this.lb_Cam1SpacingUse.Location = new System.Drawing.Point(1015, 322);
@@ -2029,10 +1956,12 @@ namespace HG_Vision.UIVision
             this.lb_Cam1SpacingUse.TabIndex = 161;
             this.lb_Cam1SpacingUse.Text = "间距补偿使能（1启用0旁通）";
             this.lb_Cam1SpacingUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1SpacingUse, "输入 1 = 启用间距补偿功能；输入 0 = 屏蔽间距补偿功能；");
             // 
             // tb_Cam1SpacingUse
             // 
             this.tb_Cam1SpacingUse.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_Cam1SpacingUse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Cam1SpacingUse.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_Cam1SpacingUse.Location = new System.Drawing.Point(1108, 334);
             this.tb_Cam1SpacingUse.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
@@ -2051,6 +1980,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1LaLimitMin.TabIndex = 141;
             this.lb_Cam1LaLimitMin.Text = "激光偏移下限";
             this.lb_Cam1LaLimitMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1LaLimitMin, "允许输出给激光X、Y的最小值");
             // 
             // tb_Cam1LaLimitMin
             // 
@@ -2074,6 +2004,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1LaLimitMax.TabIndex = 142;
             this.lb_Cam1LaLimitMax.Text = "激光偏移上限";
             this.lb_Cam1LaLimitMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1LaLimitMax, "允许输出给激光X、Y的最大值");
             // 
             // tb_Cam1LaLimitMax
             // 
@@ -2097,6 +2028,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1BoLimitMax.TabIndex = 181;
             this.lb_Cam1BoLimitMax.Text = "机械手偏移上限";
             this.lb_Cam1BoLimitMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1BoLimitMax, "允许输出给机械手X、Y的最大值");
             // 
             // lb_Cam1BoLimitMin
             // 
@@ -2108,6 +2040,7 @@ namespace HG_Vision.UIVision
             this.lb_Cam1BoLimitMin.TabIndex = 182;
             this.lb_Cam1BoLimitMin.Text = "机械手偏移下限";
             this.lb_Cam1BoLimitMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lb_Cam1BoLimitMin, "允许输出给机械手X、Y的最小值");
             // 
             // tb_Cam1BoLimitMax
             // 
